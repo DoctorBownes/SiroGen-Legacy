@@ -20,14 +20,16 @@ void Sprite::DrawSprite(const char* TGA)
     -0.5f,  0.5f, 0.0f,
      0.5f, -0.5f, 0.0f,
     };
-    sprite.LoadTGAImage(TGA);
+    //sprite.LoadTGAImage(TGA);
     // Send vertices to GPU
     glGenBuffers(1, &spritetexture);
     glBindBuffer(GL_ARRAY_BUFFER, spritetexture);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_vertex_buffer_data), temp_vertex_buffer_data, GL_STATIC_DRAW);
 
-   // GLuint textureID;
-   // glGenTextures(1, &textureID);
-    //glBindTexture2D()
+    //GLuint textureID;
+    //glGenTextures(1, &textureID);
+    //glBindTexture(GL_TEXTURE_2D, textureID);
+
+    //glTexImage2D(GL_TEXTURE)
 }
 

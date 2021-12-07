@@ -21,7 +21,7 @@ unsigned char* Texture::LoadTGAImage(const char* imagepath)
 	// Actual RGB data
 	unsigned char* data;
 	FILE* file;
-	fopen_s(&file, imagepath, "rb");
+	file = fopen(imagepath, "rb");
 	if (!file)
 	{
 		printf("File could not be opened");
