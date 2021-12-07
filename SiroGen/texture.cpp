@@ -11,7 +11,7 @@ Texture::~Texture()
 
 }
 
-unsigned char* Texture::LoadTGAImage(const char* imagepath)
+GLuint* Texture::LoadTGAImage(const char* imagepath)
 {
 	// Data read from the header of the BMP file
 	unsigned char header[18];
@@ -60,6 +60,19 @@ unsigned char* Texture::LoadTGAImage(const char* imagepath)
 	fread(data, 1, imageSize, file);
 
 	fclose(file);
+	GLuint textureID;
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	//grayimage only for now
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, _width, _height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, data);
 
-	return data;
+
+
+	delete []data;
+
+	return &textureID;
 }

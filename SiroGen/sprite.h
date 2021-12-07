@@ -10,8 +10,10 @@ public:
     ~Sprite();
 
     //Texture GetTexture() { return spritetexture; };
+    GLuint sprite;
     GLuint spritetexture;
-    Texture sprite;
+    GLuint uv;
+    Texture texture;
 
     void DrawSprite(const char* TGA);
 

@@ -1,6 +1,12 @@
 #version 330 core
+// Interpolated values from the vertex shaders
+in vec2 UV;
+
+// Values that stay constant for the whole mesh.
+uniform sampler2D myTextureSampler;
 out vec4 FragColor;
 void main()
 {
-   FragColor = vec4(0.8f, 0.3f, 0.02f, 1.0f);
+	
+	FragColor = texture(myTextureSampler, UV).rgb;
 }

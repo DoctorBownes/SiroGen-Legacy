@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+#include <iostream>
 
 class Texture
 {
@@ -12,7 +13,7 @@ public:
 	int _width;
 	int _height;
 
-	unsigned char* LoadTGAImage(const char* imagepath);
+	GLuint* LoadTGAImage(const char* imagepath);
 	GLuint GetTexture() { return _texture; };
 private:
 	GLuint _texture;
