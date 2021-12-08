@@ -67,9 +67,6 @@ void Renderer::RenderScene(Scene* scene)
     glClearColor(0.0f, 0.4f, 0.7f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    //GLuint VertexArrayID;
-    //glGenVertexArrays(1, &VertexArrayID);
-    //glBindVertexArray(VertexArrayID);
 
     for (int i = 0; i < scene->Getchildren().size(); i++)
     {
@@ -102,11 +99,6 @@ void Renderer::RenderEntity(Entity* entity)
      // 1st attribute buffer : vertices
     if (entity->GetComponent<Sprite>())
     {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, entity->GetComponent<Sprite>()->spritetexture);
-        // Set our "textureSampler" sampler to use Texture Unit 0
-        GLuint textureID = glGetUniformLocation(_shader, "myTextureSampler");
-
         // 1st attribute buffer : vertices
         GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
         glEnableVertexAttribArray(vertexPositionID);
@@ -132,7 +124,8 @@ void Renderer::RenderEntity(Entity* entity)
             0,                                // stride
             (void*)0                          // array buffer offset
         );
-        
+
+        glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
         glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glDisableVertexAttribArray(0);
 
