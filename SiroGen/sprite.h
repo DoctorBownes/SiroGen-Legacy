@@ -13,7 +13,7 @@ public:
     GLuint sprite;
     GLuint spritetexture;
     GLuint uv;
-    GLuint VertexArrayID;
+    //GLuint VertexArrayID;
     Texture texture;
 
     void DrawSprite(const char* TGA);

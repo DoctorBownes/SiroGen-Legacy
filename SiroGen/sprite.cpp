@@ -11,30 +11,30 @@ Sprite::~Sprite()
 
 void Sprite::DrawSprite(const char* TGA)
 {
-    glGenVertexArrays(1, &VertexArrayID);
+    //glGenVertexArrays(1, &VertexArrayID);
     spritetexture = (*texture.LoadTGAImage(TGA));
     std::cout << texture._height << std::endl;
     static const GLfloat temp_vertex_buffer_data[] = {
-    -0.5f,  0.5f, 0.0f,
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
+        0.5f,  0.5f, 0.0f,
+       -0.5f,  0.5f, 0.0f,
+       -0.5f, -0.5f, 0.0f,
 
-     0.5f, -0.5f, 0.0f,
-     0.5f,  0.5f, 0.0f,
-    -0.5f,  0.5f, 0.0f,
+       -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.5f,  0.5f, 0.0f,
     };
     
     //sprite.LoadTGAImage(TGA);
     // Send vertices to GPU
     
     static const GLfloat temp_uv_buffer_data[] = {
-        0.5f, 0.5f,
-        0.0f, 0.5f,
+        1.0f, 1.0f,
+        0.0f, 1.0f,
         0.0f, 0.0f,
 
         0.0f, 0.0f,
-        0.5f, 0.0f,
-        0.5f, 0.5f,
+        1.0f, 0.0f,
+        1.0f, 1.0f,
     };
 
 

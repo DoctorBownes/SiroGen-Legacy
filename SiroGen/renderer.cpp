@@ -59,6 +59,9 @@ Renderer::Renderer()
     }
     _shader = GetShader("shaders/default.vert", "shaders/default.frag");
     glUseProgram(_shader);
+    GLuint test;
+    glGenVertexArrays(1, &test);
+    glBindVertexArray(test);
 }
 
 void Renderer::RenderScene(Scene* scene)
@@ -125,7 +128,7 @@ void Renderer::RenderEntity(Entity* entity)
             (void*)0                          // array buffer offset
         );
 
-        glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
+        //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
         glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glDisableVertexAttribArray(0);
 

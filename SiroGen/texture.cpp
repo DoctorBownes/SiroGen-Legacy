@@ -67,6 +67,8 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	// Give the image to OpenGL
+
+	//GL_RED
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 

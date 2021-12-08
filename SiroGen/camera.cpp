@@ -58,8 +58,6 @@ void Camera::UpdateCamera()
 
     _position = glm::vec3(position.x, position.y, position.z);
 
-    //TODO SET OFFSET FOR ORTHO!
-
     cameraMatrix = glm::lookAt(
         _position - offset, //position
         _position - offset + direction, //direction
