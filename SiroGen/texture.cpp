@@ -1,4 +1,5 @@
 #include "texture.h"
+#include <glm/glm.hpp>
 
 Texture::Texture()
 {
@@ -39,7 +40,7 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 
 	if (type != 1 && type != 2 && type != 3 && type != 10)
 	{
-		printf("TGA image was not uncompressed");
+		printf("TGA image was compressed");
 		return nullptr;
 	}
 	fseek(file, 12, SEEK_SET);
@@ -69,7 +70,9 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 	// Give the image to OpenGL
 
 	//GL_RED
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, _width, _height, 0, GL_RED, GL_UNSIGNED_BYTE, data);
+	const GLint swizzleMask[] = { GL_RED, GL_RED, GL_RED, GL_ONE };
+	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzleMask);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 
