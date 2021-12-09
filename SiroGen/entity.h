@@ -45,7 +45,6 @@ T* Entity::GetComponent()
 	{
 		return static_cast<T*>(&componentlist[typeid(T).hash_code()]);
 	}
-	//std::cout << "Error: Component " << typeid(T).name() << " not found" << std::endl;
 	return nullptr;
 }
 

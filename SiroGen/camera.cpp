@@ -8,7 +8,7 @@ Camera::Camera(bool isThreeDimensional)
             glm::radians(45.0f),
             16.0f / 9.0f,
             0.1f,
-            100.0f
+            1000.0f
         );
         offset = glm::vec3(0, 0, 0);
         glEnable(GL_CULL_FACE);
@@ -25,7 +25,7 @@ Camera::Camera(bool isThreeDimensional)
         );
         offset = glm::vec3(16.0f /2, 9.0f / 2, 0);
     }
-    position.z = 10.0f;
+    position.z = 650.0f;
     rotation = Vector3(0, 3.141592f, 0);
     up = glm::vec3(0, 1, 0);
     right = glm::vec3(1, 0, 0);

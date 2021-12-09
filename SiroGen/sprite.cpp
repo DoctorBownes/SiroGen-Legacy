@@ -13,15 +13,14 @@ void Sprite::DrawSprite(const char* TGA)
 {
     //glGenVertexArrays(1, &VertexArrayID);
     spritetexture = (*texture.LoadTGAImage(TGA));
-    std::cout << texture._height << std::endl;
     static const GLfloat temp_vertex_buffer_data[] = {
-        0.5f,  0.5f, 0.0f,
-       -0.5f,  0.5f, 0.0f,
-       -0.5f, -0.5f, 0.0f,
+        0.5f * texture._width,  0.5f * texture._height, 0.0f,
+       -0.5f * texture._width,  0.5f * texture._height, 0.0f,
+       -0.5f * texture._width, -0.5f * texture._height, 0.0f,
 
-       -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.5f,  0.5f, 0.0f,
+       -0.5f * texture._width, -0.5f * texture._height, 0.0f,
+        0.5f * texture._width, -0.5f * texture._height, 0.0f,
+        0.5f * texture._width,  0.5f * texture._height, 0.0f,
     };
     
     //sprite.LoadTGAImage(TGA);

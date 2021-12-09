@@ -3,14 +3,12 @@
 Test::Test() : Scene()
 {
 	Entity* guy = new Entity;
-	guy->AddComponent<Sprite>()->DrawSprite("assets/kingkong.tga");
+	guy->AddComponent<Sprite>()->DrawSprite("assets/bear.tga");
 	guy->transform->position = new Vector3(0.0f, 0.0f, 0.0f);
 
 	Entity* guy2 = new Entity;
-	guy2->AddComponent<Sprite>()->DrawSprite("assets/kingkong.tga");
-	guy2->transform->position = new Vector3(0.0f, 3.0f, 0.0f);
-
-
+	guy2->AddComponent<Sprite>()->DrawSprite("assets/face.tga");
+	guy2->transform->position = new Vector3(0.0f, 200.0f, 0.0f);
 
 	this->Addchild(guy);
 	this->Addchild(guy2);
@@ -18,4 +16,5 @@ Test::Test() : Scene()
 
 void Test::update(float deltaTime)
 {
+	
 }
