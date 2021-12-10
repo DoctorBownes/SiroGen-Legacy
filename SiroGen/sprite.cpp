@@ -13,7 +13,7 @@ void Sprite::DrawSprite(const char* TGA)
 {
     //glGenVertexArrays(1, &VertexArrayID);
     spritetexture = (*texture.LoadTGAImage(TGA));
-    static const GLfloat temp_vertex_buffer_data[] = {
+    const GLfloat temp_vertex_buffer_data[] = {
         0.5f * texture._width,  0.5f * texture._height, 0.0f,
        -0.5f * texture._width,  0.5f * texture._height, 0.0f,
        -0.5f * texture._width, -0.5f * texture._height, 0.0f,
@@ -44,7 +44,5 @@ void Sprite::DrawSprite(const char* TGA)
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
-
-
 }
 

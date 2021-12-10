@@ -113,7 +113,6 @@ void Renderer::RenderEntity(Entity* entity)
             (void*)0            // array buffer offset
         );
         // Draw the triangle !
-        
         GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
         glEnableVertexAttribArray(vertexUVID);
         glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->uv);
@@ -125,7 +124,7 @@ void Renderer::RenderEntity(Entity* entity)
             0,                                // stride
             (void*)0                          // array buffer offset
         );
-        
+
         //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
         glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glDisableVertexAttribArray(0);
