@@ -4,21 +4,22 @@ PixelSprite::PixelSprite()
 {
 	width = 0;
 	height = 0;
-	char canvas[54]
-	{
-        1,1,1,1,1,1,1,1,1,
-        1,1,2,1,1,1,2,1,1,
-        1,1,1,1,1,1,1,1,1,
-        1,2,1,1,1,1,1,2,1,
-        1,1,2,2,2,2,2,1,1,
-        1,1,1,1,1,1,1,1,1,
-	};
-	AddSprite(canvas, 9,10);
 }
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
-    //for (int i =0; i < )
+    //glm::vec3* pixelCanvas = new glm::vec3[];
+    //for (int i = 0; i < sizeof(canvas); i++)
+    //{
+    //    if (canvas[i] == 1)
+    //    {
+    //        pixelCanvas[i] = glm::vec3(255, 0, 0);
+    //    }
+    //    else
+    //    {
+    //        pixelCanvas[i] = glm::vec3(255, 255, 0);
+    //    }
+    //}
 	glGenTextures(1, &spritetexture);
 	glBindTexture(GL_TEXTURE_2D, spritetexture);
 	// set the texture wrapping/filtering options (on the currently bound texture object)
@@ -26,7 +27,7 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, canvas);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, pixelCanvas);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
     const GLfloat temp_vertex_buffer_data[] = {

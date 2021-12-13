@@ -1,6 +1,7 @@
 #pragma once
+#include <glm/glm.hpp>
 #include "sprite.h"
-class PixelSprite
+class PixelSprite : public Component
 {
 public:
 	char width;
