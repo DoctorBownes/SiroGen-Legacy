@@ -54,9 +54,9 @@ void Camera::UpdateCamera()
 
     _position = glm::vec3(position.x, position.y, position.z);
 
-    //std::cout << _position.x << ", " << _position.y << ", " << _position.z << ", " << std::endl;
-    //std::cout << direction.x << ", " << direction.y << ", " << direction.z << ", " << std::endl;
-    //std::cout << up.x << ", " << up.y << ", " << up.z << ", " << std::endl;
+    std::cout << _position.x << ", " << _position.y << ", " << _position.z << ", " << std::endl;
+    std::cout << direction.x << ", " << direction.y << ", " << direction.z << ", " << std::endl;
+    std::cout << up.x << ", " << up.y << ", " << up.z << ", " << std::endl;
 
     cameraMatrix = glm::lookAt(
         _position -offset, //position

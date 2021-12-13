@@ -9,7 +9,7 @@ Sprite::~Sprite()
 
 }
 
-void Sprite::AddSprite(const char* TGA)
+void Sprite::DrawSprite(const char* TGA)
 {
     //glGenVertexArrays(1, &VertexArrayID);
     spritetexture = (*texture.LoadTGAImage(TGA));

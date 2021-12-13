@@ -16,7 +16,7 @@ public:
     //GLuint VertexArrayID;
     Texture texture;
 
-    void AddSprite(const char* TGA);
+    void DrawSprite(const char* TGA);
 
 private:
 
