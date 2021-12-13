@@ -8,5 +8,5 @@ out vec4 FragColor;
 void main()
 {
 	
-	FragColor = texture(myTextureSampler, UV).rgb;
+	FragColor = texture2D(myTextureSampler, UV);
 }

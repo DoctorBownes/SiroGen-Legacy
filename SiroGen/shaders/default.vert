@@ -9,5 +9,5 @@ void main()
 {
    gl_Position = MVP * vec4(vertexPosition, 1.0);
    
-   UV = vertexUV
+   UV = vertexUV;
 }
