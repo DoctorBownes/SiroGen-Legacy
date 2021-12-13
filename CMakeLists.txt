@@ -74,6 +74,8 @@ add_library(SiroGen # ar rcs libSiroGen.a
 	SiroGen/component.cpp
 	SiroGen/model.h
 	SiroGen/model.cpp
+	SiroGen/pixelsprite.h
+	SiroGen/pixelsprite.cpp
 	SiroGen/entity.h
 	SiroGen/entity.cpp
 	SiroGen/core.h
@@ -84,8 +86,6 @@ add_library(SiroGen # ar rcs libSiroGen.a
 	SiroGen/transform.cpp
 	SiroGen/vector3.h
 	SiroGen/vector3.cpp
-	SiroGen/pixelsprite.h
-	SiroGen/pixelsprite.cpp
 )
 
 # Test
