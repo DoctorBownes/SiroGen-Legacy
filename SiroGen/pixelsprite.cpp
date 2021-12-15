@@ -15,7 +15,7 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
     char pixelCanvas[128 * 3];
     short p = 0;
-    for (int i = width * height -1; i > -1; i--)
+    for (int i = 0; i < width * height; i++)
     {
         if (canvas[i] == 0)
         {
@@ -57,13 +57,13 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     // Send vertices to GPU
 
     static const GLfloat temp_uv_buffer_data[] = {
-        1.0f, 1.0f,
-        0.0f, 1.0f,
-        0.0f, 0.0f,
-
         0.0f, 0.0f,
         1.0f, 0.0f,
         1.0f, 1.0f,
+        
+        1.0f, 1.0f,
+        0.0f, 1.0f,
+        0.0f, 0.0f,
     };
 
 
