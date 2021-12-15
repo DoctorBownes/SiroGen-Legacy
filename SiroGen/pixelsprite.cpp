@@ -13,7 +13,7 @@ PixelSprite::~PixelSprite()
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
-    char pixelCanvas[128 * 3];
+    char pixelCanvas[64 * 3];
     short p = 0;
     for (int i = 0; i < width * height; i++)
     {
