@@ -97,13 +97,13 @@ void Renderer::RenderEntity(Entity* entity)
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
      // 1st attribute buffer : vertices
-    if (entity->GetComponent<Sprite>())
+    if (entity->GetComponent<PixelSprite>())
     {
-        glBindTexture(GL_TEXTURE_2D, entity->GetComponent<Sprite>()->spritetexture);
+        glBindTexture(GL_TEXTURE_2D, entity->GetComponent<PixelSprite>()->spritetexture);
         // 1st attribute buffer : vertices
         GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
         glEnableVertexAttribArray(vertexPositionID);
-        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->sprite);
+        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<PixelSprite>()->sprite);
         glVertexAttribPointer(
             vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
             3,                  // size
@@ -115,7 +115,7 @@ void Renderer::RenderEntity(Entity* entity)
         // Draw the triangle !
         GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
         glEnableVertexAttribArray(vertexUVID);
-        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->uv);
+        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<PixelSprite>()->uv);
         glVertexAttribPointer(
             vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
             2,                                // size

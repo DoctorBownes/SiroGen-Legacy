@@ -1,11 +1,12 @@
 #pragma once
 #include <glm/glm.hpp>
+#include <vector>
 #include "sprite.h"
 class PixelSprite : public Component
 {
 public:
-	char width;
-	char height;
+	char _width;
+	char _height;
 	PixelSprite();
 	~PixelSprite();
 	GLuint sprite;

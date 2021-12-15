@@ -6,6 +6,7 @@
 #include <SiroGen/component.h>
 #include <SiroGen/sprite.h>
 #include <SiroGen/model.h>
+#include <SiroGen/pixelsprite.h>
 
 class Entity
 {

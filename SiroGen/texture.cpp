@@ -103,7 +103,7 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 		break;
 	}
 	glGenerateMipmap(GL_TEXTURE_2D);
-
+	std::cout << data << std::endl;
 	delete []data;
 
 	return &_texture;
