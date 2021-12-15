@@ -86,6 +86,8 @@ add_library(SiroGen # ar rcs libSiroGen.a
 	SiroGen/vector3.cpp
 	SiroGen/pixelsprite.h
 	SiroGen/pixelsprite.cpp
+	SiroGen/color.h
+	SiroGen/color.cpp
 )
 
 # Test
