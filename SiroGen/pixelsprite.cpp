@@ -2,8 +2,8 @@
 
 PixelSprite::PixelSprite()
 {
-	_width = 0;
-	_height = 0;
+    _width = 0;
+    _height = 0;
 }
 
 PixelSprite::~PixelSprite()
@@ -13,34 +13,36 @@ PixelSprite::~PixelSprite()
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
-    char pixelCanvas[64 * 3];
-    short p = 0;
+    pixelCanvas = new std::vector<uint8_t>[width * height * 3];
+    Color Palette[15] =
+    {
+        BLACK,
+        DARKBLUE,
+        BLUE,
+        DARKRED,
+        RED,
+        DARKMAGENTA,
+        MAGENTA,
+        DARKGREEN,
+        GREEN,
+        DARKCYAN,
+        CYAN,
+        DARKYELLOW,
+        YELLOW,
+        GRAY,
+        WHITE
+    };
     for (int i = 0; i < width * height; i++)
     {
-        if (canvas[i] == 0)
-        {
-            glm::vec3 tempVec = glm::vec3(255, 255, 0);
-            pixelCanvas[p] = tempVec[0];
-            pixelCanvas[p + 1] = tempVec[1];
-            pixelCanvas[p + 2] = tempVec[2];
-        }
-        else
-        {
-            glm::vec3 tempVec = glm::vec3(0, 0, 0);
-            pixelCanvas[p] = tempVec[0];
-            pixelCanvas[p + 1] = tempVec[1];
-            pixelCanvas[p + 2] = tempVec[2];
-        }
-        p += 3;
+        pixelCanvas->push_back(Palette[canvas[i]].r);
+        pixelCanvas->push_back(Palette[canvas[i]].g);
+        pixelCanvas->push_back(Palette[canvas[i]].b);
     }
     glGenTextures(1, &spritetexture);
     glBindTexture(GL_TEXTURE_2D, spritetexture);
-    // set the texture wrapping/filtering options (on the currently bound texture object)
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas->data());
     glGenerateMipmap(GL_TEXTURE_2D);
 
     const GLfloat temp_vertex_buffer_data[] = {

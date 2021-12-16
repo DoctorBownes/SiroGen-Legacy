@@ -13,6 +13,7 @@ public:
 	Camera(bool isThreeDimensional = false);
 	~Camera();
 	void UpdateCamera();
+	void SetZoom(float amount);
 	glm::mat4 GetProjectionMat() { return projectionMatrix; };
 	glm::mat4 GetCameraMat() { return cameraMatrix; };
 	Vector3 position;
@@ -25,5 +26,7 @@ private:
 	glm::vec3 right;
 	glm::vec3 offset;
 	glm::vec3 up;
+	float zoom;
+	bool _threedimensional = false;
 };
 

@@ -2,29 +2,14 @@
 
 Camera::Camera(bool isThreeDimensional)
 {
+    _threedimensional = isThreeDimensional;
     if (isThreeDimensional)
     {
-        projectionMatrix = glm::perspective(
-            glm::radians(45.0f),
-            16.0f / 9.0f,
-            0.1f,
-            1000.0f
-        );
-        offset = glm::vec3(0, 0, 0);
-        glEnable(GL_CULL_FACE);
+        SetZoom(45);
     }
     else
     {
-        //glm::mat4 Projection = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates
-        projectionMatrix = glm::ortho(
-            0.0f,
-            1920.0f,
-            -1080.0f,
-            0.0f,
-            0.1f,
-            1000.0f
-        );
-        offset = glm::vec3(1920.0f /2, -1080.0f / 2, 0);
+        SetZoom(1);
     }
     position.z = 650.0f;
     rotation = Vector3(0, 3.141592f, 0);
@@ -35,6 +20,33 @@ Camera::Camera(bool isThreeDimensional)
 Camera::~Camera()
 {
 
+}
+
+void Camera::SetZoom(float amount)
+{
+    if (_threedimensional)
+    {
+        projectionMatrix = glm::perspective(
+            glm::radians(amount),
+            16.0f / 9.0f,
+            0.1f,
+            1000.0f
+        );
+        offset = glm::vec3(0, 0, 0);
+        glEnable(GL_CULL_FACE);
+    }
+    else
+    {
+        projectionMatrix = glm::ortho(
+            0.0f,
+            1920.0f / amount,
+            -1080.0f / amount,
+            0.0f,
+            0.1f,
+            1000.0f
+        );
+        offset = glm::vec3((1920.0f / amount) / 2, (-1080.0f / amount) / 2, 0);
+    }
 }
 
 void Camera::UpdateCamera()
