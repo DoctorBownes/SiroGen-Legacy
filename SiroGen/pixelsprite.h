@@ -1,12 +1,13 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <SiroGen/color.h>
-#include "sprite.h"
+#include <SiroGen/sprite.h>
+#include <vector>
 class PixelSprite : public Component
 {
 public:
-	std::vector<uint8_t>* pixelCanvas;
 
+	std::vector<char>* pixelCanvas;//TODO FIX ERROR HERE
 	char _width;
 	char _height;
 	PixelSprite();

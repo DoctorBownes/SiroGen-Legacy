@@ -2,18 +2,23 @@
 
 PixelSprite::PixelSprite()
 {
+    spritetexture = 0;
+    sprite = 0;
+    uv = 0;
     _width = 0;
     _height = 0;
 }
 
 PixelSprite::~PixelSprite()
 {
-
+    glDeleteTextures(1, &spritetexture);
 }
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
-    pixelCanvas = new std::vector<uint8_t>[width * height * 3];
+    pixelCanvas = new std::vector<char>[width * height * 3];
+    _width = width;
+    _height = height;
     Color Palette[15] =
     {
         BLACK,
@@ -32,31 +37,30 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
         GRAY,
         WHITE
     };
-    for (int i = 0; i < width * height; i++)
+    for (int i = 0; i < _width * _height; i++)
     {
         pixelCanvas->push_back(Palette[canvas[i]].r);
         pixelCanvas->push_back(Palette[canvas[i]].g);
         pixelCanvas->push_back(Palette[canvas[i]].b);
     }
-    glGenTextures(1, &spritetexture);
-    glBindTexture(GL_TEXTURE_2D, spritetexture);
+
+    GLuint testtexture;
+    glGenTextures(1, &testtexture);
+    glBindTexture(GL_TEXTURE_2D, testtexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas->data());
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas->data());
     glGenerateMipmap(GL_TEXTURE_2D);
 
     const GLfloat temp_vertex_buffer_data[] = {
-        -0.5f * width,  0.5f * height, 0.0f,
-       0.5f * width,  0.5f * height, 0.0f,
-       0.5f * width, -0.5f * height, 0.0f,
-
-       0.5f * width, -0.5f * height, 0.0f,
-        -0.5f * width, -0.5f * height, 0.0f,
-        -0.5f * width,  0.5f * height, 0.0f,
+      -0.5f * _width,  0.5f * _height, 0.0f,
+       0.5f * _width,  0.5f * _height, 0.0f,
+       0.5f * _width, -0.5f * _height, 0.0f,
+                              
+       0.5f * _width, -0.5f * _height, 0.0f,
+      -0.5f * _width, -0.5f * _height, 0.0f,
+      -0.5f * _width,  0.5f * _height, 0.0f,
     };
-
-    //sprite.LoadTGAImage(TGA);
-    // Send vertices to GPU
 
     static const GLfloat temp_uv_buffer_data[] = {
         0.0f, 0.0f,
@@ -76,4 +80,5 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
+
 }

@@ -18,6 +18,7 @@ std::string get_file_contents(const char* filename)
 
 Renderer::Renderer()
 {
+    _shader = 0;
     window = nullptr;
     glewExperimental = true;
     if (!glfwInit())
