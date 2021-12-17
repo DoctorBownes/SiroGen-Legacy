@@ -23,7 +23,6 @@ Test::Test() : Scene()
 	};
 	Entity* guy = new Entity;
 	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8,16);
-	//guy->transform->position = new Vector3(0.0f, 0.0f, 0.0f);
 
 
 	//char canvas2[]

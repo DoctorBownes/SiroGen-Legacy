@@ -83,7 +83,7 @@ void Renderer::RenderScene(Scene* scene)
 void Renderer::RenderEntity(Entity* entity)
 {
     glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform->position->x, entity->transform->position->y, entity->transform->position->z));
-    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform->rotation->x, entity->transform->rotation->y, entity->transform->rotation->z);
+    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform->rotation->x * 0.01745329f, entity->transform->rotation->y * 0.01745329f, entity->transform->rotation->z * 0.01745329f);
     glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1),glm::vec3(entity->transform->scale->x, entity->transform->scale->y, entity->transform->scale->z));
     
     glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;

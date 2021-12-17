@@ -2,16 +2,13 @@
 #include <glm/glm.hpp>
 #include <SiroGen/color.h>
 #include <SiroGen/sprite.h>
-#include <vector>
 class PixelSprite : public Component
 {
 public:
-
-	std::vector<char>* pixelCanvas;//TODO FIX ERROR HERE
-	char _width;
-	char _height;
 	PixelSprite();
 	~PixelSprite();
+	char _width;
+	char _height;
 	GLuint sprite;
 	GLuint spritetexture;
 	GLuint uv;
