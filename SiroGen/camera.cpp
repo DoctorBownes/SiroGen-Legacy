@@ -5,11 +5,11 @@ Camera::Camera(bool isThreeDimensional)
     _threedimensional = isThreeDimensional;
     if (isThreeDimensional)
     {
-        SetZoom(45);
+        SetZoom(45.0f);
     }
     else
     {
-        SetZoom(1);
+        SetZoom(1.0f);
     }
     position.z = 650.0f;
     rotation = Vector3(0, 3.141592f, 0);
@@ -33,7 +33,7 @@ void Camera::SetZoom(float amount)
             1000.0f
         );
         offset = glm::vec3(0, 0, 0);
-        glEnable(GL_CULL_FACE);
+        //glEnable(GL_CULL_FACE);
     }
     else
     {

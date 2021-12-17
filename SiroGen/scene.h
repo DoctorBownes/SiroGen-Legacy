@@ -16,7 +16,7 @@ public:
 	Camera* GetMainCamera() { return MainCamera; };
 
 private:
-	Camera* MainCamera = new Camera(false);
+	Camera* MainCamera = new Camera(true);
 	std::vector<Entity*> _children;
 };
 
