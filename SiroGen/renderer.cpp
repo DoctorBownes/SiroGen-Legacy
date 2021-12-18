@@ -69,7 +69,7 @@ void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
     glClearColor(0.0f, 0.4f, 0.7f, 0.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     for (int i = 0; i < scene->Getchildren().size(); i++)
     {
@@ -117,6 +117,38 @@ void Renderer::RenderEntity(Entity* entity)
         GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
         glEnableVertexAttribArray(vertexUVID);
         glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<PixelSprite>()->uv);
+        glVertexAttribPointer(
+            vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
+            2,                                // size
+            GL_FLOAT,                         // type
+            GL_FALSE,                         // normalized?
+            0,                                // stride
+            (void*)0                          // array buffer offset
+        );
+
+        //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
+        glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
+        glDisableVertexAttribArray(0);
+    }
+    else if (entity->GetComponent<Sprite>())
+    {
+        glBindTexture(GL_TEXTURE_2D, entity->GetComponent<Sprite>()->spritetexture);
+        // 1st attribute buffer : vertices
+        GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
+        glEnableVertexAttribArray(vertexPositionID);
+        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->sprite);
+        glVertexAttribPointer(
+            vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
+            3,                  // size
+            GL_FLOAT,           // type
+            GL_FALSE,           // normalized?
+            0,                  // stride
+            (void*)0            // array buffer offset
+        );
+        // Draw the triangle !
+        GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
+        glEnableVertexAttribArray(vertexUVID);
+        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->uv);
         glVertexAttribPointer(
             vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
             2,                                // size

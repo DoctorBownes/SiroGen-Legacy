@@ -1,5 +1,6 @@
 #include "test.h"
 Entity* guy;
+Entity* guy2;
 Test::Test() : Scene()
 {
 	GetMainCamera()->SetZoom(10);
@@ -46,15 +47,14 @@ Test::Test() : Scene()
 		0x0,0x0,0x5,0x5,0x0,0x5,0x5,0x0,
 	};
 
-	Entity* guy2 = new Entity;
+	guy2 = new Entity;
 	guy2->AddComponent<PixelSprite>()->AddSprite(canvas2, 8,16);
 	guy2->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
 
-	this->Addchild(guy);
 	this->Addchild(guy2);
+	this->Addchild(guy);
 }
 
 void Test::update(float deltaTime)
 {
-	guy->transform->position->x += 0.005f;
 }

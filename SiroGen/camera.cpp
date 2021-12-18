@@ -33,7 +33,6 @@ void Camera::SetZoom(float amount)
             1000.0f
         );
         offset = glm::vec3(0, 0, 0);
-        //glEnable(GL_CULL_FACE);
     }
     else
     {
@@ -47,6 +46,10 @@ void Camera::SetZoom(float amount)
         );
         offset = glm::vec3((1920.0f / amount) / 2, (-1080.0f / amount) / 2, 0);
     }
+    //glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    // Accept fragment if it closer to the camera than the former one
+    glDepthFunc(GL_LESS);
 }
 
 void Camera::UpdateCamera()
