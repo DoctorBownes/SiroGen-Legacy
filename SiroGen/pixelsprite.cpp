@@ -1,19 +1,5 @@
 #include "pixelsprite.h"
 
-PixelSprite::PixelSprite()
-{
-    spritetexture = 0;
-    sprite = 0;
-    uv = 0;
-    _width = 0;
-    _height = 0;
-}
-
-PixelSprite::~PixelSprite()
-{
-    glDeleteTextures(1, &spritetexture);
-}
-
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
     Color Palette[15] =

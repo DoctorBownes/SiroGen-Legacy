@@ -96,15 +96,16 @@ void Renderer::RenderEntity(Entity* entity)
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-     // 1st attribute buffer : vertices
-    if (entity->GetComponent<PixelSprite>())
+    if (entity->GetComponent<Sprite>() || entity->GetComponent<PixelSprite>())
     {
-        glBindTexture(GL_TEXTURE_2D, entity->GetComponent<PixelSprite>()->spritetexture);
+        Sprite* tempSprite;
+        if (tempSprite = entity->GetComponent<Sprite>());
+        else if (tempSprite = entity->GetComponent<PixelSprite>());
+        glBindTexture(GL_TEXTURE_2D, tempSprite->spritetexture);
         // 1st attribute buffer : vertices
         GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
         glEnableVertexAttribArray(vertexPositionID);
-        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<PixelSprite>()->sprite);
+        glBindBuffer(GL_ARRAY_BUFFER, tempSprite->sprite);
         glVertexAttribPointer(
             vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
             3,                  // size
@@ -116,39 +117,7 @@ void Renderer::RenderEntity(Entity* entity)
         // Draw the triangle !
         GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
         glEnableVertexAttribArray(vertexUVID);
-        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<PixelSprite>()->uv);
-        glVertexAttribPointer(
-            vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
-            2,                                // size
-            GL_FLOAT,                         // type
-            GL_FALSE,                         // normalized?
-            0,                                // stride
-            (void*)0                          // array buffer offset
-        );
-
-        //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
-        glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
-        glDisableVertexAttribArray(0);
-    }
-    else if (entity->GetComponent<Sprite>())
-    {
-        glBindTexture(GL_TEXTURE_2D, entity->GetComponent<Sprite>()->spritetexture);
-        // 1st attribute buffer : vertices
-        GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
-        glEnableVertexAttribArray(vertexPositionID);
-        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->sprite);
-        glVertexAttribPointer(
-            vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
-            3,                  // size
-            GL_FLOAT,           // type
-            GL_FALSE,           // normalized?
-            0,                  // stride
-            (void*)0            // array buffer offset
-        );
-        // Draw the triangle !
-        GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
-        glEnableVertexAttribArray(vertexUVID);
-        glBindBuffer(GL_ARRAY_BUFFER, entity->GetComponent<Sprite>()->uv);
+        glBindBuffer(GL_ARRAY_BUFFER, tempSprite->uv);
         glVertexAttribPointer(
             vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
             2,                                // size

@@ -3,6 +3,7 @@
 
 Texture::Texture()
 {
+	_texture = 0;
 	_width = 0;
 	_height = 0;
 }
@@ -12,7 +13,7 @@ Texture::~Texture()
 
 }
 
-GLuint* Texture::LoadTGAImage(const char* imagepath)
+GLuint Texture::LoadTGAImage(const char* imagepath)
 {
 	// Data read from the header of the BMP file
 	unsigned char header[18];
@@ -27,13 +28,13 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 	if (!file)
 	{
 		printf("File could not be opened");
-		return nullptr;
+		return 0;
 	}
 
 	if (fread(header, 1, 18, file) != 18)
 	{
 		printf("Not a correct TGA file");
-		return nullptr;
+		return 0;
 	}
 
 	fseek(file, 2, SEEK_SET);
@@ -42,7 +43,7 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 	if (type != 1 && type != 2 && type != 3 && type != 10)
 	{
 		printf("TGA image was compressed");
-		return nullptr;
+		return 0;
 	}
 	
 	fseek(file, 12, SEEK_SET);
@@ -54,7 +55,7 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 	if (bitdepth != 8 && bitdepth != 16 && bitdepth != 24 && bitdepth != 32)
 	{
 		printf("Unsupported pixel depth");
-		return nullptr;
+		return 0;
 	}
 
 	_width = widtheight[0];
@@ -105,5 +106,5 @@ GLuint* Texture::LoadTGAImage(const char* imagepath)
 	glGenerateMipmap(GL_TEXTURE_2D);
 	delete []data;
 
-	return &_texture;
+	return _texture;
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include "component.h"
 #include "texture.h"
-#include "transform.h"
 class Sprite :
     public Component
 {
@@ -14,11 +13,11 @@ public:
     GLuint spritetexture;
     GLuint uv;
     //GLuint VertexArrayID;
-    Texture texture;
 
     void AddSprite(const char* TGA);
 
 private:
+    Texture texture;
 
 };
 
