@@ -1,5 +1,24 @@
 #include <SiroGen/renderer.h>
 
+const char* vertex_shader = "#version 330 core\n"
+"layout(location = 0) in vec3 vertexPosition;\n"
+"layout(location = 1) in vec2 vertexUV;\n"
+"uniform mat4 MVP;\n"
+"out vec2 UV;\n"
+"void main()\n"
+"{\n"
+"	gl_Position = MVP * vec4(vertexPosition, 1.0);\n"
+"	UV = vertexUV;\n"
+"}\0";
+const char* fragment_shader = "#version 330 core\n"
+"in vec2 UV;\n"
+"out vec4 FragColor;\n"
+"uniform sampler2D myTextureSampler;\n"
+"void main()\n"
+"{\n"
+"	FragColor = texture2D(myTextureSampler, UV);\n"
+"}\n\0";
+
 std::string get_file_contents(const char* filename)
 {
     std::ifstream in(filename, std::ios::binary);
@@ -58,7 +77,7 @@ Renderer::Renderer()
         fprintf(stderr, "Failed to initialize GLEW\n");
         return;
     }
-    _shader = GetShader("shaders/default.vert", "shaders/default.frag");
+    _shader = GetShader(vertex_shader, fragment_shader);
     glUseProgram(_shader);
     GLuint test;
     glGenVertexArrays(1, &test);
@@ -68,7 +87,7 @@ Renderer::Renderer()
 void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
-    glClearColor(0.0f, 0.4f, 0.7f, 0.0f);
+    //glClearColor(0.0f, 0.4f, 0.7f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     for (int i = 0; i < scene->Getchildren().size(); i++)
@@ -136,19 +155,19 @@ void Renderer::RenderEntity(Entity* entity)
 
 GLuint Renderer::GetShader(const char* vertex_file_path, const char* fragment_file_path)
 {
-    std::string vertexcode = get_file_contents(vertex_file_path);
-    std::string fragmentcode = get_file_contents(fragment_file_path);
+    //std::string vertexcode = get_file_contents(vertex_file_path);
+    //std::string fragmentcode = get_file_contents(fragment_file_path);
 
-    const char* VertexSource = vertexcode.c_str();
-    const char* FragmentSource = fragmentcode.c_str();
+    //const char* VertexSource = vertexcode.c_str();
+    //const char* FragmentSource = fragmentcode.c_str();
 
 
     GLuint VertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(VertexShader, 1, &VertexSource, nullptr);
+    glShaderSource(VertexShader, 1, &vertex_file_path, nullptr);
     glCompileShader(VertexShader);
 
     GLuint FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(FragmentShader, 1, &FragmentSource, nullptr);
+    glShaderSource(FragmentShader, 1, &fragment_file_path, nullptr);
     glCompileShader(FragmentShader);
 
     GLuint shaderProgram = glCreateProgram();
