@@ -2,6 +2,7 @@
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
+    //sprites = new std::vector<char>[3];
     Color Palette[15] =
     {
         BLACK,
@@ -35,6 +36,8 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas->data());
     glGenerateMipmap(GL_TEXTURE_2D);
 
+
+
     delete[]pixelCanvas;
 
     const GLfloat temp_vertex_buffer_data[] = {
@@ -65,5 +68,11 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
+    
+}
 
+void PixelSprite::PlayAnimation(GLuint canvas)
+{
+   // sprites->push_back(canvas);
+   // Frame = sprites->at(0);
 }

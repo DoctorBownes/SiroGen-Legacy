@@ -14,6 +14,7 @@ public:
 	~Camera();
 	void UpdateCamera();
 	void SetZoom(float amount);
+	float GetZoom() { return zoom; };
 	glm::mat4 GetProjectionMat() { return projectionMatrix; };
 	glm::mat4 GetCameraMat() { return cameraMatrix; };
 	Vector3 position;

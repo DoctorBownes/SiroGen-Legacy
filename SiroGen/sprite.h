@@ -17,7 +17,6 @@ public:
     void AddSprite(const char* TGA);
 
 private:
-    Texture texture;
 
 };
 
