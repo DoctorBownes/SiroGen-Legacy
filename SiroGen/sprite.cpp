@@ -5,6 +5,7 @@ Sprite::Sprite()
     sprite = 0;
     spritetexture = 0;
     uv = 0;
+    //sprites = new std::vector<GLuint>[10];
 }
 
 Sprite::~Sprite()
@@ -26,9 +27,6 @@ void Sprite::AddSprite(const char* TGA)
         0.5f * texture._width, -0.5f * texture._height, 0.0f,
         0.5f * texture._width,  0.5f * texture._height, 0.0f,
     };
-    
-    //sprite.LoadTGAImage(TGA);
-    // Send vertices to GPU
     
     static const GLfloat temp_uv_buffer_data[] = {
         1.0f, 1.0f,
