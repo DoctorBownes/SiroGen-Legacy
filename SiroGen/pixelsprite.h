@@ -5,8 +5,8 @@ class PixelSprite : public Sprite
 {
 public:
 	void AddSprite(char canvas[], char width, char height);
-	GLuint Frame;
 private:
+	std::vector<char>* pixelCanvas;
 	//std::vector<char>* pixelCanvas;
 };
 

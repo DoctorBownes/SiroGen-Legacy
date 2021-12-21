@@ -13,7 +13,6 @@ public:
 	int _height;
 
 	GLuint LoadTGAImage(const char* imagepath);
-	GLuint GetTexture() { return _texture; };
 private:
 	GLuint _texture;
 };

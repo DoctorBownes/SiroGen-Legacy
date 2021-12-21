@@ -15,8 +15,8 @@ Sprite::~Sprite()
 
 void Sprite::AddSprite(const char* TGA)
 {
-    //glGenVertexArrays(1, &VertexArrayID);
     Texture texture;
+    //glGenVertexArrays(1, &VertexArrayID);
     spritetexture = texture.LoadTGAImage(TGA);
     const GLfloat temp_vertex_buffer_data[] = {
         0.5f * texture._width,  0.5f * texture._height, 0.0f,

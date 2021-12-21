@@ -2,8 +2,9 @@
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
-    std::vector<char> pixelCanvas;
-    //sprites = new std::vector<char>[3];
+    pixelCanvas = new std::vector<char>[width * height * 3];
+    _width = width;
+    _height = height;
     Color Palette[15] =
     {
         BLACK,
@@ -22,28 +23,30 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
         GRAY,
         WHITE
     };
-    for (int i = 0; i < width * height; i++)
+    for (int i = 0; i < _width * _height; i++)
     {
-        pixelCanvas.push_back(Palette[canvas[i]].r);
-        pixelCanvas.push_back(Palette[canvas[i]].g);
-        pixelCanvas.push_back(Palette[canvas[i]].b);
+        size_t index = canvas[i];
+        pixelCanvas->push_back(Palette[index].r);
+        pixelCanvas->push_back(Palette[index].g);
+        pixelCanvas->push_back(Palette[index].b);
     }
 
     glGenTextures(1, &spritetexture);
     glBindTexture(GL_TEXTURE_2D, spritetexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas.data());
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas->data());
     glGenerateMipmap(GL_TEXTURE_2D);
 
+    //sprites.push_back(spritetexture);
+
     const GLfloat temp_vertex_buffer_data[] = {
-      -0.5f * width,  0.5f * height, 0.0f,
-       0.5f * width,  0.5f * height, 0.0f,
-       0.5f * width, -0.5f * height, 0.0f,
-                             
-       0.5f * width, -0.5f * height, 0.0f,
-      -0.5f * width, -0.5f * height, 0.0f,
-      -0.5f * width,  0.5f * height, 0.0f,
+      -0.5f * _width,  0.5f * _height, 0.0f,
+       0.5f * _width,  0.5f * _height, 0.0f,
+       0.5f * _width, -0.5f * _height, 0.0f,
+       0.5f * _width, -0.5f * _height, 0.0f,
+      -0.5f * _width, -0.5f * _height, 0.0f,
+      -0.5f * _width,  0.5f * _height, 0.0f,
     };
 
     static const GLfloat temp_uv_buffer_data[] = {

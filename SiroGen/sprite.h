@@ -13,11 +13,12 @@ public:
     GLuint sprite;
     GLuint spritetexture;
     GLuint uv;
-    //std::vector<GLuint>* sprites;
+    int _height = 0;
+    int _width = 0;
+    //std::vector<GLuint> sprites;
 
     void AddSprite(const char* TGA);
 
 private:
-
 };
 

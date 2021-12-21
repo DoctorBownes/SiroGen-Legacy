@@ -31,7 +31,7 @@ T* Entity::AddComponent()
 {
 	if (!componentlist.count(typeid(T).hash_code()))
 	{
-		T test;
+		T test{};
 		componentlist.emplace(typeid(T).hash_code(), test);
 		return static_cast<T*>(&componentlist[typeid(T).hash_code()]);
 	}

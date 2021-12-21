@@ -22,12 +22,12 @@ public:
 private:
 	glm::mat4 cameraMatrix;
 	glm::mat4 projectionMatrix;
-	glm::vec3 _position;
-	glm::vec3 direction;
-	glm::vec3 right;
-	glm::vec3 offset;
-	glm::vec3 up;
-	float zoom;
+	glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 direction = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 right = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 offset = glm::vec3(0.0f,0.0f,0.0f);
+	glm::vec3 up = glm::vec3(0.0f,0.0f,0.0f);
+	float zoom = 1.0f;
 	bool _threedimensional = false;
 };
 

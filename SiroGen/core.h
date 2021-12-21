@@ -11,6 +11,6 @@ public:
 	Core();
 	void Start(Scene* scene);
 private:
-	Renderer sceneRenderer;
+	Renderer sceneRenderer = Renderer();
 	void CalculateDeltaTime();
 };

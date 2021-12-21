@@ -2,6 +2,8 @@
 
 Camera::Camera(bool isThreeDimensional)
 {
+    position = Vector3(0, 0, 0);
+    rotation = Vector3(0, 0, 0);
     _threedimensional = isThreeDimensional;
     if (isThreeDimensional)
     {
