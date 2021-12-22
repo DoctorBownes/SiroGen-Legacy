@@ -46,10 +46,10 @@ Test::Test() : Scene()
 	guy = new Entity;
 	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
 
-
 	gal = new Entity;
 	gal->AddComponent<PixelSprite>()->AddSprite(canvas2, 8,16);
 	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
+	std::cout << gal->GetComponent<PixelSprite>()->spritetexture << std::endl;
 
 	this->Addchild(guy);
 	this->Addchild(gal);

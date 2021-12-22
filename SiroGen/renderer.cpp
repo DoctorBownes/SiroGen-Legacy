@@ -158,7 +158,8 @@ void Renderer::RenderEntity(Entity* entity)
 
             //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
             glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
-            glDisableVertexAttribArray(0);
+            glDisableVertexAttribArray(vertexPositionID);
+            glDisableVertexAttribArray(vertexUVID);
 
         }
     }

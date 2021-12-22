@@ -23,7 +23,7 @@ public:
 	void update();
 	Transform* transform;
 private:
-	std::map<size_t, Component> componentlist;
+	std::map<size_t, Component*> componentlist;
 };
 
 template <typename T>
@@ -31,9 +31,9 @@ T* Entity::AddComponent()
 {
 	if (!componentlist.count(typeid(T).hash_code()))
 	{
-		T test{};
+		T* test = new T();
 		componentlist.emplace(typeid(T).hash_code(), test);
-		return static_cast<T*>(&componentlist[typeid(T).hash_code()]);
+		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
 	std::cout << "Error: cannot add two of the same component" << std::endl;
 	return nullptr;
@@ -44,7 +44,7 @@ T* Entity::GetComponent()
 {
 	if (componentlist.count(typeid(T).hash_code()))
 	{
-		return static_cast<T*>(&componentlist[typeid(T).hash_code()]);
+		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
 	return nullptr;
 }
