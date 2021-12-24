@@ -6,24 +6,6 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
 	//std::vector<char>* pixelCanvas;
     _width = width;
     _height = height;
-    Color Palette[15] =
-    {
-        BLACK,
-        DARKBLUE,
-        BLUE,
-        DARKRED,
-        RED,
-        DARKMAGENTA,
-        MAGENTA,
-        DARKGREEN,
-        GREEN,
-        DARKCYAN,
-        CYAN,
-        DARKYELLOW,
-        YELLOW,
-        GRAY,
-        WHITE
-    };
     for (int i = 0; i < _width * _height; i++)
     {
         size_t index = canvas[i];
@@ -39,7 +21,10 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas.data());
     glGenerateMipmap(GL_TEXTURE_2D);
 
-    //sprites.push_back(spritetexture);
+    sprites.push_back(spritetexture);
+    pixelCanvas.clear();
+
+    std::cout << sprites.size() << std::endl;
 
     const GLfloat temp_vertex_buffer_data[] = {
       -0.5f * _width,  0.5f * _height, 0.0f,
@@ -68,5 +53,14 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
-    
+    SetSprite(0);
+}
+
+void PixelSprite::PlayAnimation()
+{
+}
+
+void PixelSprite::SetSprite(int number)
+{
+    frame = sprites.at(number);
 }

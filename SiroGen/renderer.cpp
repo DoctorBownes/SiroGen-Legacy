@@ -129,7 +129,7 @@ void Renderer::RenderEntity(Entity* entity)
         }
         else
         {
-            glBindTexture(GL_TEXTURE_2D, tempSprite->spritetexture);
+            glBindTexture(GL_TEXTURE_2D, tempSprite->frame);
             //glBindTexture(GL_TEXTURE_2D, tempSprite->Frame);
             // 1st attribute buffer : vertices
             GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");

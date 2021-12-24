@@ -13,6 +13,8 @@ public:
     GLuint sprite;
     GLuint spritetexture;
     GLuint uv;
+    GLuint frame;
+    std::vector<GLuint> sprites;
     int _height = 0;
     int _width = 0;
     //std::vector<GLuint> sprites;

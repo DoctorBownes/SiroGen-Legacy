@@ -5,6 +5,7 @@ Sprite::Sprite()
     sprite = 0;
     spritetexture = 0;
     uv = 0;
+    frame = 0;
     //sprites = new std::vector<GLuint>[10];
 }
 

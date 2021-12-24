@@ -3,7 +3,6 @@
 Core::Core()
 {
 	deltaTime = 0;
-	std::cout << "test 2" << std::endl;
 }
 
 void Core::Start(Scene* scene)
