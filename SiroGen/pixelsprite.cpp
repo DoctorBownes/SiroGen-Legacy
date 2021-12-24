@@ -2,8 +2,6 @@
 
 void PixelSprite::AddSprite(char canvas[], char width, char height)
 {
-    //pixelCanvas = new std::vector<char>[width * height * 3];
-	//std::vector<char>* pixelCanvas;
     _width = width;
     _height = height;
     for (int i = 0; i < _width * _height; i++)
@@ -54,13 +52,4 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
     SetSprite(0);
-}
-
-void PixelSprite::PlayAnimation()
-{
-}
-
-void PixelSprite::SetSprite(int number)
-{
-    frame = sprites.at(number);
 }

@@ -6,7 +6,6 @@ Sprite::Sprite()
     spritetexture = 0;
     uv = 0;
     frame = 0;
-    //sprites = new std::vector<GLuint>[10];
 }
 
 Sprite::~Sprite()
@@ -17,7 +16,6 @@ Sprite::~Sprite()
 void Sprite::AddSprite(const char* TGA)
 {
     Texture texture;
-    //glGenVertexArrays(1, &VertexArrayID);
     spritetexture = texture.LoadTGAImage(TGA);
     const GLfloat temp_vertex_buffer_data[] = {
         0.5f * texture._width,  0.5f * texture._height, 0.0f,
@@ -28,6 +26,8 @@ void Sprite::AddSprite(const char* TGA)
         0.5f * texture._width, -0.5f * texture._height, 0.0f,
         0.5f * texture._width,  0.5f * texture._height, 0.0f,
     };
+
+    sprites.push_back(spritetexture);
     
     static const GLfloat temp_uv_buffer_data[] = {
         1.0f, 1.0f,
@@ -46,5 +46,10 @@ void Sprite::AddSprite(const char* TGA)
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
+}
+
+void Sprite::SetSprite(int number)
+{
+    frame = sprites.at(number);
 }
 

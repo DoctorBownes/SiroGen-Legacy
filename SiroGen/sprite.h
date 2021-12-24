@@ -2,6 +2,7 @@
 #include "component.h"
 #include "texture.h"
 #include <vector>
+#include <SiroGen/animation.h>
 class Sprite :
     public Component
 {
@@ -20,7 +21,8 @@ public:
     //std::vector<GLuint> sprites;
 
     void AddSprite(const char* TGA);
-
+    void SetSprite(int number);
+    //bool PlayAnimation(Animation animation, bool loop = true);
 private:
 };
 

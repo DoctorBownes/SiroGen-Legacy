@@ -5,9 +5,7 @@ class PixelSprite : public Sprite
 {
 public:
 	void AddSprite(char canvas[], char width, char height);
-    void SetSprite(int number);
 private:
-    void PlayAnimation();
     Color Palette[15] =
     {
         BLACK,
