@@ -22,8 +22,6 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
     sprites.push_back(spritetexture);
     pixelCanvas.clear();
 
-    std::cout << sprites.size() << std::endl;
-
     const GLfloat temp_vertex_buffer_data[] = {
       -0.5f * _width,  0.5f * _height, 0.0f,
        0.5f * _width,  0.5f * _height, 0.0f,

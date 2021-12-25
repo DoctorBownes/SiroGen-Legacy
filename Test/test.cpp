@@ -1,8 +1,7 @@
 #include "test.h"
 Entity* guy;
 Entity* gal;
-float starttime;
-int pos = 0;
+SpriteAnimation tippinghat;
 Test::Test() : Scene()
 {
 	GetMainCamera()->SetZoom(10);
@@ -121,35 +120,27 @@ Test::Test() : Scene()
 		0x0,0x0,0x6,0x6,0x0,0x6,0x6,0x0,
 	};
 
+	tippinghat.AddSprite(canvas2, 8, 16);
+	tippinghat.AddSprite(canvas3, 8, 16);
+	tippinghat.AddSprite(canvas4, 8, 16);
+	tippinghat.AddSprite(canvas5, 8, 16);
+	tippinghat.ReUseSprite(2);
+	tippinghat.ReUseSprite(1);
+	tippinghat.ReUseSprite(0);
+
 	guy = new Entity;
 	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas2, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas3, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas4, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas5, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas4, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas3, 8, 16);
-	guy->GetComponent<PixelSprite>()->AddSprite(canvas2, 8, 16);
+	guy->AddComponent<Animation>();
 	this->Addchild(guy);
 
 	gal = new Entity;
 	gal->AddComponent<PixelSprite>()->AddSprite(galcanvas, 8,16);
 	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
 	this->Addchild(gal);
-	starttime = glfwGetTime();
+	//starttime = glfwGetTime();
 }
 
 void Test::update(float deltaTime)
 {
-	std::cout << glfwGetTime() - starttime << std::endl;
-	if ((glfwGetTime() - starttime) >= 0.5f)
-	{
-		guy->GetComponent<PixelSprite>()->frame = guy->GetComponent<PixelSprite>()->sprites.at(pos);
-		pos++;
-		if (pos > guy->GetComponent<PixelSprite>()->sprites.size() -1)
-		{
-			pos = 0;
-		}
-		starttime = glfwGetTime();
-	}
+	guy->GetComponent<Animation>()->PlayAnimation(tippinghat);
 }

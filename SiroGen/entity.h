@@ -5,6 +5,7 @@
 #include <SiroGen/transform.h>
 #include <SiroGen/component.h>
 #include <SiroGen/sprite.h>
+#include <SiroGen/animation.h>
 #include <SiroGen/model.h>
 #include <SiroGen/pixelsprite.h>
 

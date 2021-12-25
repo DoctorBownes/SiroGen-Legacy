@@ -20,7 +20,7 @@ public:
 	void RenderScene(Scene* scene);
 	GLFWwindow* window;
 private:
-
+	int pos = 0;
 	void RenderEntity(Entity* entity);
 	GLuint _shader;
 	Camera* _camera = new Camera();

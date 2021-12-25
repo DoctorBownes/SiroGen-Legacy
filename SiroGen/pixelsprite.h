@@ -25,6 +25,5 @@ private:
         WHITE
     };
 	std::vector<char> pixelCanvas;
-	//std::vector<char>* pixelCanvas;
 };
 

@@ -1,13 +1,18 @@
 #pragma once
-#include <map>
-#include <SiroGen/sprite.h>
-
-class Animation
+#include <SiroGen/spriteanimation.h>
+class Animation : public Component
 {
 public:
-	void AddSprite(char canvas[], char width, char height, float timeonscreen = 0.5f);
-	void AddSprite(const char* TGA, float timeonscreen = 0.5f);
-	void ReUseSprite(int spriteinarray, float timeonscreen);
-private:
-	std::map<bool, float> AniArray;
+	Animation();
+	~Animation();
+	SpriteAnimation SoloAnimation;
+
+	float starttime = 0.0f;
+
+	bool isPlaying = 0;
+	bool isLooping = 1;
+	
+	void PlayAnimation(SpriteAnimation spriteanimation, bool loop = true);
+
 };
+

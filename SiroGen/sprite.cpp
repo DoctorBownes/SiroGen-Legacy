@@ -52,4 +52,3 @@ void Sprite::SetSprite(int number)
 {
     frame = sprites.at(number);
 }
-

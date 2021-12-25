@@ -129,6 +129,24 @@ void Renderer::RenderEntity(Entity* entity)
         }
         else
         {
+            if (entity->GetComponent<Animation>())
+            {
+                Animation* tempAnim = entity->GetComponent<Animation>();
+                if (tempAnim->isPlaying)
+                {
+                    std::cout << glfwGetTime() - tempAnim->starttime << std::endl;
+                    if (glfwGetTime() - tempAnim->starttime >= 0.5f)
+                    {
+                        tempSprite->frame = tempAnim->SoloAnimation.GetArray().at(pos);
+                        pos++;
+                        if (pos > tempAnim->SoloAnimation.GetArray().size() - 1)
+                        {
+                            pos = 0;
+                        }
+                        tempAnim->starttime = glfwGetTime();
+                    }
+                }
+            }
             glBindTexture(GL_TEXTURE_2D, tempSprite->frame);
             //glBindTexture(GL_TEXTURE_2D, tempSprite->Frame);
             // 1st attribute buffer : vertices
@@ -162,6 +180,7 @@ void Renderer::RenderEntity(Entity* entity)
             glDisableVertexAttribArray(vertexUVID);
 
         }
+
     }
 }
 
