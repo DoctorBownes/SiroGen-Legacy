@@ -16,3 +16,8 @@ void Animation::PlayAnimation(SpriteAnimation spriteanimation, bool loop)
 	isLooping = loop;
 	isPlaying = true;
 }
+
+void Animation::StopAnimation()
+{
+	isPlaying = false;
+}

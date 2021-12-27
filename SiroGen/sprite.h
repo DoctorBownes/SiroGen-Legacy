@@ -19,6 +19,9 @@ public:
     int _height = 0;
     int _width = 0;
 
+    float timeonscreen = 0.0f;
+    int pos = 0;
+
     void AddSprite(const char* TGA);
     void SetSprite(int number);
 private:

@@ -9,10 +9,12 @@ public:
 
 	float starttime = 0.0f;
 
-	bool isPlaying = 0;
 	bool isLooping = 1;
 	
 	void PlayAnimation(SpriteAnimation spriteanimation, bool loop = true);
-
+	void StopAnimation();
+	bool isAnimationPlaying() { return isPlaying; };
+private:
+	bool isPlaying = 0;
 };
 

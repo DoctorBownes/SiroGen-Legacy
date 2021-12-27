@@ -138,19 +138,27 @@ void Renderer::RenderEntity(Entity* entity)
             if (entity->GetComponent<Animation>())
             {
                 Animation* tempAnim = entity->GetComponent<Animation>();
-                if (tempAnim->isPlaying)
+                if (tempAnim->isAnimationPlaying())
                 {
                     std::cout << glfwGetTime() - tempAnim->starttime << std::endl;
-                    if (glfwGetTime() - tempAnim->starttime >= 0.5f)
+                    tempSprite->frame = tempAnim->SoloAnimation.GetArray().at(tempSprite->pos).spritetexture;
+                    if (glfwGetTime() - tempAnim->starttime >= tempAnim->SoloAnimation.GetArray().at(pos).timeonscreen)
                     {
-                        tempSprite->frame = tempAnim->SoloAnimation.GetArray().at(pos);
-                        pos++;
-                        if (pos > tempAnim->SoloAnimation.GetArray().size() - 1)
+                        tempSprite->pos++;
+                        if (tempSprite->pos > tempAnim->SoloAnimation.GetArray().size() - 1)
                         {
-                            pos = 0;
+                            tempSprite->pos = 0;
+                            if (!tempAnim->isLooping)
+                            {
+                                tempAnim->StopAnimation();
+                            }
                         }
                         tempAnim->starttime = glfwGetTime();
                     }
+                }
+                else
+                {
+                    tempSprite->frame = tempSprite->spritetexture;
                 }
             }
             glBindTexture(GL_TEXTURE_2D, tempSprite->frame);
