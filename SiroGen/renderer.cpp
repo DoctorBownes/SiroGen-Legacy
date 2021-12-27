@@ -19,6 +19,12 @@ const char* fragment_shader = "#version 330 core\n"
 "	FragColor = texture2D(myTextureSampler, UV);\n"
 "}\n\0";
 
+
+extern "C"
+{
+    __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
+}
+
 std::string get_file_contents(const char* filename)
 {
     std::ifstream in(filename, std::ios::binary);
