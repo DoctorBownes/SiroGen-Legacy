@@ -160,40 +160,39 @@ Test::Test() : Scene()
 		0x0,0x0,0x6,0x6,0x0,0x6,0x6,0x0,
 	};
 
-	tippinghat.AddSprite(canvas2, 8, 16, 0.2f);
-	tippinghat.AddSprite(canvas3, 8, 16, 0.2f);
-	tippinghat.AddSprite(canvas4, 8, 16, 0.2f);
-	tippinghat.AddSprite(canvas5, 8, 16, 0.2f);
-	tippinghat.ReUseSprite(2);
-	tippinghat.ReUseSprite(1);
-	tippinghat.ReUseSprite(0);
+	tippinghat.AddSprite(canvas2, 8, 16, 0.3f);
+	tippinghat.AddSprite(canvas3, 8, 16, 0.3f);
+	tippinghat.AddSprite(canvas4, 8, 16, 0.3f);
+	tippinghat.AddSprite(canvas5, 8, 16, 0.3f);
+	//tippinghat.ReUseSprite(2);
+	//tippinghat.ReUseSprite(1);
+	//tippinghat.ReUseSprite(0);
 
-	galAnim.AddSprite(galcanvas, 8, 16);
-	galAnim.AddSprite(galcanvas2, 8, 16);
-	galAnim.AddSprite(galcanvas3, 8, 16);
 
 	guy = new Entity;
 	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
 	guy->AddComponent<Animation>();
+	//guy->GetComponent<Animation>()->PlayAnimation(tippinghat);
 	this->Addchild(guy);
 
-	gal = new Entity;
-	gal->AddComponent<PixelSprite>()->AddSprite(galcanvas, 8,16);
-	gal->AddComponent<Animation>()->PlayAnimation(galAnim);
-	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
-	this->Addchild(gal);
-	guy->GetComponent<Animation>()->PlayAnimation(tippinghat, false);
-	starttime = glfwGetTime();
+	galAnim.AddSprite(galcanvas, 8, 16);
+	galAnim.AddSprite(galcanvas2, 8, 16);
+	galAnim.AddSprite(galcanvas3, 8, 16);
+	//gal = new Entity;
+	//gal->AddComponent<PixelSprite>()->AddSprite(galcanvas, 8,16);
+	//gal->AddComponent<Animation>()->PlayAnimation(galAnim);
+	//gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
+	//this->Addchild(gal);
+	guy->GetComponent<Animation>()->PlayAnimation(galAnim, false);
 }
 
 void Test::update(float deltaTime)
 {
-	//if (glfwGetTime() - starttime >= 5.0f)
-	//{
-	//	guy->GetComponent<Animation>()->StopAnimation();
-	//}
-	//if (glfwGetTime() - starttime >= 10.0f)
-	//{
-	//	guy->GetComponent<Animation>()->PlayAnimation(tippinghat);
-	//}
+	guy->GetComponent<Animation>()->PlayAnimation(tippinghat, false);
+	if (glfwGetTime() - starttime >= 1.0f && glfwGetTime() - starttime < 2.0f)
+	{
+	}
+	if (glfwGetTime() - starttime >= 2.0f)
+	{
+	}
 }

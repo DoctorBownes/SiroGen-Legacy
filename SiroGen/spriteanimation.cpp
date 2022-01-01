@@ -5,19 +5,17 @@ void SpriteAnimation::AddSprite(char canvas[], char width, char height, float ti
 {
 	PixelSprite tempPS;
 	tempPS.AddSprite(canvas, width, height);
-	tempPS.timeonscreen = timeonscreen;
-	AniArray.push_back(tempPS);
+	AniArray.emplace(tempPS.spritetexture, timeonscreen);
 }
 
 void SpriteAnimation::AddSprite(const char* TGA, float timeonscreen)
 {
 	Sprite tempS;
 	tempS.AddSprite(TGA);
-	tempS.timeonscreen = timeonscreen;
-	AniArray.push_back(tempS);
+	AniArray.emplace(tempS.spritetexture, timeonscreen);
 }
 
 void SpriteAnimation::ReUseSprite(int spriteinarray, float timeonscreen)
 {
-	AniArray.push_back(AniArray.at(spriteinarray));
+	AniArray.emplace(AniArray.at(spriteinarray), timeonscreen);
 }

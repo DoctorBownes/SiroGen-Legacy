@@ -138,16 +138,18 @@ void Renderer::RenderEntity(Entity* entity)
             if (entity->GetComponent<Animation>())
             {
                 Animation* tempAnim = entity->GetComponent<Animation>();
+                tempAnim->isFinished = false;
                 if (tempAnim->isAnimationPlaying())
                 {
-                    std::cout << glfwGetTime() - tempAnim->starttime << std::endl;
-                    tempSprite->frame = tempAnim->SoloAnimation.GetArray().at(tempSprite->pos).spritetexture;
-                    if (glfwGetTime() - tempAnim->starttime >= tempAnim->SoloAnimation.GetArray().at(pos).timeonscreen)
+                    tempSprite->frame = tempAnim->SoloAnimation.it->first;
+                    if (glfwGetTime() - tempAnim->starttime >= tempAnim->SoloAnimation.it->second)
                     {
-                        tempSprite->pos++;
-                        if (tempSprite->pos > tempAnim->SoloAnimation.GetArray().size() - 1)
+                        tempAnim->SoloAnimation.it++;
+                        if (tempAnim->SoloAnimation.it == tempAnim->SoloAnimation.AniArray.end())
                         {
-                            tempSprite->pos = 0;
+                            tempAnim->isFinished = true;
+                            std::cout << "Finished" << std::endl;
+                            tempAnim->SoloAnimation.it = tempAnim->SoloAnimation.AniArray.begin();
                             if (!tempAnim->isLooping)
                             {
                                 tempAnim->StopAnimation();

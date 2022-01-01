@@ -12,9 +12,13 @@ Animation::~Animation()
 
 void Animation::PlayAnimation(SpriteAnimation spriteanimation, bool loop)
 {
-	SoloAnimation = spriteanimation;
-	isLooping = loop;
-	isPlaying = true;
+	if (!isAnimationFinished() && !isPlaying)
+	{
+		SoloAnimation = spriteanimation;
+		isLooping = loop;
+		SoloAnimation.it = SoloAnimation.AniArray.begin();
+		isPlaying = true;
+	}
 }
 
 void Animation::StopAnimation()

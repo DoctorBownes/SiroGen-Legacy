@@ -14,7 +14,8 @@ public:
 	void PlayAnimation(SpriteAnimation spriteanimation, bool loop = true);
 	void StopAnimation();
 	bool isAnimationPlaying() { return isPlaying; };
+	bool isAnimationFinished() { return isFinished; };
+	bool isFinished = 0;
 private:
 	bool isPlaying = 0;
 };
-
