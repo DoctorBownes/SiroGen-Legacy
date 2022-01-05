@@ -12,5 +12,6 @@ public:
 	std::map<GLuint, float> GetArray() { return AniArray; };
 	std::map<GLuint, float> AniArray;
 	std::map<GLuint, float>::iterator it;
+	bool isLooping = 1;
 private:
 };
