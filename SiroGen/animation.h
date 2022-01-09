@@ -1,5 +1,4 @@
 #pragma once
-#include <set>
 #include <SiroGen/spriteanimation.h>
 class Animation : public Component
 {

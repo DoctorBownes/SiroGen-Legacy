@@ -213,9 +213,8 @@ Test::Test() : Scene()
 	testAnim.AddSprite(testcanvas1,8,16, 0.1f);
 
 	guy = new Entity;
-	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
-	guy->AddComponent<Animation>();
-	//guy->GetComponent<Animation>()->PlayAnimation(tippinghat);
+	//guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
+	//guy->AddComponent<Animation>();
 	this->Addchild(guy);
 
 	galAnim.AddSprite(galcanvas, 8, 16);
@@ -235,7 +234,13 @@ Test::Test() : Scene()
 
 void Test::update(float deltaTime)
 {
-	//guy->GetComponent<Animation>()->PlayAnimation(&testAnim, true);
+	//if (glfwGetTime() - starttime >= 0.5f && glfwGetTime() - starttime < 0.6f)
+	//{
+	//}
+	//if (glfwGetTime() - starttime >= 0.6f)
+	//{
+	//}
+	//guy->GetComponent<Animation>()->PlayAnimation(&testAnim, false);
 	//guy->GetComponent<Animation>()->PlayAnimation(&tippinghat, false);
 	//guy->GetComponent<Animation>()->PlayAnimation(&galAnim, false);
 }

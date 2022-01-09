@@ -1,21 +1,17 @@
 #include "spriteanimation.h"
-#include <SiroGen/pixelsprite.h>
 
 void SpriteAnimation::AddSprite(char canvas[], char width, char height, float timeonscreen)
 {
-	PixelSprite tempPS;
-	tempPS.AddSprite(canvas, width, height);
-	AniArray.emplace(tempPS.spritetexture, timeonscreen);
+	PixelSprite* tempPS = new PixelSprite();
+	tempPS->AddSprite(canvas, width, height);
+	AniArray.push_back(std::make_pair(tempPS, timeonscreen));
+	//delete tempPS;
 }
 
 void SpriteAnimation::AddSprite(const char* TGA, float timeonscreen)
 {
-	Sprite tempS;
-	tempS.AddSprite(TGA);
-	AniArray.emplace(tempS.spritetexture, timeonscreen);
-}
-
-void SpriteAnimation::ReUseSprite(int spriteinarray, float timeonscreen)
-{
-	AniArray.emplace(AniArray.at(spriteinarray), timeonscreen);
+	Sprite* tempS = new Sprite();
+	tempS->AddSprite(TGA);
+	AniArray.push_back(std::make_pair(tempS, timeonscreen));
+	//delete tempS;
 }

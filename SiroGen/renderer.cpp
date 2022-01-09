@@ -121,6 +121,34 @@ void Renderer::RenderEntity(Entity* entity)
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+    if (entity->GetComponent<Animation>())
+    {
+        Animation* tempAnim;
+        tempAnim = entity->GetComponent<Animation>();
+        if (tempAnim->AnimationQueue.size() >= 1)
+        {
+            if (tempAnim->isAnimationPlaying())
+            {
+                tempAnim->isFinished = false;
+                RenderMesh(tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).first->frame, tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).first->sprite, tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).first->uv);
+                if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).second)
+                {
+                    tempAnim->AnimationQueue.at(0)->pos++;
+                    if (tempAnim->AnimationQueue.at(0)->pos == tempAnim->AnimationQueue.at(0)->AniArray.size())
+                    {
+                        tempAnim->isFinished = true;
+                        tempAnim->AnimationQueue.at(0)->pos = 0;
+                        if (!tempAnim->AnimationQueue.at(0)->isLooping)
+                        {
+                            tempAnim->StopAnimation();
+                        }
+                    }
+                    tempAnim->starttime = glfwGetTime();
+                }
+            }
+        }
+    }
+    
     if (entity->GetComponent<Sprite>() || entity->GetComponent<PixelSprite>())
     {
         Sprite* tempSprite;
@@ -135,70 +163,44 @@ void Renderer::RenderEntity(Entity* entity)
         }
         else
         {
-            if (entity->GetComponent<Animation>())
-            {
-                Animation* tempAnim = entity->GetComponent<Animation>();
-                if (tempAnim->isAnimationPlaying())
-                {
-                    tempAnim->isFinished = false;
-                    tempSprite->frame = tempAnim->AnimationQueue.at(0)->it->first;
-                    if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.at(0)->it->second)
-                    {
-                        tempAnim->AnimationQueue.at(0)->it++;
-                        if (tempAnim->AnimationQueue.at(0)->it == tempAnim->AnimationQueue.at(0)->AniArray.end())
-                        {
-                            tempAnim->isFinished = true;
-                            std::cout << "Finished" << std::endl;
-                            tempAnim->AnimationQueue.at(0)->it = tempAnim->AnimationQueue.at(0)->AniArray.begin();
-                            if (!tempAnim->AnimationQueue.at(0)->isLooping)
-                            {
-                                tempAnim->AnimationQueue.erase(tempAnim->AnimationQueue.begin());
-                                tempAnim->StopAnimation();
-                            }
-                        }
-                        tempAnim->starttime = glfwGetTime();
-                    }
-                }
-                else
-                {
-                    tempSprite->frame = tempSprite->spritetexture;
-                }
-            }
-            glBindTexture(GL_TEXTURE_2D, tempSprite->frame);
-            //glBindTexture(GL_TEXTURE_2D, tempSprite->Frame);
-            // 1st attribute buffer : vertices
-            GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
-            glEnableVertexAttribArray(vertexPositionID);
-            glBindBuffer(GL_ARRAY_BUFFER, tempSprite->sprite);
-            glVertexAttribPointer(
-                vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
-                3,                  // size
-                GL_FLOAT,           // type
-                GL_FALSE,           // normalized?
-                0,                  // stride
-                (void*)0            // array buffer offset
-            );
-            // Draw the triangle !
-            GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
-            glEnableVertexAttribArray(vertexUVID);
-            glBindBuffer(GL_ARRAY_BUFFER, tempSprite->uv);
-            glVertexAttribPointer(
-                vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
-                2,                                // size
-                GL_FLOAT,                         // type
-                GL_FALSE,                         // normalized?
-                0,                                // stride
-                (void*)0                          // array buffer offset
-            );
-
-            //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
-            glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
-            glDisableVertexAttribArray(vertexPositionID);
-            glDisableVertexAttribArray(vertexUVID);
-
+            RenderMesh(tempSprite->frame, tempSprite->sprite, tempSprite->uv);
         }
-
     }
+}
+
+void Renderer::RenderMesh(GLuint frame, GLuint sprite, GLuint uv)
+{
+    glBindTexture(GL_TEXTURE_2D, frame);
+    //glBindTexture(GL_TEXTURE_2D, tempSprite->Frame);
+    // 1st attribute buffer : vertices
+    GLuint vertexPositionID = glGetAttribLocation(_shader, "vertexPosition");
+    glEnableVertexAttribArray(vertexPositionID);
+    glBindBuffer(GL_ARRAY_BUFFER, sprite);
+    glVertexAttribPointer(
+        vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
+        3,                  // size
+        GL_FLOAT,           // type
+        GL_FALSE,           // normalized?
+        0,                  // stride
+        (void*)0            // array buffer offset
+    );
+    // Draw the triangle !
+    GLuint vertexUVID = glGetAttribLocation(_shader, "vertexUV");
+    glEnableVertexAttribArray(vertexUVID);
+    glBindBuffer(GL_ARRAY_BUFFER, uv);
+    glVertexAttribPointer(
+        vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
+        2,                                // size
+        GL_FLOAT,                         // type
+        GL_FALSE,                         // normalized?
+        0,                                // stride
+        (void*)0                          // array buffer offset
+    );
+
+    //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
+    glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
+    glDisableVertexAttribArray(vertexPositionID);
+    glDisableVertexAttribArray(vertexUVID);
 }
 
 

@@ -46,6 +46,7 @@ void Sprite::AddSprite(const char* TGA)
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
     glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
+    SetSprite(0);
 }
 
 void Sprite::SetSprite(int number)

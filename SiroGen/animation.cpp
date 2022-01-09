@@ -21,12 +21,12 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 	}
 	if (!isPlaying)
 	{
-		AnimationQueue.at(0)->it = AnimationQueue.at(0)->AniArray.begin();
 		isPlaying = true;
 	}
 }
 
 void Animation::StopAnimation()
 {
+	AnimationQueue.erase(AnimationQueue.begin());
 	isPlaying = false;
 }
