@@ -5,9 +5,8 @@ class Animation : public Component
 public:
 	Animation();
 	~Animation();
-	SpriteAnimation SoloAnimation;
 
-	std::vector<SpriteAnimation*> AnimationQueue;
+	std::vector<std::pair<SpriteAnimation*, bool>> AnimationQueue;
 
 	float starttime = 0.0f;
 
@@ -16,6 +15,7 @@ public:
 	bool isAnimationPlaying() { return isPlaying; };
 	bool isAnimationFinished() { return isFinished; };
 	bool isFinished = 0;
+	int pos = 0;
 private:
 	bool isPlaying = 0;
 };

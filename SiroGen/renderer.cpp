@@ -130,15 +130,15 @@ void Renderer::RenderEntity(Entity* entity)
             if (tempAnim->isAnimationPlaying())
             {
                 tempAnim->isFinished = false;
-                RenderMesh(tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).first->frame, tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).first->sprite, tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).first->uv);
-                if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.at(0)->AniArray.at(tempAnim->AnimationQueue.at(0)->pos).second)
+                RenderMesh(tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).first->frame, tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).first->sprite, tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).first->uv);
+                if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).second)
                 {
-                    tempAnim->AnimationQueue.at(0)->pos++;
-                    if (tempAnim->AnimationQueue.at(0)->pos == tempAnim->AnimationQueue.at(0)->AniArray.size())
+                    tempAnim->pos++;
+                    if (tempAnim->pos == tempAnim->AnimationQueue.at(0).first->AniArray.size())
                     {
                         tempAnim->isFinished = true;
-                        tempAnim->AnimationQueue.at(0)->pos = 0;
-                        if (!tempAnim->AnimationQueue.at(0)->isLooping)
+                        tempAnim->pos = 0;
+                        if (!tempAnim->AnimationQueue.at(0).second)
                         {
                             tempAnim->StopAnimation();
                         }

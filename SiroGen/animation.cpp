@@ -12,12 +12,11 @@ Animation::~Animation()
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 {
-	if (std::find(AnimationQueue.begin(), AnimationQueue.end(), spriteanimation) == AnimationQueue.end())
+	if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
 	{
-		AnimationQueue.push_back(spriteanimation);
-		//std::cout << "Animation Pushed" << std::endl;
-		//std::cout << AnimationQueue.size() << std::endl;
-		spriteanimation->isLooping = loop;
+		AnimationQueue.push_back(std::make_pair(spriteanimation, loop));
+		std::cout << "Animation Pushed" << std::endl;
+		std::cout << AnimationQueue.size() << std::endl;
 	}
 	if (!isPlaying)
 	{

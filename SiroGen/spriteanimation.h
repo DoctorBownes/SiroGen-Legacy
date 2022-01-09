@@ -10,7 +10,5 @@ public:
 	void ReUseSprite(int spriteinarray, float timeonscreen = 0.5f);
 	std::vector<std::pair<Sprite*, float>> GetArray() { return AniArray; };
 	std::vector<std::pair<Sprite*, float>> AniArray;
-	int pos = 0;
-	bool isLooping = 1;
 private:
 };
