@@ -15,11 +15,20 @@ public:
 	Entity();
 	~Entity();
 
+	void Addchild(Entity* entity);
+	void Removechild(Entity* entity);
+	void DeleteEntity(Entity* entity);
+	std::vector<Entity*> Getchildren() { return _children; };
+	std::vector<Entity*> _children;
+
 	template <typename T>
 	T* AddComponent();
 
 	template <typename T>
 	T* GetComponent();
+
+	template <typename T>
+	void RemoveComponent();
 
 	void update();
 	Transform* transform;
@@ -47,6 +56,19 @@ T* Entity::GetComponent()
 	{
 		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
+	//std::cout << "Error: component not found" << std::endl;
 	return nullptr;
 }
 
+template <typename T>
+void Entity::RemoveComponent()
+{
+	if (componentlist.count(typeid(T).hash_code()))
+	{
+		componentlist.erase(componentlist.find(typeid(T).hash_code()));
+	}
+	else
+	{
+		std::cout << "Warning: component set to remove was not found" << std::endl;
+	}
+}

@@ -12,6 +12,8 @@ public:
 
 	virtual void update(float deltaTime) = 0;
 	void Addchild(Entity* entity);
+	void Removechild(Entity* entity);
+	void DeleteEntity(Entity* entity);
 	std::vector<Entity*> Getchildren() { return _children; };
 	Camera* GetMainCamera() { return MainCamera; };
 

@@ -90,6 +90,12 @@ Renderer::Renderer()
     glBindVertexArray(test);
 }
 
+Renderer::~Renderer()
+{
+    delete window;
+    delete _camera;
+}
+
 void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
@@ -165,6 +171,12 @@ void Renderer::RenderEntity(Entity* entity)
         {
             RenderMesh(tempSprite->frame, tempSprite->sprite, tempSprite->uv);
         }
+    }
+    std::vector<Entity*> child = entity->Getchildren();
+    std::vector<Entity*>::iterator it;
+    for (it = child.begin(); it != child.end(); it++)
+    {
+        RenderEntity(*it);
     }
 }
 

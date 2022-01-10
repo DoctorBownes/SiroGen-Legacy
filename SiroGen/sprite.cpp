@@ -15,16 +15,16 @@ Sprite::~Sprite()
 
 void Sprite::AddSprite(const char* TGA)
 {
-    Texture texture;
-    spritetexture = texture.LoadTGAImage(TGA);
+    Texture* texture = new Texture();
+    spritetexture = texture->LoadTGAImage(TGA);
     const GLfloat temp_vertex_buffer_data[] = {
-        0.5f * texture._width,  0.5f * texture._height, 0.0f,
-       -0.5f * texture._width,  0.5f * texture._height, 0.0f,
-       -0.5f * texture._width, -0.5f * texture._height, 0.0f,
-
-       -0.5f * texture._width, -0.5f * texture._height, 0.0f,
-        0.5f * texture._width, -0.5f * texture._height, 0.0f,
-        0.5f * texture._width,  0.5f * texture._height, 0.0f,
+        0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+       -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+       -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+                                               
+       -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+        0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+        0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
     };
 
     sprites.push_back(spritetexture);

@@ -17,6 +17,7 @@ class Renderer
 {
 public:
 	Renderer();
+	~Renderer();
 	void RenderScene(Scene* scene);
 	GLFWwindow* window;
 private:
