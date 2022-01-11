@@ -21,7 +21,7 @@ public:
 	void RenderScene(Scene* scene);
 	GLFWwindow* window;
 private:
-	void RenderEntity(Entity* entity);
+	void RenderEntity(glm::mat4 mat, Entity* entity);
 	void RenderMesh(GLuint frame, GLuint sprite, GLuint uv);
 	GLuint _shader;
 	Camera* _camera = new Camera();

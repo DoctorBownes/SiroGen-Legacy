@@ -256,15 +256,16 @@ Test::Test() : Scene()
 	guy = new Entity;
 	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(16.0f, 0.0f, 0.0f);
-	//guy->AddComponent<Animation>();
+	guy->AddComponent<Animation>();
+	//guy->transform->rotation->z = 90.0f;
 
-	galAnim.AddSprite(testcanvas2, 8, 16,3);
-	galAnim.AddSprite(testcanvas3, 8, 16,0.1f);
+	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
+	galAnim.AddSprite(galcanvas2, 8, 16,0.6f);
+	galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
 	gal = new Entity;
 	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
-	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
+	gal->transform->position = new Vector3(0.0f, 0.0f, 0.0f);
 	guy->Addchild(gal);
-	std::cout << guy->Getchildren().size() << std::endl;
 	this->Addchild(guy);
 }
 

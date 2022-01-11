@@ -104,25 +104,28 @@ void Renderer::RenderScene(Scene* scene)
 
     for (int i = 0; i < scene->Getchildren().size(); i++)
     {
-        RenderEntity(scene->Getchildren()[i]);
+        glm::mat4 mat = glm::mat4(1);
+        RenderEntity(mat, scene->Getchildren()[i]);
     }
     // Swap buffers
     glfwSwapBuffers(window);
     glfwPollEvents();
 }
 
-void Renderer::RenderEntity(Entity* entity)
+void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
 {
     glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform->position->x, entity->transform->position->y, entity->transform->position->z));
     glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform->rotation->x * 0.01745329f, entity->transform->rotation->y * 0.01745329f, entity->transform->rotation->z * 0.01745329f);
     glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1),glm::vec3(entity->transform->scale->x, entity->transform->scale->y, entity->transform->scale->z));
     
     glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;
+    mat *= myModelVector;
     glm::mat4 CameraMatrix = _camera->GetCameraMat();
     glm::mat4 projectionMatrix = _camera->GetProjectionMat();
 
-    glm::mat4 MVP = projectionMatrix * CameraMatrix * myModelVector;
+    glm::mat4 MVP = projectionMatrix * CameraMatrix * mat;
     GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
+    
 
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
@@ -136,15 +139,15 @@ void Renderer::RenderEntity(Entity* entity)
             if (tempAnim->isAnimationPlaying())
             {
                 tempAnim->isFinished = false;
-                RenderMesh(tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).first->frame, tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).first->sprite, tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).first->uv);
-                if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.at(0).first->AniArray.at(tempAnim->pos).second)
+                RenderMesh(tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->frame, tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->sprite, tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->uv);
+                if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).second)
                 {
                     tempAnim->pos++;
-                    if (tempAnim->pos == tempAnim->AnimationQueue.at(0).first->AniArray.size())
+                    if (tempAnim->pos == tempAnim->AnimationQueue.begin()->first->AniArray.size())
                     {
                         tempAnim->isFinished = true;
                         tempAnim->pos = 0;
-                        if (!tempAnim->AnimationQueue.at(0).second)
+                        if (!tempAnim->AnimationQueue.begin()->second)
                         {
                             tempAnim->StopAnimation();
                         }
@@ -176,7 +179,7 @@ void Renderer::RenderEntity(Entity* entity)
     std::vector<Entity*>::iterator it;
     for (it = child.begin(); it != child.end(); it++)
     {
-        RenderEntity(*it);
+        RenderEntity(mat,*it);
     }
 }
 
