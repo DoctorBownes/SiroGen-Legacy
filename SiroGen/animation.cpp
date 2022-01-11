@@ -18,14 +18,9 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 		std::cout << "Animation Pushed" << std::endl;
 		std::cout << AnimationQueue.size() << std::endl;
 	}
-	if (!isPlaying)
-	{
-		isPlaying = true;
-	}
 }
 
-void Animation::StopAnimation()
+void Animation::RemoveAnimation()
 {
 	AnimationQueue.erase(AnimationQueue.begin());
-	isPlaying = false;
 }

@@ -12,11 +12,11 @@ public:
 	float starttime = 0.0f;
 
 	void PlayAnimation(SpriteAnimation* spriteanimation, bool loop = true);
-	void StopAnimation();
-	bool isAnimationPlaying() { return isPlaying; };
+	void RemoveAnimation();
+	//bool isAnimationPlaying() { return isPlaying; };
 	bool isAnimationFinished() { return isFinished; };
 	bool isFinished = 0;
 	int pos = 0;
 private:
-	bool isPlaying = 0;
+	//bool isPlaying = 0;
 };

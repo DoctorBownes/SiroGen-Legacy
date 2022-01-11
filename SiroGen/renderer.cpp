@@ -136,24 +136,21 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
         tempAnim = entity->GetComponent<Animation>();
         if (tempAnim->AnimationQueue.size() >= 1)
         {
-            if (tempAnim->isAnimationPlaying())
+            tempAnim->isFinished = false;
+            RenderMesh(tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->frame, tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->sprite, tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->uv);
+            if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).second)
             {
-                tempAnim->isFinished = false;
-                RenderMesh(tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->frame, tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->sprite, tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).first->uv);
-                if (glfwGetTime() - tempAnim->starttime >= tempAnim->AnimationQueue.begin()->first->AniArray.at(tempAnim->pos).second)
+                tempAnim->pos++;
+                if (tempAnim->pos == tempAnim->AnimationQueue.begin()->first->AniArray.size())
                 {
-                    tempAnim->pos++;
-                    if (tempAnim->pos == tempAnim->AnimationQueue.begin()->first->AniArray.size())
+                    tempAnim->isFinished = true;
+                    tempAnim->pos = 0;
+                    if (!tempAnim->AnimationQueue.begin()->second)
                     {
-                        tempAnim->isFinished = true;
-                        tempAnim->pos = 0;
-                        if (!tempAnim->AnimationQueue.begin()->second)
-                        {
-                            tempAnim->StopAnimation();
-                        }
+                        tempAnim->RemoveAnimation();
                     }
-                    tempAnim->starttime = glfwGetTime();
                 }
+                tempAnim->starttime = glfwGetTime();
             }
         }
     }
