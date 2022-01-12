@@ -24,3 +24,27 @@ void Animation::RemoveAnimation()
 {
 	AnimationQueue.erase(AnimationQueue.begin());
 }
+
+void Animation::DoIt(unsigned int _shader)
+{
+    if (AnimationQueue.size() >= 1)
+    {
+        Component* tempsprite = AnimationQueue.begin()->first->AniArray.at(pos).first;
+        isFinished = false;
+        tempsprite->DoIt(_shader);
+        if (glfwGetTime() - starttime >= AnimationQueue.begin()->first->AniArray.at(pos).second)
+        {
+            pos++;
+            if (pos == AnimationQueue.begin()->first->AniArray.size())
+            {
+                isFinished = true;
+                pos = 0;
+                if (!AnimationQueue.begin()->second)
+                {
+                    RemoveAnimation();
+                }
+            }
+            starttime = glfwGetTime();
+        }
+    }
+}

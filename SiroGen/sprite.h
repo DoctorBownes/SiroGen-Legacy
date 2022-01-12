@@ -10,6 +10,12 @@ public:
     ~Sprite();
 
     //Texture GetTexture() { return spritetexture; };
+
+    void AddSprite(const char* TGA);
+    void SetSprite(int number);
+protected:
+    virtual void DoIt(GLuint shader);
+
     GLuint sprite;
     GLuint spritetexture;
     GLuint uv;
@@ -18,8 +24,4 @@ public:
 
     int _height = 0;
     int _width = 0;
-
-    void AddSprite(const char* TGA);
-    void SetSprite(int number);
-private:
 };

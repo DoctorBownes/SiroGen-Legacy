@@ -7,16 +7,14 @@ public:
 	Animation();
 	~Animation();
 
-	std::vector<std::pair<SpriteAnimation*, bool>> AnimationQueue;
-
-	float starttime = 0.0f;
-
 	void PlayAnimation(SpriteAnimation* spriteanimation, bool loop = true);
 	void RemoveAnimation();
-	//bool isAnimationPlaying() { return isPlaying; };
 	bool isAnimationFinished() { return isFinished; };
+private:
+	virtual void DoIt(unsigned int _shader);
 	bool isFinished = 0;
 	int pos = 0;
-private:
+	float starttime = 0.0f;
+	std::vector<std::pair<SpriteAnimation*, bool>> AnimationQueue;
 	//bool isPlaying = 0;
 };

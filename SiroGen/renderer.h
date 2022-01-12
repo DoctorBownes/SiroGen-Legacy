@@ -20,9 +20,9 @@ public:
 	~Renderer();
 	void RenderScene(Scene* scene);
 	GLFWwindow* window;
+	void RenderMesh(GLuint frame, GLuint sprite, GLuint uv);
 private:
 	void RenderEntity(glm::mat4 mat, Entity* entity);
-	void RenderMesh(GLuint frame, GLuint sprite, GLuint uv);
 	GLuint _shader;
 	Camera* _camera = new Camera();
 	GLuint GetShader(const char* vertex_file_path, const char* fragment_file_path);

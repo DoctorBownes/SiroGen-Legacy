@@ -31,6 +31,8 @@ public:
 	void RemoveComponent();
 
 	void update();
+	std::map<size_t, Component*> GetComponentList() { return componentlist; };
+
 	Transform* transform;
 private:
 	std::map<size_t, Component*> componentlist;
@@ -56,7 +58,7 @@ T* Entity::GetComponent()
 	{
 		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
-	//std::cout << "Error: component not found" << std::endl;
+	std::cout << "Error: component not found" << std::endl;
 	return nullptr;
 }
 
