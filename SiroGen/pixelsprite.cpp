@@ -26,6 +26,7 @@ void PixelSprite::AddSprite(char canvas[], char width, char height)
       -0.5f * _width,  0.5f * _height, 0.0f,
        0.5f * _width,  0.5f * _height, 0.0f,
        0.5f * _width, -0.5f * _height, 0.0f,
+
        0.5f * _width, -0.5f * _height, 0.0f,
       -0.5f * _width, -0.5f * _height, 0.0f,
       -0.5f * _width,  0.5f * _height, 0.0f,

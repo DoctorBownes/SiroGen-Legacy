@@ -7,49 +7,91 @@ Sprite::Sprite()
     spritetexture = 0;
     uv = 0;
     frame = 0;
+    texture = new Texture();
 }
 
 Sprite::~Sprite()
 {
-
+    delete texture;
 }
 
 void Sprite::AddSprite(const char* TGA)
 {
-    Texture* texture = new Texture();
     spritetexture = texture->LoadTGAImage(TGA);
-    const GLfloat temp_vertex_buffer_data[] = {
-        0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
-       -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
-       -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
-                                               
-       -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
-        0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
-        0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
-    };
+    dynamic = false;
+    GenerateSprite();
+}
 
+void Sprite::AddSprite(char canvas[], char width, char height)
+{
+    spritetexture = texture->LoadPixelImage(canvas, width, height);
+    dynamic = true;
+    GenerateSprite();
+}
+
+void Sprite::GenerateSprite()
+{
     sprites.push_back(spritetexture);
-    
-    static const GLfloat temp_uv_buffer_data[] = {
-        1.0f, 1.0f,
-        0.0f, 1.0f,
-        0.0f, 0.0f,
+    if (dynamic)
+    {
+        const GLfloat temp_vertex_buffer_data[] = {
+            -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+             0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+             0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
 
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        1.0f, 1.0f,
-    };
+             0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+            -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+            -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+        };
+
+        static const GLfloat temp_uv_buffer_data[] = {
+            0.0f, 0.0f,
+            1.0f, 0.0f,
+            1.0f, 1.0f,
+
+            1.0f, 1.0f,
+            0.0f, 1.0f,
+            0.0f, 0.0f,
+        };
+        vertex_buffer_data = temp_vertex_buffer_data;
+        uv_buffer_data = temp_uv_buffer_data;
+        std::cout << sizeof(uv_buffer_data) << std::endl;
+        std::cout << sizeof(temp_uv_buffer_data) << std::endl;
+    }
+    else
+    {
+        const GLfloat temp_vertex_buffer_data[] = {
+            0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+           -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+           -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+
+           -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+            0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+            0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+        };
+
+        static const GLfloat temp_uv_buffer_data[] = {
+            1.0f, 1.0f,
+            0.0f, 1.0f,
+            0.0f, 0.0f,
+
+            0.0f, 0.0f,
+            1.0f, 0.0f,
+            1.0f, 1.0f,
+        };
+        vertex_buffer_data = temp_vertex_buffer_data;
+        uv_buffer_data = temp_uv_buffer_data;
+    }
 
     glGenBuffers(1, &sprite);
     glBindBuffer(GL_ARRAY_BUFFER, sprite);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(temp_vertex_buffer_data), temp_vertex_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data) * 9, vertex_buffer_data, GL_STATIC_DRAW);
 
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(temp_uv_buffer_data), temp_uv_buffer_data, GL_STATIC_DRAW);
-    SetSprite(0);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(uv_buffer_data) * 6, uv_buffer_data, GL_STATIC_DRAW);
 
-    delete texture;
+    SetSprite(0);
 }
 
 void Sprite::SetSprite(int number)

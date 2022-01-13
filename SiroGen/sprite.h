@@ -12,10 +12,19 @@ public:
     //Texture GetTexture() { return spritetexture; };
 
     void AddSprite(const char* TGA);
+    void AddSprite(char canvas[], char width, char height);
+
     void SetSprite(int number);
-protected:
+private:
+    const GLfloat* vertex_buffer_data;
+    const GLfloat* uv_buffer_data;
+    bool dynamic = 0;
+    void GenerateSprite();
     virtual void DoIt(GLuint shader);
 
+protected:
+
+    Texture* texture;
     GLuint sprite;
     GLuint spritetexture;
     GLuint uv;

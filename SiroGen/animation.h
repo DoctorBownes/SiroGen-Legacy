@@ -15,6 +15,6 @@ private:
 	bool isFinished = 0;
 	int pos = 0;
 	float starttime = 0.0f;
-	std::vector<std::pair<SpriteAnimation*, bool>> AnimationQueue;
+	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue;
 	//bool isPlaying = 0;
 };

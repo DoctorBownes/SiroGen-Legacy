@@ -254,21 +254,20 @@ Test::Test() : Scene()
 	testAnim.AddSprite(testcanvas1,8,16, 0.1f);
 
 	guy = new Entity;
-	guy->AddComponent<PixelSprite>()->AddSprite(canvas, 8, 16);
-	guy->transform->position = new Vector3(16.0f, 0.0f, 0.0f);
-	guy->AddComponent<Animation>();
+	guy->AddComponent<Sprite>()->AddSprite(canvas, 8, 16);
+	guy->GetComponent<Sprite>()->AddSprite("assets/kingkong.tga");
+	//guy->transform->position = new Vector3(16.0f, 0.0f, 0.0f);
+	//guy->transform->rotation = new Vector3(0.0f, 0.0f, 45.0f);
 	//guy->transform->rotation->z = 90.0f;
 
-	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
-	galAnim.AddSprite(galcanvas2, 8, 16,0.6f);
-	galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
-	gal = new Entity;
-	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
-	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
-	guy->Addchild(gal);
+	//galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
+	//galAnim.AddSprite(galcanvas2, 8, 16,0.6f);
+	//galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
+	//gal = new Entity;
+	//gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
+	//gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
+	//guy->Addchild(gal);
 	this->Addchild(guy);
-	guy->GetComponent<Animation>()->PlayAnimation(&testAnim, false);
-	guy->GetComponent<Animation>()->PlayAnimation(&tippinghat, false);
 }
 
 void Test::update(float deltaTime)

@@ -29,13 +29,14 @@ void Animation::DoIt(unsigned int _shader)
 {
     if (AnimationQueue.size() >= 1)
     {
-        Component* tempsprite = AnimationQueue.begin()->first->AniArray.at(pos).first;
+        std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
+        Component* tempsprite = tempvector.at(pos).first;
         isFinished = false;
         tempsprite->DoIt(_shader);
-        if (glfwGetTime() - starttime >= AnimationQueue.begin()->first->AniArray.at(pos).second)
+        if (glfwGetTime() - starttime >= tempvector.at(pos).second)
         {
             pos++;
-            if (pos == AnimationQueue.begin()->first->AniArray.size())
+            if (pos == tempvector.size())
             {
                 isFinished = true;
                 pos = 0;

@@ -108,3 +108,27 @@ GLuint Texture::LoadTGAImage(const char* imagepath)
 
 	return _texture;
 }
+
+GLuint Texture::LoadPixelImage(char canvas[], char width, char height)
+{
+	_width = width;
+	_height = height;
+	for (int i = 0; i < _width * _height; i++)
+	{
+		size_t index = canvas[i];
+		pixelCanvas.push_back(Palette[index].r);
+		pixelCanvas.push_back(Palette[index].g);
+		pixelCanvas.push_back(Palette[index].b);
+	}
+
+	glGenTextures(1, &_texture);
+	glBindTexture(GL_TEXTURE_2D, _texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelCanvas.data());
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	pixelCanvas.clear();
+
+	return _texture;
+}

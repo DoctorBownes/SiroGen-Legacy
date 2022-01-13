@@ -53,7 +53,8 @@ Renderer::Renderer()
     }
     
 
-    glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
+    //glfwWindowHint(GLFW_SAMPLES, 8); // 4x antialiasing
+    glEnable(GL_MULTISAMPLE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed

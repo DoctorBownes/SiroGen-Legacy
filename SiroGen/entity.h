@@ -19,7 +19,6 @@ public:
 	void Removechild(Entity* entity);
 	void DeleteEntity(Entity* entity);
 	std::vector<Entity*> Getchildren() { return _children; };
-	std::vector<Entity*> _children;
 
 	template <typename T>
 	T* AddComponent();
@@ -35,6 +34,7 @@ public:
 
 	Transform* transform;
 private:
+	std::vector<Entity*> _children;
 	std::map<size_t, Component*> componentlist;
 };
 
