@@ -84,8 +84,6 @@ add_library(SiroGen # ar rcs libSiroGen.a
 	SiroGen/transform.cpp
 	SiroGen/vector3.h
 	SiroGen/vector3.cpp
-	SiroGen/pixelsprite.h
-	SiroGen/pixelsprite.cpp
 	SiroGen/color.h
 	SiroGen/color.cpp
 	SiroGen/spriteanimation.h
