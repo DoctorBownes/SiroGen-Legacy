@@ -16,6 +16,7 @@ public:
 
     void SetSprite(int number);
 private:
+    Texture* texture;
     const GLfloat* vertex_buffer_data;
     const GLfloat* uv_buffer_data;
     bool dynamic = 0;
@@ -23,8 +24,6 @@ private:
     virtual void DoIt(GLuint shader);
 
 protected:
-
-    Texture* texture;
     GLuint sprite;
     GLuint spritetexture;
     GLuint uv;

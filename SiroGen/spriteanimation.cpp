@@ -1,11 +1,24 @@
 #include "spriteanimation.h"
 
+SpriteAnimation::SpriteAnimation()
+{
+}
+
+SpriteAnimation::~SpriteAnimation()
+{
+	for (int i = 0; i < AniArray.size(); i++)
+	{
+		delete AniArray.at(i).first;
+	}
+	AniArray.clear();
+}
+
 void SpriteAnimation::AddSprite(char canvas[], char width, char height, float timeonscreen)
 {
-	PixelSprite* tempPS = new PixelSprite();
-	tempPS->AddSprite(canvas, width, height);
-	AniArray.push_back(std::make_pair(tempPS, timeonscreen));
-	//delete tempPS;
+	Sprite* tempS = new Sprite();
+	tempS->AddSprite(canvas, width, height);
+	AniArray.push_back(std::make_pair(tempS, timeonscreen));
+	//delete tempS;
 }
 
 void SpriteAnimation::AddSprite(const char* TGA, float timeonscreen)

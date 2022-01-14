@@ -8,6 +8,8 @@ Sprite::Sprite()
     uv = 0;
     frame = 0;
     texture = new Texture();
+    vertex_buffer_data = nullptr;
+    uv_buffer_data = nullptr;
 }
 
 Sprite::~Sprite()
@@ -34,7 +36,7 @@ void Sprite::GenerateSprite()
     sprites.push_back(spritetexture);
     if (dynamic)
     {
-        const GLfloat temp_vertex_buffer_data[] = {
+        vertex_buffer_data = new GLfloat[]{
             -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
              0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
              0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
@@ -44,7 +46,7 @@ void Sprite::GenerateSprite()
             -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
         };
 
-        static const GLfloat temp_uv_buffer_data[] = {
+        uv_buffer_data = new GLfloat[]{
             0.0f, 0.0f,
             1.0f, 0.0f,
             1.0f, 1.0f,
@@ -53,14 +55,10 @@ void Sprite::GenerateSprite()
             0.0f, 1.0f,
             0.0f, 0.0f,
         };
-        vertex_buffer_data = temp_vertex_buffer_data;
-        uv_buffer_data = temp_uv_buffer_data;
-        std::cout << sizeof(uv_buffer_data) << std::endl;
-        std::cout << sizeof(temp_uv_buffer_data) << std::endl;
     }
     else
     {
-        const GLfloat temp_vertex_buffer_data[] = {
+        vertex_buffer_data = new GLfloat[]{
             0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
            -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
            -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
@@ -69,8 +67,7 @@ void Sprite::GenerateSprite()
             0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
             0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
         };
-
-        static const GLfloat temp_uv_buffer_data[] = {
+        uv_buffer_data = new GLfloat[]{
             1.0f, 1.0f,
             0.0f, 1.0f,
             0.0f, 0.0f,
@@ -79,19 +76,17 @@ void Sprite::GenerateSprite()
             1.0f, 0.0f,
             1.0f, 1.0f,
         };
-        vertex_buffer_data = temp_vertex_buffer_data;
-        uv_buffer_data = temp_uv_buffer_data;
     }
-
     glGenBuffers(1, &sprite);
     glBindBuffer(GL_ARRAY_BUFFER, sprite);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data) * 9, vertex_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 72, vertex_buffer_data, GL_STATIC_DRAW);
 
     glGenBuffers(1, &uv);
     glBindBuffer(GL_ARRAY_BUFFER, uv);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(uv_buffer_data) * 6, uv_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 48, uv_buffer_data, GL_STATIC_DRAW);
 
-    SetSprite(0);
+    delete vertex_buffer_data;
+    delete uv_buffer_data;
 }
 
 void Sprite::SetSprite(int number)
@@ -101,7 +96,7 @@ void Sprite::SetSprite(int number)
 
 void Sprite::DoIt(GLuint shader)
 {
-    glBindTexture(GL_TEXTURE_2D, frame);
+    glBindTexture(GL_TEXTURE_2D, spritetexture);
 
     GLuint vertexPositionID = glGetAttribLocation(shader, "vertexPosition");
     glEnableVertexAttribArray(vertexPositionID);

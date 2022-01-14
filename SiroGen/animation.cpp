@@ -27,7 +27,7 @@ void Animation::RemoveAnimation()
 
 void Animation::DoIt(unsigned int _shader)
 {
-    if (AnimationQueue.size() >= 1)
+    if (AnimationQueue.begin()->first->GetArray().size() >= 1)
     {
         std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
         Component* tempsprite = tempvector.at(pos).first;

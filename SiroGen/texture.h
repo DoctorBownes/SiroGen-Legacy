@@ -17,6 +17,8 @@ public:
 	GLuint LoadPixelImage(char canvas[], char width, char height);
 private:
 	GLuint _texture;
+
+    //Based on ZX Spectrum color palette.
     Color Palette[15] =
     {
         BLACK,
