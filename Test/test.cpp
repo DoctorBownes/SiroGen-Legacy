@@ -254,7 +254,7 @@ Test::Test() : Scene()
 	testAnim->AddSprite(testcanvas1,8,16, 0.1f);
 
 	guy = new Entity;
-	guy->AddComponent<Sprite>()->AddSprite(canvas, 8, 16);
+	guy->AddComponent<Sprite>()->AddSprite(testcanvas, 8, 16);
 	guy->GetComponent<Sprite>()->AddSprite("assets/kingkong.tga");
 	guy->GetComponent<Sprite>()->AddSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(16.0f, 0.0f, 0.0f);
@@ -269,15 +269,14 @@ Test::Test() : Scene()
 	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
 	guy->Addchild(gal);
 	this->Addchild(guy);
-	delete testAnim;
 }
 
 void Test::update(float deltaTime)
 {
-	//if (glfwGetTime() - starttime >= 0.5f && glfwGetTime() - starttime < 0.6f)
+	//if (glfwGetTime() - starttime >= 0.0f && glfwGetTime() - starttime < 1.0f)
 	//{
 	//}
-	//if (glfwGetTime() - starttime >= 0.6f)
+	//if (glfwGetTime() - starttime >= 1.0f)
 	//{
 	//}
 	//guy->GetComponent<Animation>()->PlayAnimation(&testAnim, false);

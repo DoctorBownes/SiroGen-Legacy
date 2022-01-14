@@ -1,6 +1,5 @@
 #pragma once
 #include <SiroGen/sprite.h>
-#include <SiroGen/pixelsprite.h>
 
 class SpriteAnimation
 {

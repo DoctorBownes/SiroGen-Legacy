@@ -32,7 +32,7 @@ void Scene::DeleteEntity(Entity* entity)
 	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
 	{
 		_children.erase(std::find(_children.begin(), _children.end(), entity));
+		delete entity;
 	}
-	delete entity;
 	std::cout << "Warning: DeleteEntity is unfinished" << std::endl;
 }
