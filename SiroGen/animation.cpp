@@ -20,7 +20,10 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 
 void Animation::RemoveAnimation()
 {
-	AnimationQueue.erase(AnimationQueue.begin());
+    if (AnimationQueue.size() > 0)
+    {
+        AnimationQueue.erase(AnimationQueue.begin());
+    }
 }
 
 void Animation::PauseAnimation(int atframe)
@@ -41,7 +44,7 @@ void Animation::ResumeAnimation(int atframe)
 
 void Animation::DoIt(unsigned int _shader)
 {
-    if (AnimationQueue.begin()->first->GetArray().size() >= 1)
+    if (AnimationQueue.size() > 0 && AnimationQueue.begin()->first->GetArray().size() > 0)
     {
         std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
         Component* tempsprite = tempvector.at(frame).first;
