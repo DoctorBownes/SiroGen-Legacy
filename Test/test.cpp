@@ -265,9 +265,9 @@ Test::Test() : Scene()
 	galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
 	gal = new Entity;
 	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
-	gal->transform->position = new Vector3(6.0f, 0.0f, 0.0f);
+	gal->transform->position = new Vector3(4.0f, 0.0f, -1.0f);
 	guy->Addchild(gal);
-	this->Addchild(guy);
+	this->AddtoScene(guy);
 }
 
 void Test::update(float deltaTime)

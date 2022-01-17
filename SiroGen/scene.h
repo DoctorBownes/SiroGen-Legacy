@@ -11,10 +11,10 @@ public:
 	~Scene();
 
 	virtual void update(float deltaTime) = 0;
-	void Addchild(Entity* entity);
-	void Removechild(Entity* entity);
+	void AddtoScene(Entity* entity);
+	void RemovefromScene(Entity* entity);
 	void DeleteEntity(Entity* entity);
-	std::vector<Entity*> Getchildren() { return _children; };
+	std::vector<Entity*> GetEntities() { return _children; };
 	Camera* GetMainCamera() { return MainCamera; };
 
 private:

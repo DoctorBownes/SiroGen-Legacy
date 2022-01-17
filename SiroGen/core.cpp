@@ -11,6 +11,9 @@ void Core::Start(Scene* scene)
 	{
 		CalculateDeltaTime();
 		//input
+
+
+
 		scene->GetMainCamera()->UpdateCamera();
 
 		scene->update((float)deltaTime);

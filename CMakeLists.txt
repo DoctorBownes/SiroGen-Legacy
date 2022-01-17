@@ -90,6 +90,8 @@ add_library(SiroGen # ar rcs libSiroGen.a
 	SiroGen/spriteanimation.cpp
 	SiroGen/animation.h
 	SiroGen/animation.cpp
+	SiroGen/input.h
+	SiroGen/input.cpp
 )
 
 # Test

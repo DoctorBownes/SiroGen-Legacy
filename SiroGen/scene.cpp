@@ -14,12 +14,12 @@ void Scene::update(float deltaTime)
 
 }
 
-void Scene::Addchild(Entity* entity)
+void Scene::AddtoScene(Entity* entity)
 {
 	_children.push_back(entity);
 }
 
-void Scene::Removechild(Entity* entity)
+void Scene::RemovefromScene(Entity* entity)
 {
 	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
 	{

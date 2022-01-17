@@ -104,10 +104,10 @@ void Renderer::RenderScene(Scene* scene)
     glClearColor(0.0f, 0.4f, 0.7f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for (int i = 0; i < scene->Getchildren().size(); i++)
+    for (int i = 0; i < scene->GetEntities().size(); i++)
     {
         glm::mat4 mat = glm::mat4(1);
-        RenderEntity(mat, scene->Getchildren()[i]);
+        RenderEntity(mat, scene->GetEntities()[i]);
     }
     // Swap buffers
     glfwSwapBuffers(window);
