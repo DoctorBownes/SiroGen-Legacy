@@ -19,8 +19,9 @@ private:
 	GLuint _texture;
 
     //Based on ZX Spectrum color palette.
-    Color Palette[15] =
+    Color Palette[16] =
     {
+        ALPHA,
         BLACK,
         DARKBLUE,
         BLUE,

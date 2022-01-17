@@ -20,7 +20,6 @@ public:
 	~Renderer();
 	void RenderScene(Scene* scene);
 	GLFWwindow* window;
-	void RenderMesh(GLuint frame, GLuint sprite, GLuint uv);
 private:
 	void RenderEntity(glm::mat4 mat, Entity* entity);
 	GLuint _shader;
