@@ -38,5 +38,5 @@ private:
         GRAY,
         WHITE
     };
-    std::vector<char> pixelCanvas;
+    std::vector<unsigned char> pixelCanvas;
 };

@@ -3,7 +3,7 @@ Entity* guy;
 Entity* gal;
 SpriteAnimation tippinghat;
 SpriteAnimation galAnim;
-SpriteAnimation* testAnim = new SpriteAnimation();
+SpriteAnimation testAnim;
 float starttime = 0.0f;
 bool test = 0;
 Test::Test() : Scene()
@@ -250,14 +250,14 @@ Test::Test() : Scene()
 	//tippinghat.ReUseSprite(1);
 	//tippinghat.ReUseSprite(0);
 
-	testAnim->AddSprite(testcanvas,8,16, 3);
-	testAnim->AddSprite(testcanvas1,8,16, 0.1f);
+	testAnim.AddSprite(testcanvas,8,16, 3);
+	testAnim.AddSprite(testcanvas1,8,16, 0.1f);
 
 	guy = new Entity;
 	guy->AddComponent<Sprite>()->AddSprite(testcanvas, 8, 16);
 	guy->GetComponent<Sprite>()->AddSprite("assets/kingkong.tga");
 	guy->GetComponent<Sprite>()->AddSprite(canvas, 8, 16);
-	guy->transform->position = new Vector3(16.0f, 0.0f, 0.0f);
+	guy->transform->position = new Vector3(16.0f, 0.0f, 1.0f);
 	//guy->transform->rotation->z = 90.0f;
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -265,7 +265,7 @@ Test::Test() : Scene()
 	galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
 	gal = new Entity;
 	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
-	gal->transform->position = new Vector3(8.0f, 0.0f, 0.0f);
+	gal->transform->position = new Vector3(6.0f, 0.0f, 0.0f);
 	guy->Addchild(gal);
 	this->Addchild(guy);
 }

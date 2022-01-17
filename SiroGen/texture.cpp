@@ -119,16 +119,16 @@ GLuint Texture::LoadPixelImage(char canvas[], char width, char height)
 		pixelCanvas.push_back(Palette[index].r);
 		pixelCanvas.push_back(Palette[index].g);
 		pixelCanvas.push_back(Palette[index].b);
-		pixelCanvas.push_back(index * 255);
+		pixelCanvas.push_back(index * -1);
 	}
 
 	glGenTextures(1, &_texture);
 	glBindTexture(GL_TEXTURE_2D, _texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelCanvas.data());
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelCanvas.data());
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	pixelCanvas.clear();
