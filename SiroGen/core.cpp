@@ -7,12 +7,10 @@ Core::Core()
 
 void Core::Start(Scene* scene)
 {
+	scene->GetInput()->Init(sceneRenderer.window);
 	do
 	{
 		CalculateDeltaTime();
-		//input
-
-
 
 		scene->GetMainCamera()->UpdateCamera();
 

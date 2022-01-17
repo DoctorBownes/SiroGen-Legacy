@@ -254,9 +254,8 @@ Test::Test() : Scene()
 	testAnim.AddSprite(testcanvas1,8,16, 0.1f);
 
 	guy = new Entity;
-	guy->AddComponent<Sprite>()->AddSprite(testcanvas, 8, 16);
-	guy->GetComponent<Sprite>()->AddSprite("assets/kingkong.tga");
-	guy->GetComponent<Sprite>()->AddSprite(canvas, 8, 16);
+	guy->AddComponent<Sprite>()->AddSprite(canvas, 8, 16);
+	guy->AddComponent<Animation>();
 	guy->transform->position = new Vector3(16.0f, 0.0f, 1.0f);
 	//guy->transform->rotation->z = 90.0f;
 
@@ -266,12 +265,22 @@ Test::Test() : Scene()
 	gal = new Entity;
 	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
 	gal->transform->position = new Vector3(4.0f, 0.0f, -1.0f);
-	guy->Addchild(gal);
+	//guy->Addchild(gal);
 	this->AddtoScene(guy);
 }
 
 void Test::update(float deltaTime)
 {
+	if (GetInput()->KeyInput(KeyCode::A, KeyState::Press))
+	{
+		guy->transform->position->x -= 0.2f;
+	}
+	if (GetInput()->KeyInput(KeyCode::D, KeyState::Press))
+	{
+		guy->GetComponent<Animation>()->PlayAnimation(&tippinghat, false);
+		std::cout << "Pressed D" << std::endl;
+		guy->transform->position->x += 0.2f;
+	}
 	//if (glfwGetTime() - starttime >= 0.0f && glfwGetTime() - starttime < 1.0f)
 	//{
 	//}

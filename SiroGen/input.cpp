@@ -1,9 +1,15 @@
 #include "input.h"
 
-//bool Input::KeyInput(KeyCode key, KeyState state)
-//{
-//	//if (glfwGetKey(key) == state)
-//	//{
-//
-//	//}
-//}
+void Input::Init(GLFWwindow* window)
+{
+	_window = window;
+}
+
+bool Input::KeyInput(KeyCode key, KeyState state)
+{
+	if (glfwGetKey(_window, key) == state)
+	{
+		return true;
+	}
+	return false;
+}

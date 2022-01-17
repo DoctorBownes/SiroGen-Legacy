@@ -1,4 +1,5 @@
 #pragma once
+#include <glfw/glfw3.h>
 
 enum KeyCode
 {
@@ -132,5 +133,7 @@ enum KeyState
 class Input
 {
 public:
-	//bool KeyInput(KeyCode key, KeyState state);
+	void Init(GLFWwindow* window);
+	GLFWwindow* _window;
+	bool KeyInput(KeyCode key, KeyState state);
 };
