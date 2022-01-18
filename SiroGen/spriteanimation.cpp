@@ -16,13 +16,13 @@ SpriteAnimation::~SpriteAnimation()
 void SpriteAnimation::AddSprite(char canvas[], char width, char height, float timeonscreen)
 {
 	Sprite* tempS = new Sprite();
-	tempS->AddSprite(canvas, width, height);
+	tempS->SetSprite(canvas, width, height);
 	AniArray.push_back(std::make_pair(tempS, timeonscreen));
 }
 
 void SpriteAnimation::AddSprite(const char* TGA, float timeonscreen)
 {
 	Sprite* tempS = new Sprite();
-	tempS->AddSprite(TGA);
+	tempS->SetSprite(TGA);
 	AniArray.push_back(std::make_pair(tempS, timeonscreen));
 }

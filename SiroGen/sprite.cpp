@@ -16,7 +16,7 @@ Sprite::~Sprite()
     delete texture;
 }
 
-void Sprite::AddSprite(const char* TGA)
+void Sprite::SetSprite(const char* TGA)
 {
     texture_buffer = texture->LoadTGAImage(TGA);
     vertex_buffer_data = new GLfloat[]{
@@ -40,7 +40,7 @@ void Sprite::AddSprite(const char* TGA)
     GenerateSprite();
 }
 
-void Sprite::AddSprite(char canvas[], char width, char height)
+void Sprite::SetSprite(char canvas[], char width, char height)
 {
     texture_buffer = texture->LoadPixelImage(canvas, width, height);
     vertex_buffer_data = new GLfloat[]{

@@ -9,8 +9,8 @@ public:
     Sprite();
     ~Sprite();
 
-    void AddSprite(const char* TGA);
-    void AddSprite(char canvas[], char width, char height);
+    void SetSprite(const char* TGA);
+    void SetSprite(char canvas[], char width, char height);
 
 private:
     Texture* texture;

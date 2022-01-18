@@ -194,13 +194,13 @@ Test::Test() : Scene()
 
 	guy = new Entity;
 	//guy->AddComponent<Sprite>()->AddSprite("assets/rgba.tga");
-	guy->AddComponent<Sprite>()->AddSprite(canvas,8,16);
 	guy->AddComponent<Animation>();
+	guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(16.0f, 0.0f, 1.0f);
 	//guy->transform->rotation->z = 90.0f;
 
 	don = new Entity;
-	don->AddComponent<Sprite>()->AddSprite(doncanvas, 8,16);
+	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8,16);
 	don->transform->position = new Vector3(8.0f, 0.0f, 1.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -209,7 +209,7 @@ Test::Test() : Scene()
 	gal = new Entity;
 	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
 	gal->transform->position = new Vector3(16.0f, 0.0f, -1.0f);
-	guy->Addchild(gal);
+	//guy->Addchild(gal);
 	//guy->Addchild(don);
 	this->AddtoScene(don);
 	this->AddtoScene(guy);
