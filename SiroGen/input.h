@@ -123,6 +123,21 @@ enum KeyCode
 	Menu = 348
 };
 
+enum MouseButton
+{
+	MouseLeft = 0,
+	MouseRight = 1,
+	MouseMiddle = 2,
+	MouseButton1 = 0,
+	MouseButton2 = 1,
+	MouseButton3 = 2,
+	MouseButton4 = 3,
+	MouseButton5 = 4,
+	MouseButton6 = 5,
+	MouseButton7 = 6,
+	MouseButton8 = 7
+};
+
 enum KeyState
 {
 	Release = 0,
@@ -136,4 +151,10 @@ public:
 	void Init(GLFWwindow* window);
 	GLFWwindow* _window;
 	bool KeyInput(KeyCode key, KeyState state);
+	bool MouseInput(MouseButton button,KeyState state);
+	double mouseX = 0;
+	double mouseY = 0;
+private:
+	bool mousereleased[8];
+	bool keyreleased[118];
 };

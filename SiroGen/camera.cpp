@@ -8,11 +8,14 @@ Camera::Camera(bool isThreeDimensional)
     if (isThreeDimensional)
     {
         SetZoom(45.0f);
+        glEnable(GL_DEPTH_TEST);
     }
     else
     {
         SetZoom(1.0f);
+        glDisable(GL_DEPTH_TEST);
     }
+    glDepthFunc(GL_LESS);
     position.z = 650.0f;
     rotation = Vector3(0, 3.141592f, 0);
     up = glm::vec3(0, 1, 0);
@@ -48,8 +51,6 @@ void Camera::SetZoom(float amount)
         );
         offset = glm::vec3((1920.0f / amount) / 2, (-1080.0f / amount) / 2, 0);
     }
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
 }
 
 void Camera::UpdateCamera()
