@@ -8,6 +8,7 @@ public:
 	~Animation();
 
 	void PlayAnimation(SpriteAnimation* spriteanimation, bool loop = true);
+	void PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe);
 	void RemoveAnimation();
 	void PauseAnimation(int atframe = 0);
 	void ResumeAnimation(int atframe = 0);
@@ -15,7 +16,6 @@ public:
 private:
 	virtual void DoIt(unsigned int _shader);
 	bool isFinished = 0;
-	int frame = 0;
 	bool paused = 0;
 	float starttime = 0.0f;
 	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue;

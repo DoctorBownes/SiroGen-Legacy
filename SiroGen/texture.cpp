@@ -119,7 +119,14 @@ GLuint Texture::LoadPixelImage(char canvas[], char width, char height)
 		pixelCanvas.push_back(Palette[index].r);
 		pixelCanvas.push_back(Palette[index].g);
 		pixelCanvas.push_back(Palette[index].b);
-		pixelCanvas.push_back(index * -1);
+		if (index == 0)
+		{
+			pixelCanvas.push_back(index);
+		}
+		else
+		{
+			pixelCanvas.push_back(255);
+		}
 	}
 
 	glGenTextures(1, &_texture);

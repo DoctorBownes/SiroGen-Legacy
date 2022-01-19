@@ -138,23 +138,22 @@ enum MouseButton
 	MouseButton8 = 7
 };
 
-enum KeyState
-{
-	Release = 0,
-	Press = 1,
-	Repeat = 2
-};
-
 class Input
 {
 public:
 	void Init(GLFWwindow* window);
-	GLFWwindow* _window;
-	bool KeyInput(KeyCode key, KeyState state);
-	bool MouseInput(MouseButton button,KeyState state);
-	double mouseX = 0;
-	double mouseY = 0;
+	bool KeyPressed(KeyCode key);
+	bool KeyReleased(KeyCode key);
+	bool KeyDown(KeyCode key);
+	bool MousePressed(MouseButton button);
+	bool MouseReleased(MouseButton button);
+	bool MouseDown(MouseButton button);
+	//double mouseX = 0;
+	//double mouseY = 0;
 private:
+	GLFWwindow* _window;
 	bool mousereleased[8];
+	bool mousepressed[8];
 	bool keyreleased[118];
+	bool keypressed[118];
 };
