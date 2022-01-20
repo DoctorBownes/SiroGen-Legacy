@@ -198,7 +198,7 @@ Test::Test() : Scene()
 	//guy->transform->rotation->z = 90.0f;
 
 	don = new Entity;
-	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8,16);
+	don->AddComponent<Sprite>()->printText2D("assets/LucidaConsole.tga", "Hello", 0,0, 10);
 	don->transform->position = new Vector3(8.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -219,19 +219,19 @@ void Test::update(float deltaTime)
 {
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false);
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,3);
 		guy->transform->rotation->y = -180;
 		guy->transform->position->x -= 0.5f;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false);
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,3);
 		guy->transform->rotation->y = 0;
 		guy->transform->position->x += 0.5f;
 	}
 	else
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false);
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,1);
 	}
 	if (GetInput()->KeyPressed(KeyCode::Space))
 	{

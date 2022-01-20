@@ -40,6 +40,77 @@ void Sprite::SetSprite(const char* TGA)
     GenerateSprite();
 }
 
+void Sprite::printText2D(const char* TGAfont, const char* text, int x, int y, int size)
+{
+    texture_buffer = texture->LoadTGAImage(TGAfont);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
+    int count = 0;
+    for (int i = 0; text[i]; i++)
+    {
+        count++;
+    }
+    vertex_buffer_data = new GLfloat[]{
+        0.5f * 32 ,  0.5f * 32, 0.0f,
+       -0.5f * 32 ,  0.5f * 32, 0.0f,
+       -0.5f * 32 , -0.5f * 32, 0.0f,
+                  
+       -0.5f * 32 , -0.5f * 32, 0.0f,
+        0.5f * 32 , -0.5f * 32, 0.0f,
+        0.5f * 32 ,  0.5f * 32, 0.0f,
+    };
+    vertex_buffer_vector.push_back(vertex_buffer_data);
+    for (int i = 0; i < 1; i++)
+    {
+        //vertex_buffer_vector.push_back(0.5f * 32);
+        //vertex_buffer_vector.push_back(0.5f * 32);
+        //vertex_buffer_vector.push_back(0.0f);
+        //vertex_buffer_vector.push_back(-0.5f * 32);
+        //vertex_buffer_vector.push_back(0.5f * 32);
+        //vertex_buffer_vector.push_back(0.0f);
+        //vertex_buffer_vector.push_back(-0.5f * 32);
+        //vertex_buffer_vector.push_back(-0.5f * 32);
+        //vertex_buffer_vector.push_back(0.0f);
+
+        //vertex_buffer_vector.push_back(-0.5f * 32);
+        //vertex_buffer_vector.push_back(-0.5f * 32);
+        //vertex_buffer_vector.push_back(0.0f);
+        //vertex_buffer_vector.push_back(0.5f * 32);
+        //vertex_buffer_vector.push_back(-0.5f * 32);
+        //vertex_buffer_vector.push_back(0.0f);
+        //vertex_buffer_vector.push_back(0.5f * 32);
+        //vertex_buffer_vector.push_back(0.5f * 32);
+        //vertex_buffer_vector.push_back(0.0f);
+    }
+    uv_buffer_data = new GLfloat[]{
+        0.0625f, 0.875f,
+        0.0f, 0.875f,
+        0.0f, 0.75f,
+
+        0.0f, 0.75f,
+        0.0625f, 0.75f,
+        0.0625f, 0.875f,
+
+        0.0625f, 0.875f,
+        0.0f, 0.875f,
+        0.0f, 0.75f,
+
+        0.0f, 0.75f,
+        0.0625f, 0.75f,
+        0.0625f, 0.875f,
+    };
+    glGenBuffers(1, &vertex_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glBufferData(GL_ARRAY_BUFFER, 72, vertex_buffer_vector.at(0), GL_STATIC_DRAW);
+    std::cout << vertex_buffer_vector.data() << std::endl;
+    std::cout << &vertex_buffer_data << std::endl;
+    glGenBuffers(1, &uv_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
+    glBufferData(GL_ARRAY_BUFFER, 48, uv_buffer_data, GL_STATIC_DRAW);
+
+}
+
 void Sprite::SetSprite(char canvas[], char width, char height)
 {
     texture_buffer = texture->LoadPixelImage(canvas, width, height);
