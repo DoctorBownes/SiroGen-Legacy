@@ -14,21 +14,33 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 {
 	if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
 	{
+        if (AnimationQueue.size() > 0 && !loop)
+        {
+            AnimationQueue.erase(AnimationQueue.end());
+        }
         spriteanimation->startframe = 0;
         spriteanimation->frame = spriteanimation->startframe;
         spriteanimation->endframe = spriteanimation->GetArray().size();
-		AnimationQueue.push_back(std::make_pair(spriteanimation, loop));
+		//AnimationQueue.push_back(std::make_pair(spriteanimation, loop));
+		AnimationQueue.insert(AnimationQueue.begin(),std::make_pair(spriteanimation, loop));
 	}
 }
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe)
 {
+    if (startframe != spriteanimation->startframe || endframe != spriteanimation->endframe && !loop)
+    {
+        if (AnimationQueue.size() > 0)
+        {
+            AnimationQueue.erase(AnimationQueue.begin());
+        }
+    }
     if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
     {
         spriteanimation->startframe = startframe;
         spriteanimation->frame = spriteanimation->startframe;
         spriteanimation->endframe = endframe;
-        AnimationQueue.push_back(std::make_pair(spriteanimation, loop));
+        AnimationQueue.insert(AnimationQueue.begin(), std::make_pair(spriteanimation, loop));
     }
 }
 

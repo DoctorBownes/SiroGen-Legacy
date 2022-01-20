@@ -217,25 +217,25 @@ Test::Test() : Scene()
 
 void Test::update(float deltaTime)
 {
-	if (GetInput()->KeyPressed(KeyCode::Space))
-	{
-		guy->GetComponent<Animation>()->PlayAnimation(&smokeAnim, false);
-	}
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1, 3);
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false);
 		guy->transform->rotation->y = -180;
 		guy->transform->position->x -= 0.5f;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1, 3);
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false);
 		guy->transform->rotation->y = 0;
 		guy->transform->position->x += 0.5f;
 	}
 	else
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,1);
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false);
+	}
+	if (GetInput()->KeyPressed(KeyCode::Space))
+	{
+		guy->GetComponent<Animation>()->PlayAnimation(&smokeAnim, true);
 	}
 
 	if (GetInput()->MousePressed(MouseButton::MouseLeft))
