@@ -198,7 +198,7 @@ Test::Test() : Scene()
 	//guy->transform->rotation->z = 90.0f;
 
 	don = new Entity;
-	don->AddComponent<Sprite>()->printText2D("assets/LucidaConsole.tga", "Hello", 0,0, 10);
+	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
 	don->transform->position = new Vector3(8.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -207,10 +207,11 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
-	gal->AddComponent<Animation>()->PlayAnimation(&galAnim, true);
-	gal->transform->position = new Vector3(16.0f, 0.0f);
+	gal->AddComponent<Sprite>()->printText2D("assets/LucidaConsole.tga", "Hello", 0, 0, 10);
+	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
+	this->AddtoScene(gal);
 	this->AddtoScene(don);
 	this->AddtoScene(guy);
 }

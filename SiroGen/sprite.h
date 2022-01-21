@@ -15,10 +15,11 @@ public:
 
 private:
     Texture* texture;
-    const GLfloat* vertex_buffer_data;
-    const GLfloat* uv_buffer_data;
-    std::vector<const GLfloat*> vertex_buffer_vector;
-    std::vector<const GLfloat*> uv_buffer_vector;
+    GLfloat* vertex_buffer_data;
+    GLfloat* uv_buffer_data;
+    std::vector<GLfloat> vertex_buffer_vector;
+    std::vector<GLfloat> uv_buffer_vector;
+    int _count = 1;
     void GenerateSprite();
     virtual void DoIt(GLuint shader);
 

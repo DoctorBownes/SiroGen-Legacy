@@ -45,69 +45,102 @@ void Sprite::printText2D(const char* TGAfont, const char* text, int x, int y, in
     texture_buffer = texture->LoadTGAImage(TGAfont);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    
+    //GLfloat vertexx[]{
+//    0.5f * 32,  0.5f * 32, 0.0f,
+//   -0.5f * 32,  0.5f * 32, 0.0f,
+//   -0.5f * 32, -0.5f * 32, 0.0f,
+
+//   -0.5f * 32, -0.5f * 32, 0.0f,
+//    0.5f * 32, -0.5f * 32, 0.0f,
+//    0.5f * 32,  0.5f * 32, 0.0f,
+
+//    0.5f * 32 + 32,  0.5f * 32, 0.0f,
+//   -0.5f * 32 + 32,  0.5f * 32, 0.0f,
+//   -0.5f * 32 + 32, -0.5f * 32, 0.0f,
+
+//   -0.5f * 32 + 32, -0.5f * 32, 0.0f,
+//    0.5f * 32 + 32, -0.5f * 32, 0.0f,
+//    0.5f * 32 + 32,  0.5f * 32, 0.0f,
+//};
     int count = 0;
     for (int i = 0; text[i]; i++)
     {
         count++;
     }
-    vertex_buffer_data = new GLfloat[]{
-        0.5f * 32 ,  0.5f * 32, 0.0f,
-       -0.5f * 32 ,  0.5f * 32, 0.0f,
-       -0.5f * 32 , -0.5f * 32, 0.0f,
-                  
-       -0.5f * 32 , -0.5f * 32, 0.0f,
-        0.5f * 32 , -0.5f * 32, 0.0f,
-        0.5f * 32 ,  0.5f * 32, 0.0f,
-    };
-    vertex_buffer_vector.push_back(vertex_buffer_data);
-    for (int i = 0; i < 1; i++)
+    _count = count;
+    for (int i = 0; i < count; i++)
     {
-        //vertex_buffer_vector.push_back(0.5f * 32);
-        //vertex_buffer_vector.push_back(0.5f * 32);
-        //vertex_buffer_vector.push_back(0.0f);
-        //vertex_buffer_vector.push_back(-0.5f * 32);
-        //vertex_buffer_vector.push_back(0.5f * 32);
-        //vertex_buffer_vector.push_back(0.0f);
-        //vertex_buffer_vector.push_back(-0.5f * 32);
-        //vertex_buffer_vector.push_back(-0.5f * 32);
-        //vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(0.5f * 32 + i * 32);
+        vertex_buffer_vector.push_back(0.5f * 32);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(-0.5f * 32 + i * 32);
+        vertex_buffer_vector.push_back(0.5f * 32);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(-0.5f * 32 + i * 32);
+        vertex_buffer_vector.push_back(-0.5f * 32);
+        vertex_buffer_vector.push_back(0.0f);
 
-        //vertex_buffer_vector.push_back(-0.5f * 32);
-        //vertex_buffer_vector.push_back(-0.5f * 32);
-        //vertex_buffer_vector.push_back(0.0f);
-        //vertex_buffer_vector.push_back(0.5f * 32);
-        //vertex_buffer_vector.push_back(-0.5f * 32);
-        //vertex_buffer_vector.push_back(0.0f);
-        //vertex_buffer_vector.push_back(0.5f * 32);
-        //vertex_buffer_vector.push_back(0.5f * 32);
-        //vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(-0.5f * 32 + i * 32);
+        vertex_buffer_vector.push_back(-0.5f * 32);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(0.5f * 32 + i * 32);
+        vertex_buffer_vector.push_back(-0.5f * 32);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(0.5f * 32 + i * 32);
+        vertex_buffer_vector.push_back(0.5f * 32);
+        vertex_buffer_vector.push_back(0.0f);
+
+        char character = text[i];
+        float uv_x = (character % 16) / 16.0f;
+        float uv_y = (character / 16) / 8.0f;
+        //H =     72
+        //Xbegin =  0.5f
+        //Ybegin =  0.25f
+
+        //voor 0 = 48
+        //uv_buffer_vector.push_back(0.0625f);
+        //uv_buffer_vector.push_back(0.875f);
+
+        //uv_buffer_vector.push_back(0.0f);
+        //uv_buffer_vector.push_back(0.875f);
+
+        //uv_buffer_vector.push_back(0.0f);
+        //uv_buffer_vector.push_back(0.75f);
+
+        //uv_buffer_vector.push_back(0.0f);
+        //uv_buffer_vector.push_back(0.75f);
+
+        //uv_buffer_vector.push_back(0.0625f);
+        //uv_buffer_vector.push_back(0.75f);
+
+        //uv_buffer_vector.push_back(0.0625f);
+        //uv_buffer_vector.push_back(0.875f);
+
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(uv_y);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back(uv_y);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back(uv_y - 0.125f);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back(uv_y - 0.125f);
+
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(uv_y - 0.125f);
+
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(uv_y);
     }
-    uv_buffer_data = new GLfloat[]{
-        0.0625f, 0.875f,
-        0.0f, 0.875f,
-        0.0f, 0.75f,
-
-        0.0f, 0.75f,
-        0.0625f, 0.75f,
-        0.0625f, 0.875f,
-
-        0.0625f, 0.875f,
-        0.0f, 0.875f,
-        0.0f, 0.75f,
-
-        0.0f, 0.75f,
-        0.0625f, 0.75f,
-        0.0625f, 0.875f,
-    };
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 72, vertex_buffer_vector.at(0), GL_STATIC_DRAW);
-    std::cout << vertex_buffer_vector.data() << std::endl;
-    std::cout << &vertex_buffer_data << std::endl;
+    glBufferData(GL_ARRAY_BUFFER, 72 * count, vertex_buffer_vector.data(), GL_STATIC_DRAW);
+
     glGenBuffers(1, &uv_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 48, uv_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 48 * count, uv_buffer_vector.data(), GL_STATIC_DRAW);
 
 }
 
@@ -178,7 +211,7 @@ void Sprite::DoIt(GLuint shader)
     );
 
     //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
-    glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
+    glDrawArrays(GL_TRIANGLES, 0, 6 * _count); // Starting from vertex 0; 3 vertices total -> 1 triangle
     glDisableVertexAttribArray(vertexPositionID);
     glDisableVertexAttribArray(vertexUVID);
 }
