@@ -70,69 +70,56 @@ void Sprite::printText2D(const char* TGAfont, const char* text, int x, int y, in
     _count = count;
     for (int i = 0; i < count; i++)
     {
-        vertex_buffer_vector.push_back(0.5f * 32 + i * 32);
-        vertex_buffer_vector.push_back(0.5f * 32);
+        vertex_buffer_vector.push_back(-0.5f * size + i * size);
+        vertex_buffer_vector.push_back(0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(-0.5f * 32 + i * 32);
-        vertex_buffer_vector.push_back(0.5f * 32);
+        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back(0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(-0.5f * 32 + i * 32);
-        vertex_buffer_vector.push_back(-0.5f * 32);
+        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back(-0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
 
-        vertex_buffer_vector.push_back(-0.5f * 32 + i * 32);
-        vertex_buffer_vector.push_back(-0.5f * 32);
+        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back(-0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(0.5f * 32 + i * 32);
-        vertex_buffer_vector.push_back(-0.5f * 32);
+        vertex_buffer_vector.push_back(-0.5f * size + i * size);
+        vertex_buffer_vector.push_back(-0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(0.5f * 32 + i * 32);
-        vertex_buffer_vector.push_back(0.5f * 32);
+        vertex_buffer_vector.push_back(-0.5f * size + i * size);
+        vertex_buffer_vector.push_back(0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
 
         char character = text[i];
         float uv_x = (character % 16) / 16.0f;
         float uv_y = (character / 16) / 8.0f;
         //H =     72
-        //Xbegin =  0.5f
-        //Ybegin =  0.25f
+        //Xbegin =  -0.5f
+        //Ybegin =  -0.25f
+        //% 16 = 8
 
-        //voor 0 = 48
-        //uv_buffer_vector.push_back(0.0625f);
-        //uv_buffer_vector.push_back(0.875f);
-
-        //uv_buffer_vector.push_back(0.0f);
-        //uv_buffer_vector.push_back(0.875f);
-
-        //uv_buffer_vector.push_back(0.0f);
-        //uv_buffer_vector.push_back(0.75f);
-
-        //uv_buffer_vector.push_back(0.0f);
-        //uv_buffer_vector.push_back(0.75f);
-
-        //uv_buffer_vector.push_back(0.0625f);
-        //uv_buffer_vector.push_back(0.75f);
-
-        //uv_buffer_vector.push_back(0.0625f);
-        //uv_buffer_vector.push_back(0.875f);
-
-        uv_buffer_vector.push_back(uv_x + 0.0625f);
-        uv_buffer_vector.push_back(uv_y);
+        //voor e = 101
+        //Xbegin =  0.3125f
+        //Ybegin =    -0.5f
+        //% 16 = 5
 
         uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back(uv_y);
-
-        uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back(uv_y - 0.125f);
-
-        uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back(uv_y - 0.125f);
+        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
         uv_buffer_vector.push_back(uv_x + 0.0625f);
-        uv_buffer_vector.push_back(uv_y - 0.125f);
+        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
         uv_buffer_vector.push_back(uv_x + 0.0625f);
-        uv_buffer_vector.push_back(uv_y);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
     }
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);

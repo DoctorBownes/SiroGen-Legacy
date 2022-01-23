@@ -12,16 +12,18 @@ Animation::~Animation()
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 {
-	if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
-	{
-        if (AnimationQueue.size() > 0 && !loop)
+    if (0 != spriteanimation->startframe || spriteanimation->GetArray().size() - 1 != spriteanimation->endframe && !loop)
+    {
+        if (AnimationQueue.size() > 0)
         {
             AnimationQueue.erase(AnimationQueue.end());
         }
+    }
+	if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
+	{
         spriteanimation->startframe = 0;
         spriteanimation->frame = spriteanimation->startframe;
-        spriteanimation->endframe = spriteanimation->GetArray().size();
-		//AnimationQueue.push_back(std::make_pair(spriteanimation, loop));
+        spriteanimation->endframe = spriteanimation->GetArray().size() -1;
 		AnimationQueue.insert(AnimationQueue.begin(),std::make_pair(spriteanimation, loop));
 	}
 }
@@ -33,6 +35,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         if (AnimationQueue.size() > 0)
         {
             AnimationQueue.erase(AnimationQueue.begin());
+            std::cout << "Erased" << std::endl;
         }
     }
     if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
@@ -41,6 +44,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         spriteanimation->frame = spriteanimation->startframe;
         spriteanimation->endframe = endframe;
         AnimationQueue.insert(AnimationQueue.begin(), std::make_pair(spriteanimation, loop));
+        std::cout << "Inserted" << std::endl;
     }
 }
 
@@ -79,8 +83,7 @@ void Animation::DoIt(unsigned int _shader)
         if (glfwGetTime() - starttime >= tempvector.at(AnimationQueue.begin()->first->frame).second && !paused)
         {
             AnimationQueue.begin()->first->frame++;
-            //Problem lies here: AnimationQueue.begin()->first->frame == AnimationQueue.begin()
-            if (AnimationQueue.begin()->first->frame == AnimationQueue.begin()->first->endframe)
+            if (AnimationQueue.begin()->first->frame == AnimationQueue.begin()->first->endframe + 1)
             {
                 isFinished = true;
                 AnimationQueue.begin()->first->frame = AnimationQueue.begin()->first->startframe;
