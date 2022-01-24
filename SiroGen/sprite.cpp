@@ -45,23 +45,7 @@ void Sprite::printText2D(const char* TGAfont, const char* text, int x, int y, in
     texture_buffer = texture->LoadTGAImage(TGAfont);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    //GLfloat vertexx[]{
-//    0.5f * 32,  0.5f * 32, 0.0f,
-//   -0.5f * 32,  0.5f * 32, 0.0f,
-//   -0.5f * 32, -0.5f * 32, 0.0f,
 
-//   -0.5f * 32, -0.5f * 32, 0.0f,
-//    0.5f * 32, -0.5f * 32, 0.0f,
-//    0.5f * 32,  0.5f * 32, 0.0f,
-
-//    0.5f * 32 + 32,  0.5f * 32, 0.0f,
-//   -0.5f * 32 + 32,  0.5f * 32, 0.0f,
-//   -0.5f * 32 + 32, -0.5f * 32, 0.0f,
-
-//   -0.5f * 32 + 32, -0.5f * 32, 0.0f,
-//    0.5f * 32 + 32, -0.5f * 32, 0.0f,
-//    0.5f * 32 + 32,  0.5f * 32, 0.0f,
-//};
     int count = 0;
     for (int i = 0; text[i]; i++)
     {

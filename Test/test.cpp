@@ -207,11 +207,12 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
-	gal->AddComponent<Sprite>()->printText2D("assets/BitFontWide.tga", "Something inspiring.", 0, 0, 10);
+	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
+	AddTexttoScene("Scene text", 0, 0, 10);
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
-	this->AddtoScene(gal);
+	//this->AddtoScene(gal);
 	this->AddtoScene(don);
 	this->AddtoScene(guy);
 }

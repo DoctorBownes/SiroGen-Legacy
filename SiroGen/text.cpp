@@ -5,52 +5,118 @@ void Text::initText2D(const char* texturePath)
 
 }
 
-void Text::printText2D(const char* text, int x, int y, int size)
+void Text::printText2D(const char* text, int x, int y, int size, const char* TGAfont)
 {
-	std::vector<glm::vec2> vertices;
-	std::vector<glm::vec2> UVs;
-	int count = 0;
-	for (int i = 0; text[i]; i++)
-	{
-		count++;
-	}
-	for (int i = 0; i < count; i++)
-	{
-		glm::vec2 vertex_up_left = glm::vec2(x + i * size, y + size);
-		glm::vec2 vertex_up_right = glm::vec2(x + i * size + size, y + size);
-		glm::vec2 vertex_down_left = glm::vec2(x + i * size, y);
-		glm::vec2 vertex_down_right = glm::vec2(x + i * size + size, y);
+    _texture = new Texture();
+    texture_buffer = _texture->LoadTGAImage(TGAfont);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		vertices.push_back(vertex_up_left);
-		vertices.push_back(vertex_down_left);
-		vertices.push_back(vertex_up_right);
+    int count = 0;
+    for (int i = 0; text[i]; i++)
+    {
+        count++;
+    }
+    _count = count;
+    for (int i = 0; i < count; i++)
+    {
+        vertex_buffer_vector.push_back(-0.5f * size + i * size);
+        vertex_buffer_vector.push_back(0.5f * size);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back(0.5f * size);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back(-0.5f * size);
+        vertex_buffer_vector.push_back(0.0f);
 
-		vertices.push_back(vertex_down_right);
-		vertices.push_back(vertex_up_right);
-		vertices.push_back(vertex_down_left);
+        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back(-0.5f * size);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(-0.5f * size + i * size);
+        vertex_buffer_vector.push_back(-0.5f * size);
+        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back(-0.5f * size + i * size);
+        vertex_buffer_vector.push_back(0.5f * size);
+        vertex_buffer_vector.push_back(0.0f);
 
-		char character = text[i];
-		float uv_x = (character % 16) / 16.0f;
-		float uv_y = (character / 16) / 16.0f;
+        char character = text[i];
+        float uv_x = (character % 16) / 16.0f;
+        float uv_y = (character / 16) / 8.0f;
+        //H =     72
+        //Xbegin =  -0.5f
+        //Ybegin =  -0.25f
+        //% 16 = 8
 
-		glm::vec2 uv_up_left = glm::vec2(uv_x, 1.0f - uv_y);
-		glm::vec2 uv_up_right = glm::vec2(uv_x+1.0f/16.0f, 1.0f - uv_y);
-		glm::vec2 uv_down_left = glm::vec2(uv_x + 1.0f / 16.0f, 1.0f - (uv_y + 1.0f / 16.0f));
-		glm::vec2 uv_down_right = glm::vec2(uv_x, 1.0f - (uv_y + 1.0f / 16.0f));
+        //voor e = 101
+        //Xbegin =  0.3125f
+        //Ybegin =    -0.5f
+        //% 16 = 5
 
-		UVs.push_back(uv_up_left);
-		UVs.push_back(uv_down_left);
-		UVs.push_back(uv_up_right);
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
-		UVs.push_back(uv_down_right);
-		UVs.push_back(uv_up_right);
-		UVs.push_back(uv_down_left);
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
-	}
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+
+        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+
+        uv_buffer_vector.push_back(uv_x);
+        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
+    }
+    glGenBuffers(1, &vertex_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glBufferData(GL_ARRAY_BUFFER, 72 * count, vertex_buffer_vector.data(), GL_STATIC_DRAW);
+
+    glGenBuffers(1, &uv_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
+    glBufferData(GL_ARRAY_BUFFER, 48 * count, uv_buffer_vector.data(), GL_STATIC_DRAW);
+
 
 }
 
 void Text::cleanupText2D()
 {
 
+}
+
+void Text::DoIt(GLuint shader)
+{
+    glBindTexture(GL_TEXTURE_2D, texture_buffer);
+
+    GLuint vertexPositionID = glGetAttribLocation(shader, "vertexPosition");
+    glEnableVertexAttribArray(vertexPositionID);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glVertexAttribPointer(
+        vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
+        3,                  // size
+        GL_FLOAT,           // type
+        GL_FALSE,           // normalized?
+        0,                  // stride
+        (void*)0            // array buffer offset
+    );
+    // Draw the triangle !
+    GLuint vertexUVID = glGetAttribLocation(shader, "vertexUV");
+    glEnableVertexAttribArray(vertexUVID);
+    glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
+    glVertexAttribPointer(
+        vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
+        2,                                // size
+        GL_FLOAT,                         // type
+        GL_FALSE,                         // normalized?
+        0,                                // stride
+        (void*)0                          // array buffer offset
+    );
+
+    //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
+    glDrawArrays(GL_TRIANGLES, 0, 6 * _count); // Starting from vertex 0; 3 vertices total -> 1 triangle
+    glDisableVertexAttribArray(vertexPositionID);
+    glDisableVertexAttribArray(vertexUVID);
 }
