@@ -208,7 +208,7 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	AddTexttoScene("Scene text", 0, 0, 10);
+	AddTexttoScene("Scene text", 0, 0, 1.0f);
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
@@ -223,13 +223,15 @@ void Test::update(float deltaTime)
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = -180;
-		guy->transform->position->x -= 0.5f;
+		//guy->transform->position->x -= 0.5f;
+		GetMainCamera()->position.x -= 0.5f;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = 0;
-		guy->transform->position->x += 0.5f;
+		//guy->transform->position->x += 0.5f;
+		GetMainCamera()->position.x += 0.5f;
 	}
 	else
 	{
@@ -252,6 +254,6 @@ void Test::update(float deltaTime)
 	{
 		std::cout << "You released Left!" << std::endl;
 	}
-	GetMainCamera()->position.x = guy->transform->position->x;
-	GetMainCamera()->position.y = guy->transform->position->y;
+	//GetMainCamera()->position.x = guy->transform->position->x;
+	//GetMainCamera()->position.y = guy->transform->position->y;
 }

@@ -21,23 +21,23 @@ void Text::printText2D(const char* text, int x, int y, int size, const char* TGA
     for (int i = 0; i < count; i++)
     {
         vertex_buffer_vector.push_back(-0.5f * size + i * size);
-        vertex_buffer_vector.push_back(0.5f * size);
-        vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(0.5f * size + i * size);
-        vertex_buffer_vector.push_back(0.5f * size);
-        vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back( 0.5f * size);
+        vertex_buffer_vector.push_back( 0.0f);
+        vertex_buffer_vector.push_back( 0.5f * size + i * size);
+        vertex_buffer_vector.push_back( 0.5f * size);
+        vertex_buffer_vector.push_back( 0.0f);
+        vertex_buffer_vector.push_back( 0.5f * size + i * size);
         vertex_buffer_vector.push_back(-0.5f * size);
-        vertex_buffer_vector.push_back(0.0f);
+        vertex_buffer_vector.push_back( 0.0f);
 
-        vertex_buffer_vector.push_back(0.5f * size + i * size);
+        vertex_buffer_vector.push_back( 0.5f * size + i * size);
         vertex_buffer_vector.push_back(-0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
         vertex_buffer_vector.push_back(-0.5f * size + i * size);
         vertex_buffer_vector.push_back(-0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
         vertex_buffer_vector.push_back(-0.5f * size + i * size);
-        vertex_buffer_vector.push_back(0.5f * size);
+        vertex_buffer_vector.push_back( 0.5f * size);
         vertex_buffer_vector.push_back(0.0f);
 
         char character = text[i];

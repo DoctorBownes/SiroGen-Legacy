@@ -120,21 +120,9 @@ void Renderer::RenderScene(Scene* scene)
 
 void Renderer::RenderText(Text* text)
 {
-    //glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(0,0,0));
-    //glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(0 * 0.01745329f, 0 * 0.01745329f, 0 * 0.01745329f);
-    //glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1), glm::vec3(1,1,1));
-
-    //glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;
-    //glm::mat4 CameraMatrix = _camera->GetCameraMat();
-    //glm::mat4 projectionMatrix = _camera->GetProjectionMat();
-
-    //glm::mat4 MVP = projectionMatrix * CameraMatrix;
-    //GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
-
-
-    // Send our transformation to the currently bound shader, in the "MVP" uniform
-    // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
-    //glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+    glm::mat4 MVP = glm::mat4(1);
+    GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
     text->DoIt(_shader);
 }
 
