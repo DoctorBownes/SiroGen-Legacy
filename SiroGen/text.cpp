@@ -5,7 +5,7 @@ void Text::initText2D(const char* texturePath)
 
 }
 
-void Text::printText2D(const char* text, int x, int y, int size, const char* TGAfont)
+void Text::printText2D(const char* text, float x, float y, float size, const char* TGAfont)
 {
     _texture = new Texture();
     texture_buffer = _texture->LoadTGAImage(TGAfont);
@@ -20,24 +20,24 @@ void Text::printText2D(const char* text, int x, int y, int size, const char* TGA
     _count = count;
     for (int i = 0; i < count; i++)
     {
-        vertex_buffer_vector.push_back(-0.5f * size + i * size);
-        vertex_buffer_vector.push_back( 0.5f * size);
+        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / size) / 2);//keep
+        vertex_buffer_vector.push_back(y / 540.0f + (size / (size * size) - 1.0f) );//change
         vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back( 0.5f * size + i * size);
-        vertex_buffer_vector.push_back( 0.5f * size);
+        vertex_buffer_vector.push_back((x / 960.0f + (size / (size * size) - 2.0f) + i / size) / 2);//change
+        vertex_buffer_vector.push_back(y / 540.0f + (size / (size * size) - 1.0f));//change
         vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back( 0.5f * size + i * size);
-        vertex_buffer_vector.push_back(-0.5f * size);
+        vertex_buffer_vector.push_back((x / 960.0f + (size / (size * size) - 2.0f) + i / size) / 2);//change
+        vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
         vertex_buffer_vector.push_back( 0.0f);
 
-        vertex_buffer_vector.push_back( 0.5f * size + i * size);
-        vertex_buffer_vector.push_back(-0.5f * size);
+        vertex_buffer_vector.push_back((x / 960.0f + (size / (size * size) - 2.0f) + i / size) / 2);//change
+        vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(-0.5f * size + i * size);
-        vertex_buffer_vector.push_back(-0.5f * size);
+        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / size) / 2);//keep
+        vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back(-0.5f * size + i * size);
-        vertex_buffer_vector.push_back( 0.5f * size);
+        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / size) / 2);//keep
+        vertex_buffer_vector.push_back(y / 540.0f + (size / (size * size) - 1.0f));//change
         vertex_buffer_vector.push_back(0.0f);
 
         char character = text[i];
@@ -56,17 +56,17 @@ void Text::printText2D(const char* text, int x, int y, int size, const char* TGA
         uv_buffer_vector.push_back(uv_x);
         uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
-        uv_buffer_vector.push_back(uv_x + 0.0625f);
+        uv_buffer_vector.push_back(uv_x + 0.0625f /1.5f);
         uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
-        uv_buffer_vector.push_back(uv_x + 0.0625f);
-        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+        uv_buffer_vector.push_back(uv_x + 0.0625f /1.5f);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
 
-        uv_buffer_vector.push_back(uv_x + 0.0625f);
-        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+        uv_buffer_vector.push_back(uv_x + 0.0625f /1.5f);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
 
         uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back(1.0f - uv_y + 0.125f);
+        uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
 
         uv_buffer_vector.push_back(uv_x);
         uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
