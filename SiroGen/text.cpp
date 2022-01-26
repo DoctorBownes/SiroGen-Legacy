@@ -5,10 +5,11 @@ void Text::initText2D(const char* texturePath)
 
 }
 
-void Text::printText2D(const char* text, float x, float y, float size, const char* TGAfont)
+void Text::printText2D(const char* text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
     _texture = new Texture();
     texture_buffer = _texture->LoadTGAImage(TGAfont);
+    textColor = _texture->Palette[Color];
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
@@ -20,38 +21,29 @@ void Text::printText2D(const char* text, float x, float y, float size, const cha
     _count = count;
     for (int i = 0; i < count; i++)
     {
-        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / size) / 2);//keep
-        vertex_buffer_vector.push_back(y / 540.0f + (size / (size * size) - 1.0f) );//change
+        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / (1 / size)) / 2);//keep
+        vertex_buffer_vector.push_back(y / 540.0f + (1 / (1 / size) - 1.0f) );//change
         vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f + (size / (size * size) - 2.0f) + i / size) / 2);//change
-        vertex_buffer_vector.push_back(y / 540.0f + (size / (size * size) - 1.0f));//change
+        vertex_buffer_vector.push_back((x / 960.0f + (1 / (1 / size) - 2.0f) + i / (1 / size)) / 2);//change
+        vertex_buffer_vector.push_back(y / 540.0f + (1 / (1/size) - 1.0f));//change
         vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f + (size / (size * size) - 2.0f) + i / size) / 2);//change
+        vertex_buffer_vector.push_back((x / 960.0f + (1 / (1 / size) - 2.0f) + i / (1 / size)) / 2);//change
         vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
         vertex_buffer_vector.push_back( 0.0f);
 
-        vertex_buffer_vector.push_back((x / 960.0f + (size / (size * size) - 2.0f) + i / size) / 2);//change
+        vertex_buffer_vector.push_back((x / 960.0f + (1 / (1 / size) - 2.0f) + i / (1 / size)) / 2);//change
         vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / size) / 2);//keep
+        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / (1 / size)) / 2);//keep
         vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / size) / 2);//keep
-        vertex_buffer_vector.push_back(y / 540.0f + (size / (size * size) - 1.0f));//change
+        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i / (1 / size)) / 2);//keep
+        vertex_buffer_vector.push_back(y / 540.0f + (1 / (1 / size) - 1.0f));//change
         vertex_buffer_vector.push_back(0.0f);
 
         char character = text[i];
         float uv_x = (character % 16) / 16.0f;
         float uv_y = (character / 16) / 8.0f;
-        //H =     72
-        //Xbegin =  -0.5f
-        //Ybegin =  -0.25f
-        //% 16 = 8
-
-        //voor e = 101
-        //Xbegin =  0.3125f
-        //Ybegin =    -0.5f
-        //% 16 = 5
 
         uv_buffer_vector.push_back(uv_x);
         uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
@@ -71,6 +63,24 @@ void Text::printText2D(const char* text, float x, float y, float size, const cha
         uv_buffer_vector.push_back(uv_x);
         uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
     }
+    vertex_buffer_data = new GLfloat[]{
+        0.5f * _texture->_width,  0.5f * _texture->_height, 0.0f,
+       -0.5f * _texture->_width,  0.5f * _texture->_height, 0.0f,
+       -0.5f * _texture->_width, -0.5f * _texture->_height, 0.0f,
+
+       -0.5f * _texture->_width, -0.5f * _texture->_height, 0.0f,
+        0.5f * _texture->_width, -0.5f * _texture->_height, 0.0f,
+        0.5f * _texture->_width,  0.5f * _texture->_height, 0.0f,
+    };
+    uv_buffer_data = new GLfloat[]{
+        1.0f, 1.0f,
+        0.0f, 1.0f,
+        0.0f, 0.0f,
+
+        0.0f, 0.0f,
+        1.0f, 0.0f,
+        1.0f, 1.0f,
+    };
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, 72 * count, vertex_buffer_vector.data(), GL_STATIC_DRAW);
@@ -89,6 +99,8 @@ void Text::cleanupText2D()
 
 void Text::DoIt(GLuint shader)
 {
+    GLuint ColorID = glGetUniformLocation(shader, "blendColor");
+    glUniform4f(ColorID, textColor.r / 255.0f, textColor.g / 255.0f, textColor.b / 255.0f, 1.0f);
     glBindTexture(GL_TEXTURE_2D, texture_buffer);
 
     GLuint vertexPositionID = glGetAttribLocation(shader, "vertexPosition");

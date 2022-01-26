@@ -11,7 +11,6 @@ public:
 
     void SetSprite(const char* TGA);
     void SetSprite(char canvas[], char width, char height);
-    void printText2D(const char* TGAfont, const char* text, int x, int y, int size);
 
 private:
     Texture* texture;

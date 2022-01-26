@@ -9,7 +9,7 @@ float starttime = 0.0f;
 bool test = 0;
 Test::Test() : Scene()
 {
-	GetMainCamera()->SetZoom(10);
+	//GetMainCamera()->SetZoom(10);
 	char canvas[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -199,7 +199,8 @@ Test::Test() : Scene()
 
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->transform->position = new Vector3(-10.0f, 0.0f);
+	don->AddComponent<Text>()->printText2D("Mario Mario",5,5, 10.0f);
+	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
 	galAnim.AddSprite(galcanvas2, 8, 16,0.6f);
@@ -208,7 +209,7 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	AddTexttoScene("This is the story of the hurricane. The man authorities came to blame. For something that he never done", 0.0f, 200.0f, 10.0f, "assets/PixelFontWide.tga");
+	AddTexttoScene("abcdefg", 0.0f, 200.0f, 0.1f, 0xd);
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
@@ -254,6 +255,7 @@ void Test::update(float deltaTime)
 	{
 		std::cout << "You released Left!" << std::endl;
 	}
+	//guy->transform->position->x += 0.5f;
 	//GetMainCamera()->position.x = guy->transform->position->x;
 	//GetMainCamera()->position.y = guy->transform->position->y;
 }

@@ -14,9 +14,10 @@ const char* fragment_shader = "#version 330 core\n"
 "in vec2 UV;\n"
 "out vec4 FragColor;\n"
 "uniform sampler2D myTextureSampler;\n"
+"uniform vec4 blendColor;\n"
 "void main()\n"
 "{\n"
-"	FragColor = texture2D(myTextureSampler, UV);\n"
+"	FragColor = texture2D(myTextureSampler, UV) * blendColor;\n"
 //"	if (FragColor.a < 0.5)discard;\n"
 "}\n\0";
 
@@ -139,6 +140,7 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
 
     glm::mat4 MVP = projectionMatrix * CameraMatrix * mat;
     GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
+
     
 
     // Send our transformation to the currently bound shader, in the "MVP" uniform
