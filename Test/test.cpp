@@ -9,7 +9,7 @@ float starttime = 0.0f;
 bool test = 0;
 Test::Test() : Scene()
 {
-	//GetMainCamera()->SetZoom(10);
+	GetMainCamera()->SetZoom(10);
 	char canvas[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -197,9 +197,14 @@ Test::Test() : Scene()
 	guy->transform->position = new Vector3(16.0f, 0.0f);
 	//guy->transform->rotation->z = 90.0f;
 
+	const char* hello = "I am bob";
+	const char* hello2 = "I am bob too";
+	hello = hello2;
+
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->AddComponent<Text>()->printText2D("Mario Mario",5,5, 10.0f);
+	don->AddComponent<Text>()->printText2D("Mario Mario",5,50, 10.0f);
+	don->GetComponent<Text>()->printText2D(hello,5,5, 10.0f);
 	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -210,6 +215,7 @@ Test::Test() : Scene()
 	gal = new Entity;
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
 	AddTexttoScene("abcdefg", 0.0f, 200.0f, 0.1f, 0xd);
+	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0xd);
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);

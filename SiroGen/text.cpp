@@ -88,8 +88,9 @@ void Text::printText2D(const char* text, float x, float y, float size, uint8_t C
     glGenBuffers(1, &uv_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
     glBufferData(GL_ARRAY_BUFFER, 48 * count, uv_buffer_vector.data(), GL_STATIC_DRAW);
-
-
+    vertex_buffer_vector.clear();
+    uv_buffer_vector.clear();
+    delete _texture;
 }
 
 void Text::cleanupText2D()
