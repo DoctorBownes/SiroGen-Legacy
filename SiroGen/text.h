@@ -7,9 +7,9 @@
 class Text : public Component
 {
 public:
-	void initText2D(const char* texturePath);
-	void printText2D(const char* text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "assets/LucidaConsole.tga");
-	void cleanupText2D();
+	//void initText2D(const char* texturePath);
+	void printText2D(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "assets/LucidaConsole.tga");
+	//void cleanupText2D();
 	virtual void DoIt(GLuint shader);
 
 private:

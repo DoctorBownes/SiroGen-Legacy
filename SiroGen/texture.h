@@ -13,9 +13,9 @@ public:
 	int _width;
 	int _height;
 
-	GLuint LoadTGAImage(const char* imagepath);
+	GLuint LoadTGAImage(const char* imagepath, bool isFont = false);
 	GLuint LoadPixelImage(char canvas[], char width, char height);
-    Color Palette[16] =
+    const Color Palette[16] =
     {
         ALPHA,
         BLACK,

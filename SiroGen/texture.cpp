@@ -13,7 +13,7 @@ Texture::~Texture()
 
 }
 
-GLuint Texture::LoadTGAImage(const char* imagepath)
+GLuint Texture::LoadTGAImage(const char* imagepath, bool isFont)
 {
 	// Data read from the header of the BMP file
 	unsigned char header[18];
@@ -69,6 +69,7 @@ GLuint Texture::LoadTGAImage(const char* imagepath)
 	fread(data, 1, imageSize, file);
 
 	fclose(file);
+	//std::cout << (int)data[0] << std::endl;
 	glGenTextures(1, &_texture);
 	glBindTexture(GL_TEXTURE_2D, _texture);
 	// set the texture wrapping/filtering options (on the currently bound texture object)
@@ -95,7 +96,38 @@ GLuint Texture::LoadTGAImage(const char* imagepath)
 		break;
 	}
 	case 3:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+		//if (isFont)
+		//{
+		//	unsigned char* newdata = new unsigned char[_width * _height * 4];
+		//	int counter = 0;
+		//	int newcounter = 0;
+		//	for (int i = 0; i < _width * _height; i++)
+		//	{
+		//		if (data[counter] == 0)
+		//		{
+		//			newdata[newcounter] = 0;
+		//			newdata[newcounter +1] = 0;
+		//			newdata[newcounter +2] = 0;
+		//			newdata[newcounter +3] = 255.0f;
+		//		}
+		//		else
+		//		{
+		//			newdata[newcounter] = 255.0f;
+		//			newdata[newcounter + 1] = 255.0f;
+		//			newdata[newcounter + 2] = 255.0f;
+		//			newdata[newcounter + 3] = 0.0f;
+		//		}
+		//		counter += 3;
+		//		newcounter += 4;
+		//	}
+		//	glEnable(GL_BLEND);
+		//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		//}
+		//else
+		//{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+		//}
 		break;
 	case 4:
 		glEnable(GL_BLEND);

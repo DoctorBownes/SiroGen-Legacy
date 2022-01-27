@@ -15,7 +15,7 @@ public:
 	void AddtoScene(Entity* entity);
 	void RemovefromScene(Entity* entity);
 	void DeleteEntity(Entity* entity);
-	void AddTexttoScene(const char* text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "assets/LucidaConsole.tga");
+	void AddTexttoScene(std::string, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "assets/LucidaConsole.tga");
 	std::vector<Entity*> GetEntities() { return _children; };
 	std::vector<Text*> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };

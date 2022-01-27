@@ -1,4 +1,5 @@
 #include "test.h"
+#include <sstream>
 Entity* guy;
 Entity* gal;
 Entity* don;
@@ -182,8 +183,6 @@ Test::Test() : Scene()
 		0x0,0xd,0xd,0x0,0x0,0xd,0xd,0x0,
 		0x0,0xd,0xd,0xd,0x0,0xd,0xd,0xd,
 	};
-
-
 	walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
@@ -196,15 +195,9 @@ Test::Test() : Scene()
 	//guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(16.0f, 0.0f);
 	//guy->transform->rotation->z = 90.0f;
-
-	const char* hello = "I am bob";
-	const char* hello2 = "I am bob too";
-	hello = hello2;
-
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->AddComponent<Text>()->printText2D("Mario Mario",5,50, 10.0f);
-	don->GetComponent<Text>()->printText2D(hello,5,5, 10.0f);
+	don->AddComponent<Text>()->printText2D("Transparant",7000,5000, 5.0f, 0xd);
 	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -213,9 +206,10 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
+	int score = 5;
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	AddTexttoScene("abcdefg", 0.0f, 200.0f, 0.1f, 0xd);
-	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0xd);
+	//AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb, "assets/LucidaConsole32.tga");
+	//AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4);
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);

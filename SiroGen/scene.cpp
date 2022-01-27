@@ -37,7 +37,7 @@ void Scene::DeleteEntity(Entity* entity)
 	std::cout << "Warning: DeleteEntity is unfinished" << std::endl;
 }
 
-void Scene::AddTexttoScene(const char* text, float x, float y, float size, uint8_t Color, const char* TGAfont)
+void Scene::AddTexttoScene(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
 	Text* temptext = new Text();
 	temptext->printText2D(text, x, y, size, Color, TGAfont);
