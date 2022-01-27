@@ -197,7 +197,7 @@ Test::Test() : Scene()
 	//guy->transform->rotation->z = 90.0f;
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->AddComponent<Text>()->printText2D("Transparant",7000,5000, 5.0f, 0xd);
+	don->AddComponent<Text>()->printText2D("Mario Mario",7000,5000, 5.0f, 0xd, "assets/BitFontWide.tga");
 	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -208,8 +208,9 @@ Test::Test() : Scene()
 	gal = new Entity;
 	int score = 5;
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	//AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb, "assets/LucidaConsole32.tga");
-	//AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4);
+	AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb, "assets/BitFontWide.tga");
+	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4, "assets/BitFontWide.tga");
+	RemoveTextfromScene();
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
@@ -224,15 +225,13 @@ void Test::update(float deltaTime)
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = -180;
-		//guy->transform->position->x -= 0.5f;
-		GetMainCamera()->position.x -= 0.5f;
+		guy->transform->position->x -= 0.5f;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = 0;
-		//guy->transform->position->x += 0.5f;
-		GetMainCamera()->position.x += 0.5f;
+		guy->transform->position->x += 0.5f;
 	}
 	else
 	{
@@ -256,6 +255,6 @@ void Test::update(float deltaTime)
 		std::cout << "You released Left!" << std::endl;
 	}
 	//guy->transform->position->x += 0.5f;
-	//GetMainCamera()->position.x = guy->transform->position->x;
-	//GetMainCamera()->position.y = guy->transform->position->y;
+	GetMainCamera()->position.x = guy->transform->position->x;
+	GetMainCamera()->position.y = guy->transform->position->y;
 }

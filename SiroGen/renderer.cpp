@@ -119,12 +119,12 @@ void Renderer::RenderScene(Scene* scene)
     glfwPollEvents();
 }
 
-void Renderer::RenderText(Text* text)
+void Renderer::RenderText(Text text)
 {
     glm::mat4 MVP = glm::mat4(1);
     GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-    text->DoIt(_shader);
+    text.DoIt(_shader);
 }
 
 void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)

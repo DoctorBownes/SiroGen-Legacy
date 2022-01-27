@@ -16,14 +16,15 @@ public:
 	void RemovefromScene(Entity* entity);
 	void DeleteEntity(Entity* entity);
 	void AddTexttoScene(std::string, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "assets/LucidaConsole.tga");
+	void RemoveTextfromScene(int pos = 0);
 	std::vector<Entity*> GetEntities() { return _children; };
-	std::vector<Text*> GetTexts() { return scenetexts; };
+	std::vector<Text> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };
 	Input* GetInput() { return _input; };
 private:
 	Input* _input = new Input();
 	Camera* MainCamera = new Camera(false);
-	std::vector<Text*> scenetexts;
+	std::vector<Text> scenetexts;
 	std::vector<Entity*> _children;
 };
 

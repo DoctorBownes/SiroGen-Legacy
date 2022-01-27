@@ -96,38 +96,39 @@ GLuint Texture::LoadTGAImage(const char* imagepath, bool isFont)
 		break;
 	}
 	case 3:
-		//if (isFont)
-		//{
-		//	unsigned char* newdata = new unsigned char[_width * _height * 4];
-		//	int counter = 0;
-		//	int newcounter = 0;
-		//	for (int i = 0; i < _width * _height; i++)
-		//	{
-		//		if (data[counter] == 0)
-		//		{
-		//			newdata[newcounter] = 0;
-		//			newdata[newcounter +1] = 0;
-		//			newdata[newcounter +2] = 0;
-		//			newdata[newcounter +3] = 255.0f;
-		//		}
-		//		else
-		//		{
-		//			newdata[newcounter] = 255.0f;
-		//			newdata[newcounter + 1] = 255.0f;
-		//			newdata[newcounter + 2] = 255.0f;
-		//			newdata[newcounter + 3] = 0.0f;
-		//		}
-		//		counter += 3;
-		//		newcounter += 4;
-		//	}
-		//	glEnable(GL_BLEND);
-		//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		//}
-		//else
-		//{
+		if (isFont)
+		{
+			unsigned char* newdata = new unsigned char[_width * _height * 4];
+			int counter = 0;
+			int newcounter = 0;
+			for (int i = 0; i < _width * _height; i++)
+			{
+				if (data[counter] == 0)
+				{
+					newdata[newcounter] = 0;
+					newdata[newcounter +1] = 0;
+					newdata[newcounter +2] = 0;
+					newdata[newcounter +3] = 0.0f;
+				}
+				else
+				{
+					newdata[newcounter] = 255.0f;
+					newdata[newcounter + 1] = 255.0f;
+					newdata[newcounter + 2] = 255.0f;
+					newdata[newcounter + 3] = 255.0f;
+				}
+				counter += 3;
+				newcounter += 4;
+			}
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, newdata);
+			delete[] newdata;
+		}
+		else
+		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
-		//}
+		}
 		break;
 	case 4:
 		glEnable(GL_BLEND);

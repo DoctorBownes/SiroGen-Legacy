@@ -39,7 +39,15 @@ void Scene::DeleteEntity(Entity* entity)
 
 void Scene::AddTexttoScene(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
-	Text* temptext = new Text();
-	temptext->printText2D(text, x, y, size, Color, TGAfont);
+	Text temptext;
+	temptext.printText2D(text, x, y, size, Color, TGAfont);
 	scenetexts.push_back(temptext);
+}
+
+void Scene::RemoveTextfromScene(int pos)
+{
+	if (scenetexts.size() > 0)
+	{
+		scenetexts.erase(scenetexts.begin() + pos);
+	}
 }
