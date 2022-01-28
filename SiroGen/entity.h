@@ -66,6 +66,7 @@ void Entity::RemoveComponent()
 {
 	if (componentlist.count(typeid(T).hash_code()))
 	{
+		delete componentlist.find(typeid(T).hash_code())->second;
 		componentlist.erase(componentlist.find(typeid(T).hash_code()));
 	}
 	else

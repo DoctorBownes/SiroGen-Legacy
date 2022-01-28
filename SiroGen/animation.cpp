@@ -12,7 +12,7 @@ Animation::~Animation()
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 {
-    if (0 != spriteanimation->startframe || spriteanimation->GetArray().size() - 1 != spriteanimation->endframe && !loop)
+    if ((0 != spriteanimation->startframe || spriteanimation->GetArray().size() - 1 != spriteanimation->endframe) && !loop)
     {
         if (AnimationQueue.size() > 0)
         {
@@ -30,7 +30,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe)
 {
-    if (startframe != spriteanimation->startframe || endframe != spriteanimation->endframe && !loop)
+    if ((startframe != spriteanimation->startframe || endframe != spriteanimation->endframe) && !loop)
     {
         if (AnimationQueue.size() > 0)
         {
@@ -80,19 +80,22 @@ void Animation::DoIt(unsigned int _shader)
         Component* tempsprite = tempvector.at(AnimationQueue.begin()->first->frame).first;
         isFinished = false;
         tempsprite->DoIt(_shader);
-        if (glfwGetTime() - starttime >= tempvector.at(AnimationQueue.begin()->first->frame).second && !paused)
+        if (AnimationQueue.begin()->first->startframe != AnimationQueue.begin()->first->endframe)
         {
-            AnimationQueue.begin()->first->frame++;
-            if (AnimationQueue.begin()->first->frame == AnimationQueue.begin()->first->endframe + 1)
+            if (glfwGetTime() - starttime >= tempvector.at(AnimationQueue.begin()->first->frame).second && !paused)
             {
-                isFinished = true;
-                AnimationQueue.begin()->first->frame = AnimationQueue.begin()->first->startframe;
-                if (!AnimationQueue.begin()->second)
+                AnimationQueue.begin()->first->frame++;
+                if (AnimationQueue.begin()->first->frame == AnimationQueue.begin()->first->endframe + 1)
                 {
-                    RemoveAnimation();
+                    isFinished = true;
+                    AnimationQueue.begin()->first->frame = AnimationQueue.begin()->first->startframe;
+                    if (!AnimationQueue.begin()->second)
+                    {
+                        RemoveAnimation();
+                    }
                 }
+                starttime = glfwGetTime();
             }
-            starttime = glfwGetTime();
         }
     }
 }

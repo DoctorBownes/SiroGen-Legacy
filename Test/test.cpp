@@ -1,5 +1,4 @@
 #include "test.h"
-#include <sstream>
 Entity* guy;
 Entity* gal;
 Entity* don;
@@ -197,7 +196,8 @@ Test::Test() : Scene()
 	//guy->transform->rotation->z = 90.0f;
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->AddComponent<Text>()->printText2D("Mario Mario",7000,5000, 5.0f, 0xd, "assets/BitFontWide.tga");
+	don->RemoveComponent<Sprite>();
+	don->AddComponent<Text>()->printText2D("Mario Mario",7000,5000, 5.0f, 0xd, "assets/PixelFontWide.tga");
 	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -207,9 +207,10 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
 	int score = 5;
+
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb, "assets/BitFontWide.tga");
-	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4, "assets/BitFontWide.tga");
+	AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb, "assets/PixelFontWide.tga");
+	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4, "assets/PixelFontWide.tga");
 	RemoveTextfromScene();
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
@@ -239,7 +240,7 @@ void Test::update(float deltaTime)
 	}
 	if (GetInput()->KeyPressed(KeyCode::Space))
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&smokeAnim, true, 0, 1);
+		guy->GetComponent<Animation>()->PlayAnimation(&smokeAnim, true);
 	}
 	if (GetInput()->KeyPressed(KeyCode::LeftControl))
 	{

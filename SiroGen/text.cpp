@@ -1,13 +1,20 @@
 #include "text.h"
 
-//void Text::initText2D(const char* texturePath)
-//{
-//
-//}
+Text::Text()
+{
+    texture_buffer = 0;
+    vertex_buffer = 0;
+    uv_buffer = 0;
+    _texture = new Texture();
+}
+
+Text::~Text()
+{
+
+}
 
 void Text::printText2D(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
-    _texture = new Texture();
     texture_buffer = _texture->LoadTGAImage(TGAfont, true);
     textColor = _texture->Palette[Color];
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
@@ -58,24 +65,7 @@ void Text::printText2D(std::string text, float x, float y, float size, uint8_t C
         uv_buffer_vector.push_back(uv_x);
         uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
     }
-    vertex_buffer_data = new GLfloat[]{
-        0.5f * _texture->_width,  0.5f * _texture->_height, 0.0f,
-       -0.5f * _texture->_width,  0.5f * _texture->_height, 0.0f,
-       -0.5f * _texture->_width, -0.5f * _texture->_height, 0.0f,
 
-       -0.5f * _texture->_width, -0.5f * _texture->_height, 0.0f,
-        0.5f * _texture->_width, -0.5f * _texture->_height, 0.0f,
-        0.5f * _texture->_width,  0.5f * _texture->_height, 0.0f,
-    };
-    uv_buffer_data = new GLfloat[]{
-        1.0f, 1.0f,
-        0.0f, 1.0f,
-        0.0f, 0.0f,
-
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        1.0f, 1.0f,
-    };
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, 72 * text.size(), vertex_buffer_vector.data(), GL_STATIC_DRAW);
