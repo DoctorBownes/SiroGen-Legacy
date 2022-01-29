@@ -196,8 +196,7 @@ Test::Test() : Scene()
 	//guy->transform->rotation->z = 90.0f;
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->RemoveComponent<Sprite>();
-	don->AddComponent<Text>()->printText2D("Mario Mario",7000,5000, 5.0f, 0xd, "assets/PixelFontWide.tga");
+	don->AddComponent<Text>()->printText2D("Mario Mario",7000,5000, 5.0f, 0xd);
 	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -209,9 +208,9 @@ Test::Test() : Scene()
 	int score = 5;
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb, "assets/PixelFontWide.tga");
-	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4, "assets/PixelFontWide.tga");
-	RemoveTextfromScene();
+	AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb);
+	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4);
+	//RemoveTextfromScene();
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
