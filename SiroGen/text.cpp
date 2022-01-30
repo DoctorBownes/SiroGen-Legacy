@@ -35,24 +35,24 @@ void Text::printText2D(std::string text, float x, float y, float size, uint8_t C
 
     for (int i = 0; i < text.size(); i++)
     {
-        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i * size) / 2);//keep
-        vertex_buffer_vector.push_back(y / 540.0f + (size - 1.0f) );//change
+        vertex_buffer_vector.push_back((x  -2.0f  + i * size) / 2);//keep
+        vertex_buffer_vector.push_back(y  + (size - 1.0f) );//change
         vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f + (size - 2.0f) + i * size) / 2);//change
-        vertex_buffer_vector.push_back(y / 540.0f + (size - 1.0f));//change
+        vertex_buffer_vector.push_back((x  + (size - 2.0f) + i * size) / 2);//change
+        vertex_buffer_vector.push_back(y  + (size - 1.0f));//change
         vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f + (size - 2.0f) + i * size) / 2);//change
-        vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
+        vertex_buffer_vector.push_back((x  + (size - 2.0f) + i * size) / 2);//change
+        vertex_buffer_vector.push_back(y  -1.0f );//keep
         vertex_buffer_vector.push_back( 0.0f);
 
-        vertex_buffer_vector.push_back((x / 960.0f + (size - 2.0f) + i * size) / 2);//change
-        vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
+        vertex_buffer_vector.push_back((x  + (size - 2.0f) + i * size) / 2);//change
+        vertex_buffer_vector.push_back(y  -1.0f );//keep
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i * size) / 2);//keep
-        vertex_buffer_vector.push_back(y / 540.0f -1.0f );//keep
+        vertex_buffer_vector.push_back((x  -2.0f  + i * size) / 2);//keep
+        vertex_buffer_vector.push_back(y  -1.0f );//keep
         vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back((x / 960.0f -2.0f  + i * size) / 2);//keep
-        vertex_buffer_vector.push_back(y / 540.0f + (size - 1.0f));//change
+        vertex_buffer_vector.push_back((x  -2.0f  + i * size) / 2);//keep
+        vertex_buffer_vector.push_back(y  + (size - 1.0f));//change
         vertex_buffer_vector.push_back(0.0f);
 
         char character = text[i];

@@ -12,20 +12,7 @@ Animation::~Animation()
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 {
-    if ((0 != spriteanimation->startframe || spriteanimation->GetArray().size() - 1 != spriteanimation->endframe) && !loop)
-    {
-        if (AnimationQueue.size() > 0)
-        {
-            AnimationQueue.erase(AnimationQueue.end());
-        }
-    }
-	if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
-	{
-        spriteanimation->startframe = 0;
-        spriteanimation->frame = spriteanimation->startframe;
-        spriteanimation->endframe = spriteanimation->GetArray().size() -1;
-		AnimationQueue.insert(AnimationQueue.begin(),std::make_pair(spriteanimation, loop));
-	}
+    PlayAnimation(spriteanimation, loop, 0, spriteanimation->GetArray().size() - 1);
 }
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe)
@@ -35,6 +22,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         if (AnimationQueue.size() > 0)
         {
             AnimationQueue.erase(AnimationQueue.begin());
+            starttime = glfwGetTime();
             std::cout << "Erased" << std::endl;
         }
     }

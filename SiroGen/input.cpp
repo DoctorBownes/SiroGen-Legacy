@@ -1,8 +1,10 @@
 #include "input.h"
+#include <iostream>
 
 void Input::Init(GLFWwindow* window)
 {
 	_window = window;
+	GetMousePos();
 }
 
 bool Input::KeyPressed(KeyCode key)
@@ -77,4 +79,9 @@ bool Input::MouseDown(MouseButton button)
 		return true;
 	}
 	return false;
+}
+
+void Input::GetMousePos()
+{
+	glfwGetCursorPos(_window, &mousex, &mousey);
 }

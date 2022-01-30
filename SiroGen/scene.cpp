@@ -40,7 +40,7 @@ void Scene::DeleteEntity(Entity* entity)
 void Scene::AddTexttoScene(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
 	Text temptext;
-	temptext.printText2D(text, x, y, size, Color, TGAfont);
+	temptext.printText2D(text, x / 480, y / 540, size / 64, Color, TGAfont);
 	scenetexts.push_back(temptext);
 }
 

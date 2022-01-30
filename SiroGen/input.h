@@ -148,12 +148,15 @@ public:
 	bool MousePressed(MouseButton button);
 	bool MouseReleased(MouseButton button);
 	bool MouseDown(MouseButton button);
-	//double mouseX = 0;
-	//double mouseY = 0;
+	void GetMousePos();
+	double GetMousePosX() { return mousex; };
+	double GetMousePosY() { return mousey; };
 private:
 	GLFWwindow* _window;
 	bool mousereleased[8];
 	bool mousepressed[8];
 	bool keyreleased[118];
 	bool keypressed[118];
+	double mousex = 0;
+	double mousey = 0;
 };

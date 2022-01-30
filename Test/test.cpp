@@ -196,7 +196,7 @@ Test::Test() : Scene()
 	//guy->transform->rotation->z = 90.0f;
 	don = new Entity;
 	don->AddComponent<Sprite>()->SetSprite(doncanvas, 8, 16);
-	don->AddComponent<Text>()->printText2D("Mario Mario",7000,5000, 5.0f, 0xd);
+	don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
 	//don->transform->position = new Vector3(-10.0f, 0.0f);
 
 	galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -205,11 +205,10 @@ Test::Test() : Scene()
 	galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	gal = new Entity;
-	int score = 5;
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
-	AddTexttoScene("hello", 0.0f, 200.0f, 0.1f, 0xb);
-	AddTexttoScene("hijklmnop", 0.0f, 300.0f, 0.1f, 0x4);
+	AddTexttoScene("Luigi Mario", 0.0f, 200.0f, 5.0f, 0xb);
+	//AddTexttoScene("hijklmnop", 0.0f, 300.0f, 5.0f, 0x4);
 	//RemoveTextfromScene();
 	gal->transform->position = new Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
