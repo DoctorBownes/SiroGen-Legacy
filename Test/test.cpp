@@ -316,13 +316,13 @@ void Test::update(float deltaTime)
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = -180;
-		guy->transform->position->x -= 5.0f;
+		guy->transform->position->x -= 300.0f * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = 0;
-		guy->transform->position->x += 5.0f;
+		guy->transform->position->x += 300.0f * deltaTime;
 	}
 	else
 	{

@@ -22,7 +22,7 @@ void Core::Start(Scene* scene)
 
 void Core::CalculateDeltaTime()
 {
-	double starttime = glfwGetTime();
+	static double starttime = glfwGetTime();
 	double endtime = glfwGetTime();
 	deltaTime = endtime - starttime;
 	starttime = endtime;
