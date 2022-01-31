@@ -10,7 +10,7 @@ public:
 	Text();
 	~Text();
 	//void initText2D(const char* texturePath);
-	void printText2D(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
+	void SetText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
 	//void cleanupText2D();
 	virtual void DoIt(GLuint shader);
 

@@ -17,22 +17,22 @@ public:
 	GLuint LoadPixelImage(char canvas[], unsigned char width, unsigned char height);
     const Color Palette[16] =
     {
-        ALPHA,
-        BLACK,
-        DARKBLUE,
-        BLUE,
-        DARKRED,
-        RED,
-        DARKMAGENTA,
-        MAGENTA,
-        DARKGREEN,
-        GREEN,
-        DARKCYAN,
-        CYAN,
-        DARKYELLOW,
-        YELLOW,
-        GRAY,
-        WHITE
+        ALPHA, //0
+        BLACK, //1
+        DARKBLUE, //2
+        BLUE, //3
+        DARKRED, //4
+        RED, //5
+        DARKMAGENTA, //6
+        MAGENTA, //7
+        DARKGREEN, //8
+        GREEN, //9
+        DARKCYAN, //10
+        CYAN, //11
+        DARKYELLOW, //12
+        YELLOW, //13
+        GRAY, //14
+        WHITE //15
     };
 private:
 	GLuint _texture;

@@ -7,13 +7,21 @@ Sprite::Sprite()
     texture_buffer = 0;
     uv_buffer = 0;
     texture = new Texture();
-    vertex_buffer_data = nullptr;
-    uv_buffer_data = nullptr;
+    vertex_buffer_data = 0;
+    uv_buffer_data = 0;
+    GenerateSprite();
 }
 
 Sprite::~Sprite()
 {
     delete texture;
+}
+
+void Sprite::RemoveSprite()
+{
+    vertex_buffer_data = 0;
+    uv_buffer_data = 0;
+    GenerateSprite();
 }
 
 void Sprite::SetSprite(const char* TGA)

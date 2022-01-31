@@ -25,5 +25,5 @@ void Core::CalculateDeltaTime()
 	double starttime = glfwGetTime();
 	double endtime = glfwGetTime();
 	deltaTime = endtime - starttime;
-	endtime = starttime;
+	starttime = endtime;
 }

@@ -18,7 +18,7 @@ Text::~Text()
 
 }
 
-void Text::printText2D(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
+void Text::SetText(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
     if (!TGAfont[0])
     {
