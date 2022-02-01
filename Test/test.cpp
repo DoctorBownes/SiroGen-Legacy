@@ -261,8 +261,8 @@ void Test::ShowSlide()
 	{
 	case 0:
 	{
-		AddSceneText("SiroGen: Framework", 500.0f, 540.0f, 8.0f, 0xb, "Assets/LucidaConsole.tga");
-		AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
+		AddSceneText("SiroGen: Framework \n\n\nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
+		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
 		gal->GetComponent<Sprite>()->RemoveSprite();
 		break;
 	}

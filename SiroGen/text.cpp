@@ -33,49 +33,62 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     _count = text.size();
 
+    float linex = 0.0f;
+    linex = x;
+    float liney = 0.0f;
+
     for (int i = 0; i < text.size(); i++)
     {
-        vertex_buffer_vector.push_back((x  -2.0f  + i * size) / 2);//keep
-        vertex_buffer_vector.push_back(y  + (size - 1.0f) );//change
-        vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back((x  + (size - 2.0f) + i * size) / 2);//change
-        vertex_buffer_vector.push_back(y  + (size - 1.0f));//change
-        vertex_buffer_vector.push_back( 0.0f);
-        vertex_buffer_vector.push_back((x  + (size - 2.0f) + i * size) / 2);//change
-        vertex_buffer_vector.push_back(y  -1.0f );//keep
-        vertex_buffer_vector.push_back( 0.0f);
+        if (text[i] == char(10))
+        {
+            liney += 0.1251f;
+            x = linex;
+        }
+        else
+        {
+            vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
+            vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
+            vertex_buffer_vector.push_back(0.0f);
+            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2);//change
+            vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
+            vertex_buffer_vector.push_back(0.0f);
+            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2);//change
+            vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back(0.0f);
 
-        vertex_buffer_vector.push_back((x  + (size - 2.0f) + i * size) / 2);//change
-        vertex_buffer_vector.push_back(y  -1.0f );//keep
-        vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back((x  -2.0f  + i * size) / 2);//keep
-        vertex_buffer_vector.push_back(y  -1.0f );//keep
-        vertex_buffer_vector.push_back(0.0f);
-        vertex_buffer_vector.push_back((x  -2.0f  + i * size) / 2);//keep
-        vertex_buffer_vector.push_back(y  + (size - 1.0f));//change
-        vertex_buffer_vector.push_back(0.0f);
+            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2);//change
+            vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back(0.0f);
+            vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
+            vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back(0.0f);
+            vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
+            vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
+            vertex_buffer_vector.push_back(0.0f);
+            x += size;
 
-        char character = text[i];
-        float uv_x = (character % 16) / 16.0f;
-        float uv_y = (character / 16) / 8.0f;
+            char character = text[i];
+            float uv_x = (character % 16) / 16.0f;
+            float uv_y = (character / 16) / 8.0f;
 
-        uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
+            uv_buffer_vector.push_back(uv_x);
+            uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
-        uv_buffer_vector.push_back(uv_x + 0.0625f /1.5f);
-        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
+            uv_buffer_vector.push_back(uv_x + 0.0625f / 1.5f);
+            uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
-        uv_buffer_vector.push_back(uv_x + 0.0625f /1.5f);
-        uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
+            uv_buffer_vector.push_back(uv_x + 0.0625f / 1.5f);
+            uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
 
-        uv_buffer_vector.push_back(uv_x + 0.0625f /1.5f);
-        uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
+            uv_buffer_vector.push_back(uv_x + 0.0625f / 1.5f);
+            uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
 
-        uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
+            uv_buffer_vector.push_back(uv_x);
+            uv_buffer_vector.push_back(1.0f - uv_y + 0.1251f);
 
-        uv_buffer_vector.push_back(uv_x);
-        uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
+            uv_buffer_vector.push_back(uv_x);
+            uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
+        }
     }
 
     glGenBuffers(1, &vertex_buffer);
