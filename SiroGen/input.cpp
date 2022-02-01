@@ -1,5 +1,4 @@
 #include "input.h"
-#include <iostream>
 
 void Input::Init(GLFWwindow* window)
 {

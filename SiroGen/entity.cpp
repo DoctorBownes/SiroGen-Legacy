@@ -5,7 +5,7 @@ Entity::Entity()
 	transform = new Transform;
 }
 
-void Entity::update()
+void Entity::update(float deltaTime)
 {
 
 }
@@ -26,4 +26,5 @@ void Entity::Removechild(Entity* entity)
 Entity::~Entity()
 {
 	delete transform;
+	delete input;
 }

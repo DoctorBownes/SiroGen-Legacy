@@ -7,6 +7,7 @@
 #include <SiroGen/sprite.h>
 #include <SiroGen/animation.h>
 #include <SiroGen/text.h>
+#include <SiroGen/input.h>
 
 class Entity
 {
@@ -28,11 +29,14 @@ public:
 	template <typename T>
 	void RemoveComponent();
 
-	void update();
+	virtual void update(float deltaTime);
 	std::map<size_t, Component*> GetComponentList() { return componentlist; };
 
 	Transform* transform;
+	Input* GetInput() { return input; };
+
 private:
+	Input* input = new Input();
 	std::vector<Entity*> _children;
 	std::map<size_t, Component*> componentlist;
 };

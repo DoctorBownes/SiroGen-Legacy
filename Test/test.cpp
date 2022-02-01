@@ -1,4 +1,5 @@
 #include "test.h"
+
 Entity* guy;
 Entity* gal;
 Entity* don;
@@ -6,6 +7,7 @@ SpriteAnimation walkAnim;
 SpriteAnimation smokeAnim;
 SpriteAnimation galAnim;
 SpriteAnimation waveAnim;
+Player* jon;
 float starttime = 0.0f;
 bool test = 0;
 int counter = 0;
@@ -203,6 +205,7 @@ Test::Test() : Scene()
 		0x0,0xd,0xd,0x0,0x0,0xd,0xd,0x0,
 		0x0,0xd,0xd,0xd,0x0,0xd,0xd,0xd,
 	};
+	jon = new Player();
 	walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
@@ -235,6 +238,7 @@ Test::Test() : Scene()
 	//galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas5, 8, 16,0.6f);
+	this->AddtoScene(jon);
 	gal = new Entity;
 	gal->AddComponent<Sprite>();
 	gal->transform->position->x = 500;

@@ -12,6 +12,9 @@ public:
 	~Scene();
 
 	virtual void update(float deltaTime) = 0;
+	void updateEntities(Entity* entity, float deltaTime);
+	void InputInit(Entity* entity, GLFWwindow* window);
+
 	void AddtoScene(Entity* entity);
 	void RemovefromScene(Entity* entity);
 	void DeleteEntity(Entity* entity);

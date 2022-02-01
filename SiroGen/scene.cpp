@@ -14,6 +14,28 @@ void Scene::update(float deltaTime)
 
 }
 
+void Scene::InputInit(Entity* entity, GLFWwindow* window)
+{
+	entity->GetInput()->Init(window);
+	std::vector<Entity*> child = entity->Getchildren();
+	std::vector<Entity*>::iterator it;
+	for (it = child.begin(); it != child.end(); it++)
+	{
+		InputInit(*it, window);
+	}
+}
+
+void Scene::updateEntities(Entity* entity, float deltaTime)
+{
+	entity->update(deltaTime);
+	std::vector<Entity*> child = entity->Getchildren();
+	std::vector<Entity*>::iterator it;
+	for (it = child.begin(); it != child.end(); it++)
+	{
+		updateEntities(*it, deltaTime);
+	}
+}
+
 void Scene::AddtoScene(Entity* entity)
 {
 	_children.push_back(entity);
