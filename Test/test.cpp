@@ -261,7 +261,7 @@ void Test::ShowSlide()
 	{
 	case 0:
 	{
-		AddSceneText("SiroGen: Framework \n\n\nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
+		AddSceneText("SiroGen: Framework \nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
 		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
 		gal->GetComponent<Sprite>()->RemoveSprite();
 		break;
@@ -272,9 +272,7 @@ void Test::ShowSlide()
 		AddSceneText("- Wat is er nu beschikbaar?", 100.0f, 540.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
 		AddSceneText("- Plannen voor de toekomst.", 100.0f, 440.0f, 6.0f, 9, "Assets/LucidaConsole.tga");
 		gal->GetComponent<Sprite>()->SetSprite("assets/Thinking.tga");
-		AddSceneText("https://www.kindpng.com/picc/m/", 1150.0f, 190.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		AddSceneText("72-721616_question-mark-clip-art", 1150.0f, 160.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		AddSceneText("-free-clipart-images-image.png", 1150.0f, 130.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
+		AddSceneText("https://www.kindpng.com/picc/m/72\n-721616_question-mark-clip-art-\nfree-clipart-images-image.png", 1150.0f, 190.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
 		break;
 	case 2:
 		AddSceneText("Korte samenvatting.", 100.0f, 940.0f, 8.0f, 11, "Assets/LucidaConsole.tga");
@@ -284,8 +282,7 @@ void Test::ShowSlide()
 		AddSceneText("- Renderer checkt op ", 100.0f, 390.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
 		AddSceneText("components.", 190.0f, 340.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
 		gal->GetComponent<Sprite>()->SetSprite("assets/ccomponents2.tga");
-		AddSceneText("https://www.merinternationalusa.com/wp-", 1000.0f, 160.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		AddSceneText("content/uploads/2016/10/ccomponents2.jpg", 1000.0f, 130.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
+		AddSceneText("https://www.merinternationalusa.com/wp-content\n/uploads/2016/10/ccomponents2.jpg", 1000.0f, 160.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
 		this->RemovefromScene(guy);
 		this->RemovefromScene(don);
 		break;

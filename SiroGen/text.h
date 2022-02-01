@@ -19,7 +19,7 @@ private:
 
 	Texture* _texture;
 	std::vector<GLfloat> vertex_buffer_vector;
-	std::vector<GLfloat> uv_buffer_vector;
+	std::vector<GLfloat> uv_buffer_vector = std::vector<GLfloat>();
 
 	GLuint texture_buffer;
 	GLuint vertex_buffer;

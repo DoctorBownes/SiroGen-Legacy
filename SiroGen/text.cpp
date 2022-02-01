@@ -41,7 +41,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     {
         if (text[i] == char(10))
         {
-            liney += 0.1251f;
+            liney += 0.1251f;// /linelength
             x = linex;
         }
         else
@@ -65,7 +65,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
             vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
             vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
-            x += size;
+            x += size;// /spacebetweencharacters
 
             char character = text[i];
             float uv_x = (character % 16) / 16.0f;
