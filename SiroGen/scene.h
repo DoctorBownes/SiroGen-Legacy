@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <set>
 #include <SiroGen/entity.h>
 #include <SiroGen/camera.h>
 #include <SiroGen/input.h>
@@ -18,7 +18,7 @@ public:
 	void AddtoScene(Entity* entity);
 	void RemovefromScene(Entity* entity);
 	void DeleteEntity(Entity* entity);
-	void AddSceneText(std::string, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
+	void AddSceneText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
 	void RemoveSceneText(int pos = 0);
 	void SceneTextClear();
 	std::vector<Entity*> GetEntities() { return _children; };

@@ -31,11 +31,10 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     textColor = _texture->Palette[Color];
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    _count = text.size();
 
     float linex = 0.0f;
-    linex = x;
     float liney = 0.0f;
+    linex = x;
 
     for (int i = 0; i < text.size(); i++)
     {
@@ -46,23 +45,23 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
         }
         else
         {
-            vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
+            vertex_buffer_vector.push_back((x - 2.0f) / 2.0f);//keep
             vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2);//change
+            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2.0f);//change
             vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2);//change
+            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2.0f);//change
             vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
             vertex_buffer_vector.push_back(0.0f);
 
-            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2);//change
+            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2.0f);//change
             vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
+            vertex_buffer_vector.push_back((x - 2.0f) / 2.0f);//keep
             vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x - 2.0f) / 2);//keep
+            vertex_buffer_vector.push_back((x - 2.0f) / 2.0f);//keep
             vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
             x += size;// /spacebetweencharacters
@@ -88,16 +87,16 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
 
             uv_buffer_vector.push_back(uv_x);
             uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
+            _count++;
         }
     }
-
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 72 * text.size(), vertex_buffer_vector.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 72 * _count, vertex_buffer_vector.data(), GL_STATIC_DRAW);
 
     glGenBuffers(1, &uv_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 48 * text.size(), uv_buffer_vector.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 48 * _count, uv_buffer_vector.data(), GL_STATIC_DRAW);
     vertex_buffer_vector.clear();
     uv_buffer_vector.clear();
     delete _texture;
@@ -142,4 +141,5 @@ void Text::DoIt(GLuint shader)
     glDrawArrays(GL_TRIANGLES, 0, 6 * _count); // Starting from vertex 0; 3 vertices total -> 1 triangle
     glDisableVertexAttribArray(vertexPositionID);
     glDisableVertexAttribArray(vertexUVID);
+    glDisableVertexAttribArray(ColorID);
 }

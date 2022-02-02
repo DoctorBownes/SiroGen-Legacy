@@ -62,7 +62,7 @@ void Scene::DeleteEntity(Entity* entity)
 void Scene::AddSceneText(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
 	Text temptext = Text();
-	temptext.SetText(text, x / 480, y / 540, size / 64, Color, TGAfont);
+	temptext.SetText(text, x / 480.0f, y / 540.0f, size / 64.0f, Color, TGAfont);
 	scenetexts.push_back(temptext);
 }
 
@@ -70,7 +70,7 @@ void Scene::RemoveSceneText(int pos)
 {
 	if (scenetexts.size() > 0)
 	{
-		scenetexts.erase(scenetexts.begin() + pos);
+		scenetexts.erase(scenetexts.begin());
 	}
 }
 

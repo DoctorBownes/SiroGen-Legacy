@@ -7,6 +7,7 @@
 #include <SiroGen/sprite.h>
 #include <SiroGen/animation.h>
 #include <SiroGen/text.h>
+#include <SiroGen/collider.h>
 #include <SiroGen/input.h>
 
 class Entity

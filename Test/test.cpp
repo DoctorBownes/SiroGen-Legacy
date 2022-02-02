@@ -10,6 +10,7 @@ SpriteAnimation waveAnim;
 Player* jon;
 float starttime = 0.0f;
 bool test = 0;
+float width = 0;
 int counter = 0;
 Test::Test() : Scene()
 {
@@ -221,6 +222,7 @@ Test::Test() : Scene()
 
 	guy = new Entity;
 	guy->AddComponent<Animation>();
+	guy->AddComponent<Collider>();
 	//guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(0.0f, 0.0f);
 	guy->transform->scale->x = 10;
@@ -228,6 +230,7 @@ Test::Test() : Scene()
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti", 5,10,5,0xd);
+	don->AddComponent<Collider>()->SetUpCollider(true,-10,0,11,10);
 	don->transform->scale->x = 10;
 	don->transform->scale->y = 10;
 	don->transform->position->x = -300;
@@ -251,79 +254,28 @@ Test::Test() : Scene()
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
+	this->AddtoScene(guy);
+	this->AddtoScene(don);
 	ShowSlide();
-}
-
-void Test::ShowSlide()
-{
-	SceneTextClear();
-	switch (counter)
-	{
-	case 0:
-	{
-		AddSceneText("SiroGen: Framework \nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
-		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
-		gal->GetComponent<Sprite>()->RemoveSprite();
-		break;
-	}
-	case 1:
-		AddSceneText("Inhoud: ", 100.0f, 840.0f, 8.0f, 5);
-		AddSceneText("- Korte samenvatting", 100.0f, 640.0f, 6.0f, 3, "Assets/LucidaConsole.tga");
-		AddSceneText("- Wat is er nu beschikbaar?", 100.0f, 540.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
-		AddSceneText("- Plannen voor de toekomst.", 100.0f, 440.0f, 6.0f, 9, "Assets/LucidaConsole.tga");
-		gal->GetComponent<Sprite>()->SetSprite("assets/Thinking.tga");
-		AddSceneText("https://www.kindpng.com/picc/m/72\n-721616_question-mark-clip-art-\nfree-clipart-images-image.png", 1150.0f, 190.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		break;
-	case 2:
-		AddSceneText("Korte samenvatting.", 100.0f, 940.0f, 8.0f, 11, "Assets/LucidaConsole.tga");
-		AddSceneText("- Component-based", 100.0f, 640.0f, 6.0f, 13, "Assets/LucidaConsole.tga");
-		AddSceneText("- Scene bevat de ", 100.0f, 540.0f, 6.0f, 15, "Assets/LucidaConsole.tga");
-		AddSceneText("camera.", 190.0f, 490.0f, 6.0f, 15, "Assets/LucidaConsole.tga");
-		AddSceneText("- Renderer checkt op ", 100.0f, 390.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
-		AddSceneText("components.", 190.0f, 340.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
-		gal->GetComponent<Sprite>()->SetSprite("assets/ccomponents2.tga");
-		AddSceneText("https://www.merinternationalusa.com/wp-content\n/uploads/2016/10/ccomponents2.jpg", 1000.0f, 160.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		this->RemovefromScene(guy);
-		this->RemovefromScene(don);
-		break;
-	case 3:
-		AddSceneText("Wat is er nu beschikbaar?", 100.0f, 940.0f, 8.0f, 8, "Assets/LucidaConsole.tga");
-		this->AddtoScene(guy);
-		this->AddtoScene(don);
-		break;
-	case 4:
-		this->RemovefromScene(guy);
-		this->RemovefromScene(don);
-		guy->transform->position->x = 0;
-		AddSceneText("Plannen voor de toekomst", 100.0f, 940.0f, 8.0f, 12, "Assets/LucidaConsole.tga");
-		AddSceneText("- Colliders", 100.0f, 640.0f, 6.0f, 4, "Assets/LucidaConsole.tga");
-		AddSceneText("- Bugs fixen", 100.0f, 540.0f, 6.0f, 6, "Assets/LucidaConsole.tga");
-		AddSceneText("- Mafia Spel", 100.0f, 440.0f, 6.0f, 8, "Assets/LucidaConsole.tga");
-		gal->GetComponent<Sprite>()->SetSprite("assets/future.tga");
-		AddSceneText("https://i.ytimg.com/vi/MFEw", 1150.0f, 230.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		AddSceneText("37uMQyM/maxresdefault.jpg", 1150.0f, 180.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		break;
-	case 5:
-		gal->GetComponent<Sprite>()->RemoveSprite();
-		AddSceneText("Einde", 800.0f, 840.0f, 10.0f, 15);
-		AddtoScene(guy);
-		break;
-	}
 }
 
 void Test::update(float deltaTime)
 {
+	//don->GetComponent<Collider>()->SetUpCollider(true, width, 0, 10, 0);
+	//guy->GetComponent<Collider>()->isColliding(don->GetComponent<Collider>());
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = -180;
 		guy->transform->position->x -= 300.0f * deltaTime;
+		width -= 5.0f;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = 0;
 		guy->transform->position->x += 300.0f * deltaTime;
+		width -= 5.0f;
 	}
 	else
 	{
@@ -365,4 +317,54 @@ void Test::update(float deltaTime)
 		gal->transform->rotation->z = 0.0f;
 	}
 	GetMainCamera()->position.x = guy->transform->position->x;
+}
+
+void Test::ShowSlide()
+{
+	SceneTextClear();
+	switch (counter)
+	{
+	case 0:
+	{
+		//AddSceneText("SiroGen: Framework \nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
+		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
+		gal->GetComponent<Sprite>()->RemoveSprite();
+		break;
+	}
+	case 1:
+		AddSceneText("Inhoud: ", 100.0f, 840.0f, 8.0f, 5);
+		AddSceneText("- Korte samenvatting", 100.0f, 640.0f, 6.0f, 3, "Assets/LucidaConsole.tga");
+		AddSceneText("- Wat is er nu beschikbaar?", 100.0f, 540.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
+		AddSceneText("- Plannen voor de toekomst.", 100.0f, 440.0f, 6.0f, 9, "Assets/LucidaConsole.tga");
+		gal->GetComponent<Sprite>()->SetSprite("assets/Thinking.tga");
+		AddSceneText("https://www.kindpng.com/picc/m/72\n-721616_question-mark-clip-art-\nfree-clipart-images-image.png", 1150.0f, 190.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
+		break;
+	case 2:
+		AddSceneText("Korte samenvatting.", 100.0f, 940.0f, 8.0f, 11, "Assets/LucidaConsole.tga");
+		AddSceneText("- Component-based", 100.0f, 640.0f, 6.0f, 13, "Assets/LucidaConsole.tga");
+		AddSceneText("- Scene bevat de ", 100.0f, 540.0f, 6.0f, 15, "Assets/LucidaConsole.tga");
+		AddSceneText("camera.", 190.0f, 490.0f, 6.0f, 15, "Assets/LucidaConsole.tga");
+		AddSceneText("- Renderer checkt op ", 100.0f, 390.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
+		AddSceneText("components.", 190.0f, 340.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
+		gal->GetComponent<Sprite>()->SetSprite("assets/ccomponents2.tga");
+		AddSceneText("https://www.merinternationalusa.com/wp-content\n/uploads/2016/10/ccomponents2.jpg", 1000.0f, 160.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
+		break;
+	case 3:
+		AddSceneText("Wat is er nu beschikbaar?", 100.0f, 940.0f, 8.0f, 8, "Assets/LucidaConsole.tga");
+		break;
+	case 4:
+		AddSceneText("Plannen voor de toekomst", 100.0f, 940.0f, 8.0f, 12, "Assets/LucidaConsole.tga");
+		AddSceneText("- Colliders", 100.0f, 640.0f, 6.0f, 4, "Assets/LucidaConsole.tga");
+		AddSceneText("- Bugs fixen", 100.0f, 540.0f, 6.0f, 6, "Assets/LucidaConsole.tga");
+		AddSceneText("- Mafia Spel", 100.0f, 440.0f, 6.0f, 8, "Assets/LucidaConsole.tga");
+		gal->GetComponent<Sprite>()->SetSprite("assets/future.tga");
+		AddSceneText("https://i.ytimg.com/vi/MFEw", 1150.0f, 230.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
+		AddSceneText("37uMQyM/maxresdefault.jpg", 1150.0f, 180.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
+		break;
+	case 5:
+		gal->GetComponent<Sprite>()->RemoveSprite();
+		AddSceneText("Einde", 800.0f, 840.0f, 10.0f, 15);
+		AddtoScene(guy);
+		break;
+	}
 }
