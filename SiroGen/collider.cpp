@@ -1,8 +1,9 @@
 #include "collider.h"
 #include <iostream>
 
-Collider::Collider()
+Collider::Collider(Entity* owner)
 {
+	_Owner = owner;
 	SetUpCollider(true, 0, 0, 10, 10);
 }
 
@@ -19,10 +20,10 @@ bool Collider::isColliding(Collider* collider)
 {
 	if (collider->_issquare)
 	{
-		if (this->_x < collider->_x + collider->_width	&&
-			this->_y < collider->_y + collider->_height	&&
-			collider->_x < this->_x + this->_width		&&
-			collider->_y < this->_y + this->_height		
+		if (this->_Owner->transform->position->x < collider->_Owner->transform->position->x + collider->_width / 2.0f &&
+			this->_Owner->transform->position->y < collider->_Owner->transform->position->y + collider->_height / 2.0f &&
+			collider->_Owner->transform->position->x - collider->_width / 2.0f < this->_Owner->transform->position->x + this->_width &&
+			collider->_Owner->transform->position->y - collider->_height / 2.0f < this->_Owner->transform->position->y + this->_height
 			)
 			{
 				std::cout << "Colliding!" << std::endl;

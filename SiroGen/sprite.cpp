@@ -3,6 +3,19 @@
 
 Sprite::Sprite()
 {
+    _Owner = nullptr;
+    vertex_buffer = 0;
+    texture_buffer = 0;
+    uv_buffer = 0;
+    texture = new Texture();
+    vertex_buffer_data = 0;
+    uv_buffer_data = 0;
+    GenerateSprite();
+}
+
+Sprite::Sprite(Entity* owner)
+{
+    _Owner = owner;
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;

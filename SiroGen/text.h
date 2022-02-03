@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEXT_H_
+#define TEXT_H_
 #include <vector>
 #include <SiroGen/texture.h>
 #include <SiroGen/component.h>
@@ -8,6 +9,7 @@ class Text : public Component
 {
 public:
 	Text();
+	Text(Entity* owner);
 	~Text();
 	//void initText2D(const char* texturePath);
 	void SetText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
@@ -27,4 +29,4 @@ private:
 
 	int _count = 0;
 };
-
+#endif

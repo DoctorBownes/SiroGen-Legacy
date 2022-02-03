@@ -1,10 +1,12 @@
-#pragma once
+#ifndef ANIMATION_H_
+#define ANIMATION_H_
 #include <map>
 #include <SiroGen/spriteanimation.h>
 class Animation : public Component
 {
 public:
 	Animation();
+	Animation(Entity* owner);
 	~Animation();
 
 	void PlayAnimation(SpriteAnimation* spriteanimation, bool loop = true);
@@ -21,3 +23,4 @@ private:
 	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue;
 	//bool isPlaying = 0;
 };
+#endif

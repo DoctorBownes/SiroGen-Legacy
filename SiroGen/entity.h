@@ -1,9 +1,10 @@
-#pragma once
+#ifndef ENTITY_H_
+#define ENTITY_H_
 #include <map>
 #include <iostream>
 
 #include <SiroGen/transform.h>
-#include <SiroGen/component.h>
+//#include <SiroGen/component.h>
 #include <SiroGen/sprite.h>
 #include <SiroGen/animation.h>
 #include <SiroGen/text.h>
@@ -47,7 +48,7 @@ T* Entity::AddComponent()
 {
 	if (!componentlist.count(typeid(T).hash_code()))
 	{
-		T* test = new T();
+		T* test = new T(this);
 		componentlist.emplace(typeid(T).hash_code(), test);
 		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
@@ -79,3 +80,4 @@ void Entity::RemoveComponent()
 		std::cout << "Warning: component set to remove was not found" << std::endl;
 	}
 }
+#endif

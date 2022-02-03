@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPRITE_H_
+#define SPRITE_H_
 #include "component.h"
 #include "texture.h"
 #include <vector>
@@ -7,6 +8,7 @@ class Sprite :
 {
 public:
     Sprite();
+    Sprite(Entity* owner);
     ~Sprite();
 
     void SetSprite(const char* TGA);
@@ -30,3 +32,4 @@ private:
     int _height = 0;
     int _width = 0;
 };
+#endif

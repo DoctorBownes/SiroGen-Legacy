@@ -10,7 +10,7 @@ SpriteAnimation waveAnim;
 Player* jon;
 float starttime = 0.0f;
 bool test = 0;
-float width = 0;
+float speed = 0.0f;
 int counter = 0;
 Test::Test() : Scene()
 {
@@ -229,8 +229,8 @@ Test::Test() : Scene()
 	guy->transform->scale->y = 10;
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
-	don->AddComponent<Text>()->SetText("Spaghetti", 5,10,5,0xd);
-	don->AddComponent<Collider>()->SetUpCollider(true,-10,0,11,10);
+	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
+	don->AddComponent<Collider>()->SetUpCollider(true,0,0,160,160);
 	don->transform->scale->x = 10;
 	don->transform->scale->y = 10;
 	don->transform->position->x = -300;
@@ -256,26 +256,37 @@ Test::Test() : Scene()
 	//this->AddtoScene(guy);
 	this->AddtoScene(guy);
 	this->AddtoScene(don);
+	speed = 50.0f;
 	ShowSlide();
 }
 
 void Test::update(float deltaTime)
 {
 	//don->GetComponent<Collider>()->SetUpCollider(true, width, 0, 10, 0);
-	//guy->GetComponent<Collider>()->isColliding(don->GetComponent<Collider>());
+	guy->GetComponent<Collider>()->isColliding(don->GetComponent<Collider>());
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = -180;
-		guy->transform->position->x -= 300.0f * deltaTime;
-		width -= 5.0f;
+		guy->transform->position->x -= speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
 		guy->transform->rotation->y = 0;
-		guy->transform->position->x += 300.0f * deltaTime;
-		width -= 5.0f;
+		guy->transform->position->x += speed * deltaTime;
+	}
+	else if (GetInput()->KeyDown(KeyCode::W))
+	{
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
+		guy->transform->rotation->y = 0;
+		guy->transform->position->y += speed * deltaTime;
+	}
+	else if (GetInput()->KeyDown(KeyCode::S))
+	{
+		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
+		guy->transform->rotation->y = 0;
+		guy->transform->position->y -= speed * deltaTime;
 	}
 	else
 	{
@@ -317,6 +328,7 @@ void Test::update(float deltaTime)
 		gal->transform->rotation->z = 0.0f;
 	}
 	GetMainCamera()->position.x = guy->transform->position->x;
+	GetMainCamera()->position.y = guy->transform->position->y;
 }
 
 void Test::ShowSlide()
@@ -326,7 +338,7 @@ void Test::ShowSlide()
 	{
 	case 0:
 	{
-		//AddSceneText("SiroGen: Framework \nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
+		AddSceneText("SiroGen: Framework \nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
 		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
 		gal->GetComponent<Sprite>()->RemoveSprite();
 		break;

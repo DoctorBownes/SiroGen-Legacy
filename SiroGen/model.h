@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MODEL_H_
+#define MODEL_H_
 #include "component.h"
 class Model :
     public Component
@@ -6,4 +7,4 @@ class Model :
 public:
     int model = 0;
 };
-
+#endif

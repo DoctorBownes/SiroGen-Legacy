@@ -7,6 +7,16 @@ char bittext[]
 
 Text::Text()
 {
+    _Owner = nullptr;
+    texture_buffer = 0;
+    vertex_buffer = 0;
+    uv_buffer = 0;
+    _texture = new Texture();
+}
+
+Text::Text(Entity* owner)
+{
+    _Owner = owner;
     texture_buffer = 0;
     vertex_buffer = 0;
     uv_buffer = 0;
@@ -40,7 +50,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     {
         if (text[i] == char(10))
         {
-            liney += 0.1251f;// /linelength
+            liney += 0.1251f;// *linelength needs to be enlarged for Addcomponent
             x = linex;
         }
         else

@@ -2,6 +2,13 @@
 
 Animation::Animation()
 {
+    _Owner = nullptr;
+    starttime = glfwGetTime();
+}
+
+Animation::Animation(Entity* owner)
+{
+    _Owner = owner;
     starttime = glfwGetTime();
 }
 
