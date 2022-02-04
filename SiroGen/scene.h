@@ -20,7 +20,8 @@ public:
 	void DeleteEntity(Entity* entity);
 	void AddSceneText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
 	void RemoveSceneText(int pos = 0);
-	void SceneTextClear();
+	void EditSceneText(std::string text, int pos = 0);
+	void ClearSceneText();
 	std::vector<Entity*> GetEntities() { return _children; };
 	std::vector<Text> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };
@@ -28,7 +29,7 @@ public:
 private:
 	Input* _input = new Input();
 	Camera* MainCamera = new Camera(false);
-	std::vector<Text> scenetexts;
 	std::vector<Entity*> _children;
+	std::vector<Text> scenetexts;
 };
 

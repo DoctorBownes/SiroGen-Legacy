@@ -21,7 +21,6 @@ private:
     GLfloat* uv_buffer_data;
     std::vector<GLfloat> vertex_buffer_vector;
     std::vector<GLfloat> uv_buffer_vector;
-    int _count = 1;
     void GenerateSprite();
     virtual void DoIt(GLuint shader);
 

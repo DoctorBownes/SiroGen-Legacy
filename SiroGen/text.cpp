@@ -8,15 +8,17 @@ char bittext[]
 Text::Text()
 {
     _Owner = nullptr;
-    texture_buffer = 0;
-    vertex_buffer = 0;
-    uv_buffer = 0;
-    _texture = new Texture();
+    Init();
 }
 
 Text::Text(Entity* owner)
 {
     _Owner = owner;
+    Init();
+}
+
+void Text::Init()
+{
     texture_buffer = 0;
     vertex_buffer = 0;
     uv_buffer = 0;
@@ -25,11 +27,14 @@ Text::Text(Entity* owner)
 
 Text::~Text()
 {
-
+    //delete _texture;
 }
 
 void Text::SetText(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
+    _x = x;
+    _y = y;
+    _size = size;
     if (!TGAfont[0])
     {
         texture_buffer = _texture->LoadPixelImage(bittext, 128, 64);
@@ -42,39 +47,45 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+    EditText(text);
+}
+
+void Text::EditText(std::string text)
+{
+    _count = 0;
     float linex = 0.0f;
     float liney = 0.0f;
-    linex = x;
+    linex = _x;
 
     for (int i = 0; i < text.size(); i++)
     {
         if (text[i] == char(10))
         {
             liney += 0.1251f;// *linelength needs to be enlarged for Addcomponent
-            x = linex;
+            _x = linex;
         }
         else
         {
-            vertex_buffer_vector.push_back((x - 2.0f) / 2.0f);//keep
-            vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
+            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);//keep
+            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2.0f);//change
-            vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
+            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);//change
+            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2.0f);//change
-            vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);//change
+            vertex_buffer_vector.push_back((_y - liney) - 1.0f);//keep
             vertex_buffer_vector.push_back(0.0f);
 
-            vertex_buffer_vector.push_back((x + (size - 2.0f)) / 2.0f);//change
-            vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);//change
+            vertex_buffer_vector.push_back((_y - liney) - 1.0f);//keep
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x - 2.0f) / 2.0f);//keep
-            vertex_buffer_vector.push_back((y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);//keep
+            vertex_buffer_vector.push_back((_y - liney) - 1.0f);//keep
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((x - 2.0f) / 2.0f);//keep
-            vertex_buffer_vector.push_back((y - liney) + (size - 1.0f));//change
+            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);//keep
+            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));//change
             vertex_buffer_vector.push_back(0.0f);
-            x += size;// /spacebetweencharacters
+            _x += _size;// /spacebetweencharacters
 
             char character = text[i];
             float uv_x = (character % 16) / 16.0f;
@@ -100,6 +111,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
             _count++;
         }
     }
+    _x = linex;
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, 72 * _count, vertex_buffer_vector.data(), GL_STATIC_DRAW);
@@ -109,13 +121,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     glBufferData(GL_ARRAY_BUFFER, 48 * _count, uv_buffer_vector.data(), GL_STATIC_DRAW);
     vertex_buffer_vector.clear();
     uv_buffer_vector.clear();
-    delete _texture;
 }
-
-//void Text::cleanupText2D()
-//{
-//
-//}
 
 void Text::DoIt(GLuint shader)
 {

@@ -1,4 +1,5 @@
 #include "test.h"
+#include <sstream>
 
 Entity* guy;
 Entity* gal;
@@ -230,7 +231,7 @@ Test::Test() : Scene()
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
-	don->AddComponent<Collider>()->SetUpCollider(true,0,0,160,160);
+	don->AddComponent<Collider>()->SetUpCollider(true,0,0,1000,320);
 	don->transform->scale->x = 10;
 	don->transform->scale->y = 10;
 	don->transform->position->x = -300;
@@ -256,14 +257,16 @@ Test::Test() : Scene()
 	//this->AddtoScene(guy);
 	this->AddtoScene(guy);
 	this->AddtoScene(don);
-	speed = 50.0f;
+	speed = 300.0f;
 	ShowSlide();
+	AddSceneText("Hello", 100.0f, 940.0f, 4.0f, 0xb);
 }
 
 void Test::update(float deltaTime)
 {
-	//don->GetComponent<Collider>()->SetUpCollider(true, width, 0, 10, 0);
-	guy->GetComponent<Collider>()->isColliding(don->GetComponent<Collider>());
+	std::stringstream hello;
+	hello << "Colliding = " << guy->GetComponent<Collider>()->isColliding(don->GetComponent<Collider>());
+	EditSceneText(hello.str());
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
@@ -333,12 +336,10 @@ void Test::update(float deltaTime)
 
 void Test::ShowSlide()
 {
-	SceneTextClear();
 	switch (counter)
 	{
 	case 0:
 	{
-		AddSceneText("SiroGen: Framework \nDoor: Simon Roeloffs", 500.0f, 540.0f, 8.0f, 0xb);
 		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
 		gal->GetComponent<Sprite>()->RemoveSprite();
 		break;

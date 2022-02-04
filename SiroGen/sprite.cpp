@@ -130,7 +130,7 @@ void Sprite::DoIt(GLuint shader)
     );
 
     //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
-    glDrawArrays(GL_TRIANGLES, 0, 6 * _count); // Starting from vertex 0; 3 vertices total -> 1 triangle
+    glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
     glDisableVertexAttribArray(vertexPositionID);
     glDisableVertexAttribArray(vertexUVID);
     glDisableVertexAttribArray(ColorID);

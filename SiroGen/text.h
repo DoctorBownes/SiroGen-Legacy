@@ -11,14 +11,18 @@ public:
 	Text();
 	Text(Entity* owner);
 	~Text();
-	//void initText2D(const char* texturePath);
 	void SetText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
-	//void cleanupText2D();
+	void EditText(std::string text);
 	virtual void DoIt(GLuint shader);
 
 private:
 	Color textColor;
 
+	float _x = 0.0f;
+	float _y = 0.0f;
+	float _size = 0.0f;
+
+	void Init();
 	Texture* _texture;
 	std::vector<GLfloat> vertex_buffer_vector;
 	std::vector<GLfloat> uv_buffer_vector;

@@ -22,14 +22,17 @@ bool Collider::isColliding(Collider* collider)
 	{
 		if (this->_Owner->transform->position->x < collider->_Owner->transform->position->x + collider->_width / 2.0f &&
 			this->_Owner->transform->position->y < collider->_Owner->transform->position->y + collider->_height / 2.0f &&
-			collider->_Owner->transform->position->x - collider->_width / 2.0f < this->_Owner->transform->position->x + this->_width &&
-			collider->_Owner->transform->position->y - collider->_height / 2.0f < this->_Owner->transform->position->y + this->_height
+			collider->_Owner->transform->position->x - collider->_width / 2.0f + 10.0f < this->_Owner->transform->position->x + this->_width &&
+			collider->_Owner->transform->position->y - collider->_height / 2.0f + 10.0f < this->_Owner->transform->position->y + this->_height
 			)
 			{
-				std::cout << "Colliding!" << std::endl;
 				return true;
 			}
 			return false;
+	}
+	else
+	{
+
 	}
 }
 

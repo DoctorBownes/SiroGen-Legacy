@@ -66,6 +66,12 @@ void Scene::AddSceneText(std::string text, float x, float y, float size, uint8_t
 	scenetexts.push_back(temptext);
 }
 
+
+void Scene::EditSceneText(std::string text, int pos)
+{
+	scenetexts[pos].EditText(text);
+}
+
 void Scene::RemoveSceneText(int pos)
 {
 	if (scenetexts.size() > 0)
@@ -74,7 +80,7 @@ void Scene::RemoveSceneText(int pos)
 	}
 }
 
-void Scene::SceneTextClear()
+void Scene::ClearSceneText()
 {
 	scenetexts.clear();
 }
