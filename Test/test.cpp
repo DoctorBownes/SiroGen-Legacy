@@ -15,7 +15,7 @@ float speed = 0.0f;
 int counter = 0;
 Test::Test() : Scene()
 {
-	//GetMainCamera()->SetZoom(10);
+	GetMainCamera()->SetZoom(10);
 	char canvas[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -223,18 +223,14 @@ Test::Test() : Scene()
 
 	guy = new Entity;
 	guy->AddComponent<Animation>();
-	guy->AddComponent<Collider>();
+	guy->AddComponent<Collider>()->SetUpCircle(0, 16, 8);
 	//guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(0.0f, 0.0f);
-	guy->transform->scale->x = 10;
-	guy->transform->scale->y = 10;
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
-	don->AddComponent<Collider>()->SetUpCollider(true,0,0,1000,320);
-	don->transform->scale->x = 10;
-	don->transform->scale->y = 10;
-	don->transform->position->x = -300;
+	don->AddComponent<Collider>()->SetUpCircle(0, 0, 8);
+	don->transform->position->x = 30;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
 
 	//galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -257,7 +253,7 @@ Test::Test() : Scene()
 	//this->AddtoScene(guy);
 	this->AddtoScene(guy);
 	this->AddtoScene(don);
-	speed = 300.0f;
+	speed = 20.0f;
 	ShowSlide();
 	AddSceneText("Hello", 100.0f, 940.0f, 4.0f, 0xb);
 }
