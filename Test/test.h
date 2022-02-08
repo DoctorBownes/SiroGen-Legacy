@@ -7,7 +7,6 @@ class Test :
 {
 public:
     Test();
-    void ShowSlide();
     virtual void update(float deltaTime);
 };
 

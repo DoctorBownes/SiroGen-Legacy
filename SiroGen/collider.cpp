@@ -19,7 +19,7 @@ void Collider::SetUpCircle(float x, float y, float diameter)
 {
 	_issquare = false;
 	_x = x;
-	_y = x;
+	_y = y;
 	_diameter = diameter;
 }
 

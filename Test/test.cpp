@@ -223,14 +223,14 @@ Test::Test() : Scene()
 
 	guy = new Entity;
 	guy->AddComponent<Animation>();
-	guy->AddComponent<Collider>()->SetUpCircle(0, 16, 8);
+	guy->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 	//guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
 	guy->transform->position = new Vector3(0.0f, 0.0f);
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
-	don->AddComponent<Collider>()->SetUpCircle(0, 0, 8);
-	don->transform->position->x = 30;
+	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
+	don->transform->position->x = 0;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
 
 	//galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -254,7 +254,6 @@ Test::Test() : Scene()
 	this->AddtoScene(guy);
 	this->AddtoScene(don);
 	speed = 20.0f;
-	ShowSlide();
 	AddSceneText("Hello", 100.0f, 940.0f, 4.0f, 0xb);
 }
 
@@ -291,89 +290,6 @@ void Test::update(float deltaTime)
 	{
 		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,0);
 	}
-	if (GetInput()->KeyPressed(KeyCode::Space))
-	{
-		if (counter != 5)
-		{
-			guy->GetComponent<Animation>()->PlayAnimation(&smokeAnim, true);
-		}
-		else
-		{
-			guy->GetComponent<Animation>()->PlayAnimation(&waveAnim, true);
-		}
-	}
-	if (GetInput()->KeyPressed(KeyCode::P))
-	{
-		if (counter < 5)
-		{
-			counter++;
-			ShowSlide();
-		}
-	}
-	else if (GetInput()->KeyPressed(KeyCode::O))
-	{
-		if (counter > 0)
-		{
-			counter--;
-			ShowSlide();
-		}
-	}
-	if (counter == 3)
-	{
-		gal->transform->rotation->z += 0.5f;
-	}
-	else
-	{
-		gal->transform->rotation->z = 0.0f;
-	}
 	GetMainCamera()->position.x = guy->transform->position->x;
 	GetMainCamera()->position.y = guy->transform->position->y;
-}
-
-void Test::ShowSlide()
-{
-	switch (counter)
-	{
-	case 0:
-	{
-		//AddSceneText("Door: Simon Roeloffs", 580.0f, 500.0f, 5.0f, 0xd);
-		gal->GetComponent<Sprite>()->RemoveSprite();
-		break;
-	}
-	case 1:
-		AddSceneText("Inhoud: ", 100.0f, 840.0f, 8.0f, 5);
-		AddSceneText("- Korte samenvatting", 100.0f, 640.0f, 6.0f, 3, "Assets/LucidaConsole.tga");
-		AddSceneText("- Wat is er nu beschikbaar?", 100.0f, 540.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
-		AddSceneText("- Plannen voor de toekomst.", 100.0f, 440.0f, 6.0f, 9, "Assets/LucidaConsole.tga");
-		gal->GetComponent<Sprite>()->SetSprite("assets/Thinking.tga");
-		AddSceneText("https://www.kindpng.com/picc/m/72\n-721616_question-mark-clip-art-\nfree-clipart-images-image.png", 1150.0f, 190.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		break;
-	case 2:
-		AddSceneText("Korte samenvatting.", 100.0f, 940.0f, 8.0f, 11, "Assets/LucidaConsole.tga");
-		AddSceneText("- Component-based", 100.0f, 640.0f, 6.0f, 13, "Assets/LucidaConsole.tga");
-		AddSceneText("- Scene bevat de ", 100.0f, 540.0f, 6.0f, 15, "Assets/LucidaConsole.tga");
-		AddSceneText("camera.", 190.0f, 490.0f, 6.0f, 15, "Assets/LucidaConsole.tga");
-		AddSceneText("- Renderer checkt op ", 100.0f, 390.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
-		AddSceneText("components.", 190.0f, 340.0f, 6.0f, 7, "Assets/LucidaConsole.tga");
-		gal->GetComponent<Sprite>()->SetSprite("assets/ccomponents2.tga");
-		AddSceneText("https://www.merinternationalusa.com/wp-content\n/uploads/2016/10/ccomponents2.jpg", 1000.0f, 160.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		break;
-	case 3:
-		AddSceneText("Wat is er nu beschikbaar?", 100.0f, 940.0f, 8.0f, 8, "Assets/LucidaConsole.tga");
-		break;
-	case 4:
-		AddSceneText("Plannen voor de toekomst", 100.0f, 940.0f, 8.0f, 12, "Assets/LucidaConsole.tga");
-		AddSceneText("- Colliders", 100.0f, 640.0f, 6.0f, 4, "Assets/LucidaConsole.tga");
-		AddSceneText("- Bugs fixen", 100.0f, 540.0f, 6.0f, 6, "Assets/LucidaConsole.tga");
-		AddSceneText("- Mafia Spel", 100.0f, 440.0f, 6.0f, 8, "Assets/LucidaConsole.tga");
-		gal->GetComponent<Sprite>()->SetSprite("assets/future.tga");
-		AddSceneText("https://i.ytimg.com/vi/MFEw", 1150.0f, 230.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		AddSceneText("37uMQyM/maxresdefault.jpg", 1150.0f, 180.0f, 3.0f, 14, "Assets/LucidaConsole.tga");
-		break;
-	case 5:
-		gal->GetComponent<Sprite>()->RemoveSprite();
-		AddSceneText("Einde", 800.0f, 840.0f, 10.0f, 15);
-		AddtoScene(guy);
-		break;
-	}
 }
