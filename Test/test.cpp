@@ -223,9 +223,10 @@ Test::Test() : Scene()
 
 	guy = new Entity;
 	guy->AddComponent<Animation>();
+	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,0);
 	guy->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 	//guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
-	guy->transform->position = new Vector3(0.0f, 0.0f);
+	guy->transform->position->x = 8;
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
@@ -238,20 +239,22 @@ Test::Test() : Scene()
 	//galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas5, 8, 16,0.6f);
-	this->AddtoScene(jon);
+	//this->AddtoScene(jon);
 	gal = new Entity;
-	gal->AddComponent<Sprite>();
-	gal->transform->position->x = 500;
-	this->AddtoScene(gal);
+	gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
+	gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
+	gal->transform->position->x = 8;
+	don->Addchild(gal);
+	gal->Addchild(guy);
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
 	//RemoveTextfromScene();
-	//gal->transform->position = new Vector3(0.0f, 0.0f);
+	//*gal->transform->position = Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
-	this->AddtoScene(guy);
+	//this->AddtoScene(guy);
 	this->AddtoScene(don);
 	speed = 20.0f;
 	AddSceneText("Hello", 100.0f, 940.0f, 4.0f, 0xb);
@@ -259,37 +262,40 @@ Test::Test() : Scene()
 
 void Test::update(float deltaTime)
 {
-	std::stringstream hello;
-	hello << "Colliding = " << guy->GetComponent<Collider>()->isColliding(don->GetComponent<Collider>());
-	EditSceneText(hello.str());
-	if (GetInput()->KeyDown(KeyCode::A))
+	//if (GetInput()->KeyDown(KeyCode::A))
+	//{
+	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
+	//	guy->transform->rotation->y = -180;
+	//	guy->transform->position->x -= speed * deltaTime;
+	//}
+	//else if (GetInput()->KeyDown(KeyCode::D))
+	//{
+	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
+	//	guy->transform->rotation->y = 0;
+	//	guy->transform->position->x += speed * deltaTime;
+	//}
+	//else if (GetInput()->KeyDown(KeyCode::W))
+	//{
+	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
+	//	guy->transform->rotation->y = 0;
+	//	guy->transform->position->y += speed * deltaTime;
+	//}
+	//else if (GetInput()->KeyDown(KeyCode::S))
+	//{
+	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
+	//	guy->transform->rotation->y = 0;
+	//	guy->transform->position->y -= speed * deltaTime;
+	//}
+	//else
+	//{
+	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,0);
+	//}
+
+	if (GetInput()->KeyPressed(KeyCode::LeftControl))
 	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
-		guy->transform->rotation->y = -180;
-		guy->transform->position->x -= speed * deltaTime;
+		//DeleteEntity(don);
+		don->DeleteChild(gal);
 	}
-	else if (GetInput()->KeyDown(KeyCode::D))
-	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
-		guy->transform->rotation->y = 0;
-		guy->transform->position->x += speed * deltaTime;
-	}
-	else if (GetInput()->KeyDown(KeyCode::W))
-	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
-		guy->transform->rotation->y = 0;
-		guy->transform->position->y += speed * deltaTime;
-	}
-	else if (GetInput()->KeyDown(KeyCode::S))
-	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
-		guy->transform->rotation->y = 0;
-		guy->transform->position->y -= speed * deltaTime;
-	}
-	else
-	{
-		guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,0);
-	}
-	GetMainCamera()->position.x = guy->transform->position->x;
-	GetMainCamera()->position.y = guy->transform->position->y;
+	/*GetMainCamera()->position.x = guy->transform->position->x;
+	GetMainCamera()->position.y = guy->transform->position->y;*/
 }

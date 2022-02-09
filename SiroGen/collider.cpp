@@ -38,10 +38,10 @@ bool Collider::isColliding(Collider* collider)
 
 bool Collider::square2square(Collider* collider)
 {
-	if (	this->_Owner->transform->position->x + this->_x - this->_width /2.0f	<	collider->_Owner->transform->position->x + collider->_x + collider->_width	/2.0f	&&
-			this->_Owner->transform->position->y + this->_y - this->_height / 2.0f <	collider->_Owner->transform->position->y + collider->_y + collider->_height /2.0f	&&
-		collider->_Owner->transform->position->x + collider->_x - collider->_width / 2.0f <		this->_Owner->transform->position->x + this->_x + this->_width / 2.0f &&
-		collider->_Owner->transform->position->y + collider->_y - collider->_height / 2.0f <		this->_Owner->transform->position->y + this->_y + this->_height / 2.0f
+	if (	this->_Owner->worldtransform->position->x + this->_x - this->_width /2.0f	<	collider->_Owner->worldtransform->position->x + collider->_x + collider->_width	/2.0f	&&
+			this->_Owner->worldtransform->position->y + this->_y - this->_height / 2.0f <	collider->_Owner->worldtransform->position->y + collider->_y + collider->_height /2.0f	&&
+		collider->_Owner->worldtransform->position->x + collider->_x - collider->_width / 2.0f <		this->_Owner->worldtransform->position->x + this->_x + this->_width / 2.0f &&
+		collider->_Owner->worldtransform->position->y + collider->_y - collider->_height / 2.0f <		this->_Owner->worldtransform->position->y + this->_y + this->_height / 2.0f
 		)
 	{
 		return true;
@@ -51,24 +51,24 @@ bool Collider::square2square(Collider* collider)
 
 bool Collider::square2circle(Collider* collider)
 {
-	float testx = this->_Owner->transform->position->x + this->_x;
-	float testy = this->_Owner->transform->position->y + this->_y;
-	if (this->_Owner->transform->position->x + this->_x < collider->_Owner->transform->position->x + collider->_x - collider->_width / 2.0f){
-		testx = collider->_Owner->transform->position->x + collider->_x - collider->_width / 2.0f;
+	float testx = this->_Owner->worldtransform->position->x + this->_x;
+	float testy = this->_Owner->worldtransform->position->y + this->_y;
+	if (this->_Owner->worldtransform->position->x + this->_x < collider->_Owner->worldtransform->position->x + collider->_x - collider->_width / 2.0f){
+		testx = collider->_Owner->worldtransform->position->x + collider->_x - collider->_width / 2.0f;
 	}
-	else if (this->_Owner->transform->position->x + this->_x > collider->_Owner->transform->position->x + collider->_x + collider->_width /2.0F){
-		testx = collider->_Owner->transform->position->x + collider->_x + collider->_width /2.0f;
-	}
-
-	if (this->_Owner->transform->position->y + this->_y < collider->_Owner->transform->position->y + collider->_y - collider->_height / 2.0f) {
-		testy = collider->_Owner->transform->position->y + collider->_y - collider->_height / 2.0f;
-	}
-	else if (this->_Owner->transform->position->y + this->_y > collider->_Owner->transform->position->y + collider->_y + collider->_height /2.0f) {
-		testy = collider->_Owner->transform->position->y + collider->_y + collider->_height / 2.0f;
+	else if (this->_Owner->worldtransform->position->x + this->_x > collider->_Owner->worldtransform->position->x + collider->_x + collider->_width /2.0F){
+		testx = collider->_Owner->worldtransform->position->x + collider->_x + collider->_width /2.0f;
 	}
 
-	float distx = this->_Owner->transform->position->x + this->_x - testx;
-	float disty = this->_Owner->transform->position->y + this->_y - testy;
+	if (this->_Owner->worldtransform->position->y + this->_y < collider->_Owner->worldtransform->position->y + collider->_y - collider->_height / 2.0f) {
+		testy = collider->_Owner->worldtransform->position->y + collider->_y - collider->_height / 2.0f;
+	}
+	else if (this->_Owner->worldtransform->position->y + this->_y > collider->_Owner->worldtransform->position->y + collider->_y + collider->_height /2.0f) {
+		testy = collider->_Owner->worldtransform->position->y + collider->_y + collider->_height / 2.0f;
+	}
+
+	float distx = this->_Owner->worldtransform->position->x + this->_x - testx;
+	float disty = this->_Owner->worldtransform->position->y + this->_y - testy;
 	float distance = std::sqrt((distx * distx) + (disty * disty));
 	if (distance < this->_diameter /2.0f)
 	{
@@ -79,8 +79,8 @@ bool Collider::square2circle(Collider* collider)
 
 bool Collider::circle2circle(Collider* collider)
 {
-	float distx = this->_Owner->transform->position->x + this->_x - collider->_Owner->transform->position->x + collider->_x;
-	float disty = this->_Owner->transform->position->y + this->_y - collider->_Owner->transform->position->y + collider->_y;
+	float distx = this->_Owner->worldtransform->position->x + this->_x - collider->_Owner->worldtransform->position->x + collider->_x;
+	float disty = this->_Owner->worldtransform->position->y + this->_y - collider->_Owner->worldtransform->position->y + collider->_y;
 	float distance = std::sqrt((distx * distx) + (disty * disty));
 	if (distance < this->_diameter /2.0f + collider->_diameter /2.0f)
 	{

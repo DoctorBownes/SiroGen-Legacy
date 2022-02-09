@@ -19,7 +19,8 @@ public:
 
 	void Addchild(Entity* entity);
 	void Removechild(Entity* entity);
-	void DeleteEntity(Entity* entity);
+	void DeleteChild(Entity* entity);
+	void DeleteChildren(Entity* entity);
 	std::vector<Entity*> Getchildren() { return _children; };
 
 	template <typename T>
@@ -35,9 +36,11 @@ public:
 	std::map<size_t, Component*> GetComponentList() { return componentlist; };
 
 	Transform* transform;
+	Transform* worldtransform;
 	Input* GetInput() { return input; };
 
 private:
+	Entity* Parent = nullptr;
 	Input* input = new Input();
 	std::vector<Entity*> _children;
 	std::map<size_t, Component*> componentlist;

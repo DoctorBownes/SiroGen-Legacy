@@ -1,4 +1,5 @@
 #include <SiroGen/renderer.h>
+#include <glm/gtx/matrix_decompose.hpp>
 
 const char* vertex_shader = "#version 330 core\n"
 "layout(location = 0) in vec3 vertexPosition;\n"
@@ -135,6 +136,17 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     
     glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;
     mat *= myModelVector;
+
+    glm::vec3 worldpos = glm::vec3();
+    glm::quat worldrot = glm::quat();
+    glm::vec3 worldscale = glm::vec3();
+
+    glm::decompose(mat, worldscale, worldrot, worldpos, glm::vec3(), glm::vec4());
+
+    *entity->worldtransform->position = Vector3(worldpos.x, worldpos.y, worldpos.z);
+    *entity->worldtransform->rotation = Vector3(worldrot.x, worldrot.y, worldrot.z);
+    *entity->worldtransform->scale = Vector3(worldscale.x, worldscale.y, worldscale.z);
+
     glm::mat4 CameraMatrix = _camera->GetCameraMat();
     glm::mat4 projectionMatrix = _camera->GetProjectionMat();
 
