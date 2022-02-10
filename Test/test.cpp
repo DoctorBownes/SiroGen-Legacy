@@ -242,10 +242,11 @@ Test::Test() : Scene()
 	//this->AddtoScene(jon);
 	gal = new Entity;
 	gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
-	gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
+	gal->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
+	gal->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 	gal->transform->position->x = 8;
-	don->Addchild(gal);
-	gal->Addchild(guy);
+	guy->Addchild(gal);
+	//gal->Addchild(guy);
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
 	//RemoveTextfromScene();
@@ -254,7 +255,8 @@ Test::Test() : Scene()
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
-	//this->AddtoScene(guy);
+	std::cout << guy->GetComponentList().size() << std::endl;
+	this->AddtoScene(guy);
 	this->AddtoScene(don);
 	speed = 20.0f;
 	AddSceneText("Hello", 100.0f, 940.0f, 4.0f, 0xb);
@@ -262,6 +264,9 @@ Test::Test() : Scene()
 
 void Test::update(float deltaTime)
 {
+	//std::stringstream hello;
+	//hello << "Colliding = " << gal->GetComponent<Collider>()->isColliding(don);
+	//EditSceneText(hello.str());
 	//if (GetInput()->KeyDown(KeyCode::A))
 	//{
 	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);

@@ -44,13 +44,14 @@ void Entity::DeleteChild(Entity* entity)
 
 Entity::~Entity()
 {
-	std::cout << "Deleting" << std::endl;
+	std::cout << "Deleting Entity" << std::endl;
 	delete transform;
 	delete worldtransform;
 	delete input;
 	std::map< size_t, Component*>::iterator it;
 	for (it = componentlist.begin(); it != componentlist.end(); it++)
 	{
+		std::cout << "Deleting Component" << std::endl;
 		delete it->second;
 	}
 	componentlist.clear();

@@ -49,7 +49,7 @@ private:
 template <typename T>
 T* Entity::AddComponent()
 {
-	if (!componentlist.count(typeid(T).hash_code()))
+	if (componentlist.find(typeid(T).hash_code()) == componentlist.end())
 	{
 		T* test = new T(this);
 		componentlist.emplace(typeid(T).hash_code(), test);
@@ -62,7 +62,7 @@ T* Entity::AddComponent()
 template <typename T>
 T* Entity::GetComponent()
 {
-	if (componentlist.count(typeid(T).hash_code()))
+	if (componentlist.find(typeid(T).hash_code()) != componentlist.end())
 	{
 		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}

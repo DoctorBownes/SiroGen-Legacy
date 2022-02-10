@@ -11,10 +11,7 @@ public:
 
     void SetUpSquare(float x, float y, float width, float height);
     void SetUpCircle(float x, float y, float diameter);
-    bool isColliding(Collider* collider);
-    bool square2square(Collider* collider);
-    bool square2circle(Collider* collider);
-    bool circle2circle(Collider* collider);
+    bool isColliding(Entity* collider);
 private:
     bool _issquare = 1;
     float _x = 0.0f;
@@ -23,5 +20,8 @@ private:
     float _height = 0.0f;
     float _diameter = 0.0f;
     virtual void DoIt(unsigned int shader);
+    bool square2square(Collider* collider);
+    bool circle2square(Collider* circle, Collider* square);
+    bool circle2circle(Collider* collider);
 };
 #endif
