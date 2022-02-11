@@ -247,7 +247,7 @@ Test::Test() : Scene()
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
 	this->Addchild(don);
-	//AddSceneText("Spaghetti\nMeatball", 100.0f, 940.0f, 8.0f, 0xb);
+	AddSceneText("Joey Aptin", 100.0f, 940.0f, 4.0f, 0xf);
 }
 
 void Test::update(float deltaTime)
