@@ -229,7 +229,7 @@ Test::Test() : Scene()
 	guy->transform->position->x = 8;
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
-	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
+	don->AddComponent<Text>()->SetText("Spaghetti\nMeatball", 5,20,8,0xd);
 	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
 	don->transform->position->x = 0;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
@@ -243,10 +243,9 @@ Test::Test() : Scene()
 	gal = new Entity;
 	gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
 	gal->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
-	gal->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 	gal->transform->position->x = 8;
-	guy->Addchild(gal);
-	//gal->Addchild(guy);
+	don->Addchild(gal);
+	gal->Addchild(guy);
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
 	//RemoveTextfromScene();
@@ -255,11 +254,10 @@ Test::Test() : Scene()
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
-	std::cout << guy->GetComponentList().size() << std::endl;
-	this->AddtoScene(guy);
-	this->AddtoScene(don);
+	//this->Addchild(guy);
+	this->Addchild(don);
 	speed = 20.0f;
-	AddSceneText("Hello", 100.0f, 940.0f, 4.0f, 0xb);
+	AddSceneText("Spaghetti\nMeatball", 100.0f, 940.0f, 8.0f, 0xb);
 }
 
 void Test::update(float deltaTime)
@@ -298,9 +296,9 @@ void Test::update(float deltaTime)
 
 	if (GetInput()->KeyPressed(KeyCode::LeftControl))
 	{
-		//DeleteEntity(don);
-		don->DeleteChild(gal);
+		this->DeleteChild(don);
+		//don->DeleteChild(gal);
 	}
-	/*GetMainCamera()->position.x = guy->transform->position->x;
-	GetMainCamera()->position.y = guy->transform->position->y;*/
+	//GetMainCamera()->position.x = guy->transform->position->x;
+	//GetMainCamera()->position.y = guy->transform->position->y;
 }

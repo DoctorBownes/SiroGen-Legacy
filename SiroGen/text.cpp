@@ -61,7 +61,7 @@ void Text::EditText(std::string text)
     {
         if (text[i] == char(10))
         {
-            liney += 0.1251f;// *linelength needs to be enlarged for Addcomponent
+            liney += 0.1251f * 8.0f * _size;// Change 8.0f to linelength
             _x = linex;
         }
         else

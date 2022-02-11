@@ -106,11 +106,8 @@ void Renderer::RenderScene(Scene* scene)
     glClearColor(0.25f, 0.15f, 0.45f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for (int i = 0; i < scene->GetEntities().size(); i++)
-    {
-        glm::mat4 mat = glm::mat4(1);
-        RenderEntity(mat, scene->GetEntities()[i]);
-    }
+    RenderEntity(glm::mat4(1), scene);
+
     for (int i = 0; i < scene->GetTexts().size(); i++)
     {
         RenderText(scene->GetTexts()[i]);

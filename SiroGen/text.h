@@ -21,6 +21,7 @@ private:
 	float _x = 0.0f;
 	float _y = 0.0f;
 	float _size = 0.0f;
+	float _linedepth = 0.0f;
 
 	void Init();
 	Texture* _texture;

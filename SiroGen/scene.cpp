@@ -9,11 +9,6 @@ Scene::~Scene()
 	delete MainCamera;
 }
 
-void Scene::update(float deltaTime)
-{
-
-}
-
 void Scene::InputInit(Entity* entity, GLFWwindow* window)
 {
 	entity->GetInput()->Init(window);
@@ -36,31 +31,7 @@ void Scene::updateEntities(Entity* entity, float deltaTime)
 	}
 }
 
-void Scene::AddtoScene(Entity* entity)
-{
-	_children.push_back(entity);
-}
-
-void Scene::RemovefromScene(Entity* entity)
-{
-	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
-	{
-		_children.erase(std::find(_children.begin(), _children.end(), entity));
-	}
-}
-
-void Scene::DeleteEntity(Entity* entity)
-{
-	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
-	{
-		_children.erase(std::find(_children.begin(), _children.end(), entity));
-		entity->DeleteChildren(entity);
-		delete entity;
-	}
-	std::cout << "Warning: DeleteEntity is unfinished" << std::endl;
-}
-
-void Scene::AddSceneText(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
+void Scene::AddSceneText(std::string text, float x, float y, float size,  uint8_t Color, const char* TGAfont)
 {
 	Text temptext = Text();
 	temptext.SetText(text, x / 480.0f, y / 540.0f, size / 64.0f, Color, TGAfont);
@@ -77,7 +48,7 @@ void Scene::RemoveSceneText(int pos)
 {
 	if (scenetexts.size() > 0)
 	{
-		scenetexts.erase(scenetexts.begin());
+		scenetexts.erase(scenetexts.begin() + pos);
 	}
 }
 
