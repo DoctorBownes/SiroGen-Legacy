@@ -17,7 +17,7 @@ void Core::Start(Scene* scene)
 		scene->updateEntities(scene, (float)deltaTime);
 
 		sceneRenderer.RenderScene(scene);
-	} 	while (glfwWindowShouldClose(sceneRenderer.window) == 0);
+	} 	while (glfwWindowShouldClose(sceneRenderer.window) == 0 && scene->isRunning);
 }
 
 void Core::CalculateDeltaTime()

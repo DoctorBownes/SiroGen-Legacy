@@ -1,7 +1,7 @@
 #pragma once
-#include <SiroGen/entity.h>
+#include <SiroGen/scene.h>
 
-class Testnity : public Entity
+class Testnity : public Scene
 {
 public:
 	Testnity();

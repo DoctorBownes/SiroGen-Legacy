@@ -80,6 +80,16 @@ bool Input::MouseDown(MouseButton button)
 	return false;
 }
 
+//bool Input::MouseOver(Collider* collider)
+//{
+//	mousecollider.SetUpSquare(mousex, mousey, 0, 0);
+//	if (mousecollider.isColliding(collider))
+//	{
+//		return true;
+//	}
+//	return false;
+//}
+
 void Input::GetMousePos()
 {
 	glfwGetCursorPos(_window, &mousex, &mousey);

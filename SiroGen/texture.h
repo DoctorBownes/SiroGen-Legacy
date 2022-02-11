@@ -15,6 +15,8 @@ public:
 
 	GLuint LoadTGAImage(const char* imagepath, bool isFont = false);
 	GLuint LoadPixelImage(char canvas[], unsigned char width, unsigned char height);
+
+    //Based on ZX Spectrum color palette.
     const Color Palette[16] =
     {
         ALPHA, //0
@@ -37,6 +39,5 @@ public:
 private:
 	GLuint _texture;
 
-    //Based on ZX Spectrum color palette.
     std::vector<unsigned char> pixelCanvas;
 };

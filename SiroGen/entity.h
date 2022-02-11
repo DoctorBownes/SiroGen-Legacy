@@ -1,6 +1,5 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
-#include <map>
 #include <iostream>
 
 #include <SiroGen/transform.h>

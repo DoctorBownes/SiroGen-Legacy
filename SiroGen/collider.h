@@ -7,11 +7,12 @@ class Collider :
     public Component
 {
 public:
+   // Collider();
     Collider(Entity* owner);
 
     void SetUpSquare(float x, float y, float width, float height);
     void SetUpCircle(float x, float y, float diameter);
-    bool isColliding(Entity* collider);
+    bool isColliding(Collider* collider);
 private:
     bool _issquare = 1;
     float _x = 0.0f;

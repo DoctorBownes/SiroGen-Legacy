@@ -16,6 +16,11 @@ public:
 	void RemoveSceneText(int pos = 0);
 	void EditSceneText(std::string text, int pos = 0);
 	void ClearSceneText();
+
+	bool isRunning = true;
+
+	uint8_t bkgdcolor = 0;
+
 	std::vector<Text> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };
 private:

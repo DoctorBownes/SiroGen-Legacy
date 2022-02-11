@@ -148,6 +148,7 @@ public:
 	bool MousePressed(MouseButton button);
 	bool MouseReleased(MouseButton button);
 	bool MouseDown(MouseButton button);
+	//bool MouseOver(Collider* collider);
 	void GetMousePos();
 	double GetMousePosX() { return mousex; };
 	double GetMousePosY() { return mousey; };

@@ -103,7 +103,8 @@ Renderer::~Renderer()
 void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
-    glClearColor(0.25f, 0.15f, 0.45f, 0.0f);
+    
+    glClearColor(Palette[scene->bkgdcolor].r /255.0f, Palette[scene->bkgdcolor].g / 255.0f, Palette[scene->bkgdcolor].b / 255.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     RenderEntity(glm::mat4(1), scene);

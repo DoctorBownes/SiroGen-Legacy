@@ -4,18 +4,15 @@
 Entity* guy;
 Entity* gal;
 Entity* don;
-SpriteAnimation walkAnim;
 SpriteAnimation smokeAnim;
 SpriteAnimation galAnim;
 SpriteAnimation waveAnim;
 Player* jon;
 float starttime = 0.0f;
-bool test = 0;
-float speed = 0.0f;
 int counter = 0;
 Test::Test() : Scene()
 {
-	GetMainCamera()->SetZoom(10);
+	GetMainCamera()->SetZoom(10);/*
 	char canvas[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -72,7 +69,7 @@ Test::Test() : Scene()
 		0x0,0x0,0xf,0x0,0x0,0xf,0x0,0x0,
 		0x0,0x0,0xf,0xf,0x0,0xf,0x0,0x0,
 		0x0,0x0,0x0,0x0,0x0,0xf,0xf,0x0,
-	};
+	};*/
 	char canvas4[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -208,9 +205,9 @@ Test::Test() : Scene()
 		0x0,0xd,0xd,0xd,0x0,0xd,0xd,0xd,
 	};
 	jon = new Player();
-	walkAnim.AddSprite(canvas, 8, 16,  0.2f);
-	walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
-	walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
+	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
+	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
+	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
 
 	waveAnim.AddSprite(waveCanvas, 8, 16, 0.5f);
 	waveAnim.AddSprite(waveCanvas2, 8, 16, 0.5f);
@@ -221,12 +218,6 @@ Test::Test() : Scene()
 	galAnim.AddSprite(doncanvas, 8, 16, 3.0f);
 	galAnim.AddSprite(doncanvas1, 8, 16, 0.1f);
 
-	guy = new Entity;
-	guy->AddComponent<Animation>();
-	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,0);
-	guy->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
-	//guy->AddComponent<Sprite>()->SetSprite(canvas, 8, 16);
-	guy->transform->position->x = 8;
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti\nMeatball", 5,20,8,0xd);
@@ -245,7 +236,7 @@ Test::Test() : Scene()
 	gal->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 	gal->transform->position->x = 8;
 	don->Addchild(gal);
-	gal->Addchild(guy);
+	gal->Addchild(jon);
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
 	//RemoveTextfromScene();
@@ -254,9 +245,7 @@ Test::Test() : Scene()
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
-	//this->Addchild(guy);
 	this->Addchild(don);
-	speed = 20.0f;
 	AddSceneText("Spaghetti\nMeatball", 100.0f, 940.0f, 8.0f, 0xb);
 }
 
@@ -265,39 +254,19 @@ void Test::update(float deltaTime)
 	//std::stringstream hello;
 	//hello << "Colliding = " << gal->GetComponent<Collider>()->isColliding(don);
 	//EditSceneText(hello.str());
-	//if (GetInput()->KeyDown(KeyCode::A))
+	//if (GetInput()->MouseOver(gal->GetComponent<Collider>()))
 	//{
-	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
-	//	guy->transform->rotation->y = -180;
-	//	guy->transform->position->x -= speed * deltaTime;
-	//}
-	//else if (GetInput()->KeyDown(KeyCode::D))
-	//{
-	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,1,2);
-	//	guy->transform->rotation->y = 0;
-	//	guy->transform->position->x += speed * deltaTime;
-	//}
-	//else if (GetInput()->KeyDown(KeyCode::W))
-	//{
-	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
-	//	guy->transform->rotation->y = 0;
-	//	guy->transform->position->y += speed * deltaTime;
-	//}
-	//else if (GetInput()->KeyDown(KeyCode::S))
-	//{
-	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 1, 2);
-	//	guy->transform->rotation->y = 0;
-	//	guy->transform->position->y -= speed * deltaTime;
-	//}
-	//else
-	//{
-	//	guy->GetComponent<Animation>()->PlayAnimation(&walkAnim, false,0,0);
+	//	std::cout << "You are over me" << std::endl;
 	//}
 
 	if (GetInput()->KeyPressed(KeyCode::LeftControl))
 	{
 		this->DeleteChild(don);
 		//don->DeleteChild(gal);
+	}
+	if (GetInput()->KeyPressed(KeyCode::Escape))
+	{
+		isRunning = false;
 	}
 	//GetMainCamera()->position.x = guy->transform->position->x;
 	//GetMainCamera()->position.y = guy->transform->position->y;

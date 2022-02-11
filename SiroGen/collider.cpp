@@ -1,6 +1,11 @@
 #include "collider.h"
 #include <iostream>
 
+//Collider::Collider()
+//{
+//	_Owner = nullptr;
+//}
+
 Collider::Collider(Entity* owner)
 {
 	_Owner = owner;
@@ -23,24 +28,23 @@ void Collider::SetUpCircle(float x, float y, float diameter)
 	_diameter = diameter;
 }
 
-bool Collider::isColliding(Entity* collider)
+bool Collider::isColliding(Collider* collider)
 {
-	Collider* tempcollider = collider->GetComponent<Collider>();
-	if (this->_issquare && tempcollider->_issquare)
+	if (this->_issquare && collider->_issquare)
 	{
-		return square2square(tempcollider);
+		return square2square(collider);
 	}
-	else if (!this->_issquare && !tempcollider->_issquare)
+	else if (!this->_issquare && !collider->_issquare)
 	{
-		return circle2circle(tempcollider);
+		return circle2circle(collider);
 	}
-	else if (this->_issquare && !tempcollider->_issquare)
+	else if (this->_issquare && !collider->_issquare)
 	{
-		return circle2square(tempcollider, this);
+		return circle2square(collider, this);
 	}
 	else
 	{
-		return circle2square(this, tempcollider);
+		return circle2square(this, collider);
 	}
 }
 
