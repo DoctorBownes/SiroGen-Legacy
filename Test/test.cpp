@@ -205,6 +205,7 @@ Test::Test() : Scene()
 		0x0,0xd,0xd,0xd,0x0,0xd,0xd,0xd,
 	};
 	jon = new Player();
+	jon->transform->position->y = 8;
 	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
@@ -220,7 +221,7 @@ Test::Test() : Scene()
 
 	don = new Entity;
 	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
-	don->AddComponent<Text>()->SetText("Spaghetti\nMeatball", 5,20,8,0xd);
+	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
 	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
 	don->transform->position->x = 0;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
@@ -233,7 +234,7 @@ Test::Test() : Scene()
 	//this->AddtoScene(jon);
 	gal = new Entity;
 	gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
-	gal->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
+	gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
 	gal->transform->position->x = 8;
 	don->Addchild(gal);
 	gal->Addchild(jon);
@@ -246,7 +247,7 @@ Test::Test() : Scene()
 	//this->AddtoScene(gal);
 	//this->AddtoScene(guy);
 	this->Addchild(don);
-	AddSceneText("Spaghetti\nMeatball", 100.0f, 940.0f, 8.0f, 0xb);
+	//AddSceneText("Spaghetti\nMeatball", 100.0f, 940.0f, 8.0f, 0xb);
 }
 
 void Test::update(float deltaTime)
@@ -254,7 +255,7 @@ void Test::update(float deltaTime)
 	//std::stringstream hello;
 	//hello << "Colliding = " << gal->GetComponent<Collider>()->isColliding(don);
 	//EditSceneText(hello.str());
-	//if (GetInput()->MouseOver(gal->GetComponent<Collider>()))
+	//if (GetInput()->MouseOver(gal))
 	//{
 	//	std::cout << "You are over me" << std::endl;
 	//}

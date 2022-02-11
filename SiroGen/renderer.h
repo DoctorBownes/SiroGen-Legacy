@@ -27,25 +27,25 @@ private:
 	Camera* _camera = new Camera();
 	GLuint GetShader(const char* vertex_file_path, const char* fragment_file_path);
     //Based on ZX Spectrum color palette.
-    const Color Palette[16] =
-    {
-        ALPHA, //0
-        BLACK, //1
-        DARKBLUE, //2
-        BLUE, //3
-        DARKRED, //4
-        RED, //5
-        DARKMAGENTA, //6
-        MAGENTA, //7
-        DARKGREEN, //8
-        GREEN, //9
-        DARKCYAN, //10
-        CYAN, //11
-        DARKYELLOW, //12
-        YELLOW, //13
-        GRAY, //14
-        WHITE //15
-    };
+    //const Color Palette[16] =
+    //{
+    //    ALPHA, //0
+    //    BLACK, //1
+    //    DARKBLUE, //2
+    //    BLUE, //3
+    //    DARKRED, //4
+    //    RED, //5
+    //    DARKMAGENTA, //6
+    //    MAGENTA, //7
+    //    DARKGREEN, //8
+    //    GREEN, //9
+    //    DARKCYAN, //10
+    //    CYAN, //11
+    //    DARKYELLOW, //12
+    //    YELLOW, //13
+    //    GRAY, //14
+    //    WHITE //15
+    //};
 };
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

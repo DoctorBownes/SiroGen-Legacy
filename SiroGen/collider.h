@@ -12,7 +12,7 @@ public:
 
     void SetUpSquare(float x, float y, float width, float height);
     void SetUpCircle(float x, float y, float diameter);
-    bool isColliding(Collider* collider);
+    bool isColliding(Entity* collider);
 private:
     bool _issquare = 1;
     float _x = 0.0f;

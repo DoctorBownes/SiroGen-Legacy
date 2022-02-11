@@ -80,10 +80,10 @@ bool Input::MouseDown(MouseButton button)
 	return false;
 }
 
-//bool Input::MouseOver(Collider* collider)
+//bool Input::MouseOver(Entity* collider)
 //{
-//	mousecollider.SetUpSquare(mousex, mousey, 0, 0);
-//	if (mousecollider.isColliding(collider))
+//	std::cout << mousecollider->transform->position->x << std::endl;
+//	if (mousecollider->GetComponent<Collider>()->isColliding(collider))
 //	{
 //		return true;
 //	}

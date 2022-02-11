@@ -1,4 +1,5 @@
 #pragma once
+//#include <GL/glew.h>
 #include <glfw/glfw3.h>
 
 enum KeyCode
@@ -153,6 +154,7 @@ public:
 	double GetMousePosX() { return mousex; };
 	double GetMousePosY() { return mousey; };
 private:
+	//Collider* mousecollider;
 	GLFWwindow* _window;
 	bool mousereleased[8];
 	bool mousepressed[8];
