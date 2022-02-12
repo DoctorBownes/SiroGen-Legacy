@@ -142,6 +142,15 @@ enum MouseButton
 class Input
 {
 public:
+	Input(const Input&) = delete;
+	static Input* GetInstance()
+	{
+		if (!_instance)
+		{
+			_instance = new Input();
+		}
+		return _instance;
+	}
 	void Init(GLFWwindow* window);
 	bool KeyPressed(KeyCode key);
 	bool KeyReleased(KeyCode key);
@@ -154,6 +163,9 @@ public:
 	double GetMousePosX() { return mousex; };
 	double GetMousePosY() { return mousey; };
 private:
+	Input();
+	~Input();
+	static Input *_instance;
 	//Collider* mousecollider;
 	GLFWwindow* _window;
 	bool mousereleased[8];

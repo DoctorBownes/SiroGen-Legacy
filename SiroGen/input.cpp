@@ -6,6 +6,16 @@ void Input::Init(GLFWwindow* window)
 	GetMousePos();
 }
 
+Input::Input()
+{
+
+}
+
+Input::~Input()
+{
+	delete _instance;
+}
+
 bool Input::KeyPressed(KeyCode key)
 {
 	if (glfwGetKey(_window, key) == GLFW_RELEASE)

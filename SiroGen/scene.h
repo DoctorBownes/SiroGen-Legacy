@@ -1,6 +1,4 @@
 #pragma once
-
-#include <set>
 #include <SiroGen/entity.h>
 #include <SiroGen/camera.h>
 

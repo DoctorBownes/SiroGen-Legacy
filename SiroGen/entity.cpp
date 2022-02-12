@@ -1,5 +1,7 @@
 #include <SiroGen/entity.h>
 
+Input* Input::_instance = 0;
+
 Entity::Entity()
 {
 	transform = new Transform;
@@ -47,7 +49,6 @@ Entity::~Entity()
 	std::cout << "Deleting Entity" << std::endl;
 	delete transform;
 	delete worldtransform;
-	delete input;
 	std::map< size_t, Component*>::iterator it;
 	for (it = componentlist.begin(); it != componentlist.end(); it++)
 	{

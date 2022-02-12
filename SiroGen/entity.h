@@ -36,11 +36,11 @@ public:
 
 	Transform* transform;
 	Transform* worldtransform;
-	Input* GetInput() { return input; };
+	Input* GetInput() { return _instance; };
 
 private:
+	Input* _instance = _instance->GetInstance();
 	Entity* Parent = nullptr;
-	Input* input = new Input();
 	std::vector<Entity*> _children;
 	std::map<size_t, Component*> componentlist;
 };
