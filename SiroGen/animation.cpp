@@ -30,7 +30,6 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         {
             AnimationQueue.erase(AnimationQueue.begin());
             starttime = glfwGetTime();
-            std::cout << "Erased" << std::endl;
         }
     }
     if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
@@ -39,7 +38,6 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         spriteanimation->frame = spriteanimation->startframe;
         spriteanimation->endframe = endframe;
         AnimationQueue.insert(AnimationQueue.begin(), std::make_pair(spriteanimation, loop));
-        std::cout << "Inserted" << std::endl;
     }
 }
 

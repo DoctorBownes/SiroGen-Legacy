@@ -31,22 +31,26 @@ void Collider::SetUpCircle(float x, float y, float diameter)
 bool Collider::isColliding(Entity* collider)
 {
 	Collider* tempcollider = collider->GetComponent<Collider>();
-	if (this->_issquare && tempcollider->_issquare)
+	if (tempcollider != nullptr)
 	{
-		return square2square(tempcollider);
+		if (this->_issquare && tempcollider->_issquare)
+		{
+			return square2square(tempcollider);
+		}
+		else if (!this->_issquare && !tempcollider->_issquare)
+		{
+			return circle2circle(tempcollider);
+		}
+		else if (this->_issquare && !tempcollider->_issquare)
+		{
+			return circle2square(tempcollider, this);
+		}
+		else
+		{
+			return circle2square(this, tempcollider);
+		}
 	}
-	else if (!this->_issquare && !tempcollider->_issquare)
-	{
-		return circle2circle(tempcollider);
-	}
-	else if (this->_issquare && !tempcollider->_issquare)
-	{
-		return circle2square(tempcollider, this);
-	}
-	else
-	{
-		return circle2square(this, tempcollider);
-	}
+	return false;
 }
 
 bool Collider::square2square(Collider* collider)

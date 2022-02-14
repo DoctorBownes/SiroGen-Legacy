@@ -7,7 +7,8 @@ Core::Core()
 
 void Core::Start(Scene* scene)
 {
-	scene->InputInit(scene, sceneRenderer.window);	
+	scene->InputInit(scene, sceneRenderer.window);
+	sceneRenderer.RenderScene(scene);
 	do
 	{
 		CalculateDeltaTime();

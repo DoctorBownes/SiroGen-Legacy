@@ -34,9 +34,9 @@ void Entity::DeleteChild(Entity* entity)
 		if (std::find(entity->Parent->_children.begin(), entity->Parent->_children.end(), entity) != entity->Parent->_children.end())
 		{
 			entity->Parent->_children.erase(std::find(entity->Parent->_children.begin(), entity->Parent->_children.end(), entity));
-			DeleteChildren(entity);
-			delete entity;
 		}
+		DeleteChildren(entity);
+		delete entity;
 	}
 	else
 	{
@@ -60,9 +60,8 @@ Entity::~Entity()
 
 void Entity::DeleteChildren(Entity* entity)
 {
-	DeleteChild(entity);
 	for (int i = 0; i < entity->_children.size(); i++)
 	{
-		DeleteChildren(entity->_children[i]);
+		DeleteChild(entity->_children[i]);
 	}
 }

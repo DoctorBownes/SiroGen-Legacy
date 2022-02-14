@@ -7,7 +7,7 @@ Entity* don;
 Entity* bkgd;
 SpriteAnimation galAnim;
 SpriteAnimation waveAnim;
-Player* jon;
+Player* joey;
 float starttime = 0.0f;
 int counter = 0;
 Test::Test() : Scene()
@@ -114,8 +114,8 @@ Test::Test() : Scene()
 	{
 		0x2
 	};
-	jon = new Player();
-	jon->transform->position->x = 8.0f;
+	joey = new Player();
+	joey->transform->position->x = 8.0f;
 	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
@@ -143,13 +143,13 @@ Test::Test() : Scene()
 	//galAnim.AddSprite(galcanvas3, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas5, 8, 16,0.6f);
-	//this->AddtoScene(jon);
+	//this->AddtoScene(joey);
 	gal = new Entity;
 	gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
 	gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
 	gal->transform->position->x = 8;
 	don->Addchild(gal);
-	gal->Addchild(jon);
+	//gal->Addchild(joey);
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
 	//RemoveTextfromScene();
@@ -157,7 +157,7 @@ Test::Test() : Scene()
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
-	//this->AddtoScene(guy);
+	this->Addchild(joey);
 	this->Addchild(don);
 	AddSceneText("Joey Aptin", 100.0f, 940.0f, 4.0f, 0xf);
 }
@@ -174,8 +174,15 @@ void Test::update(float deltaTime)
 
 	if (GetInput()->KeyPressed(KeyCode::LeftControl))
 	{
-		this->DeleteChild(don);
-		//don->DeleteChild(gal);
+	}
+
+	if (don != nullptr)
+	{
+		if (joey->GetComponent<Collider>()->isColliding(don))
+		{
+			this->DeleteChild(don);
+			don = nullptr;
+		}
 	}
 	if (GetInput()->KeyPressed(KeyCode::Escape))
 	{
