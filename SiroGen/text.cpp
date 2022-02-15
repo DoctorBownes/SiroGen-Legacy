@@ -22,7 +22,6 @@ void Text::Init()
     texture_buffer = 0;
     vertex_buffer = 0;
     uv_buffer = 0;
-    _texture = new Texture();
 }
 
 Text::~Text()
@@ -37,11 +36,13 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     _size = size;
     if (!TGAfont[0])
     {
-        texture_buffer = _texture->LoadPixelImage(bittext, 128, 64);
+        _texture = _instance->GetTexture(bittext, 128, 64);
+        texture_buffer = _texture->GetTexBuffer();
     }
     else
     {
-        texture_buffer = _texture->LoadTGAImage(TGAfont, true);
+        _texture = _instance->GetTexture(text.c_str(), true);
+        texture_buffer = _texture->GetTexBuffer();
     }
     textColor = _texture->Palette[Color];
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);

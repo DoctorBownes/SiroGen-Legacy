@@ -1,7 +1,7 @@
 #ifndef SPRITE_H_
 #define SPRITE_H_
 #include "component.h"
-#include "texture.h"
+#include <SiroGen/resourcemanager.h>
 #include <vector>
 class Sprite :
     public Component
@@ -16,6 +16,7 @@ public:
     void SetSprite(char canvas[], char width, char height);
 
 private:
+    ResourceManager* _instance = _instance->GetInstance();
     Texture* texture;
     GLfloat* vertex_buffer_data;
     GLfloat* uv_buffer_data;

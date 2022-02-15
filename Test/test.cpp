@@ -132,8 +132,10 @@ Test::Test() : Scene()
 	galAnim.AddSprite(doncanvas1, 8, 16, 0.1f);
 
 	don = new Entity;
-	don->AddComponent<Animation>()->PlayAnimation(&galAnim);
+	don->AddComponent<Animation>();
+	don->GetComponent<Animation>()->PlayAnimation(&galAnim);
 	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
+	//don->RemoveComponent<Text>();
 	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
 	don->transform->position->x = 0;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);

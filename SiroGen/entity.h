@@ -61,7 +61,7 @@ T* Entity::AddComponent()
 template <typename T>
 T* Entity::GetComponent()
 {
-	if (componentlist.find(typeid(T).hash_code()) != componentlist.end())
+	if (componentlist[typeid(T).hash_code()])
 	{
 		return static_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
@@ -72,7 +72,7 @@ T* Entity::GetComponent()
 template <typename T>
 void Entity::RemoveComponent()
 {
-	if (componentlist.count(typeid(T).hash_code()))
+	if (componentlist[typeid(T).hash_code()])
 	{
 		delete componentlist.find(typeid(T).hash_code())->second;
 		componentlist.erase(componentlist.find(typeid(T).hash_code()));

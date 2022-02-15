@@ -36,6 +36,7 @@ public:
         GRAY, //14
         WHITE //15
     };
+    GLuint GetTexBuffer() { return _texture; };
 private:
 	GLuint _texture;
 

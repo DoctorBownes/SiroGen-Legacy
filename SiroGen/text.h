@@ -1,8 +1,8 @@
 #ifndef TEXT_H_
 #define TEXT_H_
 #include <vector>
-#include <SiroGen/texture.h>
 #include <SiroGen/component.h>
+#include <SiroGen/resourcemanager.h>
 #include <glm/glm.hpp>
 
 class Text : public Component
@@ -16,6 +16,7 @@ public:
 	virtual void DoIt(GLuint shader);
 
 private:
+	ResourceManager* _instance = _instance->GetInstance();
 	Color textColor;
 
 	float _x = 0.0f;

@@ -1,7 +1,5 @@
 #include <SiroGen/entity.h>
 
-Input* Input::_instance = 0;
-
 Entity::Entity()
 {
 	transform = new Transform;

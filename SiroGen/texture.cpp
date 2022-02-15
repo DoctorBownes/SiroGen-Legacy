@@ -10,7 +10,7 @@ Texture::Texture()
 
 Texture::~Texture()
 {
-
+	glDeleteTextures(1, &_texture);
 }
 
 GLuint Texture::LoadTGAImage(const char* imagepath, bool isFont)

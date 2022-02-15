@@ -1,5 +1,7 @@
 #include "input.h"
 
+Input* Input::_instance = 0;
+
 void Input::Init(GLFWwindow* window)
 {
 	_window = window;

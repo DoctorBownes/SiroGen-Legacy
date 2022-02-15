@@ -7,7 +7,6 @@ Sprite::Sprite()
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;
-    texture = new Texture();
     vertex_buffer_data = 0;
     uv_buffer_data = 0;
     GenerateSprite();
@@ -19,7 +18,6 @@ Sprite::Sprite(Entity* owner)
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;
-    texture = new Texture();
     vertex_buffer_data = 0;
     uv_buffer_data = 0;
     GenerateSprite();
@@ -27,7 +25,7 @@ Sprite::Sprite(Entity* owner)
 
 Sprite::~Sprite()
 {
-    delete texture;
+    _instance->DeleteTexture(texture);
 }
 
 void Sprite::RemoveSprite()
@@ -39,7 +37,8 @@ void Sprite::RemoveSprite()
 
 void Sprite::SetSprite(const char* TGA)
 {
-    texture_buffer = texture->LoadTGAImage(TGA);
+    texture = _instance->GetTexture(TGA);
+    texture_buffer = texture->GetTexBuffer();
     vertex_buffer_data = new GLfloat[]{
         0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
        -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
@@ -63,7 +62,8 @@ void Sprite::SetSprite(const char* TGA)
 
 void Sprite::SetSprite(char canvas[], char width, char height)
 {
-    texture_buffer = texture->LoadPixelImage(canvas, width, height);
+    texture = _instance->GetTexture(canvas,width,height);
+    texture_buffer = texture->GetTexBuffer();
     vertex_buffer_data = new GLfloat[]{
         -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
          0.5f * texture->_width,  0.5f * texture->_height, 0.0f,

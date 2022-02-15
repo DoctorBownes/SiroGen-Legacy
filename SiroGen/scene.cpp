@@ -8,6 +8,7 @@ Scene::Scene()
 Scene::~Scene()
 {
 	delete MainCamera;
+	DeleteChildren(this);
 }
 
 void Scene::InputInit(Entity* entity, GLFWwindow* window)
