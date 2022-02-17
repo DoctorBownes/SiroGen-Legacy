@@ -46,6 +46,7 @@ std::string get_file_contents(const char* filename)
 
 Renderer::Renderer()
 {
+    _camera = nullptr;
     _shader = 0;
     window = nullptr;
     glewExperimental = true;

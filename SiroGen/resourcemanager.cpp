@@ -37,7 +37,16 @@ Texture* ResourceManager::GetTexture(char canvas[], unsigned char width, unsigne
 
 void ResourceManager::DeleteTexture(Texture* texture)
 {
+	Texture* temptexture = texture;
 	delete texture;
+	std::map<const char*, Texture*>::iterator it;
+	for (it = _textures.begin(); it != _textures.end(); it++)
+	{
+		if (it->second == temptexture)
+		{
+			_textures.erase(it);
+		}
+	}
 }
 
 void ResourceManager::cleanup()
