@@ -19,11 +19,11 @@ public:
 
 	//uint8_t bkgdcolor = 0;
 
-	std::vector<Text> GetTexts() { return scenetexts; };
+	std::vector<Text*> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };
 private:
 	Camera* MainCamera = new Camera(false);
 	std::vector<Entity*> _children;
-	std::vector<Text> scenetexts;
+	std::vector<Text*> scenetexts;
 };
 

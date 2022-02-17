@@ -17,7 +17,7 @@ public:
 
 private:
 	ResourceManager* _instance = _instance->GetInstance();
-	Color textColor;
+	Texture* texture;
 
 	float _x = 0.0f;
 	float _y = 0.0f;
@@ -25,7 +25,7 @@ private:
 	float _linedepth = 0.0f;
 
 	void Init();
-	Texture* _texture;
+	Color textColor;
 	std::vector<GLfloat> vertex_buffer_vector;
 	std::vector<GLfloat> uv_buffer_vector;
 

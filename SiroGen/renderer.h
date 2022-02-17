@@ -22,9 +22,9 @@ public:
 	GLFWwindow* window;
 private:
 	void RenderEntity(glm::mat4 mat, Entity* entity);
-	void RenderText(Text text);
+	void RenderText(Text* text);
 	GLuint _shader;
-	Camera* _camera = new Camera();
+	Camera* _camera;
 	GLuint GetShader(const char* vertex_file_path, const char* fragment_file_path);
 };
 

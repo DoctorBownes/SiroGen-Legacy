@@ -2,7 +2,6 @@
 
 Scene::Scene()
 {
-
 }
 
 Scene::~Scene()
@@ -35,26 +34,31 @@ void Scene::updateEntities(Entity* entity, float deltaTime)
 
 void Scene::AddSceneText(std::string text, float x, float y, float size,  uint8_t Color, const char* TGAfont)
 {
-	Text temptext = Text();
-	temptext.SetText(text, x / 480.0f, y / 540.0f, size / 64.0f, Color, TGAfont);
+	Text* temptext = new Text();
+	temptext->SetText(text, x / 480.0f, y / 540.0f, size / 64.0f, Color, TGAfont);
 	scenetexts.push_back(temptext);
 }
 
 
 void Scene::EditSceneText(std::string text, int pos)
 {
-	scenetexts[pos].EditText(text);
+	scenetexts[pos]->EditText(text);
 }
 
 void Scene::RemoveSceneText(int pos)
 {
 	if (scenetexts.size() > 0)
 	{
+		delete scenetexts[pos];
 		scenetexts.erase(scenetexts.begin() + pos);
 	}
 }
 
 void Scene::ClearSceneText()
 {
+	for (int i = 0; i < scenetexts.size(); i++)
+	{
+		delete scenetexts[i];
+	}
 	scenetexts.clear();
 }

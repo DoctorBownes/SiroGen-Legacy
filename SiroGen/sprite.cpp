@@ -1,5 +1,4 @@
 #include "sprite.h"
-#include <SiroGen/renderer.h>
 
 Sprite::Sprite()
 {
@@ -7,8 +6,8 @@ Sprite::Sprite()
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;
-    vertex_buffer_data = 0;
-    uv_buffer_data = 0;
+    vertex_buffer_data = nullptr;
+    uv_buffer_data = nullptr;
     GenerateSprite();
 }
 
@@ -18,13 +17,14 @@ Sprite::Sprite(Entity* owner)
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;
-    vertex_buffer_data = 0;
-    uv_buffer_data = 0;
+    vertex_buffer_data = nullptr;
+    uv_buffer_data = nullptr;
     GenerateSprite();
 }
 
 Sprite::~Sprite()
 {
+    std::cout << "Deleting Textures" << std::endl;
     _instance->DeleteTexture(texture);
 }
 

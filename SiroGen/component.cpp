@@ -10,3 +10,7 @@ Component::Component(Entity* owner)
 {
 	_Owner = owner;
 }
+
+Component::~Component()
+{
+}

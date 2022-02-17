@@ -14,7 +14,7 @@ class Entity
 {
 public:
 	Entity();
-	~Entity();
+	virtual ~Entity();
 
 	void Addchild(Entity* entity);
 	void Removechild(Entity* entity);
@@ -74,7 +74,7 @@ void Entity::RemoveComponent()
 {
 	if (componentlist[typeid(T).hash_code()])
 	{
-		delete componentlist.find(typeid(T).hash_code())->second;
+		delete componentlist[typeid(T).hash_code()];
 		componentlist.erase(componentlist.find(typeid(T).hash_code()));
 	}
 	else

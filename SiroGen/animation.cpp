@@ -14,7 +14,12 @@ Animation::Animation(Entity* owner)
 
 Animation::~Animation()
 {
-
+    //std::vector<std::pair<SpriteAnimation*, bool>>::iterator it;
+    //for (it = AnimationQueue.begin(); it != AnimationQueue.end(); it++)
+    //{
+    //    std::cout << "Deleting Animation Component" << std::endl;
+    //    delete it->first;
+    //}
 }
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
@@ -45,6 +50,7 @@ void Animation::RemoveAnimation()
 {
     if (AnimationQueue.size() > 0)
     {
+        //delete AnimationQueue.begin()->first;
         AnimationQueue.erase(AnimationQueue.begin());
     }
 }

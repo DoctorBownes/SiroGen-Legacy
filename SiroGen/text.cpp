@@ -22,11 +22,12 @@ void Text::Init()
     texture_buffer = 0;
     vertex_buffer = 0;
     uv_buffer = 0;
+    texture = nullptr;
 }
 
 Text::~Text()
 {
-    //delete _texture;
+   // _instance->DeleteTexture(texture);
 }
 
 void Text::SetText(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
@@ -36,15 +37,14 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     _size = size;
     if (!TGAfont[0])
     {
-        _texture = _instance->GetTexture(bittext, 128, 64);
-        texture_buffer = _texture->GetTexBuffer();
+        texture = _instance->GetTexture(bittext, 128, 64);
     }
     else
     {
-        _texture = _instance->GetTexture(text.c_str(), true);
-        texture_buffer = _texture->GetTexBuffer();
+        texture = _instance->GetTexture(text.c_str(), true);
     }
-    textColor = _texture->Palette[Color];
+    texture_buffer = texture->GetTexBuffer();
+    textColor = texture->Palette[Color];
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 

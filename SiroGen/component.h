@@ -7,6 +7,7 @@ class Component
 public:
 	Entity* _Owner;
 	Component();
+	virtual ~Component();
 	Component(Entity* owner);
 	virtual void DoIt(unsigned int _shader) = 0;
 };

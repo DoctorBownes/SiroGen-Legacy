@@ -5,8 +5,8 @@ Entity* guy;
 Entity* gal;
 Entity* don;
 Entity* bkgd;
-SpriteAnimation galAnim;
-SpriteAnimation waveAnim;
+SpriteAnimation* galAnim = new SpriteAnimation;
+SpriteAnimation* waveAnim = new SpriteAnimation;
 Player* joey;
 float starttime = 0.0f;
 int counter = 0;
@@ -119,23 +119,23 @@ Test::Test() : Scene()
 	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
-	bkgd = new Entity();
-	bkgd->AddComponent<Sprite>()->SetSprite(bgkdcanvas, 1, 1);
-	bkgd->transform->scale->x = 192.0f;
-	bkgd->transform->scale->y = 108.0f;
-	this->Addchild(bkgd);
+	//bkgd = new Entity();
+	//bkgd->AddComponent<Sprite>()->SetSprite(bgkdcanvas, 1, 1);
+	//bkgd->transform->scale->x = 192.0f;
+	//bkgd->transform->scale->y = 108.0f;
+	//this->Addchild(bkgd);
 
-	waveAnim.AddSprite(waveCanvas, 8, 16, 0.5f);
-	waveAnim.AddSprite(waveCanvas2, 8, 16, 0.5f);
+	waveAnim->AddSprite(waveCanvas, 8, 16, 0.5f);
+	waveAnim->AddSprite(waveCanvas2, 8, 16, 0.5f);
 
-	galAnim.AddSprite(doncanvas, 8, 16, 3.0f);
-	galAnim.AddSprite(doncanvas1, 8, 16, 0.1f);
+	galAnim->AddSprite(doncanvas, 8, 16, 3.0f);
+	galAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
 
 	don = new Entity;
 	don->AddComponent<Animation>();
-	don->GetComponent<Animation>()->PlayAnimation(&galAnim);
-	don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
-	//don->RemoveComponent<Text>();
+	don->GetComponent<Animation>()->PlayAnimation(galAnim);
+	//don->RemoveComponent<Animation>();
+	//don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
 	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
 	don->transform->position->x = 0;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
@@ -146,11 +146,11 @@ Test::Test() : Scene()
 	//galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	//this->AddtoScene(joey);
-	gal = new Entity;
-	gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
-	gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
-	gal->transform->position->x = 8;
-	don->Addchild(gal);
+	//gal = new Entity;
+	//gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
+	//gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
+	//gal->transform->position->x = 8;
+	//don->Addchild(gal);
 	//gal->Addchild(joey);
 
 	//gal->AddComponent<Text>()->printText2D("Something inspiring.", 0, 0, 10);
@@ -159,9 +159,11 @@ Test::Test() : Scene()
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
 	//this->AddtoScene(gal);
-	this->Addchild(joey);
+	//this->Addchild(joey);
 	this->Addchild(don);
-	AddSceneText("Joey Aptin", 100.0f, 940.0f, 4.0f, 0xf);
+	//AddSceneText("Joey Aptin", 100.0f, 940.0f, 4.0f, 0xf);
+
+	//SceneText op de Stack of Heap vraag waarom roept hij de decontructor op
 }
 
 void Test::update(float deltaTime)
@@ -176,20 +178,21 @@ void Test::update(float deltaTime)
 
 	if (GetInput()->KeyPressed(KeyCode::LeftControl))
 	{
+		this->DeleteChild(don);
 	}
 
-	if (don != nullptr)
-	{
-		if (joey->GetComponent<Collider>()->isColliding(don))
-		{
-			this->DeleteChild(don);
-			don = nullptr;
-		}
-	}
+	//if (don != nullptr)
+	//{
+	//	if (joey->GetComponent<Collider>()->isColliding(don))
+	//	{
+	//		//delete galAnim;
+	//		don = nullptr;
+	//	}
+	//}
 	if (GetInput()->KeyPressed(KeyCode::Escape))
 	{
 		isRunning = false;
 	}
-	//GetMainCamera()->position.x = guy->transform->position->x;
-	//GetMainCamera()->position.y = guy->transform->position->y;
+	//GetMainCamera()->position.x = joey->transform->position->x;
+	//GetMainCamera()->position.y = joey->transform->position->y;
 }
