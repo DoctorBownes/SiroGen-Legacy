@@ -6,8 +6,13 @@ Scene::Scene()
 
 Scene::~Scene()
 {
+	for (int i = 0; i < _children.size(); i++)
+	{
+		delete _children[i];
+	}
+	_children.clear();
 	delete MainCamera;
-	DeleteChildren(this);
+	//DeleteChildren(this);
 }
 
 void Scene::InputInit(Entity* entity, GLFWwindow* window)

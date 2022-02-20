@@ -38,11 +38,13 @@ public:
 	Transform* worldtransform;
 	Input* GetInput() { return _instance; };
 
+protected:
+	std::vector<Entity*> _children;
+	std::map<size_t, Component*> componentlist;
+
 private:
 	Input* _instance = _instance->GetInstance();
 	Entity* Parent = nullptr;
-	std::vector<Entity*> _children;
-	std::map<size_t, Component*> componentlist;
 };
 
 template <typename T>

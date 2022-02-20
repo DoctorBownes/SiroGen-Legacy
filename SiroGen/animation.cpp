@@ -20,6 +20,7 @@ Animation::~Animation()
     //    std::cout << "Deleting Animation Component" << std::endl;
     //    delete it->first;
     //}
+    AnimationQueue.clear();
 }
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
@@ -48,7 +49,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
 
 void Animation::RemoveAnimation()
 {
-    if (AnimationQueue.size() > 0)
+    if (!AnimationQueue.empty())
     {
         //delete AnimationQueue.begin()->first;
         AnimationQueue.erase(AnimationQueue.begin());
@@ -73,7 +74,7 @@ void Animation::ResumeAnimation(int atframe)
 
 void Animation::DoIt(unsigned int _shader)
 {
-    if (AnimationQueue.size() > 0 && AnimationQueue.begin()->first->GetArray().size() > 0)
+    if (!AnimationQueue.empty() && !AnimationQueue.begin()->first->GetArray().empty())
     {
         std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
         Component* tempsprite = tempvector.at(AnimationQueue.begin()->first->frame).first;

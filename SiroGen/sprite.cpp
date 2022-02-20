@@ -24,7 +24,6 @@ Sprite::Sprite(Entity* owner)
 
 Sprite::~Sprite()
 {
-    std::cout << "Deleting Textures" << std::endl;
     _instance->DeleteTexture(texture);
 }
 
