@@ -10,7 +10,7 @@ const char* vertex_shader = "#version 330 core\n"
 "{\n"
 "	gl_Position = MVP * vec4(vertexPosition, 1.0);\n"
 "	UV = vertexUV;\n"
-"}\0";
+"};";
 const char* fragment_shader = "#version 330 core\n"
 "in vec2 UV;\n"
 "out vec4 FragColor;\n"
@@ -20,7 +20,7 @@ const char* fragment_shader = "#version 330 core\n"
 "{\n"
 "	FragColor = texture2D(myTextureSampler, UV) * blendColor;\n"
 //"	if (FragColor.a < 0.5)discard;\n"
-"}\n\0";
+"};";
 
 
 extern "C"

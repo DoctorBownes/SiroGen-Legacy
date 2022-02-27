@@ -14,6 +14,16 @@ Test::Test() : Scene()
 {
 	GetMainCamera()->SetZoom(10);
 
+	char turtlecanvas[]
+	{
+		0x0,0x0,0x0,0x0,0x0,0x0,
+		0x0,0x0,0x0,0xd,0x1,0x0,
+		0x0,0xc,0xc,0xd,0xd,0x0,
+		0xc,0xc,0xc,0xd,0xc,0x0,
+		0xc,0xc,0xd,0xd,0xd,0x0,
+		0xd,0x0,0xd,0x0,0xd,0x0,
+	};
+
 	char galcanvas[]
 	{
 		0x0,0x0,0x7,0x7,0x7,0x0,0x0,0x0,
@@ -114,8 +124,8 @@ Test::Test() : Scene()
 	{
 		0x2
 	};
-	//joey = new Player();
-	//joey->transform->position->x = 8.0f;
+	joey = new Player();
+	joey->transform->position->x = 8.0f;
 	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
@@ -139,7 +149,7 @@ Test::Test() : Scene()
 	//don->RemoveComponent<Animation>();
 	//don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
 	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
-	don->transform->position->x = 0;
+	don->transform->position->x = -8;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
 
 	//galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -148,8 +158,9 @@ Test::Test() : Scene()
 	//galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	//this->AddtoScene(joey);
-	//gal = new Entity;
-	//gal->AddComponent<Sprite>()->SetSprite(galcanvas, 8,16);
+	gal = new Entity;
+	gal->AddComponent<Sprite>()->SetSprite(turtlecanvas, 6,6);
+	//*gal->transform->scale = Vector3(0.5f,0.5f);
 	//gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
 	//gal->transform->position->x = 8;
 	//don->Addchild(gal);
@@ -160,10 +171,10 @@ Test::Test() : Scene()
 	//*gal->transform->position = Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
-	//this->AddtoScene(gal);
-	//this->Addchild(joey);
+	this->Addchild(gal);
+	this->Addchild(joey);
 	this->Addchild(don);
-	//AddSceneText("Joey Aptin", 100.0f, 940.0f, 4.0f, 0xf);
+	AddSceneText("Joey Spectrum", 100.0f, 940.0f, 4.0f, 0xf);
 	//SceneText op de Stack of Heap vraag waarom roept hij de decontructor op
 }
 
@@ -198,6 +209,6 @@ void Test::update(float deltaTime)
 		delete galAnim;
 		isRunning = false;
 	}
-	//GetMainCamera()->position.x = joey->transform->position->x;
-	//GetMainCamera()->position.y = joey->transform->position->y;
+	GetMainCamera()->position.x = joey->transform->position->x;
+	GetMainCamera()->position.y = joey->transform->position->y;
 }
