@@ -61,7 +61,7 @@ Renderer::Renderer()
     glEnable(GL_MULTISAMPLE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+   // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed. ALSO MAKES THE SHADERS NOT WORK FOR INTEL HD GRAPHICS
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
 
 
@@ -105,7 +105,7 @@ void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
     
-   // glClearColor(Palette[scene->bkgdcolor].r /255.0f, Palette[scene->bkgdcolor].g / 255.0f, Palette[scene->bkgdcolor].b / 255.0f, 0.0f);
+    glClearColor(100.0f /255.0f, 1.0f / 255.0f, 100.0f / 255.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     RenderEntity(glm::mat4(1), scene);

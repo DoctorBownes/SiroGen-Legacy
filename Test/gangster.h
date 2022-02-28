@@ -1,10 +1,11 @@
 #pragma once
 #include <SiroGen/entity.h>
 
-class Player : public Entity
+class Gangster : public Entity
 {
 public:
-	Player();
+	Gangster();
 	virtual void update(float deltaTime);
+private:
+	SpriteAnimation* blinkAnim;
 };
-

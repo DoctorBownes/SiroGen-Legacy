@@ -107,8 +107,10 @@ add_executable(Test # g++ Test/test.cpp -o Test
 	Test/main.cpp
 	Test/player.cpp
 	Test/player.h
-	Test/testnity.cpp
-	Test/testnity.h
+	Test/wackem.cpp
+	Test/wackem.h
+	Test/gangster.cpp
+	Test/gangster.h
 )
 target_link_libraries(Test # g++ -lSiroGen
 	${ALL_GRAPHICS_LIBS}

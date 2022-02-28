@@ -8,5 +8,6 @@ class Test :
 public:
     Test();
     virtual void update(float deltaTime);
+   // Player* joey;
 };
 

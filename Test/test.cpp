@@ -7,7 +7,6 @@ Entity* don;
 Entity* bkgd;
 SpriteAnimation* galAnim = new SpriteAnimation;
 SpriteAnimation* waveAnim = new SpriteAnimation;
-Player* joey;
 float starttime = 0.0f;
 int counter = 0;
 Test::Test() : Scene()
@@ -124,8 +123,8 @@ Test::Test() : Scene()
 	{
 		0x2
 	};
-	joey = new Player();
-	joey->transform->position->x = 8.0f;
+	//joey = new Player();
+	//joey->transform->position->x = 8.0f;
 	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
@@ -172,7 +171,7 @@ Test::Test() : Scene()
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
 	this->Addchild(gal);
-	this->Addchild(joey);
+	//this->Addchild(joey);
 	this->Addchild(don);
 	AddSceneText("Joey Spectrum", 100.0f, 940.0f, 4.0f, 0xf);
 	//SceneText op de Stack of Heap vraag waarom roept hij de decontructor op
@@ -209,6 +208,6 @@ void Test::update(float deltaTime)
 		delete galAnim;
 		isRunning = false;
 	}
-	GetMainCamera()->position.x = joey->transform->position->x;
-	GetMainCamera()->position.y = joey->transform->position->y;
+	//GetMainCamera()->position.x = joey->transform->position->x;
+	//GetMainCamera()->position.y = joey->transform->position->y;
 }
