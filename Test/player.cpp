@@ -103,8 +103,8 @@ Player::Player()
 		0x0,0x0,0xf,0xf,0xf,0xe,0xf,0x0,
 	};
 	walkAnim.AddSprite(canvas, 8, 16, 0.2f);
-	walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
-	walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
+	walkAnim.AddSprite(canvas2, 8, 16, 0.1f);
+	walkAnim.AddSprite(canvas3, 8, 16, 0.1f);
 
 	smokeAnim.AddSprite(canvas4, 8, 16, 0.1f);
 	smokeAnim.AddSprite(canvas5, 8, 16, 0.1f);

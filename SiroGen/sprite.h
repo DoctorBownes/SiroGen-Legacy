@@ -18,6 +18,7 @@ public:
 private:
     ResourceManager* _instance = _instance->GetInstance();
     Texture* texture;
+    char blendColor = 0xf;
     GLfloat* vertex_buffer_data;
     GLfloat* uv_buffer_data;
     std::vector<GLfloat> vertex_buffer_vector;

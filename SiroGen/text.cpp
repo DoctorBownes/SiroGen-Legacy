@@ -44,7 +44,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
         texture = _instance->GetTexture(text.c_str(), true);
     }
     texture_buffer = texture->GetTexBuffer();
-    textColor = texture->Palette[Color];
+    textColor = Color;
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
@@ -127,7 +127,7 @@ void Text::EditText(std::string text)
 void Text::DoIt(GLuint shader)
 {
     GLuint ColorID = glGetUniformLocation(shader, "blendColor");
-    glUniform4f(ColorID, textColor.r / 255.0f, textColor.g / 255.0f, textColor.b / 255.0f, 1.0f);
+    glUniform4f(ColorID, texture->Palette[textColor].r / 255.0f, texture->Palette[textColor].g / 255.0f, texture->Palette[textColor].b / 255.0f, 1.0f);
     glBindTexture(GL_TEXTURE_2D, texture_buffer);
 
     GLuint vertexPositionID = glGetAttribLocation(shader, "vertexPosition");

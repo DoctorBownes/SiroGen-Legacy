@@ -11,6 +11,7 @@ Wackem::Wackem() : Scene()
 		Addchild(mob[i]);
 	}
 	mob[1]->transform->position->x = 16;
+	AddSceneText("Hello Mario", 460, 800, 0xf);
 	Addchild(joey);
 }
 

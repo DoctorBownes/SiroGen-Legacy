@@ -25,7 +25,7 @@ private:
 	float _linedepth = 0.0f;
 
 	void Init();
-	Color textColor;
+	uint8_t textColor;
 	std::vector<GLfloat> vertex_buffer_vector;
 	std::vector<GLfloat> uv_buffer_vector;
 
