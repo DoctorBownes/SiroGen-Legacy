@@ -110,7 +110,6 @@ Player::Player()
 	smokeAnim.AddSprite(canvas5, 8, 16, 0.1f);
 
 	speed = 20.0f;
-
 	this->AddComponent<Animation>();
 	this->GetComponent<Animation>()->PlayAnimation(&walkAnim, false, 0, 0);
 	this->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);

@@ -9,7 +9,7 @@ class Wackem :
 public:
 	Wackem();
 	virtual void update(float deltaTime);
-
+	std::vector<Gangster*> mob;
 	Player* joey;
 };
 

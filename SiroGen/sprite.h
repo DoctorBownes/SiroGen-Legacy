@@ -14,21 +14,20 @@ public:
     void SetSprite(const char* TGA);
     void RemoveSprite();
     void SetSprite(char canvas[], char width, char height);
-
-private:
-    ResourceManager* _instance = _instance->GetInstance();
-    Texture* texture;
     char blendColor = 0xf;
-    GLfloat* vertex_buffer_data;
-    GLfloat* uv_buffer_data;
+
+protected:
+    Texture* texture;
     std::vector<GLfloat> vertex_buffer_vector;
     std::vector<GLfloat> uv_buffer_vector;
-    void GenerateSprite();
-    virtual void DoIt(GLuint shader);
-
     GLuint texture_buffer;
     GLuint vertex_buffer;
     GLuint uv_buffer;
+    void GenerateSprite();
+    virtual void DoIt(GLuint shader);
+
+private:
+    ResourceManager* _instance = _instance->GetInstance();
 
     int _height = 0;
     int _width = 0;

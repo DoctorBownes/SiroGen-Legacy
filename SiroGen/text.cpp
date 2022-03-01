@@ -44,7 +44,7 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
         texture = _instance->GetTexture(text.c_str(), true);
     }
     texture_buffer = texture->GetTexBuffer();
-    textColor = Color;
+    blendColor = Color;
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
@@ -53,7 +53,8 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
 
 void Text::EditText(std::string text)
 {
-    _count = 0;
+    vertex_buffer_vector.clear();
+    uv_buffer_vector.clear();
     float linex = 0.0f;
     float liney = 0.0f;
     linex = _x;
@@ -109,54 +110,13 @@ void Text::EditText(std::string text)
 
             uv_buffer_vector.push_back(uv_x);
             uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
-            _count++;
         }
     }
     _x = linex;
-    glGenBuffers(1, &vertex_buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 72 * _count, vertex_buffer_vector.data(), GL_STATIC_DRAW);
-
-    glGenBuffers(1, &uv_buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 48 * _count, uv_buffer_vector.data(), GL_STATIC_DRAW);
-    vertex_buffer_vector.clear();
-    uv_buffer_vector.clear();
+    GenerateSprite();
 }
 
-void Text::DoIt(GLuint shader)
+void Text::DoItext(GLuint shader)
 {
-    GLuint ColorID = glGetUniformLocation(shader, "blendColor");
-    glUniform4f(ColorID, texture->Palette[textColor].r / 255.0f, texture->Palette[textColor].g / 255.0f, texture->Palette[textColor].b / 255.0f, 1.0f);
-    glBindTexture(GL_TEXTURE_2D, texture_buffer);
-
-    GLuint vertexPositionID = glGetAttribLocation(shader, "vertexPosition");
-    glEnableVertexAttribArray(vertexPositionID);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-    glVertexAttribPointer(
-        vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
-        3,                  // size
-        GL_FLOAT,           // type
-        GL_FALSE,           // normalized?
-        0,                  // stride
-        (void*)0            // array buffer offset
-    );
-    // Draw the triangle !
-    GLuint vertexUVID = glGetAttribLocation(shader, "vertexUV");
-    glEnableVertexAttribArray(vertexUVID);
-    glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
-    glVertexAttribPointer(
-        vertexUVID,                       // attribute. No particular reason for 1, but must match the layout in the shader.
-        2,                                // size
-        GL_FLOAT,                         // type
-        GL_FALSE,                         // normalized?
-        0,                                // stride
-        (void*)0                          // array buffer offset
-    );
-
-    //glBindVertexArray(entity->GetComponent<Sprite>()->VertexArrayID);
-    glDrawArrays(GL_TRIANGLES, 0, 6 * _count); // Starting from vertex 0; 3 vertices total -> 1 triangle
-    glDisableVertexAttribArray(vertexPositionID);
-    glDisableVertexAttribArray(vertexUVID);
-    glDisableVertexAttribArray(ColorID);
+    DoIt(shader);
 }

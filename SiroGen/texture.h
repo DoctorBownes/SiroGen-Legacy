@@ -29,12 +29,12 @@ public:
         MAGENTA, //7
         DARKGREEN, //8
         GREEN, //9
-        DARKCYAN, //10
-        CYAN, //11
-        DARKYELLOW, //12
-        YELLOW, //13
-        GRAY, //14
-        WHITE //15
+        DARKCYAN, //10 0xa
+        CYAN, //11 0xb
+        DARKYELLOW, //12 0xc
+        YELLOW, //13 0xd
+        GRAY, //14 0xe
+        WHITE //15 0xf
     };
     GLuint GetTexBuffer() { return _texture; };
 private:
