@@ -1,4 +1,5 @@
 #include "vector3.h"
+#include <iostream>
 
 Vector3::Vector3()
 {
@@ -48,13 +49,19 @@ void Vector3::MoveTowards(Vector3 vector, float speed)
 	Vector3* dir = thisvector->sub(*this);
 
 	//normalize
-	dir->x = dir->x / std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z));
-	dir->y = dir->y / std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z));
-	dir->z = dir->z / std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z));
+	//std::cout << std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z)) << std::endl;
+	Normalize(dir);
 
 	dir->mult(speed);
 	this->add(*dir);
 	delete thisvector;
+}
+
+void Vector3::Normalize(Vector3* vector)
+{
+	vector->x = vector->x / std::sqrtf((vector->x * vector->x) + (vector->y * vector->y) + (vector->z * vector->z) + 0.00001f);
+	vector->y = vector->y / std::sqrtf((vector->x * vector->x) + (vector->y * vector->y) + (vector->z * vector->z) + 0.00001f);
+	vector->z = vector->z / std::sqrtf((vector->x * vector->x) + (vector->y * vector->y) + (vector->z * vector->z) + 0.00001f);
 }
 
 Vector3* Vector3::sub(Vector3 vector)

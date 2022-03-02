@@ -21,16 +21,12 @@ Wackem::Wackem() : Scene()
 	mob[4]->transform->position->x = 16;
 	mob[4]->SetColor(0xb);
 	joey->transform->position->x = 32;
+	//joey->transform->position->y = 32;
 	//AddSceneText("Joey Spectrum", 420, 800, 10);
 	Addchild(joey);
 }
 
 void Wackem::update(float deltaTime)
 {
-	mob[0]->transform->position->MoveTowards(Vector3(-49.0f, joey->transform->position->y), 10 * deltaTime);
-	//Vector3 playerpos = *mob[0]->transform->position;
-	//Vector3 dir = *playerpos.sub(*joey->transform->position);
-	//dir.mult(0.125f);
-	//joey->transform->position->add(dir);
-	//mob[0]->transform->position
+	mob[0]->transform->position->MoveTowards(*joey->transform->position, 5.0f * deltaTime);
 }
