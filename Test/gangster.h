@@ -9,4 +9,5 @@ public:
 	virtual void update(float deltaTime);
 private:
 	SpriteAnimation* blinkAnim;
+	SpriteAnimation* drawAnim;
 };

@@ -23,15 +23,18 @@ Texture* ResourceManager::GetTexture(const char* imagepath, bool isFont)
 	return temptexture;
 }
 
-Texture* ResourceManager::GetTexture(char canvas[], unsigned char width, unsigned char height)
+Texture* ResourceManager::GetTexture(char* canvas, unsigned char width, unsigned char height)
 {
 	if (_textures[canvas] != nullptr)
 	{
+		std::cout << "Returning Texture" << std::endl;
 		return _textures[canvas];
 	}
+	std::cout << "New Texture number: " << _textures.size() << std::endl;
 	Texture* temptexture = new Texture();
 	temptexture->LoadPixelImage(canvas, width, height);
 	_textures[canvas] = temptexture;
+	//_textures.insert(_textures.end(), std::pair<const char*, Texture*>(canvas, temptexture));
 	return temptexture;
 }
 

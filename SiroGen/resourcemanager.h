@@ -17,7 +17,7 @@ public:
 	}
 
 	Texture* GetTexture(const char* imagepath, bool isFont = false);
-	Texture* GetTexture(char canvas[], unsigned char width, unsigned char height);
+	Texture* GetTexture(char* canvas, unsigned char width, unsigned char height);
 	void DeleteTexture(Texture* texture);
 	void cleanup();
 

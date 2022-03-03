@@ -50,18 +50,18 @@ void Vector3::MoveTowards(Vector3 vector, float speed)
 
 	//normalize
 	//std::cout << std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z)) << std::endl;
-	Normalize(dir);
+	dir->Normalize();
 
 	dir->mult(speed);
 	this->add(*dir);
 	delete thisvector;
 }
 
-void Vector3::Normalize(Vector3* vector)
+void Vector3::Normalize()
 {
-	vector->x = vector->x / std::sqrtf((vector->x * vector->x) + (vector->y * vector->y) + (vector->z * vector->z) + 0.00001f);
-	vector->y = vector->y / std::sqrtf((vector->x * vector->x) + (vector->y * vector->y) + (vector->z * vector->z) + 0.00001f);
-	vector->z = vector->z / std::sqrtf((vector->x * vector->x) + (vector->y * vector->y) + (vector->z * vector->z) + 0.00001f);
+	this->x = this->x / std::sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
+	this->y = this->y / std::sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
+	this->z = this->z / std::sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
 }
 
 Vector3* Vector3::sub(Vector3 vector)

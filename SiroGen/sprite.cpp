@@ -6,7 +6,8 @@ Sprite::Sprite()
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;
-    GenerateSprite();
+    texture = nullptr;
+   // GenerateSprite();
 }
 
 Sprite::Sprite(Entity* owner)
@@ -15,7 +16,8 @@ Sprite::Sprite(Entity* owner)
     vertex_buffer = 0;
     texture_buffer = 0;
     uv_buffer = 0;
-    GenerateSprite();
+    texture = nullptr;
+    //GenerateSprite();
 }
 
 Sprite::~Sprite()

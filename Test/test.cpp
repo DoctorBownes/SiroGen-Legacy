@@ -137,10 +137,10 @@ Test::Test() : Scene()
 	//waveAnim->AddSprite(waveCanvas, 8, 16, 0.5f);
 	//waveAnim->AddSprite(waveCanvas2, 8, 16, 0.5f);
 
-	galAnim->AddSprite(doncanvas, 8, 16, 3.0f);
-	galAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
-	galAnim->AddSprite(doncanvas, 8, 16, 3.0f);
-	galAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
+	//galAnim->AddSprite(doncanvas, 8, 16, 3.0f);
+	//galAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
+	//galAnim->AddSprite(doncanvas, 8, 16, 3.0f);
+	//galAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
 
 	don = new Entity;
 	don->AddComponent<Animation>();
