@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RESOURCEMANAGER_H_
+#define RESOURCEMANAGER_H_
 #include <map>
 #include <SiroGen/texture.h>
 
@@ -29,3 +30,4 @@ private:
 	~ResourceManager();
 	static ResourceManager* _instance;
 };
+#endif

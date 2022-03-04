@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEXTURE_H_
+#define TEXTURE_H_
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -42,3 +43,4 @@ private:
 
     std::vector<unsigned char> pixelCanvas;
 };
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEXT_H_
+#define TEXT_H_
 #include <vector>
 #include <SiroGen/sprite.h>
 #include <glm/glm.hpp>
@@ -25,3 +26,4 @@ private:
 
 	int _count = 0;
 };
+#endif
