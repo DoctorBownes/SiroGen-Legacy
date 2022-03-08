@@ -134,7 +134,7 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     glm::quat worldrot = glm::quat();
     glm::vec3 worldscale = glm::vec3();
     glm::vec3 skew = glm::vec3();
-    glm::vec3 perspec = glm::vec4();
+    glm::vec4 perspec = glm::vec4();
 
     glm::decompose(mat, worldscale, worldrot, worldpos, skew, perspec);
 
