@@ -22,12 +22,6 @@ const char* fragment_shader = "#version 330 core\n"
 //"	if (FragColor.a < 0.5)discard;\n"
 "};";
 
-
-extern "C"
-{
-    __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
-}
-
 std::string get_file_contents(const char* filename)
 {
     std::ifstream in(filename, std::ios::binary);
@@ -139,8 +133,10 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     glm::vec3 worldpos = glm::vec3();
     glm::quat worldrot = glm::quat();
     glm::vec3 worldscale = glm::vec3();
+    glm::vec3 skew = glm::vec3();
+    glm::vec3 perspec = glm::vec4();
 
-    glm::decompose(mat, worldscale, worldrot, worldpos, glm::vec3(), glm::vec4());
+    glm::decompose(mat, worldscale, worldrot, worldpos, skew, perspec);
 
     *entity->worldtransform->position = Vector3(worldpos.x, worldpos.y, worldpos.z);
     *entity->worldtransform->rotation = Vector3(worldrot.x, worldrot.y, worldrot.z);

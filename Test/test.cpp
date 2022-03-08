@@ -1,19 +1,19 @@
 #include "test.h"
 #include <sstream>
 
-Entity* guy;
-Entity* gal;
-Entity* don;
-Entity* bkgd;
-SpriteAnimation* galAnim = new SpriteAnimation;
-SpriteAnimation* waveAnim = new SpriteAnimation;
-float starttime = 0.0f;
-int counter = 0;
+//Entity* guy;
+//Entity* gal;
+//Entity* don;
+//Entity* bkgd;
+//SpriteAnimation* galAnim = new SpriteAnimation;
+//SpriteAnimation* waveAnim = new SpriteAnimation;
+//float starttime = 0.0f;
+//int counter = 0;
 Test::Test() : Scene()
 {
-	GetMainCamera()->SetZoom(10);
+	//GetMainCamera()->SetZoom(10);
 
-	char turtlecanvas[]
+	/*char turtlecanvas[]
 	{
 		0x0,0x0,0x0,0x0,0x0,0x0,
 		0x0,0x0,0x0,0xd,0x1,0x0,
@@ -122,17 +122,17 @@ Test::Test() : Scene()
 	char bgkdcanvas[]
 	{
 		0x2
-	};
+	};*/
 	//joey = new Player();
 	//joey->transform->position->x = 8.0f;
 	//walkAnim.AddSprite(canvas, 8, 16,  0.2f);
 	//walkAnim.AddSprite(canvas2, 8, 16, 0.2f);
 	//walkAnim.AddSprite(canvas3, 8, 16, 0.2f);
-	bkgd = new Entity();
-	bkgd->AddComponent<Sprite>()->SetSprite(bgkdcanvas, 1, 1);
-	bkgd->transform->scale->x = 192.0f;
-	bkgd->transform->scale->y = 108.0f;
-	this->Addchild(bkgd);
+	//bkgd = new Entity();
+	//bkgd->AddComponent<Sprite>()->SetSprite(bgkdcanvas, 1, 1);
+	//bkgd->transform->scale->x = 192.0f;
+	//bkgd->transform->scale->y = 108.0f;
+	//this->Addchild(bkgd);
 
 	//waveAnim->AddSprite(waveCanvas, 8, 16, 0.5f);
 	//waveAnim->AddSprite(waveCanvas2, 8, 16, 0.5f);
@@ -142,13 +142,13 @@ Test::Test() : Scene()
 	//galAnim->AddSprite(doncanvas, 8, 16, 3.0f);
 	//galAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
 
-	don = new Entity;
-	don->AddComponent<Animation>();
-	don->GetComponent<Animation>()->PlayAnimation(galAnim);
+	//don = new Entity;
+	//don->AddComponent<Animation>();
+	//don->GetComponent<Animation>()->PlayAnimation(galAnim);
 	//don->RemoveComponent<Animation>();
 	//don->AddComponent<Text>()->SetText("Spaghetti", 5,20,8,0xd);
-	don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
-	don->transform->position->x = -8;
+	//don->AddComponent<Collider>()->SetUpSquare(0.0f,0.0f,8,16);
+	//don->transform->position->x = -8;
 	//don->AddComponent<Text>()->printText2D("Mario Mario",2,15, 5.0f, 0xd);
 
 	//galAnim.AddSprite(galcanvas, 8, 16, 0.6f);
@@ -157,8 +157,8 @@ Test::Test() : Scene()
 	//galAnim.AddSprite(canvas4, 8, 16,0.6f);
 	//galAnim.AddSprite(canvas5, 8, 16,0.6f);
 	//this->AddtoScene(joey);
-	gal = new Entity;
-	gal->AddComponent<Sprite>()->SetSprite(turtlecanvas, 6,6);
+	//gal = new Entity;
+	//gal->AddComponent<Sprite>()->SetSprite(turtlecanvas, 6,6);
 	//*gal->transform->scale = Vector3(0.5f,0.5f);
 	//gal->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 8, 16);
 	//gal->transform->position->x = 8;
@@ -170,10 +170,10 @@ Test::Test() : Scene()
 	//*gal->transform->position = Vector3(0.0f, 0.0f);
 	//guy->Addchild(gal);
 	//guy->Addchild(don);
-	this->Addchild(gal);
+	//this->Addchild(gal);
 	//this->Addchild(joey);
-	this->Addchild(don);
-	AddSceneText("Joey Spectrum", 100.0f, 940.0f, 4.0f, 0xf);
+	//this->Addchild(don);
+	//AddSceneText("Joey Spectrum", 100.0f, 940.0f, 4.0f, 0xf);
 	//SceneText op de Stack of Heap vraag waarom roept hij de decontructor op
 }
 
@@ -187,11 +187,11 @@ void Test::update(float deltaTime)
 	//	std::cout << "You are over me" << std::endl;
 	//}
 
-	if (GetInput()->KeyPressed(KeyCode::LeftControl))
-	{
-		this->DeleteChild(don);
-		this->DeleteChild(bkgd);
-	}
+	//if (GetInput()->KeyPressed(KeyCode::LeftControl))
+	//{
+	//	this->DeleteChild(don);
+	//	this->DeleteChild(bkgd);
+	//}
 
 	//if (don != nullptr)
 	//{
@@ -201,13 +201,13 @@ void Test::update(float deltaTime)
 	//		don = nullptr;
 	//	}
 	//}
-	if (GetInput()->KeyPressed(KeyCode::Escape))
-	{
-		this->DeleteChild(don);
-		delete waveAnim;
-		delete galAnim;
-		isRunning = false;
-	}
+	//if (GetInput()->KeyPressed(KeyCode::Escape))
+	//{
+	//	this->DeleteChild(don);
+	//	delete waveAnim;
+	//	delete galAnim;
+	//	isRunning = false;
+	//}
 	//GetMainCamera()->position.x = joey->transform->position->x;
 	//GetMainCamera()->position.y = joey->transform->position->y;
 }
