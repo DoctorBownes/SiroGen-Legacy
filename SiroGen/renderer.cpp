@@ -91,7 +91,6 @@ Renderer::Renderer()
 
 Renderer::~Renderer()
 {
-    delete window;
     delete _camera;
 }
 
