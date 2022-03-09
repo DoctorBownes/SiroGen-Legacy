@@ -1,4 +1,5 @@
 #include <SiroGen/entity.h>
+#include <algorithm>
 
 Entity::Entity()
 {

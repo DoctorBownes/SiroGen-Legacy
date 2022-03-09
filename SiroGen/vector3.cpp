@@ -59,9 +59,9 @@ void Vector3::MoveTowards(Vector3 vector, float speed)
 
 void Vector3::Normalize()
 {
-	this->x = this->x / std::sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
-	this->y = this->y / std::sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
-	this->z = this->z / std::sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
+	this->x = this->x / std::sqrt((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
+	this->y = this->y / std::sqrt((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
+	this->z = this->z / std::sqrt((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
 }
 
 Vector3* Vector3::sub(Vector3 vector)

@@ -1,5 +1,5 @@
 # CMake entry point
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.12)
 project (SiroGen)
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -50,7 +50,6 @@ include_directories( # g++ -Ipath/to/headerfiles
 )
 
 link_directories( # g++ -Lpath/to/library
-
 )
 
 set(ALL_GRAPHICS_LIBS
@@ -115,6 +114,9 @@ add_executable(Test # g++ Test/test.cpp -o Test
 target_link_libraries(Test # g++ -lSiroGen
 	${ALL_GRAPHICS_LIBS}
 )
+	target_link_libraries(Test
+		${ALL_GRAPHICS_LIBS}
+	)
 # Copy assets and shaders to the build directory
 # (In Visual Studio, copy these directories to either 'Release' or 'Build')
 file(

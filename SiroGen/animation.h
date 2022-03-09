@@ -2,6 +2,7 @@
 #define ANIMATION_H_
 #include <map>
 #include <SiroGen/spriteanimation.h>
+#include <algorithm>
 class Animation : public Component
 {
 public:
