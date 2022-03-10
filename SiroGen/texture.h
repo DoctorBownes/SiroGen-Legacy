@@ -15,7 +15,7 @@ public:
 	int _height;
 
 	GLuint LoadTGAImage(const char* imagepath, bool isFont = false);
-	GLuint LoadPixelImage(char canvas[], unsigned char width, unsigned char height);
+	GLuint LoadPixelImage(char* canvas, unsigned char width, unsigned char height);
 
     //Based on ZX Spectrum color palette.
     const Color Palette[16] =

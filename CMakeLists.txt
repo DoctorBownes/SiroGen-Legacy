@@ -106,8 +106,8 @@ add_executable(Test # g++ Test/test.cpp -o Test
 	Test/main.cpp
 	Test/player.cpp
 	Test/player.h
-	Test/wackem.cpp
-	Test/wackem.h
+	Test/whackem.cpp
+	Test/whackem.h
 	Test/gangster.cpp
 	Test/gangster.h
 )

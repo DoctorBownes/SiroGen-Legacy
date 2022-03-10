@@ -2,6 +2,32 @@
 
 Gangster::Gangster()
 {
+
+	char bulletcanvas[]
+	{
+		0x0,0x0,0x0,0x0,
+		0xd,0x0,0x0,0x0,
+		0xd,0xd,0x0,0x0,
+		0xd,0x0,0x0,0x0,
+	};
+	char bulletcanvas2[]
+	{
+		0x0,0x0,0x0,0x0,
+		0x0,0x0,0x0,0x0,
+		0xe,0xe,0x1,0x0,
+		0x0,0x0,0x0,0x0,
+	};
+	char bulletcanvas3[]
+	{
+		0x0,0x0,0x0,0x0,
+		0x0,0x0,0x0,0x0,
+		0x0,0x0,0x1,0x0,
+		0x0,0x0,0x0,0x0,
+	};
+	bulletAnim = new SpriteAnimation();
+	bulletAnim->AddSprite(bulletcanvas, 4, 4, 0.6f);
+	bulletAnim->AddSprite(bulletcanvas2, 4, 4, 0.7f);
+	bulletAnim->AddSprite(bulletcanvas3, 4, 4, 0.1f);
 	char doncanvas[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -104,16 +130,55 @@ Gangster::Gangster()
 	};
 
 	drawAnim = new SpriteAnimation();
-	drawAnim->AddSprite(drawcanvas1, 16, 16, 0.2f);
-	drawAnim->AddSprite(drawcanvas2, 16, 16, 0.2f);
-	drawAnim->AddSprite(drawcanvas3, 16, 16);
+	drawAnim->AddSprite(drawcanvas1, 16, 16, 0.6f);
+	drawAnim->AddSprite(drawcanvas2, 16, 16, 0.8f);
+	drawAnim->AddSprite(drawcanvas3, 16, 16, 0.532f);
+	this->AddComponent<Animation>()->PlayAnimation(blinkAnim);
+	bullets = std::vector<Entity*>();
 
-	this->AddComponent<Animation>()->PlayAnimation(drawAnim);
+}
+
+Gangster::~Gangster()
+{
+	delete drawAnim;
+	delete blinkAnim;
 }
 
 void Gangster::update(float deltaTime)
 {
-
+	if (target != nullptr)
+	{
+		if (transform->position->DistanceBetween(&Vector3(transform->position->x,target->transform->position->y)) <= 10.0f)
+		{
+			this->GetComponent<Animation>()->PlayAnimation(drawAnim);
+			if (GetComponent<Animation>()->isAnimationFinished())
+			{
+				Entity* bullet = new Entity();
+				bullet->transform->position->x = transform->position->x + 10;
+				bullet->transform->position->y = transform->position->y + 2;
+				bullets.push_back(bullet);
+				Parent->Addchild(bullet);
+				bullet->AddComponent<Animation>()->PlayAnimation(bulletAnim);
+			}
+		}
+		else
+		{
+			this->GetComponent<Animation>()->PlayAnimation(blinkAnim);
+		}
+		for (int i = 0; i < bullets.size(); i++)
+		{
+			if (bullets[i]->GetComponent<Animation>()->frame > 0)
+			{
+				bullets[i]->transform->position->x += 50 * deltaTime;
+			}
+			if (bullets[i]->GetComponent<Animation>()->frame == 2)
+			{
+				bullets[i]->GetComponent<Animation>()->PauseAnimation(2);
+			}
+		}
+		std::cout << transform->position->DistanceBetween(&Vector3(transform->position->x, target->transform->position->y)) << std::endl;
+		transform->position->MoveTowards(Vector3(transform->position->x,target->transform->position->y), 0.50f * deltaTime);
+	}
 }
 
 void Gangster::SetColor(uint8_t color)

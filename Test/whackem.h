@@ -3,11 +3,11 @@
 #include "player.h"
 #include "gangster.h"
 
-class Wackem :
+class Whackem :
 	public Scene
 {
 public:
-	Wackem();
+	Whackem();
 	virtual void update(float deltaTime);
 	std::vector<Gangster*> mob;
 	Player* joey;

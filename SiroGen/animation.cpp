@@ -41,7 +41,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
     if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
     {
         spriteanimation->startframe = startframe;
-        spriteanimation->frame = spriteanimation->startframe;
+        frame = spriteanimation->startframe;
         spriteanimation->endframe = endframe;
         AnimationQueue.insert(AnimationQueue.begin(), std::make_pair(spriteanimation, loop));
     }
@@ -58,7 +58,7 @@ void Animation::RemoveAnimation()
 
 void Animation::PauseAnimation(int atframe)
 {
-    AnimationQueue.begin()->first->frame = atframe;
+    frame = atframe;
     paused = true;
 }
 
@@ -67,7 +67,7 @@ void Animation::ResumeAnimation(int atframe)
     if (paused)
     {
         starttime = glfwGetTime();
-        AnimationQueue.begin()->first->frame = atframe;
+        frame = atframe;
         paused = false;
     }
 }
@@ -77,18 +77,18 @@ void Animation::DoIt(unsigned int _shader)
     if (!AnimationQueue.empty() && !AnimationQueue.begin()->first->GetArray().empty())
     {
         std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
-        Component* tempsprite = tempvector.at(AnimationQueue.begin()->first->frame).first;
+        Component* tempsprite = tempvector.at(frame).first;
         isFinished = false;
         tempsprite->DoIt(_shader);
         if (AnimationQueue.begin()->first->startframe != AnimationQueue.begin()->first->endframe)
         {
-            if (glfwGetTime() - starttime >= tempvector.at(AnimationQueue.begin()->first->frame).second && !paused)
+            if (glfwGetTime() - starttime >= tempvector.at(frame).second && !paused)
             {
-                AnimationQueue.begin()->first->frame++;
-                if (AnimationQueue.begin()->first->frame == AnimationQueue.begin()->first->endframe + 1)
+                frame++;
+                if (frame == AnimationQueue.begin()->first->endframe + 1)
                 {
                     isFinished = true;
-                    AnimationQueue.begin()->first->frame = AnimationQueue.begin()->first->startframe;
+                    frame = AnimationQueue.begin()->first->startframe;
                     if (!AnimationQueue.begin()->second)
                     {
                         RemoveAnimation();

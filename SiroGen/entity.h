@@ -41,10 +41,10 @@ public:
 protected:
 	std::vector<Entity*> _children;
 	std::map<size_t, Component*> componentlist;
+	Entity* Parent = nullptr;
 
 private:
 	Input* _instance = _instance->GetInstance();
-	Entity* Parent = nullptr;
 };
 
 template <typename T>

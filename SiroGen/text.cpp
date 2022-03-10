@@ -45,8 +45,6 @@ void Text::SetText(std::string text, float x, float y, float size, uint8_t Color
     }
     texture_buffer = texture->GetTexBuffer();
     blendColor = Color;
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     EditText(text);
 }

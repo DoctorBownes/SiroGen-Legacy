@@ -5,9 +5,14 @@ class Gangster : public Entity
 {
 public:
 	Gangster();
+	~Gangster();
 	void SetColor(uint8_t color);
 	virtual void update(float deltaTime);
-private:
 	SpriteAnimation* blinkAnim;
 	SpriteAnimation* drawAnim;
+	Entity* target = nullptr;
+private:
+	std::vector<Entity*> bullets;
+	SpriteAnimation* bulletAnim;
+	bool bulletspawned = false;
 };

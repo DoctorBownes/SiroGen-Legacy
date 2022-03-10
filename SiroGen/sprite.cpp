@@ -22,7 +22,7 @@ Sprite::Sprite(Entity* owner)
 
 Sprite::~Sprite()
 {
-    _instance->DeleteTexture(texture);
+    //_instance->DeleteTexture(texture);
 }
 
 void Sprite::RemoveSprite()
@@ -57,7 +57,7 @@ void Sprite::SetSprite(const char* TGA)
     GenerateSprite();
 }
 
-void Sprite::SetSprite(char canvas[], char width, char height)
+void Sprite::SetSprite(char* canvas, char width, char height)
 {
     texture = _instance->GetTexture(canvas,width,height);
     texture_buffer = texture->GetTexBuffer();

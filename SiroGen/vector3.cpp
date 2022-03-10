@@ -50,11 +50,18 @@ void Vector3::MoveTowards(Vector3 vector, float speed)
 
 	//normalize
 	//std::cout << std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z)) << std::endl;
-	dir->Normalize();
+	//dir->Normalize();
 
 	dir->mult(speed);
 	this->add(*dir);
 	delete thisvector;
+}
+
+float Vector3::DistanceBetween(Vector3* vector)
+{
+	float nx = this->x - vector->x;
+	float ny = this->y - vector->y;
+	return std::sqrt((nx * nx) + (ny * ny));
 }
 
 void Vector3::Normalize()
