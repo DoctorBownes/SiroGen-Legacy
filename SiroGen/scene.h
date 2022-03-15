@@ -23,6 +23,6 @@ public:
 	Camera* GetMainCamera() { return MainCamera; };
 private:
 	Camera* MainCamera = new Camera(false);
-	std::vector<Text*> scenetexts;
+	std::vector<Text*> scenetexts = std::vector<Text*>();
 };
 

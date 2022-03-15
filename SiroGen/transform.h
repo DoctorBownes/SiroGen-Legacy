@@ -6,8 +6,8 @@ class Transform
 public:
 	Transform();
 	~Transform();
-	Vector3* position;
-	Vector3* rotation;
-	Vector3* scale;
+	Vector3* position = nullptr;
+	Vector3* rotation = nullptr;
+	Vector3* scale = nullptr;
 };
 

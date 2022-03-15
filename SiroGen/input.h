@@ -2,7 +2,7 @@
 //#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-enum KeyCode
+enum class KeyCode
 {
 	Space = 32,
 	Apostrophe = 39,
@@ -124,7 +124,7 @@ enum KeyCode
 	Menu = 348
 };
 
-enum MouseButton
+enum class MouseButton
 {
 	MouseLeft = 0,
 	MouseRight = 1,

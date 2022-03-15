@@ -7,7 +7,7 @@
 class Core
 {
 public:
-	double deltaTime;
+	double deltaTime = 0.0;
 	Core();
 	void Start(Scene* scene);
 private:

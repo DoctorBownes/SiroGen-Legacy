@@ -14,6 +14,6 @@ public:
 	int startframe = 0;
 	int endframe = 0;
 	std::vector<std::pair<Sprite*, float> > GetArray() { return AniArray; };
+	std::vector<std::pair<Sprite*, float> > AniArray = std::vector<std::pair<Sprite*, float> >();
 private:
-	std::vector<std::pair<Sprite*, float> > AniArray;
 };

@@ -10,23 +10,27 @@ void Input::Init(GLFWwindow* window)
 
 Input::Input()
 {
-
+	_window = nullptr;
+	keypressed[117] = { 0 };
+	keyreleased[117] = { 0 };
+	mousepressed[7] = { 0 };
+	mousereleased[7] = { 0 };
 }
 
 Input::~Input()
 {
-	delete _instance;
+	//delete _instance;
 }
 
 bool Input::KeyPressed(KeyCode key)
 {
-	if (glfwGetKey(_window, key) == GLFW_RELEASE)
+	if (glfwGetKey(_window, (int)key) == GLFW_RELEASE)
 	{
-		keypressed[key] = 0;
+		keypressed[(int)key] = 0;
 	}
-	if (glfwGetKey(_window, key) == GLFW_PRESS && !keypressed[key])
+	if (glfwGetKey(_window, (int)key) == GLFW_PRESS && !keypressed[(int)key])
 	{
-		keypressed[key] = 1;
+		keypressed[(int)key] = 1;
 		return true;
 	}
 	return false;
@@ -34,13 +38,13 @@ bool Input::KeyPressed(KeyCode key)
 
 bool Input::KeyReleased(KeyCode key)
 {
-	if (glfwGetKey(_window, key))
+	if (glfwGetKey(_window, (int)key))
 	{
-		keyreleased[key] = 1;
+		keyreleased[(int)key] = 1;
 	}
-	if (glfwGetKey(_window, key) == GLFW_RELEASE && keyreleased[key])
+	if (glfwGetKey(_window, (int)key) == GLFW_RELEASE && keyreleased[(int)key])
 	{
-		keyreleased[key] = 0;
+		keyreleased[(int)key] = 0;
 		return true;
 	}
 	return false;
@@ -48,7 +52,7 @@ bool Input::KeyReleased(KeyCode key)
 
 bool Input::KeyDown(KeyCode key)
 {
-	if (glfwGetKey(_window, key) == GLFW_PRESS)
+	if (glfwGetKey(_window, (int)key) == GLFW_PRESS)
 	{
 		return true;
 	}
@@ -57,13 +61,13 @@ bool Input::KeyDown(KeyCode key)
 
 bool Input::MousePressed(MouseButton button)
 {
-	if (glfwGetMouseButton(_window, button) == GLFW_RELEASE)
+	if (glfwGetMouseButton(_window, (int)button) == GLFW_RELEASE)
 	{
-		mousepressed[button] = 0;
+		mousepressed[(int)button] = 0;
 	}
-	if (glfwGetMouseButton(_window, button) == GLFW_PRESS && !mousepressed[button])
+	if (glfwGetMouseButton(_window, (int)button) == GLFW_PRESS && !mousepressed[(int)button])
 	{
-		mousepressed[button] = 1;
+		mousepressed[(int)button] = 1;
 		return true;
 	}
 	return false;
@@ -71,13 +75,13 @@ bool Input::MousePressed(MouseButton button)
 
 bool Input::MouseReleased(MouseButton button)
 {
-	if (glfwGetMouseButton(_window, button))
+	if (glfwGetMouseButton(_window, (int)button))
 	{
-		mousereleased[button] = 1;
+		mousereleased[(int)button] = 1;
 	}
-	if (glfwGetMouseButton(_window, button) == GLFW_RELEASE && mousereleased[button])
+	if (glfwGetMouseButton(_window, (int)button) == GLFW_RELEASE && mousereleased[(int)button])
 	{
-		mousereleased[button] = 0;
+		mousereleased[(int)button] = 0;
 		return true;
 	}
 	return false;
@@ -85,7 +89,7 @@ bool Input::MouseReleased(MouseButton button)
 
 bool Input::MouseDown(MouseButton button)
 {
-	if (glfwGetMouseButton(_window, button) == GLFW_PRESS)
+	if (glfwGetMouseButton(_window, (int)button) == GLFW_PRESS)
 	{
 		return true;
 	}

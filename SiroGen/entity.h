@@ -34,13 +34,13 @@ public:
 	virtual void update(float deltaTime);
 	std::map<size_t, Component*> GetComponentList() { return componentlist; };
 
-	Transform* transform;
-	Transform* worldtransform;
+	Transform* transform = nullptr;
+	Transform* worldtransform = nullptr;
 	Input* GetInput() { return _instance; };
 
 protected:
-	std::vector<Entity*> _children;
-	std::map<size_t, Component*> componentlist;
+	std::vector<Entity*> _children = std::vector<Entity*>();
+	std::map<size_t, Component*> componentlist = std::map<size_t, Component*>();
 	Entity* Parent = nullptr;
 
 private:

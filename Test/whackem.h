@@ -10,6 +10,7 @@ public:
 	Whackem();
 	virtual void update(float deltaTime);
 	std::vector<Gangster*> mob;
-	Player* joey;
+	Gangster* don = nullptr;
+	Player* joey = nullptr;
 };
 

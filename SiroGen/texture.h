@@ -11,8 +11,8 @@ public:
 	Texture();
 	~Texture();
 
-	int _width;
-	int _height;
+	int _width = 0;
+	int _height = 0;
 
 	GLuint LoadTGAImage(const char* imagepath, bool isFont = false);
 	GLuint LoadPixelImage(char* canvas, unsigned char width, unsigned char height);
@@ -39,8 +39,8 @@ public:
     };
     GLuint GetTexBuffer() { return _texture; };
 private:
-	GLuint _texture;
+	GLuint _texture = 0;
 
-    std::vector<unsigned char> pixelCanvas;
+    std::vector<unsigned char> pixelCanvas = std::vector<unsigned char>();
 };
 #endif

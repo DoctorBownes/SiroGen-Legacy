@@ -25,7 +25,7 @@ Animation::~Animation()
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 {
-    PlayAnimation(spriteanimation, loop, 0, spriteanimation->GetArray().size() - 1);
+    PlayAnimation(spriteanimation, loop, 0, spriteanimation->AniArray.size() - 1);
 }
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe)
@@ -35,6 +35,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         if (AnimationQueue.size() > 0)
         {
             AnimationQueue.erase(AnimationQueue.begin());
+            frame = spriteanimation->startframe;
             starttime = glfwGetTime();
         }
     }
@@ -76,7 +77,7 @@ void Animation::DoIt(unsigned int _shader)
 {
     if (!AnimationQueue.empty() && !AnimationQueue.begin()->first->GetArray().empty())
     {
-        std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
+        std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->AniArray;
         Component* tempsprite = tempvector.at(frame).first;
         isFinished = false;
         tempsprite->DoIt(_shader);

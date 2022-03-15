@@ -20,8 +20,8 @@ public:
 	Vector3 position;
 	Vector3 rotation;
 private:
-	glm::mat4 cameraMatrix;
-	glm::mat4 projectionMatrix;
+	glm::mat4 cameraMatrix = glm::mat4();
+	glm::mat4 projectionMatrix = glm::mat4();
 	glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 direction = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 right = glm::vec3(0.0f, 0.0f, 0.0f);

@@ -5,7 +5,7 @@ class Entity;
 class Component
 {
 public:
-	Entity* _Owner;
+	Entity* _Owner = nullptr;
 	Component();
 	virtual ~Component();
 	Component(Entity* owner);

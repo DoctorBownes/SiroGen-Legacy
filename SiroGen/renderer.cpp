@@ -98,10 +98,12 @@ void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
     
-    glClearColor(160.0f /255.0f, 40.0f / 255.0f, 120.0f / 255.0f, 0.0f);
+    glClearColor(90.0f /255.0f, 40.0f / 255.0f, 100.0f / 255.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    RenderEntity(glm::mat4(1), scene);
+    glm::mat4 initmat = glm::mat4(1);
+
+    RenderEntity(initmat, scene);
 
     for (int i = 0; i < scene->GetTexts().size(); i++)
     {

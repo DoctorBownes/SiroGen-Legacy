@@ -17,12 +17,12 @@ public:
     char blendColor = 0xf;
 
 protected:
-    Texture* texture;
-    std::vector<GLfloat> vertex_buffer_vector;
-    std::vector<GLfloat> uv_buffer_vector;
-    GLuint texture_buffer;
-    GLuint vertex_buffer;
-    GLuint uv_buffer;
+    Texture* texture = nullptr;
+    std::vector<GLfloat> vertex_buffer_vector = std::vector<GLfloat>();
+    std::vector<GLfloat> uv_buffer_vector = std::vector<GLfloat>();
+    GLuint texture_buffer = 0;
+    GLuint vertex_buffer = 0;
+    GLuint uv_buffer = 0;
     void GenerateSprite();
     virtual void DoIt(GLuint shader);
 

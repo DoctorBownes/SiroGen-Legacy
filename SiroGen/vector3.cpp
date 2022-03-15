@@ -27,11 +27,11 @@ Vector3::~Vector3()
 
 }
 
-Vector3* Vector3::add(Vector3 vector)
+Vector3* Vector3::add(Vector3* vector)
 {
-	this->x += vector.x;
-	this->y += vector.y;
-	this->z += vector.z;
+	this->x += vector->x;
+	this->y += vector->y;
+	this->z += vector->z;
 	return this;
 }
 
@@ -43,17 +43,17 @@ Vector3* Vector3::mult(float mult)
 	return this;
 }
 
-void Vector3::MoveTowards(Vector3 vector, float speed)
+void Vector3::MoveTowards(Vector3* vector, float speed)
 {
-	Vector3* thisvector = new Vector3(vector.x, vector.y);
-	Vector3* dir = thisvector->sub(*this);
+	Vector3* thisvector = new Vector3(vector->x, vector->y);
+	Vector3* dir = thisvector->sub(this);
 
 	//normalize
 	//std::cout << std::sqrt((dir->x * dir->x) + (dir->y * dir->y) + (dir->z * dir->z)) << std::endl;
-	//dir->Normalize();
+	dir->Normalize();
 
 	dir->mult(speed);
-	this->add(*dir);
+	this->add(dir);
 	delete thisvector;
 }
 
@@ -71,10 +71,10 @@ void Vector3::Normalize()
 	this->z = this->z / std::sqrt((this->x * this->x) + (this->y * this->y) + (this->z * this->z) + 0.00001f);
 }
 
-Vector3* Vector3::sub(Vector3 vector)
+Vector3* Vector3::sub(Vector3* vector)
 {
-	this->x -= vector.x;
-	this->y -= vector.y;
-	this->z -= vector.z;
+	this->x -= vector->x;
+	this->y -= vector->y;
+	this->z -= vector->z;
 	return this;
 }
