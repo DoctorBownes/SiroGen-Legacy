@@ -41,6 +41,6 @@ public:
 private:
 	GLuint _texture = 0;
 
-    std::vector<unsigned char> pixelCanvas = std::vector<unsigned char>();
+    std::vector<unsigned char> pixelCanvas;
 };
 #endif

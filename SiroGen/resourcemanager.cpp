@@ -35,7 +35,7 @@ Texture* ResourceManager::GetTexture(char* canvas, unsigned char width, unsigned
 	Texture* temptexture = new Texture();
 	temptexture->LoadPixelImage(canvas, width, height);
 	_textures[canvas] = temptexture;
-	//_textures.insert(_textures.end(), std::pair<const char*, Texture*>(canvas, temptexture));
+	//_textures.emplace(canvas, temptexture);
 	return temptexture;
 }
 

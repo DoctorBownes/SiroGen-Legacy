@@ -8,11 +8,11 @@ public:
 	~Gangster();
 	void SetColor(uint8_t color);
 	virtual void update(float deltaTime);
-	SpriteAnimation blinkAnim;
-	SpriteAnimation drawAnim;
+	SpriteAnimation* blinkAnim;
+	SpriteAnimation* drawAnim;
 	Entity* target = nullptr;
 private:
 	std::vector<Entity*> bullets;
-	SpriteAnimation bulletAnim;
+	SpriteAnimation* bulletAnim;
 	bool bulletspawned = false;
 };

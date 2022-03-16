@@ -24,9 +24,10 @@ Gangster::Gangster()
 		0x0,0x1,0x0,0x0,
 		0x0,0x0,0x0,0x0,
 	};
-	this->bulletAnim.AddSprite(bulletcanvas, 4, 4, 0.6f);
-	this->bulletAnim.AddSprite(bulletcanvas2, 4, 4, 0.7f);
-	this->bulletAnim.AddSprite(bulletcanvas3, 4, 4, 0.1f);
+	bulletAnim = new SpriteAnimation();
+	this->bulletAnim->AddSprite(bulletcanvas, 4, 4, 0.6f);
+	this->bulletAnim->AddSprite(bulletcanvas2, 4, 4, 0.7f);
+	this->bulletAnim->AddSprite(bulletcanvas3, 4, 4, 0.1f);
 	char doncanvas[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
@@ -66,9 +67,9 @@ Gangster::Gangster()
 		0x0,0xf,0xf,0xf,0x0,0xf,0xf,0xf,
 	};
 
-	this->blinkAnim = SpriteAnimation();
-	this->blinkAnim.AddSprite(doncanvas, 8, 16, 3.0f);
-	this->blinkAnim.AddSprite(doncanvas1, 8, 16, 0.1f);
+	this->blinkAnim = new SpriteAnimation();
+	this->blinkAnim->AddSprite(doncanvas, 8, 16, 3.0f);
+	this->blinkAnim->AddSprite(doncanvas1, 8, 16, 0.1f);
 
 	char drawcanvas1[] = 
 	{
@@ -128,18 +129,18 @@ Gangster::Gangster()
 		0x0,0x0,0x0,0x0,0xf,0xf,0xf,0x0,0xf,0xf,0xf,0x0,0x0,0x0,0x0,0x0,
 	};
 
-	this->drawAnim = SpriteAnimation();
-	this->drawAnim.AddSprite(drawcanvas1, 16, 16, 0.6f);
-	this->drawAnim.AddSprite(drawcanvas2, 16, 16, 0.8f);
-	this->drawAnim.AddSprite(drawcanvas3, 16, 16, 0.5f);
-	this->AddComponent<Animation>();
+	this->drawAnim = new SpriteAnimation();
+	this->drawAnim->AddSprite(drawcanvas1, 16, 16, 0.6f);
+	this->drawAnim->AddSprite(drawcanvas2, 16, 16, 0.8f);
+	this->drawAnim->AddSprite(drawcanvas3, 16, 16, 0.5f);
+	this->AddComponent<Animation>()->PlayAnimation(blinkAnim);
 
 }
 
 Gangster::~Gangster()
 {
-	//delete drawAnim;
-	//delete blinkAnim;
+	delete drawAnim;
+	delete blinkAnim;
 }
 
 void Gangster::update(float deltaTime)
@@ -148,7 +149,7 @@ void Gangster::update(float deltaTime)
 	{
 		if (transform->position->DistanceBetween(&Vector3(transform->position->x,target->transform->position->y)) <= 10.0f)
 		{
-			this->GetComponent<Animation>()->PlayAnimation(&drawAnim);
+			this->GetComponent<Animation>()->PlayAnimation(drawAnim);
 			if (GetComponent<Animation>()->isAnimationFinished())
 			{
 				Entity* bullet = new Entity();
@@ -156,12 +157,12 @@ void Gangster::update(float deltaTime)
 				bullet->transform->position->y = transform->position->y + 2;
 				bullets.push_back(bullet);
 				Parent->Addchild(bullet);
-				bullet->AddComponent<Animation>()->PlayAnimation(&bulletAnim);
+				bullet->AddComponent<Animation>()->PlayAnimation(bulletAnim);
 			}
 		}
 		else
 		{
-			this->GetComponent<Animation>()->PlayAnimation(&blinkAnim);
+			this->GetComponent<Animation>()->PlayAnimation(blinkAnim);
 		}
 		for (int i = 0; i < bullets.size(); i++)
 		{
@@ -185,10 +186,9 @@ void Gangster::update(float deltaTime)
 
 void Gangster::SetColor(uint8_t color)
 {
-	blinkAnim.GetArray().at(0).first->blendColor = color;
-	blinkAnim.GetArray().at(1).first->blendColor = color;
-
-	drawAnim.GetArray().at(0).first->blendColor = color;
-	drawAnim.GetArray().at(1).first->blendColor = color;
-	drawAnim.GetArray().at(2).first->blendColor = color;
+	blinkAnim->GetArray().at(0).first->blendColor = color;
+	blinkAnim->GetArray().at(1).first->blendColor = color;
+	drawAnim->GetArray().at(0).first->blendColor = color;
+	drawAnim->GetArray().at(1).first->blendColor = color;
+	drawAnim->GetArray().at(2).first->blendColor = color;
 }

@@ -18,8 +18,8 @@ public:
 
 protected:
     Texture* texture = nullptr;
-    std::vector<GLfloat> vertex_buffer_vector = std::vector<GLfloat>();
-    std::vector<GLfloat> uv_buffer_vector = std::vector<GLfloat>();
+    std::vector<GLfloat> vertex_buffer_vector;
+    std::vector<GLfloat> uv_buffer_vector;
     GLuint texture_buffer = 0;
     GLuint vertex_buffer = 0;
     GLuint uv_buffer = 0;
