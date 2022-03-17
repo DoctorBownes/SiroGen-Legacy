@@ -3,13 +3,13 @@
 
 Entity::Entity()
 {
-	transform = new Transform;
-	worldtransform = new Transform;
+	transform = new Transform();
+	worldtransform = new Transform();
 }
 
 void Entity::update(float deltaTime)
 {
-
+	deltaTime = 0.0f;
 }
 
 void Entity::Addchild(Entity* entity)

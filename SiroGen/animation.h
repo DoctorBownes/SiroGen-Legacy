@@ -22,8 +22,9 @@ private:
 	virtual void DoIt(unsigned int _shader);
 	bool isFinished = 0;
 	bool paused = 0;
-	float starttime = 0.0f;
+	double starttime = 0.0;
 	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue = std::vector<std::pair<SpriteAnimation*, bool> >();
 	//bool isPlaying = 0;
 };
+
 #endif

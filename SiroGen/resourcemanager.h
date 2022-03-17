@@ -30,4 +30,5 @@ private:
 	~ResourceManager();
 	static ResourceManager* _instance;
 };
+
 #endif

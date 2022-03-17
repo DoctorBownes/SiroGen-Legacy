@@ -25,4 +25,5 @@ private:
     bool circle2square(Collider* circle, Collider* square);
     bool circle2circle(Collider* collider);
 };
+
 #endif

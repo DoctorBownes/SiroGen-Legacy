@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H_
+#define PLAYER_H_
 #include <SiroGen/entity.h>
 
 class Player : public Entity
@@ -13,3 +14,4 @@ private:
 	float speed = 0.0f;
 };
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR3_H_
+#define VECTOR3_H_
 #include <cmath>
 class Vector3
 {
@@ -18,3 +19,4 @@ public:
 	float z = 0.0f;
 };
 
+#endif

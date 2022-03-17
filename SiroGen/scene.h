@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SCENE_H_
+#define SCENE_H_
 #include <SiroGen/entity.h>
 #include <SiroGen/camera.h>
 
@@ -26,3 +27,4 @@ private:
 	std::vector<Text*> scenetexts = std::vector<Text*>();
 };
 
+#endif

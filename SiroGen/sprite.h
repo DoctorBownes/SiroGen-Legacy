@@ -32,4 +32,5 @@ private:
     int _height = 0;
     int _width = 0;
 };
+
 #endif

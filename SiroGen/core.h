@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CORE_H_
+#define CORE_H_
 #include <glm/glm.hpp>
 
 #include <SiroGen/scene.h>
@@ -14,3 +15,5 @@ private:
 	Renderer sceneRenderer = Renderer();
 	void CalculateDeltaTime();
 };
+
+#endif

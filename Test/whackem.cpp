@@ -25,6 +25,7 @@ Whackem::Whackem() : Scene()
 
 void Whackem::update(float deltaTime)
 {
+	deltaTime = 0.0f;
 	//for (int i = 0; i < mob.size(); i++)
 	//{
 	//	if (mob[i]->GetComponent<Collider>()->isColliding(joey))

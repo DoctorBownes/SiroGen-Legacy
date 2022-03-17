@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WHACKEM_H_
+#define WHACKEM_H_
 #include <SiroGen/scene.h>
 #include "player.h"
 #include "gangster.h"
@@ -14,3 +15,4 @@ public:
 	Player* joey = nullptr;
 };
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GANGSTER_H_
+#define GANGSTER_H_
 #include <SiroGen/entity.h>
 
 class Gangster : public Entity
@@ -16,3 +17,5 @@ private:
 	SpriteAnimation* bulletAnim;
 	bool bulletspawned = false;
 };
+
+#endif

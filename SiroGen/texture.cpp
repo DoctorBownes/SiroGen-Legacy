@@ -1,5 +1,4 @@
 #include "texture.h"
-#include <glm/glm.hpp>
 
 Texture::Texture()
 {
@@ -108,14 +107,14 @@ GLuint Texture::LoadTGAImage(const char* imagepath, bool isFont)
 					newdata[newcounter] = 0;
 					newdata[newcounter +1] = 0;
 					newdata[newcounter +2] = 0;
-					newdata[newcounter +3] = 0.0f;
+					newdata[newcounter +3] = 0;
 				}
 				else
 				{
-					newdata[newcounter] = 255.0f;
-					newdata[newcounter + 1] = 255.0f;
-					newdata[newcounter + 2] = 255.0f;
-					newdata[newcounter + 3] = 255.0f;
+					newdata[newcounter] = 255;
+					newdata[newcounter + 1] = 255;
+					newdata[newcounter + 2] = 255;
+					newdata[newcounter + 3] = 255;
 				}
 				counter += 3;
 				newcounter += 4;

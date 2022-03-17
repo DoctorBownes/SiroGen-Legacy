@@ -42,7 +42,7 @@ Renderer::Renderer()
 {
     _camera = nullptr;
     _shader = 0;
-    window = nullptr;
+    _window = nullptr;
     glewExperimental = true;
     if (!glfwInit())
     {
@@ -66,16 +66,16 @@ Renderer::Renderer()
     //}
     //else
     //{
-        window = glfwCreateWindow(1920, 1080, "SiroGen", NULL, NULL);
+        _window = glfwCreateWindow(1920, 1080, "SiroGen", NULL, NULL);
  //   }
 
-    if (window == NULL) {
+    if (_window == NULL) {
         fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
         glfwTerminate();
         return;
     }
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
+    glfwMakeContextCurrent(_window);
 
     glewExperimental = true;
     if (glewInit() != GLEW_OK) {
@@ -110,7 +110,7 @@ void Renderer::RenderScene(Scene* scene)
         RenderText(scene->GetTexts()[i]);
     }
     // Swap buffers
-    glfwSwapBuffers(window);
+    glfwSwapBuffers(_window);
     glfwPollEvents();
 }
 
@@ -200,5 +200,6 @@ GLuint Renderer::GetShader(const char* vertex_file_path, const char* fragment_fi
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+    window;
     glViewport(0, 0, width, height);
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TRANSFORM_H_
+#define TRANSFORM_H_
 #include <SiroGen/vector3.h>
 
 class Transform
@@ -11,3 +12,4 @@ public:
 	Vector3* scale = nullptr;
 };
 
+#endif

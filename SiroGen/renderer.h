@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RENDERER_H_
+#define RENDERER_H_
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -19,7 +20,7 @@ public:
 	Renderer();
 	~Renderer();
 	void RenderScene(Scene* scene);
-	GLFWwindow* window = nullptr;
+	GLFWwindow* _window = nullptr;
 private:
 	void RenderEntity(glm::mat4 mat, Entity* entity);
 	void RenderText(Text* text);
@@ -30,3 +31,4 @@ private:
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
+#endif

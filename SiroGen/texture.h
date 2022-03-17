@@ -5,6 +5,11 @@
 #include <iostream>
 #include <SiroGen/color.h>
 
+class PixelBuffer
+{
+
+};
+
 class Texture
 {
 public:
@@ -43,4 +48,5 @@ private:
 
     std::vector<unsigned char> pixelCanvas;
 };
+
 #endif

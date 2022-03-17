@@ -176,7 +176,8 @@ Test::Test() : Scene()
 }
 
 void Test::update(float deltaTime)
-{/*
+{
+	deltaTime = 0.0f;/*
 	std::stringstream hello;
 	hello << "Colliding = " << gal->GetComponent<Collider>()->isColliding(don);
 	EditSceneText(hello.str());

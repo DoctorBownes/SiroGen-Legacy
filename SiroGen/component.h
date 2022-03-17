@@ -11,4 +11,5 @@ public:
 	Component(Entity* owner);
 	virtual void DoIt(unsigned int _shader) = 0;
 };
+
 #endif

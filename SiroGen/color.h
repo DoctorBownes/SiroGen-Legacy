@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COLOR_H_
+#define COLOR_H_
 #include <vector>
 #include <cstdint>
 
@@ -30,3 +31,5 @@ public:
 #define YELLOW		Color(255,255,0)
 #define GRAY		Color(224,224,224)
 #define WHITE		Color(255,255,255)
+
+#endif

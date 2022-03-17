@@ -1,9 +1,7 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
-#include <iostream>
 
 #include <SiroGen/transform.h>
-//#include <SiroGen/component.h>
 #include <SiroGen/sprite.h>
 #include <SiroGen/animation.h>
 #include <SiroGen/text.h>
@@ -34,8 +32,8 @@ public:
 	virtual void update(float deltaTime);
 	std::map<size_t, Component*> GetComponentList() { return componentlist; };
 
-	Transform* transform = nullptr;
-	Transform* worldtransform = nullptr;
+	Transform* transform;
+	Transform* worldtransform;
 	Input* GetInput() { return _instance; };
 
 protected:
@@ -84,4 +82,5 @@ void Entity::RemoveComponent()
 		std::cout << "Warning: component set to remove was not found" << std::endl;
 	}
 }
+
 #endif

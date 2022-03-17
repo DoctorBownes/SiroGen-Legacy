@@ -18,4 +18,5 @@ public:
 private:
 	std::vector<std::pair<Sprite*, float> > AniArray = std::vector<std::pair<Sprite*, float> >();
 };
+
 #endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEST_H_
+#define TEST_H_
 #include <SiroGen/scene.h>
 #include "player.h"
 
@@ -11,3 +12,4 @@ public:
    // Player* joey;
 };
 
+#endif

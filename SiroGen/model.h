@@ -7,4 +7,5 @@ class Model :
 public:
     int model = 0;
 };
+
 #endif

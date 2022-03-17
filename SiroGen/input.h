@@ -1,5 +1,5 @@
-#pragma once
-//#include <GL/glew.h>
+#ifndef INPUT_H_
+#define INPUT_H_
 #include <GLFW/glfw3.h>
 
 enum class KeyCode
@@ -175,3 +175,5 @@ private:
 	double mousex = 0;
 	double mousey = 0;
 };
+
+#endif

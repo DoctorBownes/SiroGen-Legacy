@@ -26,4 +26,5 @@ private:
 
 	int _count = 0;
 };
+
 #endif
