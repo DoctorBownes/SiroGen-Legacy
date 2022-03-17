@@ -32,65 +32,87 @@ Text::~Text()
 
 void Text::SetText(std::string text, float x, float y, float size, uint8_t Color, const char* TGAfont)
 {
+    //Save the x and y coordinates and the font size
     _x = x;
     _y = y;
     _size = size;
+
+    //If you have not selected a font.tga file the default build-in font will be used
     if (!TGAfont[0])
     {
+        //Save the generated texture
         texture = _instance->GetTexture(bittext, 128, 64);
     }
     else
     {
         texture = _instance->GetTexture(text.c_str(), true);
     }
+    //Save the set texture buffer
     texture_buffer = texture->GetTexBuffer();
+    //Add a color to the text, default is white
     blendColor = Color;
 
+    //Let's begin creating the text sprite
     EditText(text);
 }
 
+//This function can be called upon if the user wants simply edit the created text via GetComponent<Text>()
 void Text::EditText(std::string text)
 {
+    //Remove the previous text
     vertex_buffer_vector.clear();
     uv_buffer_vector.clear();
+
+    //Initialise the positions used for the letters
     float linex = 0.0f;
     float liney = 0.0f;
+
+    //Begin with the position given through the parameters
     linex = _x;
 
+    //For each found letter..
     for (int i = 0; i < text.size(); i++)
     {
+        //Check if \n is found
         if (text[i] == char(10))
         {
-            liney += 0.1251f * 8.0f * _size;// Change 8.0f to linelength
+            //if so add a new line and reset the x position
+            liney += 0.1251f * 8.0f * _size;// Change 8.0f to linelength (future reference)
             _x = linex;
         }
         else
         {
-            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);//keep
-            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));//change
+            //Start setting the letter's Vertex and UV position
+
+            //Add vertex positions to buffer
+            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);
+            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);//change
-            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));//change
+            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);
+            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);//change
-            vertex_buffer_vector.push_back((_y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);
+            vertex_buffer_vector.push_back((_y - liney) - 1.0f);
             vertex_buffer_vector.push_back(0.0f);
 
-            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);//change
-            vertex_buffer_vector.push_back((_y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);
+            vertex_buffer_vector.push_back((_y - liney) - 1.0f);
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);//keep
-            vertex_buffer_vector.push_back((_y - liney) - 1.0f);//keep
+            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);
+            vertex_buffer_vector.push_back((_y - liney) - 1.0f);
             vertex_buffer_vector.push_back(0.0f);
-            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);//keep
-            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));//change
+            vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);
+            vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));
             vertex_buffer_vector.push_back(0.0f);
-            _x += _size;// /spacebetweencharacters
+            //Adds the proper space between characters
+            _x += _size;// / spacebetweencharacters (future reference)
 
+            //Generate the correct UV positions based on the Targa font format
             char character = text[i];
             float uv_x = (character % 16) / 16.0f;
             float uv_y = (character / 16) / 8.0f;
 
+            //Add UV positions to buffer
             uv_buffer_vector.push_back(uv_x);
             uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
 
@@ -110,7 +132,8 @@ void Text::EditText(std::string text)
             uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
         }
     }
-    _x = linex;
+    //Now that the Vertex and UV coordinates are in place
+    //We can now generate and bind the buffers (thanks to OpenGL) to create the sprite
     GenerateSprite();
 }
 

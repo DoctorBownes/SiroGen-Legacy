@@ -7,18 +7,28 @@ Core::Core()
 
 void Core::Start(Scene* scene)
 {
-	scene->InputInit(scene, sceneRenderer._window);
-	sceneRenderer.RenderScene(scene);
-	do
-	{
-		CalculateDeltaTime();
+    //First it checks if there are any entities to direct them to the correct window for the keyboard support
+    scene->InputInit(scene, sceneRenderer._window);
+    //It renders prematurely once, to properly set the entity's position
+    //Scenes are derived from the Entity class. This way all of it's children will also be 
+    //properly set. 
+    sceneRenderer.RenderScene(scene);
+    do
+    {
+        //Calculates the deltaTime to prevent inconsistent speeds
+        CalculateDeltaTime();
 
-		scene->GetMainCamera()->UpdateCamera();
+        //Camera is not derived from Entity so it has to be updated secludedly
+        scene->GetMainCamera()->UpdateCamera();
 
-		scene->updateEntities(scene, (float)deltaTime);
+        //Goes through all found entities update functions and runs whatever is put there
+        scene->updateEntities(scene, (float)deltaTime);
 
-		sceneRenderer.RenderScene(scene);
-	} 	while (glfwWindowShouldClose(sceneRenderer._window) == 0 && scene->isRunning);
+        //Finally it renders all of the found entities' Components. Either it being graphical or else
+        sceneRenderer.RenderScene(scene);
+        //Do this while the windows 'X' mark has not been clicked on or 
+        //when the user as run into the StopRunning command
+    } while (glfwWindowShouldClose(sceneRenderer._window) == 0 && scene->isRunning);
 }
 
 void Core::CalculateDeltaTime()

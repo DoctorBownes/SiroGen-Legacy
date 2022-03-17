@@ -15,6 +15,9 @@ Scene::~Scene()
 	//DeleteChildren(this);
 }
 
+//To make sure all found entities have their input properly initialized I use a recursive method
+//this goed through all of the entities' children and their children and so on until all of them
+// are set.
 void Scene::InputInit(Entity* entity, GLFWwindow* window)
 {
 	entity->GetInput()->Init(window);
@@ -26,6 +29,7 @@ void Scene::InputInit(Entity* entity, GLFWwindow* window)
 	}
 }
 
+//And the same applies for each entities' update function
 void Scene::updateEntities(Entity* entity, float deltaTime)
 {
 	entity->update(deltaTime);
