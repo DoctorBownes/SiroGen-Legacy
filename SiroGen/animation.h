@@ -23,7 +23,7 @@ private:
 	bool isFinished = 0;
 	bool paused = 0;
 	double starttime = 0.0;
-	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue = std::vector<std::pair<SpriteAnimation*, bool> >();
+	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue;
 	//bool isPlaying = 0;
 };
 

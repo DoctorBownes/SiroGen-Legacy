@@ -30,13 +30,14 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe)
 {
-    if ((startframe != spriteanimation->startframe || endframe != spriteanimation->endframe) && !loop)
+    if ((startframe != spriteanimation->startframe && endframe != spriteanimation->endframe) && !loop)
     {
-        if (AnimationQueue.size() > 0)
+        if (!AnimationQueue.empty())
         {
             AnimationQueue.erase(AnimationQueue.begin());
             frame = spriteanimation->startframe;
             starttime = glfwGetTime();
+            std::cout << "ERASED" << std::endl;
         }
     }
     if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
@@ -45,6 +46,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         frame = spriteanimation->startframe;
         spriteanimation->endframe = endframe;
         AnimationQueue.insert(AnimationQueue.begin(), std::make_pair(spriteanimation, loop));
+        std::cout << "INSERTED" << std::endl;
     }
 }
 
@@ -75,6 +77,7 @@ void Animation::ResumeAnimation(int atframe)
 
 void Animation::DoIt(unsigned int _shader)
 {
+    std::cout << AnimationQueue.size() << std::endl;
     if (!AnimationQueue.empty() && !AnimationQueue.begin()->first->GetArray().empty())
     {
         std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();

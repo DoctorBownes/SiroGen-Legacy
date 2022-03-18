@@ -189,13 +189,13 @@ void Player::update(float deltaTime)
 {
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false,1,2);
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 1, 2);
 		this->transform->rotation->y = -180;
 		this->transform->position->x -= speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false,1,2);
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 1, 2);
 		this->transform->rotation->y = 0;
 		this->transform->position->x += speed * deltaTime;
 	}
@@ -216,6 +216,6 @@ void Player::update(float deltaTime)
 
 	if (GetInput()->KeyPressed(KeyCode::Space))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(deathAnim,true,0,2);
+		this->GetComponent<Animation>()->PlayAnimation(smokeAnim,true,0,1);
 	}
 }
