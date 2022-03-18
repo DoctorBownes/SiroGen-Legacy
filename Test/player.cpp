@@ -173,15 +173,15 @@ Player::Player()
 	};
 
 	walkAnim->AddSprite(canvas, 8, 16);
-	walkAnim->AddSprite(canvas2, 8, 16);
-	walkAnim->AddSprite(canvas3, 8, 16);
+	walkAnim->AddSprite(canvas2, 8, 16, 0.2f);
+	walkAnim->AddSprite(canvas3, 8, 16, 0.2f);
 
 	smokeAnim->AddSprite(canvas4, 8, 16);
 	smokeAnim->AddSprite(canvas5, 8, 16);
 
 	speed = 20.0f;
 	this->AddComponent<Animation>();
-	this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 0, 0);
+	this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 0, 2);
 	this->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 }
 

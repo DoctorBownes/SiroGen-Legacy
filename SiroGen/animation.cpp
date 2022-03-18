@@ -77,7 +77,6 @@ void Animation::ResumeAnimation(int atframe)
 
 void Animation::DoIt(unsigned int _shader)
 {
-    std::cout << AnimationQueue.size() << std::endl;
     if (!AnimationQueue.empty() && !AnimationQueue.begin()->first->GetArray().empty())
     {
         std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
