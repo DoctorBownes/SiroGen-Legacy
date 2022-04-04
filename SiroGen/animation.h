@@ -16,14 +16,15 @@ public:
 	void PauseAnimation(int atframe = 0);
 	void ResumeAnimation(int atframe = 0);
 	bool isAnimationFinished() { return isFinished; };
-	SpriteAnimation* GetSpriteAnimation(int pos) { return AnimationQueue[pos].first; };
 	int frame = 0;
 private:
+	SpriteAnimation* CentralAnimation = nullptr;
+	bool isLoop = false;
+	bool hasPriority;
 	virtual void DoIt(unsigned int _shader);
 	bool isFinished = 0;
 	bool paused = 0;
 	double starttime = 0.0;
-	std::vector<std::pair<SpriteAnimation*, bool> > AnimationQueue;
 	//bool isPlaying = 0;
 };
 

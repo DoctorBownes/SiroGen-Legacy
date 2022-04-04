@@ -20,7 +20,6 @@ Animation::~Animation()
     //    std::cout << "Deleting Animation Component" << std::endl;
     //    delete it->first;
     //}
-    AnimationQueue.clear();
 }
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
@@ -30,33 +29,42 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop)
 
 void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int startframe, int endframe)
 {
-    if ((startframe != spriteanimation->startframe && endframe != spriteanimation->endframe) && !loop)
+    if (spriteanimation->hasPriority && CentralAnimation)
     {
-        if (!AnimationQueue.empty())
+        CentralAnimation->hasPriority = false;
+        if (CentralAnimation != spriteanimation)
         {
-            AnimationQueue.erase(AnimationQueue.begin());
-            frame = spriteanimation->startframe;
-            starttime = glfwGetTime();
-            std::cout << "ERASED" << std::endl;
+            RemoveAnimation();
+            std::cout << "REMOVED" << std::endl;
         }
     }
-    if (std::find(AnimationQueue.begin(), AnimationQueue.end(), std::make_pair(spriteanimation, loop)) == AnimationQueue.end())
+    if (!CentralAnimation && CentralAnimation != spriteanimation)
     {
         spriteanimation->startframe = startframe;
-        frame = spriteanimation->startframe;
         spriteanimation->endframe = endframe;
-        AnimationQueue.insert(AnimationQueue.begin(), std::make_pair(spriteanimation, loop));
+        frame = spriteanimation->startframe;
+        CentralAnimation = spriteanimation;
+        isLoop = loop;
         std::cout << "INSERTED" << std::endl;
+    }
+    else if (startframe != spriteanimation->startframe && endframe != spriteanimation->endframe)
+    {
+        spriteanimation->startframe = startframe;
+        spriteanimation->endframe = endframe;
+        frame = spriteanimation->startframe;
+        starttime = glfwGetTime();
     }
 }
 
 void Animation::RemoveAnimation()
 {
-    if (!AnimationQueue.empty())
-    {
-        //delete AnimationQueue.begin()->first;
-        AnimationQueue.erase(AnimationQueue.begin());
-    }
+    CentralAnimation = nullptr;
+    isLoop = false;
+    //if (!AnimationQueue.empty())
+    //{
+    //    //delete AnimationQueue.begin()->first;
+    //    AnimationQueue.erase(AnimationQueue.begin());
+    //}
 }
 
 void Animation::PauseAnimation(int atframe)
@@ -77,22 +85,23 @@ void Animation::ResumeAnimation(int atframe)
 
 void Animation::DoIt(unsigned int _shader)
 {
-    if (!AnimationQueue.empty() && !AnimationQueue.begin()->first->GetArray().empty())
+    //std::cout << "AnimationQueue.Size() = " << AnimationQueue.size() << std::endl;
+    if (CentralAnimation && !CentralAnimation->GetArray().empty())
     {
-        std::vector<std::pair<Sprite*, float> > tempvector = AnimationQueue.begin()->first->GetArray();
+        std::vector<std::pair<Sprite*, float> > tempvector = CentralAnimation->GetArray();
         Component* tempsprite = tempvector.at(frame).first;
         isFinished = false;
         tempsprite->DoIt(_shader);
-        if (AnimationQueue.begin()->first->startframe != AnimationQueue.begin()->first->endframe)
+        if (CentralAnimation->startframe != CentralAnimation->endframe)
         {
             if (glfwGetTime() - starttime >= tempvector.at(frame).second && !paused)
             {
                 frame++;
-                if (frame == AnimationQueue.begin()->first->endframe + 1)
+                if (frame == CentralAnimation->endframe + 1)
                 {
                     isFinished = true;
-                    frame = AnimationQueue.begin()->first->startframe;
-                    if (!AnimationQueue.begin()->second)
+                    frame = CentralAnimation->startframe;
+                    if (!isLoop)
                     {
                         RemoveAnimation();
                     }

@@ -181,7 +181,8 @@ Player::Player()
 
 	speed = 20.0f;
 	this->AddComponent<Animation>();
-	this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 0, 2);
+	smokeAnim->hasPriority = true;
+	this->GetComponent<Animation>()->PlayAnimation(smokeAnim, true);
 	this->AddComponent<Collider>()->SetUpCircle(0.0f, 0.0f, 8.0f);
 }
 
@@ -189,33 +190,38 @@ void Player::update(float deltaTime)
 {
 	if (GetInput()->KeyDown(KeyCode::A))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 1, 2);
+		walkAnim->hasPriority = true;
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 2);
 		this->transform->rotation->y = -180;
 		this->transform->position->x -= speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 1, 2);
+		walkAnim->hasPriority = true;
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 2);
 		this->transform->rotation->y = 0;
 		this->transform->position->x += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::W))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 1, 2);
+		walkAnim->hasPriority = true;
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 2);
 		this->transform->position->y += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::S))
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false, 1, 2);
+		walkAnim->hasPriority = true;
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 2);
 		this->transform->position->y -= speed * deltaTime;
 	}
 	else
 	{
-		this->GetComponent<Animation>()->PlayAnimation(walkAnim, false,0,0);
+		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true,0,0);
 	}
 
 	if (GetInput()->KeyPressed(KeyCode::Space))
 	{
+		smokeAnim->hasPriority = true;
 		this->GetComponent<Animation>()->PlayAnimation(smokeAnim,true,0,1);
 	}
 }
