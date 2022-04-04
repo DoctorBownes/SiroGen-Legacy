@@ -14,7 +14,7 @@ public:
 	//void ReUseSprite(int spriteinarray, float timeonscreen = 0.5f);
 	int startframe = 0;
 	int endframe = 0;
-	bool hasPriority = 0;
+	bool hasPriority = false;
 	std::vector<std::pair<Sprite*, float> > GetArray() { return AniArray; };
 private:
 	std::vector<std::pair<Sprite*, float> > AniArray;

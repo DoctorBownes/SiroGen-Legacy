@@ -20,7 +20,6 @@ public:
 private:
 	SpriteAnimation* CentralAnimation = nullptr;
 	bool isLoop = false;
-	bool hasPriority;
 	virtual void DoIt(unsigned int _shader);
 	bool isFinished = 0;
 	bool paused = 0;
