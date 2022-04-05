@@ -5,6 +5,7 @@ Whackem::Whackem() : Scene()
 	this->GetMainCamera()->SetZoom(10);
 	this->joey = new Player();
 	this->Addchild(joey);
+
 	for (int i = 0; i < 6; i++)
 	{
 		this->don = new Gangster();

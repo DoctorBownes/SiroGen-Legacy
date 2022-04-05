@@ -154,7 +154,7 @@ void Gangster::update(float deltaTime)
 {
 	if (target != nullptr)
 	{
-		if (transform->position->DistanceBetween(target->transform->position) <= 10.0f)
+		if (transform->position->DistanceBetween(target->transform->position) <= 200.0f)
 		{
 			drawAnim->hasPriority = true;
 			this->GetComponent<Animation>()->PlayAnimation(drawAnim);
