@@ -65,11 +65,11 @@ void Animation::RemoveAnimation()
 
 bool Animation::isAnimationFinished(SpriteAnimation* spriteanimation)
 {
-    //if (CentralAnimation == spriteanimation)
-    //{
-    //    return isFinished;
-    //}
-    return spriteanimation->isFinished;
+    if (spriteanimation == nullptr)
+    {
+        return CentralAnimation->isFinished;
+    }
+        return spriteanimation->isFinished;
 }
 
 void Animation::PauseAnimation(int atframe)
@@ -80,12 +80,9 @@ void Animation::PauseAnimation(int atframe)
 
 void Animation::ResumeAnimation(int atframe)
 {
-    if (paused)
-    {
         starttime = glfwGetTime();
         frame = atframe;
         paused = false;
-    }
 }
 
 void Animation::DoIt(unsigned int _shader)

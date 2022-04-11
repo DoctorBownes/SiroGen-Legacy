@@ -165,6 +165,7 @@ Player::Player()
 	bullet = new Entity();
 	bullet->AddComponent<Animation>();
 	bullet->AddComponent<Collider>()->SetUpSquare(0, 0, 0.125f, 0.125f);
+	bullet->GetComponent<Animation>()->PlayAnimation(bulletAnim);
 
 	this->AddComponent<Animation>();
 	this->AddComponent<Collider>()->SetUpSquare(0, 0, 10, 16);
@@ -184,11 +185,10 @@ void Player::update(float deltaTime)
 		if (GetComponent<Animation>()->isAnimationFinished(drawAnim))
 		{
 			Parent->Removechild(bullet);
-			bulletspawned = false;
 			bullet->transform->position->x = transform->position->x + 10 * direction;
 			bullet->transform->position->y = transform->position->y + 2;
 			Parent->Addchild(bullet);
-			bullet->GetComponent<Animation>()->PlayAnimation(bulletAnim);
+			bullet->GetComponent<Animation>()->ResumeAnimation(0);
 			haspressed = false;
 			bulletspawned = true;
 		}

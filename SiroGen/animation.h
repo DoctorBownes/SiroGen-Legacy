@@ -15,8 +15,7 @@ public:
 	void RemoveAnimation();
 	void PauseAnimation(int atframe = 0);
 	void ResumeAnimation(int atframe = 0);
-	bool isAnimationFinished() { return isFinished; };
-	bool isAnimationFinished(SpriteAnimation* spriteanimation);
+	bool isAnimationFinished(SpriteAnimation* spriteanimation = nullptr);
 	int frame = 0;
 private:
 	SpriteAnimation* CentralAnimation = nullptr;
