@@ -10,28 +10,28 @@ ResourceManager::~ResourceManager()
 	cleanup();
 }
 
-Texture* ResourceManager::GetTexture(const char* imagepath, bool isFont)
+Texture* ResourceManager::GetTexture(const std::string& imagepath, bool isFont)
 {
-	if (_textures[imagepath] != nullptr)
+	if (_textures[imagepath.c_str()] != nullptr)
 	{
-		return _textures[imagepath];
+		return _textures[imagepath.c_str()];
 	}
-	_textures.erase(imagepath);
+	_textures.erase(imagepath.c_str());
 	Texture* temptexture = new Texture();
-	temptexture->LoadTGAImage(imagepath, isFont);
-	_textures[imagepath] = temptexture;
+	temptexture->LoadTGAImage(imagepath.c_str(), isFont);
+	_textures[imagepath.c_str()] = temptexture;
 	return temptexture;
 }
 
-Texture* ResourceManager::GetTexture(char* canvas, unsigned char width, unsigned char height)
+Texture* ResourceManager::GetTexture(const char* canvas, unsigned char width, unsigned char height)
 {
 	if (_textures[canvas] != nullptr)
 	{
-		std::cout << "Returning Texture" << std::endl;
+	//	std::cout << "Returning Texture" << std::endl;
 		return _textures[canvas];
 	}
 	_textures.erase(canvas);
-	std::cout << "New Texture number: " << _textures.size() << std::endl;
+//	std::cout << "New Texture number: " << _textures.size() << std::endl;
 	Texture* temptexture = new Texture();
 	temptexture->LoadPixelImage(canvas, width, height);
 	_textures[canvas] = temptexture;

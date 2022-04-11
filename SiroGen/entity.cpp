@@ -23,6 +23,7 @@ void Entity::Removechild(Entity* entity)
 	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
 	{
 		_children.erase(std::find(_children.begin(), _children.end(), entity));
+		entity->Parent = nullptr;
 	}
 }
 

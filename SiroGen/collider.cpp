@@ -31,7 +31,7 @@ void Collider::SetUpCircle(float x, float y, float diameter)
 bool Collider::isColliding(Entity* collider)
 {
 	Collider* tempcollider = collider->GetComponent<Collider>();
-	if (tempcollider != nullptr)
+	if (tempcollider != nullptr && _Owner->Parent != nullptr && collider->Parent != nullptr)
 	{
 		if (this->_issquare && tempcollider->_issquare)
 		{

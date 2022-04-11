@@ -132,6 +132,7 @@ void Text::EditText(std::string text)
             uv_buffer_vector.push_back((1.0f - uv_y) + 0.25f);
         }
     }
+    _x = linex;
     //Now that the Vertex and UV coordinates are in place
     //We can now generate and bind the buffers (thanks to OpenGL) to create the sprite
     GenerateSprite();

@@ -117,6 +117,21 @@ target_link_libraries(Test # g++ -lSiroGen
 	target_link_libraries(Test
 		${ALL_GRAPHICS_LIBS}
 	)
+
+# ShootOut
+add_executable(ShootOut # g++ ShootOut/shootout.cpp -o ShootOut
+	ShootOut/shootout.cpp
+	ShootOut/shootout.h
+	ShootOut/main.cpp
+	ShootOut/player.cpp
+	ShootOut/player.h
+)
+target_link_libraries(ShootOut # g++ -lSiroGen
+	${ALL_GRAPHICS_LIBS}
+)
+	target_link_libraries(ShootOut
+		${ALL_GRAPHICS_LIBS}
+	)
 # Copy assets and shaders to the build directory
 # (In Visual Studio, copy these directories to either 'Release' or 'Build')
 file(

@@ -16,12 +16,13 @@ public:
 	void PauseAnimation(int atframe = 0);
 	void ResumeAnimation(int atframe = 0);
 	bool isAnimationFinished() { return isFinished; };
+	bool isAnimationFinished(SpriteAnimation* spriteanimation);
 	int frame = 0;
 private:
 	SpriteAnimation* CentralAnimation = nullptr;
 	bool isLoop = false;
 	virtual void DoIt(unsigned int _shader);
-	bool isFinished = 0;
+	bool isFinished = false;
 	bool paused = 0;
 	double starttime = 0.0;
 	//bool isPlaying = 0;

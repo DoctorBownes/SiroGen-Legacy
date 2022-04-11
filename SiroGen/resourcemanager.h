@@ -17,8 +17,8 @@ public:
 		return _instance;
 	}
 
-	Texture* GetTexture(const char* imagepath, bool isFont = false);
-	Texture* GetTexture(char* canvas, unsigned char width, unsigned char height);
+	Texture* GetTexture(const std::string& imagepath, bool isFont = false);
+	Texture* GetTexture(const char* canvas, unsigned char width, unsigned char height);
 	void DeleteTexture(Texture* texture);
 	void cleanup();
 

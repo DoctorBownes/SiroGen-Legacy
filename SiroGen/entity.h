@@ -55,13 +55,13 @@ public:
 	//Used to call the input class for keyboard related commands
 	//e.g. KeyDown(KeyCode key) MousePressed(MouseButton button)
 	Input* GetInput() { return _instance; };
+	Entity* Parent = nullptr;
 
 protected:
 	std::vector<Entity*> _children = std::vector<Entity*>();
 
 	//The componentlist is made out of the component's Hashcode for the key and the component itself as value
 	std::map<size_t, Component*> componentlist = std::map<size_t, Component*>();
-	Entity* Parent = nullptr;
 
 private:
 	//The Input class is a singleton class so it has to be called via instance

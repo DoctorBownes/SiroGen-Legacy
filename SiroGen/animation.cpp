@@ -35,17 +35,18 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         if (CentralAnimation != spriteanimation)
         {
             RemoveAnimation();
-            std::cout << "REMOVED" << std::endl;
+           // std::cout << "REMOVED" << std::endl;
         }
     }
-    if (!CentralAnimation && CentralAnimation != spriteanimation)
+    if (!CentralAnimation/* && CentralAnimation != spriteanimation*/)
     {
         spriteanimation->startframe = startframe;
         spriteanimation->endframe = endframe;
         frame = spriteanimation->startframe;
         CentralAnimation = spriteanimation;
+        CentralAnimation->isFinished = false;
         isLoop = loop;
-        std::cout << "INSERTED" << std::endl;
+      //  std::cout << "INSERTED" << std::endl;
     }
     else if (startframe != spriteanimation->startframe && endframe != spriteanimation->endframe)
     {
@@ -60,11 +61,15 @@ void Animation::RemoveAnimation()
 {
     CentralAnimation = nullptr;
     isLoop = false;
-    //if (!AnimationQueue.empty())
+}
+
+bool Animation::isAnimationFinished(SpriteAnimation* spriteanimation)
+{
+    //if (CentralAnimation == spriteanimation)
     //{
-    //    //delete AnimationQueue.begin()->first;
-    //    AnimationQueue.erase(AnimationQueue.begin());
+    //    return isFinished;
     //}
+    return spriteanimation->isFinished;
 }
 
 void Animation::PauseAnimation(int atframe)
@@ -90,7 +95,7 @@ void Animation::DoIt(unsigned int _shader)
     {
         std::vector<std::pair<Sprite*, float> > tempvector = CentralAnimation->GetArray();
         Component* tempsprite = tempvector.at(frame).first;
-        isFinished = false;
+        CentralAnimation->isFinished = false;
         tempsprite->DoIt(_shader);
         if (CentralAnimation->startframe != CentralAnimation->endframe)
         {
@@ -99,7 +104,7 @@ void Animation::DoIt(unsigned int _shader)
                 frame++;
                 if (frame == CentralAnimation->endframe + 1)
                 {
-                    isFinished = true;
+                    CentralAnimation->isFinished = true;
                     frame = CentralAnimation->startframe;
                     if (!isLoop)
                     {
