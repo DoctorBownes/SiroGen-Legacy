@@ -3,7 +3,7 @@
 Gangster::Gangster()
 {
 	
-	char bulletcanvas[]
+	char bulletcanvas1[]
 	{
 		0x0,0x0,0x0,0x0,
 		0x0,0x0,0x0,0x0,
@@ -28,11 +28,11 @@ Gangster::Gangster()
 	};
 
 	bulletAnim = new SpriteAnimation();
-	this->bulletAnim->AddSprite(bulletcanvas, 4, 4);
+	this->bulletAnim->AddSprite(bulletcanvas1, 4, 4);
 	this->bulletAnim->AddSprite(bulletcanvas2, 4, 4);
 	this->bulletAnim->AddSprite(bulletcanvas3, 4, 4);
 
-	char doncanvas[]
+	char doncanvas1[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
 		0x0,0xe,0xe,0xe,0x1,0x1,0x0,0x0,
@@ -52,7 +52,7 @@ Gangster::Gangster()
 		0x0,0xf,0xf,0xf,0x0,0xf,0xf,0xf
 	};
 
-	char doncanvas1[]
+	char doncanvas2[]
 	{
 		0x0,0x0,0xf,0xf,0xf,0xf,0x0,0x0,
 		0x0,0xe,0xe,0xe,0x1,0x1,0x0,0x0,
@@ -73,8 +73,8 @@ Gangster::Gangster()
 	};
 
 	this->blinkAnim = new SpriteAnimation();
-	this->blinkAnim->AddSprite(doncanvas, 8, 16);
 	this->blinkAnim->AddSprite(doncanvas1, 8, 16);
+	this->blinkAnim->AddSprite(doncanvas2, 8, 16);
 
 	char drawcanvas1[] = 
 	{
