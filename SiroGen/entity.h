@@ -10,6 +10,7 @@
 #include <SiroGen/text.h>
 #include <SiroGen/collider.h>
 #include <SiroGen/input.h>
+#include <iostream>
 
 class Entity
 {

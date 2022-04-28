@@ -1,4 +1,5 @@
 #include "resourcemanager.h"
+#include <SiroGen/texture.h>
 ResourceManager* ResourceManager::_instance = 0;
 
 ResourceManager::ResourceManager()
@@ -31,7 +32,7 @@ Texture* ResourceManager::GetTexture(char canvas[], unsigned char width, unsigne
 		return _textures[canvas];
 	}
 	_textures.erase(canvas);
-	std::cout << "New Texture number: " << _textures.size() << std::endl;
+//	std::cout << "New Texture number: " << _textures.size() << std::endl;
 	Texture* temptexture = new Texture();
 	temptexture->LoadPixelImage(canvas, width, height);
 	_textures[canvas] = temptexture;
@@ -46,7 +47,7 @@ void ResourceManager::DeleteTexture(Texture* texture)
 	{
 		if (it->second == temptexture)
 		{
-			std::cout << "Deleting Textures" << std::endl;
+	//		std::cout << "Deleting Textures" << std::endl;
 			delete texture;
 			_textures[it->first] = nullptr;
 			//_textures.erase(it);

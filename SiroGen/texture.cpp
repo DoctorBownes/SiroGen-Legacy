@@ -148,9 +148,9 @@ GLuint Texture::LoadPixelImage(char canvas[], unsigned char width, unsigned char
 	for (int i = 0; i < _width * _height; i++)
 	{
 		uint8_t index = canvas[i];
-		pixelCanvas.push_back(Palette[index].r);
-		pixelCanvas.push_back(Palette[index].g);
-		pixelCanvas.push_back(Palette[index].b);
+		pixelCanvas.push_back(_instance->Palette[index].r);
+		pixelCanvas.push_back(_instance->Palette[index].g);
+		pixelCanvas.push_back(_instance->Palette[index].b);
 		if (index == 0)
 		{
 			pixelCanvas.push_back(index);
@@ -160,7 +160,6 @@ GLuint Texture::LoadPixelImage(char canvas[], unsigned char width, unsigned char
 			pixelCanvas.push_back(255);
 		}
 	}
-
 	glGenTextures(1, &_texture);
 	glBindTexture(GL_TEXTURE_2D, _texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
