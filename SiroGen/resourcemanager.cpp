@@ -10,7 +10,7 @@ ResourceManager::~ResourceManager()
 	cleanup();
 }
 
-Texture* ResourceManager::GetTexture(const std::string& imagepath, bool isFont)
+Texture* ResourceManager::GetTexture(const std::string imagepath, bool isFont)
 {
 	if (_textures[imagepath.c_str()] != nullptr)
 	{
@@ -23,12 +23,11 @@ Texture* ResourceManager::GetTexture(const std::string& imagepath, bool isFont)
 	return temptexture;
 }
 
-Texture* ResourceManager::GetTexture(const char* canvas, unsigned char width, unsigned char height)
+Texture* ResourceManager::GetTexture(char canvas[], unsigned char width, unsigned char height)
 {
-	//std::cout << (int)canvas << std::endl;
+	//MAKE SURE THE CANVAS IS STATIC!
 	if (_textures[canvas] != nullptr)
 	{
-		//std::cout << "Returning Texture" << std::endl;
 		return _textures[canvas];
 	}
 	_textures.erase(canvas);
@@ -36,7 +35,6 @@ Texture* ResourceManager::GetTexture(const char* canvas, unsigned char width, un
 	Texture* temptexture = new Texture();
 	temptexture->LoadPixelImage(canvas, width, height);
 	_textures[canvas] = temptexture;
-	//_textures.emplace(canvas, temptexture);
 	return temptexture;
 }
 

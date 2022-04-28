@@ -141,7 +141,7 @@ GLuint Texture::LoadTGAImage(const char* imagepath, bool isFont)
 	return _texture;
 }
 
-GLuint Texture::LoadPixelImage(const char* canvas, unsigned char width, unsigned char height)
+GLuint Texture::LoadPixelImage(char canvas[], unsigned char width, unsigned char height)
 {
 	_width = width;
 	_height = height;

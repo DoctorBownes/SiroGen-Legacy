@@ -13,7 +13,7 @@ public:
 
     void SetSprite(const char* TGA);
     void RemoveSprite();
-    void SetSprite(const char* canvas, char width, char height);
+    void SetSprite(char canvas[], char width, char height);
     char blendColor = 0xf;
 
 protected:

@@ -26,15 +26,15 @@ Whackem::Whackem() : Scene()
 void Whackem::update(float deltaTime)
 {
 	//deltaTime = 0.0f;
-	//for (int i = 0; i < mob.size(); i++)
-	//{
-	//	if (mob[i]->GetComponent<Collider>()->isColliding(joey))
-	//	{
-	//		this->DeleteChild(mob[i]);
-	//		mob.erase(mob.begin() + i);
-	//	}
-	//	//mob[i]->GetComponent<Animation>()->PlayAnimation(mob[i]->drawAnim);
-	//}
+	for (int i = 0; i < mob.size(); i++)
+	{
+		if (mob[i]->GetComponent<Collider>()->isColliding(joey))
+		{
+			this->DeleteChild(mob[i]);
+			mob.erase(mob.begin() + i);
+		}
+		//mob[i]->GetComponent<Animation>()->PlayAnimation(mob[i]->drawAnim);
+	}
 	if (GetInput()->KeyPressed(KeyCode::Escape))
 	{
 		isRunning = false;
