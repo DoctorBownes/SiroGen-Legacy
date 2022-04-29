@@ -27,15 +27,15 @@ Texture* ResourceManager::GetTexture(const std::string imagepath, bool isFont)
 Texture* ResourceManager::GetTexture(char staticcanvas[], unsigned char width, unsigned char height)
 {
 	//MAKE SURE THE CANVAS IS STATIC!
-	if (_textures[canvas] != nullptr)
+	if (_textures[staticcanvas] != nullptr)
 	{
-		return _textures[canvas];
+		return _textures[staticcanvas];
 	}
-	_textures.erase(canvas);
+	_textures.erase(staticcanvas);
 //	std::cout << "New Texture number: " << _textures.size() << std::endl;
 	Texture* temptexture = new Texture();
-	temptexture->LoadPixelImage(canvas, width, height);
-	_textures[canvas] = temptexture;
+	temptexture->LoadPixelImage(staticcanvas, width, height);
+	_textures[staticcanvas] = temptexture;
 	return temptexture;
 }
 

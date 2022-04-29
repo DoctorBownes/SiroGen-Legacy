@@ -57,17 +57,11 @@ Renderer::Renderer()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
    // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed. ALSO MAKES THE SHADERS NOT WORK FOR INTEL HD GRAPHICS
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
-
-
-    //if (scene->fullscreen)
-    //{
-    //    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-    //    window = glfwCreateWindow(1280, 720, scene->GetSceneName(), monitor, NULL);
-    //}
-    //else
-    //{
+        
+        //Get current screen resolution
+        //GLint m_viewport[4];
+        //glGetIntegerv(GL_VIEWPORT, m_viewport);
         _window = glfwCreateWindow(1920, 1080, "SiroGen", NULL, NULL);
- //   }
 
     if (_window == NULL) {
         fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");

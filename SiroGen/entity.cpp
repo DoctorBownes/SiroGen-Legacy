@@ -9,39 +9,40 @@ Entity::Entity()
 
 void Entity::update(float deltaTime)
 {
-	deltaTime = 0.0f;
 }
 
 void Entity::Addchild(Entity* entity)
 {
+	if (!entity->worldtransform)
+	{
+		AddChildren(entity);
+	}
 	_children.push_back(entity);
 	entity->Parent = this;
 }
 
 void Entity::Removechild(Entity* entity)
 {
+	entity->Parent = nullptr;
+	RemoveChildren(entity);
 	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
 	{
 		_children.erase(std::find(_children.begin(), _children.end(), entity));
-		entity->Parent = nullptr;
 	}
 }
 
 void Entity::DeleteChild(Entity* entity)
 {
-	if (entity->Parent != nullptr)
-	{
-		if (std::find(entity->Parent->_children.begin(), entity->Parent->_children.end(), entity) != entity->Parent->_children.end())
-		{
-			entity->Parent->_children.erase(std::find(entity->Parent->_children.begin(), entity->Parent->_children.end(), entity));
-		}
+	//if (entity->Parent != nullptr)
+	//{
+		Removechild(entity);
 		DeleteChildren(entity);
 		delete entity;
-	}
-	else
-	{
-		std::cout << "Warning: child entity was not found" << std::endl;
-	}
+	//}
+	//else
+	//{
+	//	std::cout << "Warning: child entity was not found" << std::endl;
+	//}
 }
 
 Entity::~Entity()
@@ -56,6 +57,25 @@ Entity::~Entity()
 		delete it->second;
 	}
 	componentlist.clear();
+}
+
+void Entity::AddChildren(Entity* entity)
+{
+	entity->worldtransform = new Transform();
+	for (int i = 0; i < entity->_children.size(); i++)
+	{
+		AddChildren(entity->_children[i]);
+	}
+}
+
+void Entity::RemoveChildren(Entity* entity)
+{
+	for (int i = 0; i < entity->_children.size(); i++)
+	{
+		RemoveChildren(entity->_children[i]);
+	}
+	delete entity->worldtransform;
+	entity->worldtransform = nullptr;
 }
 
 void Entity::DeleteChildren(Entity* entity)

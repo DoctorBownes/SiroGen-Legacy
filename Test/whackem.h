@@ -13,6 +13,8 @@ public:
 	std::vector<Gangster*> mob;
 	Gangster* don = nullptr;
 	Player* joey = nullptr;
+	Gangster* dontoo = nullptr;
+	Gangster* donthree = nullptr;
 };
 
 #endif

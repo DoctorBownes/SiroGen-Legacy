@@ -139,8 +139,9 @@ Gangster::Gangster()
 	this->drawAnim = new SpriteAnimation();
 	this->drawAnim->AddSprite(drawcanvas1, 16, 16);
 	this->drawAnim->AddSprite(drawcanvas2, 16, 16);
-	this->drawAnim->AddSprite(drawcanvas3, 16, 16);
+	this->drawAnim->AddSprite(drawcanvas3, 16, 16, 20);
 	this->AddComponent<Animation>()->PlayAnimation(blinkAnim);
+	this->AddComponent<Collider>()->SetUpSquare(0,0,8,16);
 
 }
 
@@ -153,45 +154,45 @@ Gangster::~Gangster()
 
 void Gangster::update(float deltaTime)
 {
-	//if (target != nullptr)
-	//{
-	//	if (transform->position->DistanceBetween(target->transform->position) <= 200.0f)
-	//	{
-	//		drawAnim->hasPriority = true;
-	//		this->GetComponent<Animation>()->PlayAnimation(drawAnim);
-	//		if (GetComponent<Animation>()->isAnimationFinished())
-	//		{
-	//			Entity* bullet = new Entity();
-	//			bullet->transform->position->x = transform->position->x + 10;
-	//			bullet->transform->position->y = transform->position->y + 2;
-	//			bullets.push_back(bullet);
-	//			Parent->Addchild(bullet);
-	//			bullet->AddComponent<Animation>()->PlayAnimation(bulletAnim);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		blinkAnim->hasPriority = true;
-	//		this->GetComponent<Animation>()->PlayAnimation(blinkAnim);
-	//	}
-	//	for (int i = 0; i < bullets.size(); i++)
-	//	{
-	//		bullets[i]->transform->position->x += 50 * deltaTime;
-	//		if (bullets[i]->GetComponent<Animation>()->frame == 2)
-	//		{
-	//			bullets[i]->GetComponent<Animation>()->PauseAnimation(2);
-	//		}
-	//	}
-	//	if (transform->position->x - target->transform->position->x < 0.0f)
-	//	{
-	//		this->transform->rotation->y = 0;
-	//	}
-	//	else
-	//	{
-	//		this->transform->rotation->y = 180;
-	//	}
+	if (target != nullptr)
+	{
+		if (transform->position->DistanceBetween(target->transform->position) <= 200.0f)
+		{
+			drawAnim->hasPriority = true;
+			this->GetComponent<Animation>()->PlayAnimation(drawAnim);
+			//if (GetComponent<Animation>()->isAnimationFinished())
+			//{
+			//	Entity* bullet = new Entity();
+			//	bullet->transform->position->x = transform->position->x + 10;
+			//	bullet->transform->position->y = transform->position->y + 2;
+			//	bullets.push_back(bullet);
+			//	Parent->Addchild(bullet);
+			//	bullet->AddComponent<Animation>()->PlayAnimation(bulletAnim);
+			//}
+		}
+		else
+		{
+			blinkAnim->hasPriority = true;
+			this->GetComponent<Animation>()->PlayAnimation(blinkAnim);
+		}
+		for (int i = 0; i < bullets.size(); i++)
+		{
+			bullets[i]->transform->position->x += 50 * deltaTime;
+			if (bullets[i]->GetComponent<Animation>()->frame == 2)
+			{
+				bullets[i]->GetComponent<Animation>()->PauseAnimation(2);
+			}
+		}
+		if (transform->position->x - target->transform->position->x < 0.0f)
+		{
+			this->transform->rotation->y = 0;
+		}
+		else
+		{
+			this->transform->rotation->y = 180;
+		}
 	//	transform->position->MoveTowards(target->transform->position, 10.0f * deltaTime);
-	//}
+	}
 }
 
 void Gangster::SetColor(uint8_t color)
