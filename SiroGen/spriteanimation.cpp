@@ -13,10 +13,10 @@ SpriteAnimation::~SpriteAnimation()
 	AniArray.clear();
 }
 
-void SpriteAnimation::AddSprite(char canvas[], unsigned char width, unsigned char height, float timeonscreen)
+void SpriteAnimation::AddSprite(char staticcanvas[], unsigned char width, unsigned char height, float timeonscreen)
 {
 	Sprite* tempS = new Sprite();
-	tempS->SetSprite(canvas, width, height);
+	tempS->SetSprite(staticcanvas, width, height);
 	AniArray.push_back(std::make_pair(tempS, timeonscreen));
 }
 

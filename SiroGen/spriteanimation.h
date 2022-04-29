@@ -9,7 +9,7 @@ public:
 	~SpriteAnimation();
 
 	//Sprite* tempS;
-	void AddSprite(char canvas[], unsigned char width, unsigned char height, float timeonscreen = 0.5f);
+	void AddSprite(char staticcanvas[], unsigned char width, unsigned char height, float timeonscreen = 0.5f);
 	void AddSprite(const char* TGA, float timeonscreen = 0.5f);
 	//void ReUseSprite(int spriteinarray, float timeonscreen = 0.5f);
 	int startframe = 0;

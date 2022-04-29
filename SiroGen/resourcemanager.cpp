@@ -24,7 +24,7 @@ Texture* ResourceManager::GetTexture(const std::string imagepath, bool isFont)
 	return temptexture;
 }
 
-Texture* ResourceManager::GetTexture(char canvas[], unsigned char width, unsigned char height)
+Texture* ResourceManager::GetTexture(char staticcanvas[], unsigned char width, unsigned char height)
 {
 	//MAKE SURE THE CANVAS IS STATIC!
 	if (_textures[canvas] != nullptr)

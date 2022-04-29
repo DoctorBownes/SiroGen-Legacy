@@ -57,9 +57,9 @@ void Sprite::SetSprite(const char* TGA)
     GenerateSprite();
 }
 
-void Sprite::SetSprite(char canvas[], char width, char height)
+void Sprite::SetSprite(char staticcanvas[], char width, char height)
 {
-    texture = _instance->GetTexture(canvas,width,height);
+    texture = _instance->GetTexture(staticcanvas,width,height);
     texture_buffer = texture->GetTexBuffer();
     vertex_buffer_vector.insert(vertex_buffer_vector.begin(), {
         -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
