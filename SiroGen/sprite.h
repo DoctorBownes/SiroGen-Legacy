@@ -1,7 +1,7 @@
 #ifndef SPRITE_H_
 #define SPRITE_H_
 #include "component.h"
-#include <SiroGen/texture.h>
+#include <SiroGen/resourcemanager.h>
 #include <vector>
 class Sprite :
     public Component

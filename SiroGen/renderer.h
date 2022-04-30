@@ -27,6 +27,7 @@ private:
 	GLuint _shader = 0;
 	Camera* _camera = nullptr;
 	GLuint GetShader(const char* vertex_file_path, const char* fragment_file_path);
+	Palette* _palette = _palette->GetInstance();
 };
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

@@ -18,7 +18,7 @@ public:
 
 	bool isRunning = true;
 
-	//uint8_t bkgdcolor = 0;
+	uint8_t bkgdcolor = 0;
 
 	std::vector<Text*> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };

@@ -3,7 +3,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <SiroGen/color.h>
-#include <SiroGen/resourcemanager.h>
 
 class Texture
 {
@@ -17,7 +16,7 @@ public:
 	GLuint LoadTGAImage(const char* imagepath, bool isFont = false);
 	GLuint LoadPixelImage(char canvas[], unsigned char width, unsigned char height);
     GLuint GetTexBuffer() { return _texture; };
-	ResourceManager* _instance = _instance->GetInstance();
+	Palette* _palette = _palette->GetInstance();
 private:
 	GLuint _texture = 0;
 

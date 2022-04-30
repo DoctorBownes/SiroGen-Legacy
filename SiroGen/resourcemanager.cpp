@@ -8,6 +8,7 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
+	delete _instance;
 	cleanup();
 }
 

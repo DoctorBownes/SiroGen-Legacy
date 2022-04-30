@@ -148,9 +148,9 @@ GLuint Texture::LoadPixelImage(char canvas[], unsigned char width, unsigned char
 	for (int i = 0; i < _width * _height; i++)
 	{
 		uint8_t index = canvas[i];
-		pixelCanvas.push_back(_instance->Palette[index].r);
-		pixelCanvas.push_back(_instance->Palette[index].g);
-		pixelCanvas.push_back(_instance->Palette[index].b);
+		pixelCanvas.push_back(_palette->Colors[index].r);
+		pixelCanvas.push_back(_palette->Colors[index].g);
+		pixelCanvas.push_back(_palette->Colors[index].b);
 		if (index == 0)
 		{
 			pixelCanvas.push_back(index);

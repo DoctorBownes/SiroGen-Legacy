@@ -32,4 +32,46 @@ public:
 #define GRAY		Color(224,224,224)
 #define WHITE		Color(255,255,255)
 
+
+class Palette
+{
+public:
+    Palette(const Palette&) = delete;
+
+    static Palette* GetInstance()
+    {
+        if (!_palette)
+        {
+            _palette = new Palette();
+        }
+        return _palette;
+    }
+
+    //Based on ZX Spectrum color palette.
+    const Color Colors[16] =
+    {
+        ALPHA, //0
+        BLACK, //1
+        DARKBLUE, //2
+        BLUE, //3
+        DARKRED, //4
+        RED, //5
+        DARKMAGENTA, //6
+        MAGENTA, //7
+        DARKGREEN, //8
+        GREEN, //9
+        DARKCYAN, //10 0xa
+        CYAN, //11 0xb
+        DARKYELLOW, //12 0xc
+        YELLOW, //13 0xd
+        GRAY, //14 0xe
+        WHITE //15 0xf
+    };
+
+private:
+    Palette();
+    ~Palette();
+    static Palette* _palette;
+};
+
 #endif

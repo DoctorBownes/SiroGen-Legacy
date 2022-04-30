@@ -14,6 +14,7 @@ Whackem::Whackem() : Scene()
 	dontoo->transform->position->x = 10;
 	donthree->transform->position->x = 20;
 	don->transform->position->x = -40;
+	bkgdcolor = 2;
 
 	//for (int i = 0; i < 6; i++)
 	//{
@@ -44,7 +45,6 @@ void Whackem::update(float deltaTime)
 		{
 			std::cout << "Colliding!" << std::endl;
 			this->Removechild(don);
-			this->DeleteChild(don);
 			don = nullptr;
 		}
 	}

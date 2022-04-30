@@ -1,4 +1,15 @@
 #include "color.h"
+Palette* Palette::_palette = 0;
+
+
+Palette::Palette()
+{
+}
+
+Palette::~Palette()
+{
+	delete _palette;
+}
 
 Color::Color()
 {

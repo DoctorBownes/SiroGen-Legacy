@@ -92,7 +92,7 @@ void Renderer::RenderScene(Scene* scene)
 {
     _camera = scene->GetMainCamera();
     
-    glClearColor(90.0f /255.0f, 40.0f / 255.0f, 100.0f / 255.0f, 0.0f);
+    glClearColor(_palette->Colors[scene->bkgdcolor].r / 255.0f, _palette->Colors[scene->bkgdcolor].g / 255.0f, _palette->Colors[scene->bkgdcolor].b / 255.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glm::mat4 initmat = glm::mat4(1);

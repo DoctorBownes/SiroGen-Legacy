@@ -1,4 +1,6 @@
 #include "camera.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 Camera::Camera(bool isThreeDimensional)
 {
