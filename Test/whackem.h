@@ -10,7 +10,7 @@ class Whackem :
 public:
 	Whackem();
 	virtual void update(float deltaTime);
-	std::vector<Gangster*> mob;
+	std::vector<Entity*> map;
 	Gangster* don = nullptr;
 	Player* joey = nullptr;
 	Gangster* dontoo = nullptr;
