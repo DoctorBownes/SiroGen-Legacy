@@ -108,5 +108,5 @@ bool Collider::circle2circle(Collider* collider)
 
 void Collider::DoIt(unsigned int _shader)
 {
-	_shader = 0;
+	return;
 }

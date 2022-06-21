@@ -97,6 +97,8 @@ add_library(SiroGen # ar rcs libSiroGen.a
 	SiroGen/collider.cpp
 	SiroGen/resourcemanager.h
 	SiroGen/resourcemanager.cpp
+	SiroGen/update.cpp
+	SiroGen/update.h
 )
 
 # Test

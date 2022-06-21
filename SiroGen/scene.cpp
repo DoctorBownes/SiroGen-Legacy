@@ -20,24 +20,16 @@ Scene::~Scene()
 // are set.
 void Scene::InputInit(Entity* entity, GLFWwindow* window)
 {
+	/*if (!entity->shouldUpdate)
+	{
+		entity->RemoveComponent<Update>();
+	}*/
 	entity->GetInput()->Init(window);
 	std::vector<Entity*> child = entity->Getchildren();
 	std::vector<Entity*>::iterator it;
 	for (it = child.begin(); it != child.end(); it++)
 	{
 		InputInit(*it, window);
-	}
-}
-
-//And the same applies for each entities' update function
-void Scene::updateEntities(Entity* entity, float deltaTime)
-{
-	entity->update(deltaTime);
-	std::vector<Entity*> child = entity->Getchildren();
-	std::vector<Entity*>::iterator it;
-	for (it = child.begin(); it != child.end(); it++)
-	{
-		updateEntities(*it, deltaTime);
 	}
 }
 

@@ -2,6 +2,7 @@
 
 const int width = 8;
 const int height = 8;
+const int TileSize = 16;
 
 
 int testlevel[height][width]{
@@ -11,16 +12,21 @@ int testlevel[height][width]{
 { 1,0,1,0,0,0,0,1 },
 { 1,0,0,0,0,0,0,1 },
 { 1,0,0,0,0,0,0,1 },
-{ 1,0,0,0,0,0,0,1 },
+{ 1,0,0,0,1,0,0,1 },
 { 1,1,1,1,1,1,1,1 },
 };
+
+void setPos(Entity* entity, int x, int y)
+{
+	entity->transform->position->x = x * TileSize;
+	entity->transform->position->y = -y * TileSize;
+}
 
 Whackem::Whackem() : Scene()
 {
 	this->GetMainCamera()->SetZoom(10);
 	this->joey = new Player();
-	joey->transform->position->x = 16;
-	joey->transform->position->y = -16;
+	setPos(joey, 3, 2);
 
 	static char WallCanvas[]
 	{
@@ -71,9 +77,9 @@ Whackem::Whackem() : Scene()
 		for (int x = 0; x < width; x++)
 		{
 			Entity* tempEntity = new Entity();
+			tempEntity->RemoveComponent<Update>();
 			tempEntity->AddComponent<Sprite>()->SetSprite(canvasarray[testlevel[y][x]], 16,16);
-			tempEntity->transform->position->x = x * 16;
-			tempEntity->transform->position->y = y * -16;
+			setPos(tempEntity, x, y);
 			Addchild(tempEntity);
 		}
 	}
@@ -109,11 +115,12 @@ Whackem::Whackem() : Scene()
 bool isWallat(float x, float y)
 {
 	// can't divide by zero, solution required. Possibly if statement
-	int mapGridX = std::ceilf(x / 16);
-	int mapGridY = std::ceilf(y / -16);
+	int mapGridX = std::ceilf(x / TileSize);
+	int mapGridY = std::ceilf(-y / TileSize);
 
-	int mapGridX2 = std::floorf(x / 16);
-	int mapGridY2 = std::floorf(y / -16);
+	int mapGridX2 = std::floorf(x / TileSize);
+	int mapGridY2 = std::floorf(-y / TileSize);
+	
 	if (testlevel[mapGridY][mapGridX] == 1 || testlevel[mapGridY2][mapGridX2] == 1)
 		return true;
 	else

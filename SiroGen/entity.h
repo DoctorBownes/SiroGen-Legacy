@@ -10,6 +10,7 @@
 #include <SiroGen/text.h>
 #include <SiroGen/collider.h>
 #include <SiroGen/input.h>
+#include <SiroGen/update.h>
 #include <iostream>
 
 class Entity
@@ -40,6 +41,8 @@ public:
 
 	template <typename T>
 	void RemoveComponent();
+
+	//bool shouldUpdate = true;
 
 	//The update function goes through a while loop (along with the renderer, deltaTime and the Camera)
 	//this is the main function used to implement gameplay elements

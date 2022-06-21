@@ -5,6 +5,7 @@ Entity::Entity()
 {
 	transform = new Transform();
 	worldtransform = new Transform();
+	AddComponent<Update>();
 }
 
 void Entity::update(float deltaTime)

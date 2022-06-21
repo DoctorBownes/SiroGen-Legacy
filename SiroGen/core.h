@@ -8,12 +8,10 @@
 class Core
 {
 public:
-	double deltaTime = 0.0;
 	Core();
 	void Start(Scene* scene);
 private:
 	Renderer sceneRenderer = Renderer();
-	void CalculateDeltaTime();
 };
 
 #endif

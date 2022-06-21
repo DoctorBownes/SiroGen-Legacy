@@ -9,7 +9,6 @@ public:
 	Scene();
 	~Scene();
 
-	void updateEntities(Entity* entity, float deltaTime);
 	void InputInit(Entity* entity, GLFWwindow* window);
 	void AddSceneText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
 	void RemoveSceneText(int pos = 0);
