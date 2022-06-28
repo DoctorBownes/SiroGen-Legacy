@@ -1,4 +1,4 @@
-#include "whackem.h"
+#include "floor.h"
 
 const int width = 8;
 const int height = 8;
@@ -21,7 +21,7 @@ void setPos(Entity* entity, int x, int y)
 	entity->transform->position->y = -y * TileSize;
 }
 
-Whackem::Whackem() : Scene()
+Floor::Floor() : Scene()
 {
 	this->GetMainCamera()->SetZoom(20);
 	this->joey = new Player();
@@ -70,14 +70,14 @@ Whackem::Whackem() : Scene()
 	{
 		GroundCanvas, WallCanvas,
 	};
-	
+
 	for (int y = 0; y < height; y++)
 	{
 		for (int x = 0; x < width; x++)
 		{
 			Entity* tempEntity = new Entity();
 			tempEntity->RemoveComponent<Update>();
-			tempEntity->AddComponent<Sprite>()->SetSprite(canvasarray[testlevel[y][x]], 16,16);
+			tempEntity->AddComponent<Sprite>()->SetSprite(canvasarray[testlevel[y][x]], 16, 16);
 			setPos(tempEntity, x, y);
 			Addchild(tempEntity);
 		}
@@ -93,14 +93,14 @@ bool isWallat(float x, float y)
 
 	int mapGridX2 = std::floorf(x / TileSize);
 	int mapGridY2 = std::floorf(-y / TileSize);
-	
+
 	if (testlevel[mapGridY][mapGridX] == 1 || testlevel[mapGridY2][mapGridX2] == 1)
 		return true;
 	else
 		return false;
 }
 
-void Whackem::update(float deltaTime)
+void Floor::update(float deltaTime)
 {
 	if (isWallat(joey->transform->position->x, joey->transform->position->y))
 	{

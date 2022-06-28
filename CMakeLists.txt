@@ -134,6 +134,28 @@ target_link_libraries(ShootOut # g++ -lSiroGen
 	target_link_libraries(ShootOut
 		${ALL_GRAPHICS_LIBS}
 	)
+
+# DnG
+add_executable(DnG # g++ DnG/main.cpp -o DnG
+	DnG/floor.cpp
+	DnG/floor.h
+	DnG/main.cpp
+	DnG/player.cpp
+	DnG/player.h
+	DnG/tile.cpp
+	DnG/tile.h
+	DnG/ground.cpp
+	DnG/ground.h
+	DnG/wall.cpp
+	DnG/wall.h
+)
+target_link_libraries(DnG # g++ -lSiroGen
+	${ALL_GRAPHICS_LIBS}
+)
+	target_link_libraries(DnG
+		${ALL_GRAPHICS_LIBS}
+	)
+
 # Copy assets and shaders to the build directory
 # (In Visual Studio, copy these directories to either 'Release' or 'Build')
 file(

@@ -48,7 +48,7 @@ void Animation::PlayAnimation(SpriteAnimation* spriteanimation, bool loop, int s
         isLoop = loop;
       //  std::cout << "INSERTED" << std::endl;
     }
-    else if (startframe != spriteanimation->startframe && endframe != spriteanimation->endframe)
+    else if (startframe != spriteanimation->startframe || endframe != spriteanimation->endframe)
     {
         spriteanimation->startframe = startframe;
         spriteanimation->endframe = endframe;
