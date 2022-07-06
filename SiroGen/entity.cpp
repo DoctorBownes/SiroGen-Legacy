@@ -4,6 +4,7 @@
 Entity::Entity()
 {
 	transform = new Transform();
+	worldtransform = new Transform();
 	AddComponent<Update>();
 }
 

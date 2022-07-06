@@ -15,7 +15,6 @@ ShootOut::ShootOut() : Scene()
 	player1->direction = -1;
 	Addchild(player2);
 
-	bkgdcolor = 3;
 
 	speed = 20;
 	AddSceneText("Player1: 0", 1400, 950, 6, 5);

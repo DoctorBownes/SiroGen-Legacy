@@ -143,12 +143,7 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     glm::mat4 MVP = projectionMatrix * CameraMatrix * mat;
     GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
 
-    std::vector<Entity*> child = entity->Getchildren();
-    std::vector<Entity*>::iterator it;
-    for (it = child.begin(); it != child.end(); it++)
-    {
-        RenderEntity(mat, *it);
-    }
+    
 
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
@@ -158,6 +153,12 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     for (component = componentlist.begin(); component != componentlist.end(); component++)
     {
         component->second->DoIt(_shader);
+    }
+    std::vector<Entity*> child = entity->Getchildren();
+    std::vector<Entity*>::iterator it;
+    for (it = child.begin(); it != child.end(); it++)
+    {
+        RenderEntity(mat,*it);
     }
 }
 
