@@ -4,7 +4,6 @@
 Entity::Entity()
 {
 	transform = new Transform();
-	worldtransform = new Transform();
 	AddComponent<Update>();
 }
 
@@ -14,7 +13,7 @@ void Entity::update(float deltaTime)
 
 void Entity::Addchild(Entity* entity)
 {
-	if (!entity->worldtransform)
+	if (entity->worldtransform == nullptr)
 	{
 		AddChildren(entity);
 	}
@@ -51,7 +50,7 @@ Entity::~Entity()
 	std::cout << "Deleting Entity" << std::endl;
 	delete transform;
 	delete worldtransform;
-	std::map< size_t, Component*>::iterator it;
+	std::map<size_t, Component*>::iterator it;
 	for (it = componentlist.begin(); it != componentlist.end(); it++)
 	{
 		std::cout << "Deleting Component" << std::endl;

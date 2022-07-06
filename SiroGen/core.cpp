@@ -18,10 +18,6 @@ void Core::Start(Scene* scene)
 {
     //First it checks if there are any entities to direct them to the correct window for the keyboard support
     scene->InputInit(scene, sceneRenderer._window);
-    //It renders prematurely once, to properly set the entity's position
-    //Scenes are derived from the Entity class. This way all of it's children will also be 
-    //properly set. 
-    sceneRenderer.RenderScene(scene);
     do
     {
         CalculateDeltaTime();

@@ -8,13 +8,14 @@ ShootOut::ShootOut() : Scene()
 	player1->SetColor(5);
 	player1->transform->position->x = 30;
 	player1->transform->rotation->y = 180;
-	Addchild(player1);
+	this->Addchild(player1);
 
 	player2->SetColor(9);
 	player2->transform->position->x = -30;
 	player1->direction = -1;
-	Addchild(player2);
+	this->Addchild(player2);
 
+	bkgdcolor = 3;
 
 	speed = 20;
 	AddSceneText("Player1: 0", 1400, 950, 6, 5);

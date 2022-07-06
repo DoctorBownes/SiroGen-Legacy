@@ -2,6 +2,7 @@
 
 Scene::Scene()
 {
+	worldtransform = new Transform();
 }
 
 Scene::~Scene()

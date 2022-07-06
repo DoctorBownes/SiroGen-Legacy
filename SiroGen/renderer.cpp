@@ -148,17 +148,19 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
+    std::vector<Entity*> child = entity->Getchildren();
+    std::vector<Entity*>::iterator it;
+    for (it = child.begin(); it != child.end(); it++)
+    {
+        RenderEntity(mat, *it);
+    }
+
     std::map<size_t, Component*> componentlist = entity->GetComponentList();
     std::map<size_t, Component*>::iterator component;
     for (component = componentlist.begin(); component != componentlist.end(); component++)
     {
         component->second->DoIt(_shader);
-    }
-    std::vector<Entity*> child = entity->Getchildren();
-    std::vector<Entity*>::iterator it;
-    for (it = child.begin(); it != child.end(); it++)
-    {
-        RenderEntity(mat,*it);
     }
 }
 
