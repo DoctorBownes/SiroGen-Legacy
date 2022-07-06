@@ -49,7 +49,7 @@ void Scene::EditSceneText(std::string text, int pos)
 
 void Scene::RemoveSceneText(int pos)
 {
-	if (scenetexts.size() > 0)
+	if (!scenetexts.empty())
 	{
 		delete scenetexts[pos];
 		scenetexts.erase(scenetexts.begin() + pos);
