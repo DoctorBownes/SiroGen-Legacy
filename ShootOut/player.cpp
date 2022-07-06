@@ -166,7 +166,7 @@ Player::Player()
 	bullet->AddComponent<Animation>();
 	bullet->AddComponent<Collider>()->SetUpSquare(0, 0, 0.125f, 0.125f);
 	bullet->GetComponent<Animation>()->PlayAnimation(bulletAnim);
-
+	Parent->Addchild(bullet);
 	this->AddComponent<Animation>();
 	this->AddComponent<Collider>()->SetUpSquare(0, 0, 10, 16);
 }
