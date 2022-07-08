@@ -7,7 +7,6 @@ class Wall :
 {
 public:
     Wall();
-    virtual void update(float deltaTime);
 };
 
 #endif

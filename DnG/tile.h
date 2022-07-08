@@ -7,7 +7,6 @@ class Tile :
 {
 public:
     Tile();
-    virtual void update(float deltaTime);
 };
 
 #endif

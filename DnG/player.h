@@ -9,8 +9,6 @@ public:
 	virtual void update(float deltaTime);
 private:
 	SpriteAnimation* walkAnim = nullptr;
-	SpriteAnimation* smokeAnim = nullptr;
-	SpriteAnimation* deathAnim = nullptr;
 	float speed = 0.0f;
 };
 

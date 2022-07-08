@@ -1,6 +1,9 @@
 #ifndef FLOOR_H_
 #define FLOOR_H_
 #include <SiroGen/scene.h>
+#include "tile.h"
+#include "ground.h"
+#include "wall.h"
 #include "player.h"
 
 class Floor :
@@ -9,8 +12,7 @@ class Floor :
 public:
 	Floor();
 	virtual void update(float deltaTime);
-	std::vector<Entity*> map;
-	Player* joey = nullptr;
+	Player* player = nullptr;
 };
 
 #endif

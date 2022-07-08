@@ -7,7 +7,6 @@ class Ground :
 {
 public:
     Ground();
-    virtual void update(float deltaTime);
 };
 
 #endif
