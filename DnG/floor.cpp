@@ -4,15 +4,18 @@ const int width = 8;
 const int height = 8;
 const int TileSize = 16;
 
-int testlevel[height][width]{
-{ 1,1,1,1,1,1,1,1 },
-{ 1,0,1,0,0,0,0,1 },
-{ 1,1,1,0,0,0,0,1 },
-{ 1,0,1,0,0,0,0,1 },
-{ 1,0,0,0,0,0,0,1 },
-{ 1,0,0,0,0,0,0,1 },
-{ 1,0,0,0,1,0,0,1 },
-{ 1,1,1,1,1,1,1,1 },
+Wall* w;
+Ground* g;
+
+Tile* testlevel[height][width]{
+{ w,w,w,w,w,w,w,w },
+{ w,g,w,g,g,g,g,w },
+{ w,g,w,g,g,g,g,w },
+{ w,g,w,g,g,g,g,w },
+{ w,g,g,g,g,g,g,w },
+{ w,g,g,g,g,g,g,w },
+{ w,g,g,g,w,g,g,w },
+{ w,w,w,w,w,w,w,w },
 };
 
 void setPos(Entity* entity, int x, int y)
@@ -39,9 +42,9 @@ Floor::Floor() : Scene()
 	{
 		for (int x = 0; x < width; x++)
 		{
-			Tile* t = makers[testlevel[y][x]]();
-			setPos(t, x, y);
-			Addchild(t);
+			testlevel[y][x] = new Wall();
+			setPos(testlevel[y][x], x, y);
+			Addchild(testlevel[y][x]);
 		}
 	}
 	this->Addchild(player);
