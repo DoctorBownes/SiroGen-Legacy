@@ -7,6 +7,7 @@ class Tile :
 {
 public:
     Tile();
+    bool walkable = true;
 };
 
 #endif

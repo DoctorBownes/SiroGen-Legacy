@@ -161,7 +161,6 @@ Player::Player()
 	this->drawAnim->AddSprite(drawcanvas1, 16, 16, 0.2f);
 	this->drawAnim->AddSprite(drawcanvas2, 16, 16, 0.2f);
 	this->drawAnim->AddSprite(drawcanvas3, 16, 16, 0.2f);
-
 	bullet = new Entity();
 	bullet->AddComponent<Animation>();
 	bullet->AddComponent<Collider>()->SetUpSquare(0, 0, 0.125f, 0.125f);
