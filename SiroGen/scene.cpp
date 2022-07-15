@@ -21,10 +21,10 @@ Scene::~Scene()
 // are set.
 void Scene::InputInit(Entity* entity, GLFWwindow* window)
 {
-	/*if (!entity->shouldUpdate)
+	if (entity->shouldUpdate)
 	{
-		entity->RemoveComponent<Update>();
-	}*/
+		_time->UpdateableEntites.push_back(entity);
+	}
 	entity->GetInput()->Init(window);
 	std::vector<Entity*> child = entity->Getchildren();
 	std::vector<Entity*>::iterator it;

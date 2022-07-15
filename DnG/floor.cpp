@@ -19,8 +19,8 @@ Ground* g;
 //};
 
 int testlevel[height][width]{
-{ 0,0,1,1,1,1,1,1 },
-{ 0,0,1,0,0,0,0,1 },
+{ 1,1,1,1,1,1,1,1 },
+{ 1,0,1,0,0,0,0,1 },
 { 1,0,1,0,0,0,0,1 },
 { 1,0,1,0,0,0,0,1 },
 { 1,0,0,0,0,0,0,1 },
@@ -52,7 +52,7 @@ Tile* Tiles(int x, int y)
 
 Floor::Floor() : Scene()
 {
-	this->GetMainCamera()->SetZoom(20);
+	this->GetMainCamera()->SetZoom(10);
 	this->player = new Player();
 	setPos(player, 3, 2);
 

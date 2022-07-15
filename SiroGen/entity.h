@@ -10,7 +10,6 @@
 #include <SiroGen/text.h>
 #include <SiroGen/collider.h>
 #include <SiroGen/input.h>
-#include <SiroGen/update.h>
 #include <iostream>
 
 class Entity
@@ -30,6 +29,8 @@ public:
 	void DeleteChild(Entity* entity);
 	void DeleteChildren(Entity* entity);
 	std::vector<Entity*> Getchildren() { return _children; };
+
+	bool shouldUpdate = true;
 
 	//Like in Unity you can add a component via Templates
 	//This way you can easily add the component without having to create one on an extra line
