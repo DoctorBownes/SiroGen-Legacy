@@ -1,7 +1,6 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 #include <SiroGen/entity.h>
-#include <SiroGen/time.h>
 #include <SiroGen/camera.h>
 
 class Scene : public Entity
@@ -23,7 +22,6 @@ public:
 	std::vector<Text*> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };
 private:
-	Time* _time = _time->GetInstance();
 	Camera* MainCamera = new Camera(false);
 	std::vector<Text*> scenetexts = std::vector<Text*>();
 };

@@ -122,13 +122,15 @@ Player::Player()
 	//this->transform->scale->x = 16;
 	this->transform->scale->y = 0.5f;
 
-	speed = 20.0f;
+	speed = 40.0f;
 	this->AddComponent<Animation>();
 	this->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 15.9f,15.9f);
 }
 
 void Player::update(float deltaTime)
 {
+	olderpos->x = oldpos->x;
+	olderpos->y = oldpos->y;
 	oldpos->x = transform->position->x;
 	oldpos->y = transform->position->y;
 	if (GetInput()->KeyDown(KeyCode::Left))
