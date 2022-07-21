@@ -167,7 +167,7 @@ Player::Player()
 	bullet->GetComponent<Animation>()->PlayAnimation(bulletAnim);
 
 	this->AddComponent<Animation>();
-	this->AddComponent<Collider>()->SetUpSquare(0, 0, 10, 16);
+	this->AddComponent<Collider>()->SetUpSquare(0, 0, 8, 16);
 }
 
 Player::~Player()
@@ -184,8 +184,8 @@ void Player::update(float deltaTime)
 		if (GetComponent<Animation>()->isAnimationFinished(drawAnim))
 		{
 			Parent->Removechild(bullet);
-			bullet->transform->position->x = transform->position->x + 10 * direction;
-			bullet->transform->position->y = transform->position->y + 2;
+			bullet->transform.position.x = transform.position.x + 10 * direction;
+			bullet->transform.position.y = transform.position.y + 2;
 			Parent->Addchild(bullet);
 			bullet->GetComponent<Animation>()->ResumeAnimation(0);
 			haspressed = false;
@@ -194,7 +194,7 @@ void Player::update(float deltaTime)
 	}
 	if (bulletspawned)
 	{
-		bullet->transform->position->x += 50 * deltaTime * direction;
+		bullet->transform.position.x += 50 * deltaTime * direction;
 		if (bullet->GetComponent<Animation>()->frame == 2)
 		{
 			bullet->GetComponent<Animation>()->PauseAnimation(2);

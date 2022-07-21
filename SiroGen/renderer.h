@@ -20,8 +20,11 @@ public:
 	Renderer();
 	~Renderer();
 	void RenderScene(Scene* scene);
+	void SetWorldPosition(glm::mat4 mat, Entity* entity);
 	GLFWwindow* _window = nullptr;
 private:
+	bool test = false;
+	glm::mat4 initmat = glm::mat4(1);
 	void RenderEntity(glm::mat4 mat, Entity* entity);
 	void RenderText(Text* text);
 	GLuint _shader = 0;

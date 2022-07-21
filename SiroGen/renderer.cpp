@@ -97,6 +97,7 @@ void Renderer::RenderScene(Scene* scene)
 
     glm::mat4 initmat = glm::mat4(1);
 
+    SetWorldPosition(initmat, scene);
     RenderEntity(initmat, scene);
 
     for (int i = 0; i < scene->GetTexts().size(); i++)
@@ -116,12 +117,12 @@ void Renderer::RenderText(Text* text)
     text->DoItext(_shader);
 }
 
-void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
+void Renderer::SetWorldPosition(glm::mat4 mat, Entity* entity)
 {
-    glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform->position->x, entity->transform->position->y, entity->transform->position->z));
-    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform->rotation->x * 0.01745329f, entity->transform->rotation->y * 0.01745329f, entity->transform->rotation->z * 0.01745329f);
-    glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1),glm::vec3(entity->transform->scale->x, entity->transform->scale->y, entity->transform->scale->z));
-    
+    glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform.position.x, entity->transform.position.y, entity->transform.position.z));
+    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform.rotation.x * 0.01745329f, entity->transform.rotation.y * 0.01745329f, entity->transform.rotation.z * 0.01745329f);
+    glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1), glm::vec3(entity->transform.scale.x, entity->transform.scale.y, entity->transform.scale.z));
+
     glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;
     mat *= myModelVector;
 
@@ -133,9 +134,27 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
 
     glm::decompose(mat, worldscale, worldrot, worldpos, skew, perspec);
 
-    *entity->worldtransform->position = Vector3(worldpos.x, worldpos.y, worldpos.z);
-    *entity->worldtransform->rotation = Vector3(worldrot.x, worldrot.y, worldrot.z);
-    *entity->worldtransform->scale = Vector3(worldscale.x, worldscale.y, worldscale.z);
+    entity->worldtransform.position = Vector3(worldpos.x, worldpos.y, worldpos.z);
+    entity->worldtransform.rotation = Vector3(worldrot.x, worldrot.y, worldrot.z);
+    entity->worldtransform.scale = Vector3(worldscale.x, worldscale.y, worldscale.z);
+
+    std::vector<Entity*> child = entity->Getchildren();
+    std::vector<Entity*>::iterator it;
+    for (it = child.begin(); it != child.end(); it++)
+    {
+        RenderEntity(mat, *it);
+        SetWorldPosition(mat, *it);
+    }
+}
+
+void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
+{
+    glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform.position.x, entity->transform.position.y, entity->transform.position.z));
+    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform.rotation.x * 0.01745329f, entity->transform.rotation.y * 0.01745329f, entity->transform.rotation.z * 0.01745329f);
+    glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1),glm::vec3(entity->transform.scale.x, entity->transform.scale.y, entity->transform.scale.z));
+    
+    glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;
+    mat *= myModelVector;
 
     glm::mat4 CameraMatrix = _camera->GetCameraMat();
     glm::mat4 projectionMatrix = _camera->GetProjectionMat();
@@ -143,18 +162,9 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     glm::mat4 MVP = projectionMatrix * CameraMatrix * mat;
     GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
 
-    
-
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-    std::vector<Entity*> child = entity->Getchildren();
-    std::vector<Entity*>::iterator it;
-    for (it = child.begin(); it != child.end(); it++)
-    {
-        RenderEntity(mat, *it);
-    }
 
     std::map<size_t, Component*> componentlist = entity->GetComponentList();
     std::map<size_t, Component*>::iterator component;
@@ -162,6 +172,7 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     {
         component->second->DoIt(_shader);
     }
+
 }
 
 

@@ -31,8 +31,8 @@ int testlevel[height][width]{
 
 void setPos(Entity* entity, int x, int y)
 {
-	entity->transform->position->x = x * TileSize;
-	entity->transform->position->y = -y * TileSize;
+	entity->transform.position.x = x * TileSize;
+	entity->transform.position.y = -y * TileSize;
 }
 
 typedef Tile* TileMaker();
@@ -65,14 +65,15 @@ Floor::Floor() : Scene()
 			Addchild(TileMap[std::make_pair(x, y)]);
 		}
 	}
+
 	this->Addchild(player);
 }
 
 int* getPos(Entity* entity)
 {
 	int arrayint[2]{};
-	arrayint[0] = std::round(entity->transform->position->x / TileSize);
-	arrayint[1] = std::round(-entity->transform->position->y / TileSize);
+	arrayint[0] = std::round(entity->transform.position.x / TileSize);
+	arrayint[1] = std::round(-entity->transform.position.y / TileSize);
 	return arrayint;
 }
 
@@ -84,16 +85,18 @@ void Floor::update(float deltaTime)
 		{
 			if (player->GetComponent<Collider>()->isColliding(Tiles(x, y)) && !Tiles(x,y)->walkable)
 			{
-				player->transform->position->x = player->oldpos->x;
-				player->transform->position->y = player->oldpos->y;
+				player->transform.position.x = player->oldpos.x;
+				player->transform.position.y = player->oldpos.y;
 			}
 		}
 	}
-	std::cout << "X: " << getPos(player)[0] << " Y: " << getPos(player)[1] << std::endl;
+	//std::cout << "X: " << player->transform.position.x << " Y: " << player->transform.position.y << std::endl;
+	//std::cout << "World X: " << player->worldtransform.position.x << " World Y: " << player->worldtransform.position.y << std::endl;
+	
 	if (GetInput()->KeyPressed(KeyCode::Escape))
 	{
 		isRunning = false;
 	}
-	GetMainCamera()->position.x = player->transform->position->x;
-	GetMainCamera()->position.y = player->transform->position->y;
+	GetMainCamera()->position.x = player->transform.position.x;
+	GetMainCamera()->position.y = player->transform.position.y;
 }
