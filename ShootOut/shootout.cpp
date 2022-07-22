@@ -102,7 +102,7 @@ void ShootOut::update(float deltaTime)
 
 	if (player2->GetComponent<Collider>()->isColliding(player3))
 	{
-		//printf("Hit!\n");
+		printf("Hit!\n");
 	}
 	//else if (player1->bullet->GetComponent<Collider>()->isColliding(player2))
 	//{

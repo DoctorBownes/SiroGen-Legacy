@@ -109,22 +109,17 @@ Player::Player()
 		0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x9,0x9,0x8,0x0,
 	};
 
-	static char yellowcanvas[]
-	{
-		0xc
-	};
-
-	walkAnim->AddSprite(crawler1, 12, 22, 0.2f);
-	walkAnim->AddSprite(crawler2, 12, 22, 0.3f);
-	walkAnim->AddSprite(crawler3, 12, 22, 0.3f);
-	walkAnim->AddSprite(crawler4, 12, 22, 0.2f);
+	walkAnim->AddSprite(crawler1, 12, 22, 0.1f);
+	walkAnim->AddSprite(crawler2, 12, 22, 0.1f);
+	walkAnim->AddSprite(crawler3, 12, 22, 0.1f);
+	walkAnim->AddSprite(crawler4, 12, 22, 0.1f);
 
 	//this->transform.scale->x = 16;
 	this->transform.scale.y = 0.5f;
 
 	speed = 40.0f;
 	this->AddComponent<Animation>();
-	this->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 15.9f,15.9f);
+	this->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 15.0f,15.0f);
 }
 
 void Player::update(float deltaTime)
