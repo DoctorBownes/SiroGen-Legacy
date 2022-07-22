@@ -11,6 +11,7 @@ public:
 	Core();
 	void Start(Scene* scene);
 private:
+	Time* _time = _time->GetInstance();
 	Renderer sceneRenderer = Renderer();
 };
 

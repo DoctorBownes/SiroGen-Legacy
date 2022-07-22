@@ -4,7 +4,6 @@
 Entity::Entity()
 {
 	transform = new Transform();
-	AddComponent<Update>();
 }
 
 void Entity::update(float deltaTime)

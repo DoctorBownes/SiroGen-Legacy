@@ -8,7 +8,6 @@ public:
 	Player();
 	virtual void update(float deltaTime);
 	Vector3* oldpos = new Vector3();
-	Vector3* olderpos = new Vector3();
 	float speed = 0.0f;
 private:
 	SpriteAnimation* walkAnim = nullptr;
