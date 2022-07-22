@@ -6,21 +6,14 @@ ShootOut::ShootOut() : Scene()
 	this->GetMainCamera()->SetZoom(10);
 
 	player1->SetColor(5);
-	player1->transform.position.x = 30;
-	player1->transform.rotation.y = 180;
-	player1->target = player3;
+	player1->transform->position->x = 30;
+	player1->transform->rotation->y = 180;
 	this->Addchild(player1);
 
 	player2->SetColor(9);
-	player2->transform.position.x = -30;
+	player2->transform->position->x = -30;
 	player1->direction = -1;
-	player1->Addchild(player2);
-
-
-
-	player3->SetColor(11);
-	player3->transform.position.x = -30;
-	this->Addchild(player3);
+	this->Addchild(player2);
 
 	bkgdcolor = 3;
 
@@ -28,7 +21,6 @@ ShootOut::ShootOut() : Scene()
 	AddSceneText("Player1: 0", 1400, 950, 6, 5);
 	AddSceneText("Player2: 0", 100, 950, 6, 9);
 	AddSceneText("ShootOut", 650, 950, 10);
-	player3->GetComponent<Animation>()->PlayAnimation(player3->walkAnim, true, 0, 0);
 }
 
 void ShootOut::update(float deltaTime)
@@ -37,25 +29,25 @@ void ShootOut::update(float deltaTime)
 	{
 		player1->walkAnim->hasPriority = true;
 		player1->GetComponent<Animation>()->PlayAnimation(player1->walkAnim, true, 1, 2);
-		player1->transform.position.x -= speed * deltaTime;
+		player1->transform->position->x -= speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::Right))
 	{
 		player1->walkAnim->hasPriority = true;
 		player1->GetComponent<Animation>()->PlayAnimation(player1->walkAnim, true, 1, 2);
-		player1->transform.position.x += speed * deltaTime;
+		player1->transform->position->x += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::Up))
 	{
 		player1->walkAnim->hasPriority = true;
 		player1->GetComponent<Animation>()->PlayAnimation(player1->walkAnim, true, 1, 2);
-		player1->transform.position.y += speed * deltaTime;
+		player1->transform->position->y += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::Down))
 	{
 		player1->walkAnim->hasPriority = true;
 		player1->GetComponent<Animation>()->PlayAnimation(player1->walkAnim, true, 1, 2);
-		player1->transform.position.y -= speed * deltaTime;
+		player1->transform->position->y -= speed * deltaTime;
 	}
 	else
 	{
@@ -71,25 +63,25 @@ void ShootOut::update(float deltaTime)
 	{
 		player2->walkAnim->hasPriority = true;
 		player2->GetComponent<Animation>()->PlayAnimation(player2->walkAnim, true, 1, 2);
-		player2->transform.position.x -= speed * deltaTime;
+		player2->transform->position->x -= speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::D))
 	{
 		player2->walkAnim->hasPriority = true;
 		player2->GetComponent<Animation>()->PlayAnimation(player2->walkAnim, true, 1, 2);
-		player2->transform.position.x += speed * deltaTime;
+		player2->transform->position->x += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::W))
 	{
 		player2->walkAnim->hasPriority = true;
 		player2->GetComponent<Animation>()->PlayAnimation(player2->walkAnim, true, 1, 2);
-		player2->transform.position.y += speed * deltaTime;
+		player2->transform->position->y += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::S))
 	{
 		player2->walkAnim->hasPriority = true;
 		player2->GetComponent<Animation>()->PlayAnimation(player2->walkAnim, true, 1, 2);
-		player2->transform.position.y -= speed * deltaTime;
+		player2->transform->position->y -= speed * deltaTime;
 	}
 	else
 	{
@@ -100,19 +92,15 @@ void ShootOut::update(float deltaTime)
 		player2->Shoot();
 	}
 
-	if (player2->GetComponent<Collider>()->isColliding(player3))
+	if (player2->bullet->GetComponent<Collider>()->isColliding(player1))
 	{
-		//printf("Hit!\n");
+		player1->score--;
+		Removechild(player2->bullet);
 	}
-	//else if (player1->bullet->GetComponent<Collider>()->isColliding(player2))
-	//{
-	//	player2->score--;
-	//	Removechild(player1->bullet);
-	//}
-
-	if (GetInput()->KeyPressed(KeyCode::Escape))
+	else if (player1->bullet->GetComponent<Collider>()->isColliding(player2))
 	{
-		isRunning = false;
+		player2->score--;
+		Removechild(player1->bullet);
 	}
 
 	std::stringstream scoreplayer1;

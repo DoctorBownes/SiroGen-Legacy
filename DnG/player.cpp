@@ -119,8 +119,8 @@ Player::Player()
 	walkAnim->AddSprite(crawler3, 12, 22, 0.3f);
 	walkAnim->AddSprite(crawler4, 12, 22, 0.2f);
 
-	//this->transform.scale->x = 16;
-	this->transform.scale.y = 0.5f;
+	//this->transform->scale->x = 16;
+	this->transform->scale->y = 0.5f;
 
 	speed = 40.0f;
 	this->AddComponent<Animation>();
@@ -129,33 +129,35 @@ Player::Player()
 
 void Player::update(float deltaTime)
 {
-	oldpos.x = transform.position.x;
-	oldpos.y = transform.position.y;
+	olderpos->x = oldpos->x;
+	olderpos->y = oldpos->y;
+	oldpos->x = transform->position->x;
+	oldpos->y = transform->position->y;
 	if (GetInput()->KeyDown(KeyCode::Left))
 	{
 		walkAnim->hasPriority = true;
 		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 3);
-		this->transform.rotation.y = 0;
-		this->transform.position.x -= speed * deltaTime;
+		this->transform->rotation->y = 0;
+		this->transform->position->x -= speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::Right))
 	{
 		walkAnim->hasPriority = true;
 		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 3);
-		this->transform.rotation.y = -180;
-		this->transform.position.x += speed * deltaTime;
+		this->transform->rotation->y = -180;
+		this->transform->position->x += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::Up))
 	{
 		walkAnim->hasPriority = true;
 		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 3);
-		this->transform.position.y += speed * deltaTime;
+		this->transform->position->y += speed * deltaTime;
 	}
 	else if (GetInput()->KeyDown(KeyCode::Down))
 	{
 		walkAnim->hasPriority = true;
 		this->GetComponent<Animation>()->PlayAnimation(walkAnim, true, 1, 3);
-		this->transform.position.y -= speed * deltaTime;
+		this->transform->position->y -= speed * deltaTime;
 	}
 	else
 	{
