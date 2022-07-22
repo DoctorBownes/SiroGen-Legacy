@@ -12,7 +12,7 @@
 
 #include <SiroGen/scene.h>
 
-std::string get_file_contents(const char* filename);
+//std::string get_file_contents(const char* filename);
 
 class Renderer
 {
@@ -22,6 +22,7 @@ public:
 	void RenderScene(Scene* scene);
 	GLFWwindow* _window = nullptr;
 private:
+	bool test = false;
 	void RenderEntity(glm::mat4 mat, Entity* entity);
 	void RenderText(Text* text);
 	GLuint _shader = 0;

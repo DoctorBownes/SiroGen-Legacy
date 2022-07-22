@@ -1,7 +1,6 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 #include <SiroGen/entity.h>
-#include <SiroGen/time.h>
 #include <SiroGen/camera.h>
 
 class Scene : public Entity
@@ -10,6 +9,7 @@ public:
 	Scene();
 	~Scene();
 
+	void updateEntities(Entity* entity, float deltaTime);
 	void InputInit(Entity* entity, GLFWwindow* window);
 	void AddSceneText(std::string text, float x, float y, float size, uint8_t Color = 0xf, const char* TGAfont = "");
 	void RemoveSceneText(int pos = 0);
@@ -23,7 +23,6 @@ public:
 	std::vector<Text*> GetTexts() { return scenetexts; };
 	Camera* GetMainCamera() { return MainCamera; };
 private:
-	Time* _time = _time->GetInstance();
 	Camera* MainCamera = new Camera(false);
 	std::vector<Text*> scenetexts = std::vector<Text*>();
 };

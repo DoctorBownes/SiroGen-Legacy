@@ -22,21 +22,21 @@ const char* fragment_shader = "#version 330 core\n"
 //"	if (FragColor.a < 0.5)discard;\n"
 "};\0";
 
-std::string get_file_contents(const char* filename)
-{
-    std::ifstream in(filename, std::ios::binary);
-    if (in)
-    {
-        std::string contents;
-        in.seekg(0, std::ios::end);
-        contents.resize(in.tellg());
-        in.seekg(0, std::ios::beg);
-        in.read(&contents[0], contents.size());
-        in.close();
-        return(contents);
-    }
-    throw(errno);
-}
+//std::string get_file_contents(const char* filename)
+//{
+//    std::ifstream in(filename, std::ios::binary);
+//    if (in)
+//    {
+//        std::string contents;
+//        in.seekg(0, std::ios::end);
+//        contents.resize(in.tellg());
+//        in.seekg(0, std::ios::beg);
+//        in.read(&contents[0], contents.size());
+//        in.close();
+//        return(contents);
+//    }
+//    throw(errno);
+//}
 
 Renderer::Renderer()
 {
@@ -70,6 +70,7 @@ Renderer::Renderer()
     }
     glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
     glfwMakeContextCurrent(_window);
+    glfwSwapInterval(0);
 
     glewExperimental = true;
     if (glewInit() != GLEW_OK) {
@@ -118,9 +119,9 @@ void Renderer::RenderText(Text* text)
 
 void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
 {
-    glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform->position->x, entity->transform->position->y, entity->transform->position->z));
-    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform->rotation->x * 0.01745329f, entity->transform->rotation->y * 0.01745329f, entity->transform->rotation->z * 0.01745329f);
-    glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1),glm::vec3(entity->transform->scale->x, entity->transform->scale->y, entity->transform->scale->z));
+    glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1), glm::vec3(entity->transform.position.x, entity->transform.position.y, entity->transform.position.z));
+    glm::mat4 MyRotationAxis = glm::eulerAngleXYZ(entity->transform.rotation.x * 0.01745329f, entity->transform.rotation.y * 0.01745329f, entity->transform.rotation.z * 0.01745329f);
+    glm::mat4 myScalingMatrix = glm::scale(glm::mat4(1),glm::vec3(entity->transform.scale.x, entity->transform.scale.y, entity->transform.scale.z));
     
     glm::mat4 myModelVector = TranslationMatrix * MyRotationAxis * myScalingMatrix;
     mat *= myModelVector;
@@ -133,9 +134,9 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
 
     glm::decompose(mat, worldscale, worldrot, worldpos, skew, perspec);
 
-    *entity->worldtransform->position = Vector3(worldpos.x, worldpos.y, worldpos.z);
-    *entity->worldtransform->rotation = Vector3(worldrot.x, worldrot.y, worldrot.z);
-    *entity->worldtransform->scale = Vector3(worldscale.x, worldscale.y, worldscale.z);
+    entity->worldtransform.position = Vector3(worldpos.x, worldpos.y, worldpos.z);
+    entity->worldtransform.rotation = Vector3(worldrot.x, worldrot.y, worldrot.z);
+    entity->worldtransform.scale = Vector3(worldscale.x, worldscale.y, worldscale.z);
 
     glm::mat4 CameraMatrix = _camera->GetCameraMat();
     glm::mat4 projectionMatrix = _camera->GetProjectionMat();
@@ -143,24 +144,19 @@ void Renderer::RenderEntity(glm::mat4 mat, Entity* entity)
     glm::mat4 MVP = projectionMatrix * CameraMatrix * mat;
     GLuint MatrixID = glGetUniformLocation(_shader, "MVP");
 
-    
-
-    // Send our transformation to the currently bound shader, in the "MVP" uniform
-    // This is done in the main loop since each model will have a different MVP matrix (At least for the M part)
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-    std::vector<Entity*> child = entity->Getchildren();
-    std::vector<Entity*>::iterator it;
-    for (it = child.begin(); it != child.end(); it++)
-    {
-        RenderEntity(mat, *it);
-    }
 
     std::map<size_t, Component*> componentlist = entity->GetComponentList();
     std::map<size_t, Component*>::iterator component;
     for (component = componentlist.begin(); component != componentlist.end(); component++)
     {
         component->second->DoIt(_shader);
+    }
+    std::vector<Entity*> child = entity->Getchildren();
+    std::vector<Entity*>::iterator it;
+    for (it = child.begin(); it != child.end(); it++)
+    {
+        RenderEntity(mat, *it);
     }
 }
 

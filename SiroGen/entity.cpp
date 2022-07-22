@@ -3,7 +3,6 @@
 
 Entity::Entity()
 {
-	transform = new Transform();
 }
 
 void Entity::update(float deltaTime)
@@ -12,10 +11,6 @@ void Entity::update(float deltaTime)
 
 void Entity::Addchild(Entity* entity)
 {
-	if (entity->worldtransform == nullptr)
-	{
-		AddChildren(entity);
-	}
 	_children.push_back(entity);
 	entity->Parent = this;
 }
@@ -47,8 +42,6 @@ void Entity::DeleteChild(Entity* entity)
 Entity::~Entity()
 {
 	std::cout << "Deleting Entity" << std::endl;
-	delete transform;
-	delete worldtransform;
 	std::map<size_t, Component*>::iterator it;
 	for (it = componentlist.begin(); it != componentlist.end(); it++)
 	{
@@ -60,7 +53,6 @@ Entity::~Entity()
 
 void Entity::AddChildren(Entity* entity)
 {
-	entity->worldtransform = new Transform();
 	for (int i = 0; i < entity->_children.size(); i++)
 	{
 		AddChildren(entity->_children[i]);
@@ -71,10 +63,8 @@ void Entity::RemoveChildren(Entity* entity)
 {
 	for (int i = 0; i < entity->_children.size(); i++)
 	{
-		RemoveChildren(entity->_children[i]);
+		Removechild(entity->_children[i]);
 	}
-	delete entity->worldtransform;
-	entity->worldtransform = nullptr;
 }
 
 void Entity::DeleteChildren(Entity* entity)

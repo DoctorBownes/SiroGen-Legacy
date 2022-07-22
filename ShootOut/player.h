@@ -12,7 +12,7 @@ public:
 	SpriteAnimation* walkAnim;
 	SpriteAnimation* drawAnim;
 	Entity* target = nullptr;
-	Entity* bullet;
+	Entity* bullet = nullptr;
 	int score = 3;
 	short direction = 1;
 	void Shoot();

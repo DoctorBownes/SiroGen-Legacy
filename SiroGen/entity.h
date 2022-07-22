@@ -30,8 +30,6 @@ public:
 	void DeleteChildren(Entity* entity);
 	std::vector<Entity*> Getchildren() { return _children; };
 
-	bool shouldUpdate = true;
-
 	//Like in Unity you can add a component via Templates
 	//This way you can easily add the component without having to create one on an extra line
 	template <typename T>
@@ -54,8 +52,8 @@ public:
 	//The transform and worldtransform hold the position, rotation and scale of the entity.
 	//The worldposition is the entity's absolute position. Regardless of it being a child of another entity
 	//this is mainly used for Collision checking.
-	Transform* transform = nullptr;
-	Transform* worldtransform = nullptr;
+	Transform transform;
+	Transform worldtransform;
 
 	//Used to call the input class for keyboard related commands
 	//e.g. KeyDown(KeyCode key) MousePressed(MouseButton button)

@@ -13,6 +13,7 @@ public:
 private:
     Player* player1 = new Player();
     Player* player2 = new Player();
+    Player* player3 = new Player();
     int speed = 0;
 };
 

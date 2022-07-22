@@ -2,7 +2,6 @@
 
 Scene::Scene()
 {
-	worldtransform = new Transform();
 }
 
 Scene::~Scene()
@@ -21,16 +20,27 @@ Scene::~Scene()
 // are set.
 void Scene::InputInit(Entity* entity, GLFWwindow* window)
 {
-	if (entity->shouldUpdate)
+	/*if (!entity->shouldUpdate)
 	{
-		_time->UpdateableEntites.push_back(entity);
-	}
+		entity->RemoveComponent<Update>();
+	}*/
 	entity->GetInput()->Init(window);
 	std::vector<Entity*> child = entity->Getchildren();
 	std::vector<Entity*>::iterator it;
 	for (it = child.begin(); it != child.end(); it++)
 	{
 		InputInit(*it, window);
+	}
+}
+
+void Scene::updateEntities(Entity* entity, float deltaTime)
+{
+	entity->update(deltaTime);
+	std::vector<Entity*> child = entity->Getchildren();
+	std::vector<Entity*>::iterator it;
+	for (it = child.begin(); it != child.end(); it++)
+	{
+		updateEntities(*it, deltaTime);
 	}
 }
 
