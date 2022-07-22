@@ -30,8 +30,9 @@ void Collider::SetUpCircle(float x, float y, float diameter)
 
 bool Collider::isColliding(Entity* collider)
 {
-	if (Collider* tempcollider = collider->GetComponent<Collider>())
+	if (collider->Parent && _Owner->Parent)
 	{
+		Collider* tempcollider = collider->GetComponent<Collider>();
 		if (this->_issquare && tempcollider->_issquare)
 		{
 			return square2square(tempcollider);
