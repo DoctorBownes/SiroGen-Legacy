@@ -13,16 +13,24 @@ void Entity::Addchild(Entity* entity)
 {
 	entity->Parent = this;
 	//AddChildren(entity);
-	_children.push_back(entity);
+	_children.insert(_children.end(),entity);
+}
+
+void Entity::Addchildfront(Entity* entity)
+{
+	entity->Parent = this;
+	//AddChildren(entity);
+	_children.insert(_children.begin(), entity);
 }
 
 void Entity::Removechild(Entity* entity)
 {
 	entity->Parent = nullptr;
-	//RemoveChildren(entity);
-	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
+	std::vector<Entity*>::iterator it;
+	it = std::find(_children.begin(), _children.end(), entity);
+	if (it != _children.end())
 	{
-		_children.erase(std::find(_children.begin(), _children.end(), entity));
+		_children.erase(it);
 	}
 }
 

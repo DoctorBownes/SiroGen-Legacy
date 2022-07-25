@@ -12,7 +12,7 @@ public:
 private:
 	void CalculateDeltaTime();
 	float deltaTime = 0.0f;
-	//double starttime = 0.0;
+	double starttime = 0.0;
 	Renderer sceneRenderer = Renderer();
 };
 

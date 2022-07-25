@@ -22,6 +22,8 @@ public:
 	//Only real difference is the scene holds a camera and does not have a parent
 	void Addchild(Entity* entity);
 
+	void Addchildfront(Entity* entity);
+
 	//Removes child from scene or other entity
 	void Removechild(Entity* entity);
 
@@ -61,7 +63,7 @@ public:
 	Entity* Parent = nullptr;
 
 protected:
-	std::vector<Entity*> _children = std::vector<Entity*>();
+	std::vector<Entity*> _children;
 
 	//The componentlist is made out of the component's Hashcode for the key and the component itself as value
 	std::map<size_t, Component*> componentlist;
