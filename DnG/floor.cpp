@@ -61,8 +61,8 @@ Floor::Floor() : Scene()
 		for (int x = 0; x < width; x++)
 		{
 			TileMap[std::make_pair(x, y)] = makers[testlevel[y][x]]();
-			setPos(TileMap[std::make_pair(x, y)], x, y);
-			Addchild(TileMap[std::make_pair(x, y)]);
+			setPos(Tiles(x, y), x, y);
+			Addchild(Tiles(x, y));
 		}
 	}
 
@@ -72,18 +72,18 @@ Floor::Floor() : Scene()
 int* getPos(Entity* entity)
 {
 	int arrayint[2]{};
-	arrayint[0] = std::round(entity->transform.position.x / TileSize);
-	arrayint[1] = std::round(-entity->transform.position.y / TileSize);
+	arrayint[0] = std::ceil(entity->transform.position.x / TileSize);
+	arrayint[1] = std::ceil(-entity->transform.position.y / TileSize);
 	return arrayint;
 }
 
 void Floor::update(float deltaTime)
 {
-	for (int y = 0; y < height; y++)
+	for (int y = -1; y < 1; y++)
 	{
-		for (int x = 0; x < width; x++)
+		for (int x = -1; x < 1; x++)
 		{
-			if (player->GetComponent<Collider>()->isColliding(Tiles(x, y)) && !Tiles(x,y)->walkable)
+			if (player->GetComponent<Collider>()->isColliding(Tiles(getPos(player)[0] + x, getPos(player)[1] + y)) && !Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->walkable)
 			{
 				player->transform.position.x = player->oldpos.x;
 				player->transform.position.y = player->oldpos.y;

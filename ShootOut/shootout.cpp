@@ -9,18 +9,22 @@ ShootOut::ShootOut() : Scene()
 	player1->transform.position.x = 30;
 	player1->transform.rotation.y = 180;
 	player1->target = player3;
-	this->Addchild(player1);
 
 	player2->SetColor(9);
-	player2->transform.position.x = -30;
+	player2->transform.position.x = 60;
 	player1->direction = -1;
 	player1->Addchild(player2);
 
 
-
 	player3->SetColor(11);
-	player3->transform.position.x = -30;
-	this->Addchild(player3);
+	player3->transform.position.x = 30;
+	player2->Addchild(player3);
+	//player1->Removechild(player2);
+	this->Addchild(player1);
+
+	player4->SetColor(13);
+	player4->transform.position.x = -30;
+	Addchild(player4);
 
 	bkgdcolor = 3;
 
@@ -29,6 +33,7 @@ ShootOut::ShootOut() : Scene()
 	AddSceneText("Player2: 0", 100, 950, 6, 9);
 	AddSceneText("ShootOut", 650, 950, 10);
 	player3->GetComponent<Animation>()->PlayAnimation(player3->walkAnim, true, 0, 0);
+	player4->GetComponent<Animation>()->PlayAnimation(player4->walkAnim, true, 0, 0);
 }
 
 void ShootOut::update(float deltaTime)
@@ -100,7 +105,7 @@ void ShootOut::update(float deltaTime)
 		player2->Shoot();
 	}
 
-	if (player2->GetComponent<Collider>()->isColliding(player3))
+	if (player3->GetComponent<Collider>()->isColliding(player4))
 	{
 		printf("Hit!\n");
 	}

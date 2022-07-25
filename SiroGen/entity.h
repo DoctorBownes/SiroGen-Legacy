@@ -67,8 +67,8 @@ protected:
 	std::map<size_t, Component*> componentlist;
 
 private:
-	void RemoveChildren(Entity* entity);
-	void AddChildren(Entity* entity);
+	//void RemoveChildren(Entity* entity);
+	//void AddChildren(Entity* entity);
 	//The Input class is a singleton class so it has to be called via instance
 	Input* _instance = _instance->GetInstance();
 };

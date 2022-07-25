@@ -11,14 +11,15 @@ void Entity::update(float deltaTime)
 
 void Entity::Addchild(Entity* entity)
 {
-	_children.push_back(entity);
 	entity->Parent = this;
+	//AddChildren(entity);
+	_children.push_back(entity);
 }
 
 void Entity::Removechild(Entity* entity)
 {
 	entity->Parent = nullptr;
-	RemoveChildren(entity);
+	//RemoveChildren(entity);
 	if (std::find(_children.begin(), _children.end(), entity) != _children.end())
 	{
 		_children.erase(std::find(_children.begin(), _children.end(), entity));
@@ -51,21 +52,21 @@ Entity::~Entity()
 	componentlist.clear();
 }
 
-void Entity::AddChildren(Entity* entity)
-{
-	for (int i = 0; i < entity->_children.size(); i++)
-	{
-		AddChildren(entity->_children[i]);
-	}
-}
+//void Entity::AddChildren(Entity* entity)
+//{
+//	for (int i = 0; i < entity->_children.size(); i++)
+//	{
+//		Addchild(entity->_children[i]);
+//	}
+//}
 
-void Entity::RemoveChildren(Entity* entity)
-{
-	for (int i = 0; i < entity->_children.size(); i++)
-	{
-		Removechild(entity->_children[i]);
-	}
-}
+//void Entity::RemoveChildren(Entity* entity)
+//{
+//	for (int i = 0; i < entity->_children.size(); i++)
+//	{
+//		Removechild(entity->_children[i]);
+//	}
+//}
 
 void Entity::DeleteChildren(Entity* entity)
 {
