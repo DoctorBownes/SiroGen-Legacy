@@ -7,7 +7,7 @@ const int TileSize = 16;
 int testlevel[height][width]{
 { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 { 1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,},
-{ 1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,},
+{ 1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
 { 1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,0,1,},
 { 1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,},
 { 1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,},
@@ -55,9 +55,16 @@ TileMaker* makers[] = { make<Ground>, make<Wall>};
 
 std::map<std::pair<int,int>, Tile*> TileMap;
 
+std::map<std::pair<int,int>, Entity*> ItemMap;
+
 Tile* Tiles(int x, int y)
 {
 	return TileMap[std::make_pair(x, y)];
+}
+
+Entity* Items(int x, int y)
+{
+	return ItemMap[std::make_pair(x, y)];
 }
 
 Floor::Floor() : Scene()
@@ -73,11 +80,23 @@ Floor::Floor() : Scene()
 		{
 			TileMap[std::make_pair(x, y)] = makers[testlevel[y][x]]();
 			setPos(Tiles(x, y), x, y);
-			Addchild(Tiles(x, y));
 		}
 	}
 
+	static char keycanvas[] {
+		0x7,0x7,0x7,0x0,0x0,0x0,0x0,0x0,
+		0x7,0x0,0x7,0x7,0x7,0x7,0x7,0x7,
+		0x7,0x7,0x7,0x0,0x0,0x7,0x0,0x7,
+	};
+
+	Entity* magickey = new Entity();
+	magickey->AddComponent<Sprite>()->SetSprite(keycanvas, 8, 3);
+	magickey->AddComponent<Collider>()->SetUpSquare(0, 0, 8, 3);
+	ItemMap[std::make_pair(5, 2)] = magickey;
+	setPos(magickey,5, 2);
+
 	this->Addchild(player);
+	this->Addchild(magickey);
 }
 
 int* getPos(Entity* entity)
@@ -90,18 +109,31 @@ int* getPos(Entity* entity)
 
 void Floor::update(float deltaTime)
 {
-	for (int y = 0; y < width; y++)
+	for (int y = -4; y < 4; y+=7)
 	{
-		for (int x = 0; x < height; x++)
+		for (int x = -3; x < 3; x++)
 		{
-			Removechild(Tiles(x, y));
+			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y) && Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Parent)
+			{
+				Removechild(Tiles(getPos(player)[0] + x, getPos(player)[1] + y));
+			}
+		}
+	}
+	for (int y = -3; y < 3; y++)
+	{
+		for (int x = -4; x < 4; x+= 7)
+		{
+			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y) && Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Parent)
+			{
+				Removechild(Tiles(getPos(player)[0] + x, getPos(player)[1] + y));
+			}
 		}
 	}
 	for (int y = -3; y < 3; y++)
 	{
 		for (int x = -3; x < 3; x++)
 		{
-			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y))
+			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y) && !Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Parent)
 			{
 				Addchildfront(Tiles(getPos(player)[0] + x, getPos(player)[1] + y));
 			}
@@ -112,6 +144,11 @@ void Floor::update(float deltaTime)
 		for (int x = -1; x < 1; x++)
 		{
 			if (player->GetComponent<Collider>()->isColliding(Tiles(getPos(player)[0] + x, getPos(player)[1] + y)) && !Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->walkable)
+			{
+				player->transform.position.x = player->oldpos.x;
+				player->transform.position.y = player->oldpos.y;
+			}
+			if (Items(getPos(player)[0] + x, getPos(player)[1] + y) && player->GetComponent<Collider>()->isColliding(Items(getPos(player)[0] + x, getPos(player)[1] + y)))
 			{
 				player->transform.position.x = player->oldpos.x;
 				player->transform.position.y = player->oldpos.y;
