@@ -7,6 +7,7 @@ class Wall :
 {
 public:
     Wall();
+    void Activate(Player* player) override;
 };
 
 #endif

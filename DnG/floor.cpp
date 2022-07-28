@@ -143,11 +143,10 @@ void Floor::update(float deltaTime)
 	{
 		for (int x = -1; x < 1; x++)
 		{
-			if (player->GetComponent<Collider>()->isColliding(Tiles(getPos(player)[0] + x, getPos(player)[1] + y)) && !Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->walkable)
-			{
-				player->transform.position.x = player->oldpos.x;
-				player->transform.position.y = player->oldpos.y;
-			}
+		//	if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y))
+			//{
+				Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Activate(player);
+		//	}
 			if (Items(getPos(player)[0] + x, getPos(player)[1] + y) && player->GetComponent<Collider>()->isColliding(Items(getPos(player)[0] + x, getPos(player)[1] + y)))
 			{
 				player->transform.position.x = player->oldpos.x;

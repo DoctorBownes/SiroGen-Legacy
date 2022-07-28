@@ -23,5 +23,13 @@ Wall::Wall()
 	};
 	GetComponent<Sprite>()->SetSprite(WallCanvas, 16, 16);
 	GetComponent<Sprite>()->blendColor = 3;
-	walkable = false;
+}
+
+void Wall::Activate(Player* player)
+{
+	if (player->GetComponent<Collider>()->isColliding(this))
+	{
+		player->transform.position.x = player->oldpos.x;
+		player->transform.position.y = player->oldpos.y;
+	}
 }
