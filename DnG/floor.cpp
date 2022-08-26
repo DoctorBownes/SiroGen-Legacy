@@ -1,4 +1,5 @@
 #include "floor.h"
+#include <SiroGen/hashmap.h>
 
 const int width = 32;
 const int height = 32;
@@ -45,26 +46,35 @@ void setPos(Entity* entity, int x, int y)
 	entity->transform.position.y = -y * TileSize;
 }
 
+void setJos(Entity* entity, int x, int y)
+{
+	entity->transform.position.x = x;
+	entity->transform.position.y = y;
+}
+
 typedef Tile* TileMaker();
 
 template <class T> Tile* make() {
 	return new T;
 }
 
+HashMap* hm = new HashMap(0,0,512,-512, 9);
+
 TileMaker* makers[] = { make<Ground>, make<Wall>};
 
 std::map<std::pair<int,int>, Tile*> TileMap;
-
-std::map<std::pair<int,int>, Entity*> ItemMap;
 
 Tile* Tiles(int x, int y)
 {
 	return TileMap[std::make_pair(x, y)];
 }
 
-Entity* Items(int x, int y)
+int* getPos(Entity* entity)
 {
-	return ItemMap[std::make_pair(x, y)];
+	int arrayint[2]{};
+	arrayint[0] = std::ceil(entity->transform.position.x / TileSize);
+	arrayint[1] = std::ceil(-entity->transform.position.y / TileSize);
+	return arrayint;
 }
 
 Floor::Floor() : Scene()
@@ -80,6 +90,7 @@ Floor::Floor() : Scene()
 		{
 			TileMap[std::make_pair(x, y)] = makers[testlevel[y][x]]();
 			setPos(Tiles(x, y), x, y);
+			hm->Insert(Tiles(x, y));
 		}
 	}
 
@@ -92,50 +103,27 @@ Floor::Floor() : Scene()
 	Entity* magickey = new Entity();
 	magickey->AddComponent<Sprite>()->SetSprite(keycanvas, 8, 3);
 	magickey->AddComponent<Collider>()->SetUpSquare(0, 0, 8, 3);
-	ItemMap[std::make_pair(5, 2)] = magickey;
-	setPos(magickey,5, 2);
+	//setJos(magickey,510, 0);
+	//hm->Insert(magickey);
+	
+	//std::cout << hm->getCell(1, 0).size() << std::endl;
 
 	this->Addchild(player);
-	this->Addchild(magickey);
-}
-
-int* getPos(Entity* entity)
-{
-	int arrayint[2]{};
-	arrayint[0] = std::ceil(entity->transform.position.x / TileSize);
-	arrayint[1] = std::ceil(-entity->transform.position.y / TileSize);
-	return arrayint;
+	//this->Addchild(hm->getCell(0, 0)[0]);
 }
 
 void Floor::update(float deltaTime)
 {
-	for (int y = -4; y < 4; y+=7)
+	for (int x = -1; x < 2; x++)
 	{
-		for (int x = -3; x < 3; x++)
+		for (int y = -1; y < 2; y++)
 		{
-			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y) && Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Parent)
+			if (!hm->getCell(hm->getPos(player)[0] + x, hm->getPos(player)[1] + y * -1)[0]->Parent)
 			{
-				Removechild(Tiles(getPos(player)[0] + x, getPos(player)[1] + y));
-			}
-		}
-	}
-	for (int y = -3; y < 3; y++)
-	{
-		for (int x = -4; x < 4; x+= 7)
-		{
-			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y) && Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Parent)
-			{
-				Removechild(Tiles(getPos(player)[0] + x, getPos(player)[1] + y));
-			}
-		}
-	}
-	for (int y = -3; y < 3; y++)
-	{
-		for (int x = -3; x < 3; x++)
-		{
-			if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y) && !Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Parent)
-			{
-				Addchildfront(Tiles(getPos(player)[0] + x, getPos(player)[1] + y));
+				for (int i = 0; i < hm->getCell(hm->getPos(player)[0] + x, hm->getPos(player)[1] + y * -1).size(); i++)
+				{
+					Addchildfront(hm->getCell(hm->getPos(player)[0] + x, hm->getPos(player)[1] + y * -1)[i]);
+				}
 			}
 		}
 	}
@@ -143,20 +131,19 @@ void Floor::update(float deltaTime)
 	{
 		for (int x = -1; x < 1; x++)
 		{
+			//if (!hm->getCell(getPos(player)[0], getPos(player)[1])[0]->Parent)
+		//	{
+			//	for (int i = 0; i < hm->getCell(getPos(player)[0] + x, getPos(player)[1] + y).size(); i++)
+			//	{
+			//		Addchildfront(hm->getCell(getPos(player)[0] + x, getPos(player)[1] + y)[i]);
+				//}
+		//	}
 		//	if (Tiles(getPos(player)[0] + x, getPos(player)[1] + y))
 			//{
 				Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Activate(player);
 		//	}
-			if (Items(getPos(player)[0] + x, getPos(player)[1] + y) && player->GetComponent<Collider>()->isColliding(Items(getPos(player)[0] + x, getPos(player)[1] + y)))
-			{
-				player->transform.position.x = player->oldpos.x;
-				player->transform.position.y = player->oldpos.y;
-			}
 		}
 	}
-	//std::cout << "X: " << player->transform.position.x << " Y: " << player->transform.position.y << std::endl;
-	//std::cout << "World X: " << player->worldtransform.position.x << " World Y: " << player->worldtransform.position.y << std::endl;
-	
 	if (GetInput()->KeyPressed(KeyCode::Escape))
 	{
 		isRunning = false;
