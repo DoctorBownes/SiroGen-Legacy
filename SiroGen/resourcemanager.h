@@ -19,7 +19,7 @@ public:
 	}
 
 	Texture* GetTexture(const std::string imagepath, bool isFont = false);
-	Texture* GetTexture(char staticcanvas[], unsigned char width, unsigned char height);
+	Texture* GetTexture(char staticcanvas[], unsigned short width, unsigned short height);
 	void DeleteTexture(Texture* texture);
 	void cleanup();
 

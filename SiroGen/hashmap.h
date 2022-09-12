@@ -10,7 +10,7 @@ public:
 	void Insert(Entity* entity);
 	std::vector<Entity*> getCell(int x, int y);
 
-	float* getPos(Entity* entity);
+	//float* getPos(Entity* entity);
 
 	std::map<std::pair<int, int>, std::vector<Entity*>> cells;
 private:

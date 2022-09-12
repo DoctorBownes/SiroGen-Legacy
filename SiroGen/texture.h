@@ -14,7 +14,7 @@ public:
 	int _height = 0;
 
 	GLuint LoadTGAImage(const char* imagepath, bool isFont = false);
-	GLuint LoadPixelImage(char canvas[], unsigned char width, unsigned char height);
+	GLuint LoadPixelImage(char canvas[], unsigned short width, unsigned short height);
     GLuint GetTexBuffer() { return _texture; };
 	Palette* _palette = _palette->GetInstance();
 private:

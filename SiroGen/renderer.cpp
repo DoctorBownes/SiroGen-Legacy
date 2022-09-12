@@ -70,7 +70,7 @@ Renderer::Renderer()
     }
     glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
     glfwMakeContextCurrent(_window);
-    glfwSwapInterval(0);
+  //  glfwSwapInterval(0);
 
     glewExperimental = true;
     if (glewInit() != GLEW_OK) {
