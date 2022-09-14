@@ -15,7 +15,7 @@ public:
     void RemoveSprite();
     void SetSprite(char staticcanvas[], char width, char height);
     void SetTileSprite(char* staticcanvas[], unsigned short width, unsigned short height, char TileSizes);
-    char blendColor = 0xf;
+    char blendColor = WHT;
 
 protected:
     Texture* texture = nullptr;

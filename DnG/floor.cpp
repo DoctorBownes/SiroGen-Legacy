@@ -2,18 +2,42 @@
 
 Floor::Floor() : Scene()
 {
-	//Tile* SetLevel[LevelHeight][LevelWidth] {
-	//{ new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),},
-	//{ new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),},
-	//{ new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),},
-	//{ new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),},
-	//{ new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),},
-	//{ new Wall(),new Ground(),new Ground(),new Ground(),new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),},
-	//{ new Wall(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Ground(),new Wall(),},
-	//{ new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),new Wall(),},
+	//char SetLevel[32][32] {
+	//{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
+	//{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 	//};
-	std::cout << sizeof(Sprite) << std::endl;
-	this->GetMainCamera()->SetZoom(2);
+
+	this->GetMainCamera()->SetZoom(12);
 	this->player = new Player();
 
 	//static char MarioSprite[]{
@@ -37,45 +61,45 @@ Floor::Floor() : Scene()
 
 	static char wt[]
 	{
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,
-		0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,
-		0xe,0xe,0xe,0xe,0xe,0xe,0xe,0x1,0xe,0xe,0xe,0xe,0xe,0xe,0xe,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,
-		0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,
-		0xe,0xe,0xe,0x1,0xe,0xe,0xe,0xe,0xe,0xe,0xe,0x1,0xe,0xe,0xe,0xe,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,
-		0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,
-		0xe,0xe,0xe,0xe,0xe,0xe,0xe,0x1,0xe,0xe,0xe,0xe,0xe,0xe,0xe,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,
-		0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,0xf,0xf,0xf,0x1,0xe,0xf,0xf,0xf,
-		0xe,0xe,0xe,0x1,0xe,0xe,0xe,0xe,0xe,0xe,0xe,0x1,0xe,0xe,0xe,0xe,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
+		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
+		GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
+		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
+		GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
+		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
+		GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
+		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
+		GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,
 	};
-
+	
 	static char gt[]
 	{
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0xf,0xf,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0xf,0xf,0x1,0x1,0x1,0x1,0x1,0x1,
-		0xf,0xf,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0xf,0xf,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0xf,0xf,0x1,0x1,0x1,
-		0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0xf,0xf,0x1,0x1,0x1,
-		0x1,0x1,0x1,0xf,0xf,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
-		0x1,0x1,0x1,0xf,0xf,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,0x1,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,
+		WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,
+		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,
+		BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
 	};
 
-	static char* TileMap[]//96x64
+	static char* TileMap[]
 	{
 		wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,
 		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
@@ -112,25 +136,13 @@ Floor::Floor() : Scene()
 	};
 
 	Entity* Mario = new Entity();
-	Mario->AddComponent<Sprite>()->SetTileSprite(TileMap, 32,32, 16);
+	Mario->AddComponent<Sprite>()->SetTileSprite(TileMap, 32, 32, 16);
 	Addchild(Mario);
-	bkgdcolor = 0xe;
+	bkgdcolor = ICE;
 	//player->transform.position.x = 2 * TileSize;
 	//player->transform.position.y = 3 * -TileSize;
 
-	//for (int y = 0; y < LevelHeight; y++)
-	//{
-	//	for (int x = 0; x < LevelWidth; x++)
-	//	{
-	//		TileLevel[y][x] = SetLevel[y][x];
-	//		Addchild(TileLevel[y][x]);
-	//		TileLevel[y][x]->transform.position.x = x * TileSize;
-	//		TileLevel[y][x]->transform.position.y = y * -TileSize;
-	//		SetLevel[y][x] = nullptr;
-	//		//hm->Insert(Tiles(x, y));
-	//	}
-	//}
-
+	
 	this->Addchild(player);
 	//this->Addchild(hm->getCell(0, 0)[0]);
 }

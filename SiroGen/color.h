@@ -15,22 +15,34 @@ public:
 	uint8_t b = 0;
 };
 
-#define ALPHA		Color(0,0,0)
-#define BLACK		Color(0,0,0)
-#define DARKBLUE	Color(0,0,224)
-#define BLUE		Color(0,0,255)
-#define DARKRED		Color(224,0,0)
-#define RED			Color(255,0,0)
-#define DARKMAGENTA Color(224,0,224)
-#define MAGENTA		Color(255,0,255)
-#define DARKGREEN	Color(0,224,0)
-#define GREEN		Color(0,255,0)
-#define DARKCYAN	Color(0,224,224)
-#define CYAN		Color(0,255,255)
-#define DARKYELLOW	Color(224,224,0)
-#define YELLOW		Color(255,255,0)
-#define GRAY		Color(224,224,224)
-#define WHITE		Color(255,255,255)
+#define BKG	0
+#define BLK 1
+#define NVY 2
+#define BLU 3
+#define MRN 4
+#define PUR 5
+#define VLT 6
+#define RED 7
+#define ROS 8
+#define MGA 9
+#define FOR 10
+#define TEA 11
+#define AZR 12
+#define OLV 13
+#define GRY 14
+#define ICE 15
+#define ORG 16
+#define PCH 17
+#define PNK 18
+#define GRN 19
+#define JAD 20
+#define CYN 21
+#define LIM 22
+#define MIN 23
+#define CLS 24
+#define YLW 25
+#define CRM 26
+#define WHT 27
 
 
 class Palette
@@ -48,24 +60,36 @@ public:
     }
 
     //Based on ZX Spectrum color palette.
-    const Color Colors[16] =
+    const Color Colors[28] =
     {
-        ALPHA, //0
-        BLACK, //1
-        DARKBLUE, //2
-        BLUE, //3
-        DARKRED, //4
-        RED, //5
-        DARKMAGENTA, //6
-        MAGENTA, //7
-        DARKGREEN, //8
-        GREEN, //9
-        DARKCYAN, //10 0xa
-        CYAN, //11 0xb
-        DARKYELLOW, //12 0xc
-        YELLOW, //13 0xd
-        GRAY, //14 0xe
-        WHITE //15 0xf
+        Color(0,0,0)        ,
+        Color(0,0,0)        ,
+        Color(0,0,128)      ,
+        Color(0,0,255)      ,
+        Color(128,0,0)      ,
+        Color(128,0,128)    ,
+        Color(128,0,255)    ,
+        Color(255,0,0)      ,
+        Color(255,0,128)    ,
+        Color(255,0,255)    ,
+        Color(0,128,0)      ,
+        Color(0,128,128)    ,
+        Color(0,128,255)    ,
+        Color(128,128,0)    ,
+        Color(128,128,128)  ,
+        Color(128,128,255)  ,
+        Color(255,128,0)    ,
+        Color(255,128,128)  ,
+        Color(255,128,255)  ,
+        Color(0,255,0)      ,
+        Color(0,255,128)    ,
+        Color(0,255,255)    ,
+        Color(128,255,0)    ,
+        Color(128,255,128)  ,
+        Color(128,255,255)  ,
+        Color(255,255,0)    ,
+        Color(255,255,128)  ,
+        Color(255,255,255)  ,
     };
 
 private:

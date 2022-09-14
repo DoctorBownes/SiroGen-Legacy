@@ -110,7 +110,7 @@ void Sprite::GenerateSprite()
 void Sprite::DoIt(GLuint shader)
 {
     GLuint ColorID = glGetUniformLocation(shader, "blendColor");
-    glUniform4f(ColorID, texture->_palette->Colors[blendColor + 1 - blendColor % 2].r / 255.0f, texture->_palette->Colors[blendColor + 1 - blendColor % 2].g / 255.0f, texture->_palette->Colors[blendColor + 1 - blendColor % 2].b / 255.0f, 1.0f);
+    glUniform4f(ColorID, texture->_palette->Colors[blendColor].r / 255.0f, texture->_palette->Colors[blendColor].g / 255.0f, texture->_palette->Colors[blendColor].b / 255.0f, 1.0f);
     glBindTexture(GL_TEXTURE_2D, texture_buffer);
 
     GLuint vertexPositionID = glGetAttribLocation(shader, "vertexPosition");
