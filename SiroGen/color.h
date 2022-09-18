@@ -59,7 +59,7 @@ public:
         return _palette;
     }
 
-    //Based on ZX Spectrum color palette.
+    //Based on Amstrad CPC color palette.
     const Color Colors[28] =
     {
         Color(0,0,0)        ,

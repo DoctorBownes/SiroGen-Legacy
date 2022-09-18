@@ -80,6 +80,7 @@ void Sprite::GenerateSprite()
     {
         texture_buffer = texture->GetTexBuffer();
         vertex_buffer_vector.insert(vertex_buffer_vector.begin(), {
+
             -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
              0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
              0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
@@ -87,6 +88,15 @@ void Sprite::GenerateSprite()
              0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
             -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
             -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+            //TODO 
+            // Implement pivot change. X = +0.5f Y = -0.5f
+             //0.0f * texture->_width,  0.0f * texture->_height, 0.0f,
+             //1.0f * texture->_width,  0.0f * texture->_height, 0.0f,
+             //1.0f * texture->_width, -1.0f * texture->_height, 0.0f,
+
+             //1.0f * texture->_width, -1.0f * texture->_height, 0.0f,
+             //0.0f * texture->_width, -1.0f * texture->_height, 0.0f,
+             //0.0f * texture->_width,  0.0f * texture->_height, 0.0f,
             });
         uv_buffer_vector.insert(uv_buffer_vector.begin(), {
             0.0f, 0.0f,

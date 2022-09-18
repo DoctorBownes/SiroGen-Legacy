@@ -37,7 +37,7 @@ Floor::Floor() : Scene()
 	//{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 	//};
 
-	this->GetMainCamera()->SetZoom(12);
+	this->GetMainCamera()->SetZoom(10);
 	this->player = new Player();
 
 	//static char MarioSprite[]{
@@ -99,46 +99,86 @@ Floor::Floor() : Scene()
 		BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
 	};
 
-	static char* TileMap[]
+	static char gs[]
 	{
-		wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,
+		TEA,BKG,FOR,BKG,BKG,BKG,FOR,BKG,BKG,BKG,FOR,BKG,FOR,BKG,BKG,BKG,
+		FOR,TEA,FOR,FOR,BKG,FOR,FOR,TEA,BKG,TEA,FOR,FOR,FOR,FOR,TEA,BKG,
+		TEA,FOR,FOR,FOR,FOR,FOR,FOR,FOR,TEA,FOR,FOR,FOR,FOR,FOR,FOR,TEA,
+		FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,
+		FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,
+		FOR,TEA,FOR,FOR,FOR,FOR,TEA,FOR,FOR,FOR,FOR,FOR,FOR,TEA,FOR,FOR,
+		TEA,OLV,TEA,FOR,FOR,TEA,OLV,FOR,FOR,FOR,FOR,FOR,OLV,OLV,TEA,FOR,
+		TEA,OLV,FOR,FOR,FOR,OLV,OLV,OLV,FOR,FOR,TEA,OLV,OLV,OLV,OLV,FOR,
+		OLV,OLV,FOR,FOR,TEA,OLV,OLV,OLV,OLV,TEA,FOR,OLV,OLV,OLV,OLV,FOR,
+		OLV,OLV,OLV,FOR,TEA,OLV,OLV,OLV,OLV,TEA,FOR,OLV,OLV,OLV,OLV,FOR,
+		OLV,OLV,OLV,FOR,OLV,OLV,OLV,OLV,OLV,OLV,TEA,OLV,OLV,OLV,OLV,FOR,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,FOR,GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,FOR,OLV,
 	};
 
-	Entity* Mario = new Entity();
-	Mario->AddComponent<Sprite>()->SetTileSprite(TileMap, 32, 32, 16);
-	Addchild(Mario);
-	bkgdcolor = ICE;
+	static char dt[]
+	{
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,GRY,GRY,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,GRY,GRY,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,OLV,OLV,
+		OLV,OLV,OLV,OLV,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,FOR,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,FOR,GRY,GRY,GRY,GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,OLV,OLV,OLV,OLV,FOR,
+		GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,
+		GRY,GRY,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,
+		GRY,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,GRY,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,GRY,GRY,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,FOR,GRY,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,GRY,GRY,GRY,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,FOR,GRY,FOR,OLV,
+	};
+
+	static char* TileMap[]
+	{
+		//wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
+		gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,
+		dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,
+		dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,
+		dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,
+	};
+
+	Entity* MapEntity = new Entity();
+	MapEntity->AddComponent<Sprite>()->SetTileSprite(TileMap, 32, 4, 16);
+	Addchild(MapEntity);
+	bkgdcolor = NVY;
 	//player->transform.position.x = 2 * TileSize;
 	//player->transform.position.y = 3 * -TileSize;
 
