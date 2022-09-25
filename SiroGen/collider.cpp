@@ -1,10 +1,4 @@
 #include "collider.h"
-#include <iostream>
-
-//Collider::Collider()
-//{
-//	_Owner = nullptr;
-//}
 
 Collider::Collider(Entity* owner)
 {

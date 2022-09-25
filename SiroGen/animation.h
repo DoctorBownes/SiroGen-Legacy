@@ -6,8 +6,7 @@
 class Animation : public Component
 {
 public:
-	Animation();
-	Animation(Entity* owner);
+	Animation(Entity* owner = nullptr);
 	~Animation();
 
 	void PlayAnimation(SpriteAnimation* spriteanimation, bool loop = true);

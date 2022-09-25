@@ -6,9 +6,8 @@ class Component
 {
 public:
 	Entity* _Owner = nullptr;
-	Component();
 	virtual ~Component();
-	Component(Entity* owner);
+	Component(Entity* owner = nullptr);
 	virtual void DoIt(unsigned int _shader) = 0;
 };
 

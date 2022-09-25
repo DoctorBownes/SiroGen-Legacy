@@ -7,8 +7,7 @@ class Sprite :
     public Component
 {
 public:
-    Sprite();
-    Sprite(Entity* owner);
+    Sprite(Entity* owner = nullptr);
     ~Sprite();
 
     void SetSprite(const char* TGA);
@@ -26,10 +25,10 @@ protected:
     GLuint uv_buffer = 0;
     void GenerateSprite();
     virtual void DoIt(GLuint shader);
-
-private:
     ResourceManager* _instance = _instance->GetInstance();
 
+private:
+    bool drawn = 0;
     int _height = 0;
     int _width = 0;
 };

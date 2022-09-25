@@ -1,15 +1,5 @@
 #include "sprite.h"
 
-Sprite::Sprite()
-{
-    _Owner = nullptr;
-    vertex_buffer = 0;
-    texture_buffer = 0;
-    uv_buffer = 0;
-    texture = nullptr;
-   // GenerateSprite();
-}
-
 Sprite::Sprite(Entity* owner)
 {
     _Owner = owner;
@@ -36,6 +26,15 @@ void Sprite::RemoveSprite()
 void Sprite::SetSprite(const char* TGA)
 {
     texture = _instance->GetTexture(TGA);
+    uv_buffer_vector.insert(uv_buffer_vector.begin(), {
+        0.0f, 1.0f,
+        1.0f, 1.0f,
+        1.0f, 0.0f,
+
+        1.0f, 0.0f,
+        0.0f, 0.0f,
+        0.0f, 1.0f,
+        });
     GenerateSprite();
 }
 
@@ -76,8 +75,8 @@ void Sprite::SetTileSprite(char* staticcanvas[], unsigned short width, unsigned 
 
 void Sprite::GenerateSprite()
 {
-    if (texture)
-    {
+    //vt & uv check for Text class
+    if (vertex_buffer_vector.empty()) {
         texture_buffer = texture->GetTexBuffer();
         vertex_buffer_vector.insert(vertex_buffer_vector.begin(), {
 
@@ -98,6 +97,8 @@ void Sprite::GenerateSprite()
              //0.0f * texture->_width, -1.0f * texture->_height, 0.0f,
              //0.0f * texture->_width,  0.0f * texture->_height, 0.0f,
             });
+    }
+    if (uv_buffer_vector.empty()) {
         uv_buffer_vector.insert(uv_buffer_vector.begin(), {
             0.0f, 0.0f,
             1.0f, 0.0f,
@@ -106,7 +107,7 @@ void Sprite::GenerateSprite()
             1.0f, 1.0f,
             0.0f, 1.0f,
             0.0f, 0.0f,
-            });
+        });
     }
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);

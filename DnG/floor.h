@@ -13,8 +13,10 @@ class Floor :
 public:
 	Floor();
 	virtual void update(float deltaTime);
+	float gravity = 0.0f;
 	//Tile* TileLevel[LevelHeight][LevelWidth] = nullptr;
 	//HashMap* EnemyMap = nullptr;
+	Entity* ground = nullptr;
 	Player* player = nullptr;
 };
 

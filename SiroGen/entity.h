@@ -88,7 +88,7 @@ T* Entity::AddComponent()
 		componentlist.emplace(typeid(T).hash_code(), test);
 		//Because all Components are based of of the Component class we use the dynamic_cast
 		//this is also a safety measure to ensure a Component type is added
-		return dynamic_cast<T*>(componentlist[typeid(T).hash_code()]);
+		return reinterpret_cast<T*>(componentlist[typeid(T).hash_code()]);
 	}
 	std::cout << "Error: cannot add two of the same component" << std::endl;
 	return nullptr;

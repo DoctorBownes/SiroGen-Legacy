@@ -24,7 +24,6 @@ public:
 	void cleanup();
 
 	std::map<const char*, Texture*> _textures;
-
 private:
 	ResourceManager();
 	~ResourceManager();

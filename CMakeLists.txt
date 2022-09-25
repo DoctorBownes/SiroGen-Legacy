@@ -156,6 +156,17 @@ target_link_libraries(DnG # g++ -lSiroGen
 		${ALL_GRAPHICS_LIBS}
 	)
 
+# SpriteConverter
+add_executable(SpriteConverter # g++ SpriteConverter/main.cpp -o SpriteConverter
+	SpriteConverter/main.cpp
+)
+target_link_libraries(SpriteConverter # g++ -lSiroGen
+	${ALL_GRAPHICS_LIBS}
+)
+	target_link_libraries(SpriteConverter
+		${ALL_GRAPHICS_LIBS}
+	)
+
 # Copy assets and shaders to the build directory
 # (In Visual Studio, copy these directories to either 'Release' or 'Build')
 file(

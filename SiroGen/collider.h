@@ -7,7 +7,6 @@ class Collider :
     public Component
 {
 public:
-   // Collider();
     Collider(Entity* owner);
 
     void SetUpSquare(float x, float y, float width, float height);

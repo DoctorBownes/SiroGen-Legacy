@@ -37,7 +37,7 @@ Floor::Floor() : Scene()
 	//{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 	//};
 
-	this->GetMainCamera()->SetZoom(10);
+	this->GetMainCamera()->SetZoom(6);
 	this->player = new Player();
 
 	//static char MarioSprite[]{
@@ -59,173 +59,148 @@ Floor::Floor() : Scene()
 	//	0x1,0x1,0x1,0x1,0x0,0x0,0x0,0x0,0x1,0x1,0x1,0x1,
 	//};
 
-	static char wt[]
-	{
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
-		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
-		GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
-		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
-		GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
-		GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,
-		GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
-		WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,WHT,WHT,WHT,BLK,GRY,WHT,WHT,WHT,
-		GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,GRY,GRY,GRY,BLK,GRY,GRY,GRY,GRY,
+	static char sl[]
+	{ 23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+10,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+10,13,10,0,0,0,0,0,0,0,0,0,0,0,0,0,
+10,23,10,23,0,0,0,0,0,0,0,0,0,0,0,0,
+23,10,23,10,13,0,0,0,0,0,0,0,0,0,0,0,
+10,10,13,10,23,0,0,0,0,0,0,0,0,0,0,0,
+13,23,10,23,10,10,0,0,0,0,0,0,0,0,0,0,
+10,13,13,10,13,23,13,0,0,0,0,0,0,0,0,0,
+14,10,13,23,23,10,23,0,0,0,0,0,0,0,0,0,
+14,14,13,13,13,10,10,23,0,0,0,0,0,0,0,0,
+14,13,13,13,13,13,23,10,23,10,0,0,0,0,0,0,
+13,13,13,13,13,13,13,23,10,10,23,13,0,0,0,0,
+13,13,13,13,13,10,10,13,10,13,10,23,23,0,0,0,
+13,13,13,13,10,14,14,23,23,10,23,10,10,23,0,0,
+13,13,13,13,14,14,14,14,10,10,13,13,23,13,23,0,
+13,13,13,13,13,13,13,13,13,13,13,13,13,10,23,10,
+
 	};
 	
 	static char gt[]
 	{
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,
-		WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,
-		BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,
-		BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
-		BLK,BLK,BLK,WHT,WHT,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,BLK,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
+		BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,BKG,
 	};
 
 	static char gs[]
-	{
-		TEA,BKG,FOR,BKG,BKG,BKG,FOR,BKG,BKG,BKG,FOR,BKG,FOR,BKG,BKG,BKG,
-		FOR,TEA,FOR,FOR,BKG,FOR,FOR,TEA,BKG,TEA,FOR,FOR,FOR,FOR,TEA,BKG,
-		TEA,FOR,FOR,FOR,FOR,FOR,FOR,FOR,TEA,FOR,FOR,FOR,FOR,FOR,FOR,TEA,
-		FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,
-		FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,FOR,
-		FOR,TEA,FOR,FOR,FOR,FOR,TEA,FOR,FOR,FOR,FOR,FOR,FOR,TEA,FOR,FOR,
-		TEA,OLV,TEA,FOR,FOR,TEA,OLV,FOR,FOR,FOR,FOR,FOR,OLV,OLV,TEA,FOR,
-		TEA,OLV,FOR,FOR,FOR,OLV,OLV,OLV,FOR,FOR,TEA,OLV,OLV,OLV,OLV,FOR,
-		OLV,OLV,FOR,FOR,TEA,OLV,OLV,OLV,OLV,TEA,FOR,OLV,OLV,OLV,OLV,FOR,
-		OLV,OLV,OLV,FOR,TEA,OLV,OLV,OLV,OLV,TEA,FOR,OLV,OLV,OLV,OLV,FOR,
-		OLV,OLV,OLV,FOR,OLV,OLV,OLV,OLV,OLV,OLV,TEA,OLV,OLV,OLV,OLV,FOR,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,FOR,GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,FOR,OLV,
+	{ 
+23,0,10,0,0,0,23,0,0,0,10,0,10,0,0,0,
+10,23,13,23,0,13,23,10,0,10,10,23,10,23,13,0,
+13,23,10,23,10,10,23,10,10,13,23,10,10,23,10,23,
+23,10,10,23,10,23,10,10,23,10,23,10,13,23,10,23,
+13,10,23,13,23,10,10,13,10,23,10,10,23,10,13,23,
+10,23,10,10,23,10,23,10,10,23,10,23,13,10,23,10,
+23,10,13,23,10,10,13,10,23,13,10,23,10,10,10,23,
+10,13,23,10,10,13,13,13,10,10,23,13,13,13,23,10,
+13,13,10,10,10,13,13,13,13,23,10,13,13,13,13,10,
+13,13,13,10,10,13,13,13,13,10,10,13,13,13,13,10,
+13,13,13,10,13,13,13,13,13,13,10,13,13,13,13,13,
+13,13,13,13,13,13,13,13,13,13,13,13,4,13,13,13,
+13,13,4,13,13,13,13,13,13,13,13,4,13,13,13,13,
+13,13,13,13,13,10,13,13,4,13,13,13,4,13,13,13,
+13,4,13,13,4,10,10,13,4,13,13,13,4,10,13,13,
+13,13,4,13,13,4,13,13,13,4,13,13,10,4,10,13,
+
+
 	};
 
 	static char dt[]
-	{
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,GRY,GRY,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,GRY,GRY,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,OLV,OLV,
-		OLV,OLV,OLV,OLV,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,FOR,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,FOR,GRY,GRY,GRY,GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
+	{ 
+		OLV,OLV,MRN,OLV,OLV,OLV,MRN,OLV,OLV,OLV,MRN,FOR,GRY,GRY,GRY,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,MRN,MRN,MRN,OLV,FOR,GRY,GRY,GRY,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,MRN,MRN,MRN,OLV,GRY,OLV,OLV,
+		OLV,OLV,OLV,OLV,FOR,FOR,OLV,OLV,OLV,OLV,OLV,MRN,MRN,MRN,OLV,OLV,
+		OLV,OLV,OLV,FOR,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,MRN,OLV,
+		MRN,OLV,FOR,GRY,GRY,GRY,GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,MRN,
 		FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,OLV,OLV,OLV,OLV,FOR,
 		GRY,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,GRY,
-		GRY,GRY,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,
-		GRY,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,GRY,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,GRY,GRY,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,FOR,GRY,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,GRY,GRY,GRY,GRY,FOR,FOR,OLV,OLV,OLV,OLV,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,OLV,
-		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,FOR,FOR,GRY,FOR,OLV,
+		GRY,GRY,OLV,OLV,OLV,OLV,MRN,MRN,OLV,OLV,OLV,OLV,OLV,OLV,OLV,GRY,
+		GRY,OLV,OLV,OLV,OLV,OLV,OLV,MRN,MRN,MRN,OLV,MRN,OLV,OLV,OLV,OLV,
+		OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,OLV,MRN,OLV,OLV,MRN,OLV,OLV,OLV,
+		OLV,MRN,OLV,OLV,OLV,FOR,FOR,OLV,OLV,OLV,OLV,OLV,MRN,MRN,OLV,OLV,
+		OLV,MRN,MRN,OLV,FOR,GRY,GRY,FOR,FOR,OLV,OLV,OLV,OLV,MRN,OLV,OLV,
+		OLV,OLV,MRN,OLV,GRY,GRY,GRY,GRY,FOR,FOR,OLV,OLV,OLV,MRN,MRN,OLV,
+		OLV,OLV,MRN,OLV,OLV,OLV,MRN,OLV,OLV,OLV,OLV,OLV,OLV,FOR,OLV,MRN,
+		OLV,OLV,OLV,MRN,OLV,OLV,OLV,MRN,OLV,OLV,OLV,FOR,FOR,GRY,FOR,OLV,
 	};
 
 	static char* TileMap[]
 	{
-		//wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		//wt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,wt,
-		gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,
-		dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,
+		gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,gt,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,sl,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,gt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,sl,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,gt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,sl,gt,gt,gt,gt,gt,gt,gt,gt,gt,gt,
+		gt,gt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,sl,gt,gt,gt,gt,gt,gt,gt,gt,gt,
 		dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,
 		dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,dt,
 	};
 
+
+	static char* GroundTiles[]{
+		gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,gs,
+	};
+
 	Entity* MapEntity = new Entity();
-	MapEntity->AddComponent<Sprite>()->SetTileSprite(TileMap, 32, 4, 16);
+	MapEntity->AddComponent<Sprite>()->SetTileSprite(TileMap, 32, 12, 16);
+
+	ground = new Entity();
+	ground->transform.position.y = -56;
+	ground->AddComponent<Sprite>()->SetTileSprite(GroundTiles, 32, 1, 16);
+	ground->AddComponent<Collider>()->SetUpSquare(0, 0, 32 * 16, 1 * 16);
 	Addchild(MapEntity);
-	bkgdcolor = NVY;
+	Addchild(ground);
+
+
+	bkgdcolor = BLK;
 	//player->transform.position.x = 2 * TileSize;
 	//player->transform.position.y = 3 * -TileSize;
 
-	
+	//AddSceneText("test", 800, 500, 10);
+	gravity = -220.0f;
+	player->velocity.y = 0.0f;
 	this->Addchild(player);
-	//this->Addchild(hm->getCell(0, 0)[0]);
+	player->transform.position.y = -35;
+	GetMainCamera()->position.y = player->transform.position.y + 29;
 }
 
 void Floor::update(float deltaTime)
 {
-	//for (int y = -3; y < 4; y++)
-	//{
-	//	for (int x = -3; x < 4; x++)
-	//	{
-	//		if (RenderMap[std::max(0, std::min(BOUNDS -1, getCell(player)[0] + x))][std::max(0, std::min(BOUNDS - 1, getCell(player)[1] + y * -1))][0]->Parent)
-	//		{
-	//			for (int i = 0; i < RenderMap[std::max(0, std::min(BOUNDS - 1, getCell(player)[0] + x))][std::max(0, std::min(BOUNDS - 1, getCell(player)[1] + y * -1))].size(); i++)
-	//			{
-	//				Removechild(RenderMap[std::max(0, std::min(BOUNDS - 1, getCell(player)[0] + x))][std::max(0, std::min(BOUNDS - 1, getCell(player)[1] + y * -1))][i]);
-	//			}
-	//		}
-	//	}
-	//}
-	//for (int y = -2; y < 3; y++)
-	//{
-	//	for (int x = -2; x < 3; x++)
-	//	{
-	//		if (!RenderMap[std::max(0, std::min(BOUNDS - 1, getCell(player)[0] + x))][std::max(0, std::min(BOUNDS - 1, getCell(player)[1] + y * -1))][0]->Parent)
-	//		{
-	//			for (int i = 0; i < RenderMap[std::max(0, std::min(BOUNDS - 1, getCell(player)[0] + x))][std::max(0, std::min(BOUNDS - 1, getCell(player)[1] + y * -1))].size(); i++)
-	//			{
-	//				Addchildfront(RenderMap[std::max(0, std::min(BOUNDS - 1, getCell(player)[0] + x))][std::max(0, std::min(BOUNDS - 1, getCell(player)[1] + y * -1))][i]);
-	//			}
-	//		}
-	//	}
-	//}
-	//for (int y = -1; y < 1; y++)
-	//{
-	//	for (int x = -1; x < 1; x++)
-	//	{
-	//		Tiles(getPos(player)[0] + x, getPos(player)[1] + y)->Activate(player);
-	//	}
-	//}
+	if (player->GetComponent<Collider>()->isColliding(ground)) {
+		player->velocity.y = 0.0f;
+		player->transform.position.y = player->oldpos.y;
+		player->grounded = true;
+	}
+	if (GetInput()->KeyPressed(KeyCode::Space) && player->grounded)	{
+		player->velocity.y = 120.0f;
+		player->grounded = false;
+	}
+	player->transform.position.y += player->velocity.y * deltaTime;
+	player->velocity.y += gravity * deltaTime;
 	if (GetInput()->KeyPressed(KeyCode::Escape))
 	{
 		isRunning = false;
 	}
 	GetMainCamera()->position.x = player->transform.position.x;
-	GetMainCamera()->position.y = player->transform.position.y;
 }

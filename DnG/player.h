@@ -8,7 +8,11 @@ public:
 	Player();
 	virtual void update(float deltaTime);
 	Vector3 oldpos;
-	float speed = 0.0f;
+	Vector3 olderpos;
+	Vector3 velocity;
+	float accel = 1.0f;
+	bool grounded = false;
+	bool jumping = false;
 private:
 	SpriteAnimation* walkAnim = nullptr;
 };

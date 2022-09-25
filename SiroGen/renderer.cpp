@@ -193,6 +193,5 @@ GLuint Renderer::GetShader(const char* vertex_file_path, const char* fragment_fi
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-    window;
     glViewport(0, 0, width, height);
 }
