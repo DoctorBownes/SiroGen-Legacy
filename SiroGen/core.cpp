@@ -31,7 +31,7 @@ void Core::Start(Scene* scene)
 
         //static int framecounter = 0;
         //if (glfwGetTime() - starttime > 1.0f) {
-        //      std::cout << framecounter << std::endl;
+        //    std::cout << framecounter << std::endl;
         //    framecounter = 0;
         //    starttime = glfwGetTime();
         //}

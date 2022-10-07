@@ -17,6 +17,7 @@ public:
 	//Tile* TileLevel[LevelHeight][LevelWidth] = nullptr;
 	//HashMap* EnemyMap = nullptr;
 	Entity* ground = nullptr;
+	Entity* hground = nullptr;
 	Player* player = nullptr;
 };
 

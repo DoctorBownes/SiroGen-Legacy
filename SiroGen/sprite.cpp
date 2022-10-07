@@ -80,13 +80,13 @@ void Sprite::GenerateSprite()
         texture_buffer = texture->GetTexBuffer();
         vertex_buffer_vector.insert(vertex_buffer_vector.begin(), {
 
-            -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
-             0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
-             0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
+            -0.5f * texture->_width,  0.5f * texture->_height,
+             0.5f * texture->_width,  0.5f * texture->_height,
+             0.5f * texture->_width, -0.5f * texture->_height,
 
-             0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
-            -0.5f * texture->_width, -0.5f * texture->_height, 0.0f,
-            -0.5f * texture->_width,  0.5f * texture->_height, 0.0f,
+             0.5f * texture->_width, -0.5f * texture->_height,
+            -0.5f * texture->_width, -0.5f * texture->_height,
+            -0.5f * texture->_width,  0.5f * texture->_height,
             //TODO 
             // Implement pivot change. X = +0.5f Y = -0.5f
              //0.0f * texture->_width,  0.0f * texture->_height, 0.0f,
@@ -129,7 +129,7 @@ void Sprite::DoIt(GLuint shader)
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glVertexAttribPointer(
         vertexPositionID,   // attribute 0. No particular reason for 0, but must match the layout in the shader.
-        3,                  // size
+        2,                  // size
         GL_FLOAT,           // type
         GL_FALSE,           // normalized?
         0,                  // stride

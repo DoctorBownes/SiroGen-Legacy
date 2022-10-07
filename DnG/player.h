@@ -7,9 +7,9 @@ class Player : public Entity
 public:
 	Player();
 	virtual void update(float deltaTime);
-	Vector3 oldpos;
-	Vector3 olderpos;
-	Vector3 velocity;
+	Vector2 oldpos;
+	Vector2 olderpos;
+	Vector2 velocity;
 	float accel = 1.0f;
 	bool grounded = false;
 	bool jumping = false;

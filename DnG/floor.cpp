@@ -169,11 +169,19 @@ Floor::Floor() : Scene()
 	ground->transform.position.y = -56;
 	ground->AddComponent<Sprite>()->SetTileSprite(GroundTiles, 32, 1, 16);
 	ground->AddComponent<Collider>()->SetUpSquare(0, 0, 32 * 16, 1 * 16);
+
+
+	hground = new Entity();
+	hground->transform.position.y = -40;
+	hground->transform.position.x = 512;
+	hground->AddComponent<Sprite>()->SetTileSprite(GroundTiles, 32, 1, 16);
+	hground->AddComponent<Collider>()->SetUpSquare(0, 0, 32 * 16, 1 * 16);
 	Addchild(MapEntity);
 	Addchild(ground);
+	Addchild(hground);
 
 
-	bkgdcolor = BLK;
+	bkgdcolor = NVY;
 	//player->transform.position.x = 2 * TileSize;
 	//player->transform.position.y = 3 * -TileSize;
 
@@ -183,13 +191,25 @@ Floor::Floor() : Scene()
 	this->Addchild(player);
 	player->transform.position.y = -35;
 	GetMainCamera()->position.y = player->transform.position.y + 29;
+	//std::cout << sizeof(Sprite) << std::endl;;
 }
 
 void Floor::update(float deltaTime)
 {
 	if (player->GetComponent<Collider>()->isColliding(ground)) {
 		player->velocity.y = 0.0f;
-		player->transform.position.y = player->oldpos.y;
+		player->transform.position.y = ground->transform.position.y + 20;
+		player->grounded = true;
+	}
+	if (player->GetComponent<Collider>()->isColliding(hground)) {
+		player->velocity.y = 0.0f;
+		if (player->transform.position.y - 13 < hground->transform.position.y + 7) {
+			player->transform.position.x = player->oldpos.x;
+		}
+		else {
+			std::cout << "above tile \n";
+			player->transform.position.y = hground->transform.position.y + 20;
+		}
 		player->grounded = true;
 	}
 	if (GetInput()->KeyPressed(KeyCode::Space) && player->grounded)	{

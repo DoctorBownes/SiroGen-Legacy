@@ -74,23 +74,17 @@ void Text::EditText(std::string text)
             //Add vertex positions to buffer
             vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);
             vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));
-            vertex_buffer_vector.push_back(0.0f);
             vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);
             vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));
-            vertex_buffer_vector.push_back(0.0f);
             vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);
             vertex_buffer_vector.push_back((_y - liney) - 1.0f);
-            vertex_buffer_vector.push_back(0.0f);
 
             vertex_buffer_vector.push_back((_x + (_size - 2.0f)) / 2.0f);
             vertex_buffer_vector.push_back((_y - liney) - 1.0f);
-            vertex_buffer_vector.push_back(0.0f);
             vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);
             vertex_buffer_vector.push_back((_y - liney) - 1.0f);
-            vertex_buffer_vector.push_back(0.0f);
             vertex_buffer_vector.push_back((_x - 2.0f) / 2.0f);
             vertex_buffer_vector.push_back((_y - liney) + (_size - 1.0f));
-            vertex_buffer_vector.push_back(0.0f);
             //Adds the proper space between characters
             _x += _size;// / spacebetweencharacters (future reference)
 

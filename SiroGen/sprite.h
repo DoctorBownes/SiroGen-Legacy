@@ -28,7 +28,6 @@ protected:
     ResourceManager* _instance = _instance->GetInstance();
 
 private:
-    bool drawn = 0;
     int _height = 0;
     int _width = 0;
 };

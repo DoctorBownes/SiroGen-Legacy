@@ -16,8 +16,8 @@ Camera::Camera(bool isThreeDimensional)
         glDisable(GL_DEPTH_TEST);
     }
     glDepthFunc(GL_LESS);
-    position.z = 650.0f;
-    rotation = Vector3(0, 3.141592f, 0);
+   // position.z = 650.0f;
+    rotation = Vector2(0, 3.141592f);
     up = glm::vec3(0, 1, 0);
     right = glm::vec3(1, 0, 0);
 }
@@ -68,7 +68,7 @@ void Camera::UpdateCamera()
     );
     up = glm::cross(right, direction);
 
-    _position = glm::vec3(position.x, position.y, position.z);
+    _position = glm::vec3(position.x, position.y, 1.0f);
 
     //std::cout << _position.x << ", " << _position.y << ", " << _position.z << ", " << std::endl;
     //std::cout << direction.x << ", " << direction.y << ", " << direction.z << ", " << std::endl;

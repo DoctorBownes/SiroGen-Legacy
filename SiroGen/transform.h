@@ -7,9 +7,9 @@ class Transform
 public:
 	Transform();
 	~Transform();
-	Vector3 position;
-	Vector3 rotation;
-	Vector3 scale;
+	Vector2 position;
+	Vector2 rotation;
+	Vector2 scale;
 };
 
 #endif

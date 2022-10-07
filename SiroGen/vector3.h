@@ -1,22 +1,18 @@
-#ifndef VECTOR3_H_
-#define VECTOR3_H_
-#include <cmath>
-class Vector3
+#ifndef VECTOR2_H_
+#define VECTOR2_H_
+class Vector2
 {
 public:
-	Vector3();
-	Vector3(float x, float y);
-	Vector3(float x, float y, float z);
-	Vector3* add(Vector3* vector);
-	Vector3* sub(Vector3* vector);
-	Vector3* mult(float mult);
+	Vector2(float x = 0.0f, float y = 0.0f);
+	Vector2 add(Vector2 vector);
+	Vector2 sub(Vector2 vector);
+	Vector2 mult(float mult);
 	void Normalize();
-	float DistanceBetween(Vector3* vector);
-	void MoveTowards(Vector3* vector, float speed = 10.0f);
-	virtual ~Vector3();
+	float DistanceBetween(Vector2 vector);
+	void MoveTowards(Vector2 vector, float speed = 10.0f);
+	virtual ~Vector2();
 	float x = 0.0f;
 	float y = 0.0f;
-	float z = 0.0f;
 };
 
 #endif

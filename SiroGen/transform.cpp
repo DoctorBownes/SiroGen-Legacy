@@ -2,7 +2,7 @@
 
 Transform::Transform()
 {
-	scale = Vector3(1.0f,1.0f,1.0f);
+	scale = Vector2(1.0f,1.0f);
 }
 
 Transform::~Transform()

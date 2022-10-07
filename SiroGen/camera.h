@@ -14,8 +14,8 @@ public:
 	float GetZoom() { return zoom; };
 	glm::mat4 GetProjectionMat() { return projectionMatrix; };
 	glm::mat4 GetCameraMat() { return cameraMatrix; };
-	Vector3 position;
-	Vector3 rotation;
+	Vector2 position;
+	Vector2 rotation;
 private:
 	glm::mat4 cameraMatrix = glm::mat4();
 	glm::mat4 projectionMatrix = glm::mat4();
