@@ -198,8 +198,15 @@ void Floor::update(float deltaTime)
 {
 	if (player->GetComponent<Collider>()->isColliding(ground)) {
 		player->velocity.y = 0.0f;
-		player->transform.position.y = ground->transform.position.y + 20;
+		player->transform.position.y = ground->transform.position.y + 20.0f;
 		player->grounded = true;
+	}
+	else {
+		player->grounded = false;
+	}
+	if (GetInput()->KeyPressed(KeyCode::Space) && player->grounded) {
+		player->transform.position.y = ground->transform.position.y + 21.0f;
+		player->velocity.y = 15000.0f * deltaTime;
 	}
 	if (player->GetComponent<Collider>()->isColliding(hground)) {
 		player->velocity.y = 0.0f;
@@ -211,10 +218,6 @@ void Floor::update(float deltaTime)
 			player->transform.position.y = hground->transform.position.y + 20;
 		}
 		player->grounded = true;
-	}
-	if (GetInput()->KeyPressed(KeyCode::Space) && player->grounded)	{
-		player->velocity.y = 120.0f;
-		player->grounded = false;
 	}
 	player->transform.position.y += player->velocity.y * deltaTime;
 	player->velocity.y += gravity * deltaTime;

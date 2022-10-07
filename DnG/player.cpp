@@ -239,7 +239,6 @@ static char Jump[]
 	velocity = Vector2(0, 200.0f);
 	this->AddComponent<Animation>();
 	this->AddComponent<Collider>()->SetUpSquare(0.0f, 0.0f, 19, 26);
-	jumping = true;
 }
 
 void Player::update(float deltaTime)

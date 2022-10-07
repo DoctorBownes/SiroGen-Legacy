@@ -12,7 +12,6 @@ public:
 	Vector2 velocity;
 	float accel = 1.0f;
 	bool grounded = false;
-	bool jumping = false;
 private:
 	SpriteAnimation* walkAnim = nullptr;
 };
